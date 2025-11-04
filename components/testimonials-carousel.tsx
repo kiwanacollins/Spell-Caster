@@ -164,8 +164,8 @@ export function TestimonialsCarousel() {
                     </div>
 
                     {/* Service badge */}
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 bg-mystical-amber border-2 border-mystical-bronze rounded-ritual shadow-lg">
-                      <span className="text-xs font-serif text-ink-900 font-semibold">
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 bg-mystical-purple border-2 border-[#d4af37] rounded-ritual shadow-lg">
+                      <span className="text-xs font-serif text-[#d4af37] font-bold tracking-wide" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
                         {currentTestimonial.service}
                       </span>
                     </div>
