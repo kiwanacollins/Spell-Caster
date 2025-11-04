@@ -250,14 +250,14 @@ Guidelines for managing task lists in markdown files to track progress on comple
 
 - **One sub-task at a time:** Do **NOT** start the next sub-task until you ask the user for permission and they say "yes" or "y"
 - **Completion protocol:**  
-  1. When you finish a **sub-task**, immediately mark it as completed by changing `[ ]` to `[x]`.  
-  2. If **all** subtasks underneath a parent task are now `[x]`, also mark the **parent task** as completed `[x]`.  
+  1. When you finish a **sub-task**, immediately mark it as completed by changing `[ ]` to `[✓]`.  
+  2. If **all** subtasks underneath a parent task are now `[✓]`, also mark the **parent task** as completed `[✓]`.  
 - Stop after each sub-task and wait for the user's go-ahead before proceeding.
 
 ### Task List Maintenance
 
 1. **Update the task list as you work:**
-   - Mark tasks and subtasks as completed (`[x]`) per the protocol above.
+   - Mark tasks and subtasks as completed (`[✓]`) per the protocol above.
    - Add new tasks as they emerge during implementation.
    - Keep the task list file synchronized with actual progress.
 
@@ -283,8 +283,8 @@ When working with task lists (`tasks/tasks-prd.md`), you must:
 
 3. **After completing a sub-task:**
    - Immediately update the task list file.
-   - Mark the completed sub-task as `[x]`.
-   - If all sibling sub-tasks are complete, mark the parent task as `[x]`.
+   - Mark the completed sub-task as `[✓]`.
+   - If all sibling sub-tasks are complete, mark the parent task as `[✓]`.
    - Update the "Relevant Files" section with any new or modified files.
    - Add any newly discovered tasks to the appropriate section.
    - Stop and wait for user approval before proceeding.
