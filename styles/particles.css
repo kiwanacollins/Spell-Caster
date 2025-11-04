@@ -1,0 +1,199 @@
+/**
+ * Particle Effect Styles
+ * 
+ * Styles for mystical particle systems (smoke, orbs, dust)
+ */
+
+/* Particle container */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Smoke particle */
+.particle-smoke {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 184, 184, 0.4) 0%, transparent 70%);
+  filter: blur(8px);
+  mix-blend-mode: screen;
+}
+
+.dark .particle-smoke {
+  background: radial-gradient(circle, rgba(153, 102, 204, 0.2) 0%, transparent 70%);
+}
+
+/* Spirit orb particle */
+.particle-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 242, 255, 0.8) 0%, rgba(153, 102, 204, 0.4) 50%, transparent 70%);
+  box-shadow: 0 0 10px rgba(224, 242, 255, 0.6),
+              0 0 20px rgba(153, 102, 204, 0.4);
+  filter: blur(2px);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Dust mote particle */
+.particle-dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 4px rgba(212, 175, 55, 0.8);
+  animation: dust-drift 8s ease-in-out infinite;
+}
+
+@keyframes dust-drift {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(50px, -100px);
+    opacity: 0;
+  }
+}
+
+/* Sparkle particle */
+.particle-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 207, 135, 0.9);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: sparkle-twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* Mystical mist layer */
+.particle-mist {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(153, 102, 204, 0.1) 0%, transparent 60%);
+  filter: blur(40px);
+  animation: mist-drift 20s ease-in-out infinite;
+}
+
+@keyframes mist-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+}
+
+/* Energy particle burst */
+.particle-burst {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, transparent 70%);
+  animation: burst-expand 0.8s ease-out;
+}
+
+@keyframes burst-expand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Falling star/meteor particle */
+.particle-meteor {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 207, 135, 0) 0%, rgba(255, 207, 135, 0.8) 50%, rgba(255, 107, 53, 0.4) 100%);
+  border-radius: 50%;
+  animation: meteor-fall 2s linear;
+}
+
+@keyframes meteor-fall {
+  0% {
+    transform: translate(0, 0) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(300px, 300px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Floating pollen/magic dust */
+.particle-pollen {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.5);
+  animation: pollen-float 12s ease-in-out infinite;
+}
+
+@keyframes pollen-float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -30px);
+  }
+  50% {
+    transform: translate(10px, -60px);
+  }
+  75% {
+    transform: translate(-10px, -30px);
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .particle-smoke,
+  .particle-orb,
+  .particle-dust,
+  .particle-sparkle,
+  .particle-mist,
+  .particle-burst,
+  .particle-meteor,
+  .particle-pollen {
+    animation: none !important;
+  }
+}
+
+/* Mobile optimization - reduce particle count */
+@media (max-width: 768px) {
+  .particle-container {
+    display: none;
+  }
+  
+  .particle-container.essential {
+    display: block;
+  }
+}

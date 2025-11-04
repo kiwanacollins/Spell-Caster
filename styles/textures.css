@@ -1,0 +1,89 @@
+/**
+ * Parchment and Leather Texture Classes
+ * 
+ * Ancient weathered textures for mystical UI elements
+ */
+
+/* Parchment texture overlay */
+.texture-parchment {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(235, 227, 205, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(235, 227, 205, 0.05) 0%, transparent 50%),
+    linear-gradient(rgba(235, 227, 205, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(235, 227, 205, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+}
+
+.dark .texture-parchment {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(153, 102, 204, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(153, 102, 204, 0.03) 0%, transparent 50%),
+    linear-gradient(rgba(153, 102, 204, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(153, 102, 204, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+}
+
+/* Leather texture - rich and worn */
+.texture-leather {
+  background-image: 
+    radial-gradient(ellipse at top, rgba(139, 111, 71, 0.1) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(101, 81, 54, 0.05) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(101, 81, 54, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(101, 81, 54, 0.05) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(101, 81, 54, 0.05) 25%, transparent 25%);
+  background-size: 100% 100%, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
+  background-position: 0 0, 0 0, 40px 0, 40px -40px, 0 40px;
+}
+
+/* Stone tablet texture */
+.texture-stone {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(74, 74, 74, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(74, 74, 74, 0.08) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(74, 74, 74, 0.03) 10px, rgba(74, 74, 74, 0.03) 20px);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Weathered edges effect */
+.edges-weathered {
+  position: relative;
+  mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+}
+
+.edges-torn {
+  position: relative;
+  clip-path: polygon(
+    0% 2%, 3% 0%, 7% 2%, 12% 0%, 18% 3%, 23% 1%, 28% 2%, 35% 0%, 
+    40% 3%, 48% 1%, 55% 2%, 62% 0%, 68% 3%, 75% 1%, 82% 2%, 88% 0%, 
+    93% 3%, 97% 1%, 100% 2%, 100% 98%, 97% 100%, 93% 98%, 88% 100%, 
+    82% 97%, 75% 99%, 68% 97%, 62% 100%, 55% 98%, 48% 99%, 40% 97%, 
+    35% 100%, 28% 98%, 23% 99%, 18% 97%, 12% 100%, 7% 98%, 3% 100%, 0% 98%
+  );
+}
+
+/* Ink stain effect */
+.ink-stain::before {
+  content: '';
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  width: 15%;
+  height: 15%;
+  background: radial-gradient(circle, rgba(26, 26, 10, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Aged paper effect */
+.paper-aged {
+  background: linear-gradient(
+    to bottom,
+    rgba(235, 227, 205, 0.05) 0%,
+    transparent 10%,
+    transparent 90%,
+    rgba(235, 227, 205, 0.05) 100%
+  );
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
