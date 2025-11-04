@@ -67,23 +67,37 @@ export function AboutSection() {
               <h3 className="font-cinzel text-lg text-ink-900">
                 Areas of Expertise:
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  'Love & Relationship Healing',
-                  'Protection & Curse Removal',
-                  'Wealth & Prosperity Magic',
-                  'Tarot & Oracle Divination',
-                  'Energy Healing & Chakras',
-                  'Lunar & Seasonal Rituals',
-                ].map((specialty, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 font-serif text-sm text-ink-700"
-                  >
-                    <span className="text-mystical-amber">✧</span>
-                    <span>{specialty}</span>
-                  </div>
-                ))}
+              <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-8 py-14 px-10 rounded-ritual border-2 border-mystical-bronze/30 overflow-hidden min-h-[520px]">
+                {/* Parchment background */}
+                <div
+                  className="absolute inset-0 opacity-50"
+                  style={{
+                    backgroundImage: 'url(/textures/parchment.webp)',
+                    backgroundSize: '100% 100%',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                
+                {/* Content */}
+                <div className="relative z-10 col-span-1 sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {[
+                    'Love & Relationship Healing',
+                    'Protection & Curse Removal',
+                    'Wealth & Prosperity Magic',
+                    'Tarot & Oracle Divination',
+                    'Energy Healing & Chakras',
+                    'Lunar & Seasonal Rituals',
+                  ].map((specialty, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 font-serif text-base text-ink-900 font-medium"
+                    >
+                      <span className="text-mystical-amber text-lg">✧</span>
+                      <span>{specialty}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
