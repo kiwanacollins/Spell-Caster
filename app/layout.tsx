@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { fontClasses } from '@/styles/fonts';
+import '@/lib/env'; // Validate environment variables on app start
 
 export const metadata: Metadata = {
   title: 'Spell Caster - Spiritual Healing & Mystical Services',
