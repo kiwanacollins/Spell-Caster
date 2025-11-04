@@ -1,11 +1,13 @@
 # Copilot Instructions for Spell Caster Platform
 
 ## Project Overview
+
 This is a spiritual healing and spell casting platform with an **ancient, magical, and mysterious aesthetic**. The design should evoke grimoires, medieval manuscripts, and mystical artifacts—NOT modern web design trends.
 
 ## Core Design Philosophy
 
 ### Theme: Ancient Mysticism
+
 - **Ancient parchment aesthetic**: weathered, aged, mysterious
 - **Dark, mysterious atmosphere**: Think candlelit chambers and moonlit ritual spaces
 - **Candlelit atmosphere**: flickering flames, smoky ambiance, moonlit ritual spaces
@@ -17,38 +19,47 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - **Don't use emoji icons or graphics**: only hand-drawn or thematic icons (e.g., quill, candle, crystal ball) using react-icons or custom SVGs
 
 ### Typography: Ancient & Mystical Fonts
+
 **Never use generic fonts like Arial, Inter, or Roboto**. This platform requires authentic ancient character:
 
 **Primary Headings:**
+
 - UnifrakturMaguntia (gothic blackletter)
 - MedievalSharp (ancient gothic)
 - Cinzel Decorative (classical ornate)
 
 **Secondary Headings:**
+
 - IM Fell English (classical serif with historical character)
 - Philosopher (ancient wisdom)
 
 **Body Text:**
+
 - Crimson Text (old-style serif, readable with historical character)
 - EB Garamond (classical readability)
 
 **Mystical Accents:**
+
 - Almendra SC (small caps for ritual text)
 
 **Key principle**: Every font choice should feel like it belongs in an ancient grimoire or medieval manuscript.
 
 ### Color Palette: Ancient & Weathered
+
 **Primary Colors:**
+
 - Ancient Parchment: #F4E8D0
 - Deep Charcoal: #1A1A1A
 - Aged Bronze: #8B6F47
 
 **Secondary Colors:**
+
 - Mystical Amber: #CC8800
 - Weathered Stone: #4A4A4A
 - Moonlit Silver: #C0C0C0
 
 **Accent Colors:**
+
 - Enchanted Emerald: #2C5530
 - Blood Moon Red: #8B0000
 - Sacred Gold: #B8860B
@@ -58,6 +69,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### Visual Style & Aesthetics
 
 **Backgrounds:**
+
 - Textured backgrounds: parchment, aged paper, stone tablets, weathered leather
 - Layered textures for depth (never solid colors)
 - Smoky particle effects and ethereal mist overlays
@@ -65,6 +77,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - Sepia-toned imagery and vintage photograph effects
 
 **Decorative Elements:**
+
 - Hand-drawn mystical symbols and borders (pentacles, runes, Celtic knots)
 - Wax seal elements and ancient scroll motifs
 - Ancient manuscript illuminations and marginalia-inspired decorations
@@ -72,6 +85,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - Flickering candlelight effects (NOT neon glows)
 
 **Interactive Elements:**
+
 - Buttons glow with mystical energy (subtle, candlelight-like)
 - Form inputs have ink-well fill effects
 - Checkboxes become glowing runes when selected
@@ -80,27 +94,32 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### Motion & Animations
 
 **Animation Philosophy:**
+
 - Natural, organic movements (candle flickers, smoke swirls, mist drifts)
 - Smooth but mystical transitions (fade, dissolve, flicker)
 - High-impact moments: Page load with staggered reveals of mystical elements
 - Use animation-delay for orchestrated sequences
 
 **CSS-First Approach:**
+
 - Prioritize CSS animations for HTML elements
 - Use transform and opacity for GPU acceleration
 - Implement will-change sparingly
 
 **React/Advanced Animations:**
+
 - Framer Motion for declarative animations
 - GSAP + ScrollTrigger for complex scroll-based effects
 - Anime.js for SVG path morphing (mystical symbols)
 
 **Particle Effects:**
+
 - tsParticles for smoke, mist, floating dust motes
 - Limit particles: 50-100 on mobile, 200-300 on desktop
 - Canvas-based effects for hero section only
 
 **Key Animation Moments:**
+
 1. **Page Load**: Mystical reveal with swirling mist/smoke
 2. **Spell Cards**: Lift and rotate on hover with shadow depth
 3. **Scroll Effects**: Runes and symbols glow as they enter viewport
@@ -110,6 +129,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### 3D Elements & Mystical Effects
 
 **Hero Section:**
+
 - Floating crystals (amethyst, quartz, obsidian) with inner glow
 - Rotating ritual circles with pulsing runes
 - Animated 3D candles with flickering flames
@@ -117,11 +137,13 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - Ancient grimoire that opens with page-turning animation
 
 **Interactive Elements:**
+
 - 3D spell icons (heart with vines, runed shield, golden coin, crystal ball)
 - Cards fan out when clicked
 - Ancient artifacts as 3D props (chalice, wand, athame)
 
 **Performance:**
+
 - Progressive enhancement: Full 3D on desktop, lighter on mobile
 - Lazy load Three.js scenes
 - Use Spline exports for mobile (lightweight)
@@ -130,6 +152,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### Component Design Patterns
 
 **Cards:**
+
 - Weathered parchment or leather texture backgrounds
 - Hand-drawn borders with mystical symbols in corners
 - Aged, imperfect edges (no perfect rounded corners)
@@ -141,18 +164,21 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - Asymmetric decorative elements (corner runes, marginal notes, ink splatters)
 
 **Forms:**
+
 - Ink-well style inputs (text appears like quill writing)
 - Wax seal submit buttons
 - Ancient scroll aesthetic for multi-step forms
 - Mystical validation messages (not generic errors)
 
 **Navigation:**
+
 - Ancient tome chapter markers
 - Scroll motif for mobile menu
 - Mystical runes as icons
 - Candlelight hover effects
 
 **Modals:**
+
 - Ancient grimoire opening animation
 - Parchment overlay with worn edges
 - Wax seal close button
@@ -163,6 +189,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 **Key Principle**: Users should NEVER know AI is involved. All AI features operate behind the scenes.
 
 **When building AI features:**
+
 - No loading states that say "AI is thinking"
 - Use mystical loading messages: "Consulting the ancient texts...", "The spirits are speaking..."
 - Admin reviews all AI content before user sees it
@@ -172,24 +199,28 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### Code Quality & Standards
 
 **React/Next.js Best Practices:**
+
 - Use Next.js 15 App Router
 - Server Components by default, Client Components only when needed
 - Implement proper loading states with mystical themed skeletons
 - Error boundaries with ancient-themed error messages
 
 **Styling:**
+
 - Tailwind CSS with custom ancient theme configuration
 - shadcn/ui components heavily customized (NOT default styling)
 - CSS variables for color consistency
 - Mobile-first responsive design
 
 **Performance:**
+
 - Lazy load 3D scenes and heavy animations
 - Use Intersection Observer to pause off-screen animations
 - Compress textures (KTX2, Basis Universal)
 - Target metrics: FCP < 1.8s, TTI < 3.5s, Lighthouse 90+
 
 **Accessibility:**
+
 - Implement reduce-motion media query
 - Ensure ancient fonts remain readable
 - Proper ARIA labels with mystical language
@@ -198,6 +229,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### What to AVOID
 
 **DO NOT:**
+
 - Use modern gradients (especially purple/pink/blue)
 - Create generic, clean, minimalist designs
 - Use rounded corners everywhere (prefer irregular, aged edges)
@@ -215,6 +247,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### Creative Direction
 
 **Always ask yourself:**
+
 - Does this feel like it belongs in an ancient grimoire?
 - Would a medieval scribe recognize this aesthetic?
 - Is the mystical atmosphere maintained?
@@ -222,6 +255,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - Have I avoided "AI slop" generic design?
 
 **When in doubt:**
+
 - Add more texture
 - Increase the mystical atmosphere
 - Make it feel more ancient and weathered
@@ -230,6 +264,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 ### Messaging Integration
 
 **WhatsApp & Messenger:**
+
 - Seamlessly integrate messaging channels
 - Use mystical language in notifications
 - AI-powered responses maintain healer's voice
@@ -249,9 +284,9 @@ Guidelines for managing task lists in markdown files to track progress on comple
 ### Task Implementation Protocol
 
 - **One sub-task at a time:** Do **NOT** start the next sub-task until you ask the user for permission and they say "yes" or "y"
-- **Completion protocol:**  
-  1. When you finish a **sub-task**, immediately mark it as completed by changing `[ ]` to `[✓]`.  
-  2. If **all** subtasks underneath a parent task are now `[✓]`, also mark the **parent task** as completed `[✓]`.  
+- **Completion protocol:**
+  1. When you finish a **sub-task**, immediately mark it as completed by changing `[ ]` to `[✓]`.
+  2. If **all** subtasks underneath a parent task are now `[✓]`, also mark the **parent task** as completed `[✓]`.
 - Stop after each sub-task and wait for the user's go-ahead before proceeding.
 
 ### Task List Maintenance

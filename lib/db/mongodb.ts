@@ -1,9 +1,9 @@
 /**
  * MongoDB Connection Utility
- * 
+ *
  * Provides a singleton connection to MongoDB with connection pooling.
  * Uses the native MongoDB Node.js driver with proper error handling.
- * 
+ *
  * @module lib/db/mongodb
  */
 
@@ -19,11 +19,11 @@ const options: MongoClientOptions = {
   maxPoolSize: 10,
   minPoolSize: 2,
   maxIdleTimeMS: 30000,
-  
+
   // Timeout settings
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
-  
+
   // Retry settings
   retryWrites: true,
   retryReads: true,
@@ -87,7 +87,7 @@ export async function testConnection(): Promise<boolean> {
   try {
     const client = await clientPromise;
     await client.db('admin').command({ ping: 1 });
-    console.log('✓ MongoDB connection successful');
+    console.debug('✓ MongoDB connection successful');
     return true;
   } catch (error) {
     console.error('✗ MongoDB connection failed:', error);

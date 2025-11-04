@@ -1,1 +1,1 @@
-#2d1240
+npm run lint:fix && npm run format && echo "✓ Both ESLint and Prettier completed successfully"

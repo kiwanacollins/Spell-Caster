@@ -6,6 +6,7 @@ Date: November 4, 2025
 ## Relevant Files
 
 ### Core Configuration
+
 - `package.json` - Project dependencies and scripts
 - `next.config.js` - Next.js 15 configuration, image optimization, API routes
 - `tailwind.config.ts` - Custom ancient theme configuration with colors, fonts, animations
@@ -14,6 +15,7 @@ Date: November 4, 2025
 - `.copilot-instructions.md` - AI assistant guidelines for the AI instructions ancient mystical design
 
 ### App Structure (Next.js 15 App Router)
+
 - `app/layout.tsx` - Root layout with ancient fonts, metadata, providers
 - `app/page.tsx` - Landing page with hero, services, testimonials
 - `app/globals.css` - Global styles with custom CSS variables for ancient theme
@@ -39,6 +41,7 @@ Date: November 4, 2025
 - `app/(admin)/admin/settings/page.tsx` - Admin settings
 
 ### API Routes
+
 - `app/api/auth/[...betterauth]/route.ts` - BetterAuth authentication endpoints
 - `app/api/spells/route.ts` - Spell CRUD operations
 - `app/api/spells/[id]/route.ts` - Individual spell operations
@@ -56,6 +59,7 @@ Date: November 4, 2025
 - `app/api/services/route.ts` - Service catalog management
 
 ### Components (UI)
+
 - `components/ui/button.tsx` - Ancient themed button component
 - `components/ui/card.tsx` - Parchment card with weathered edges (NO left borders)
 - `components/ui/input.tsx` - Ink-well style input
@@ -68,6 +72,7 @@ Date: November 4, 2025
 - `components/ui/progress.tsx` - Energy meter progress bar
 
 ### Components (Feature-Specific)
+
 - `components/hero-section.tsx` - 3D animated hero with crystals and candles
 - `components/services-grid.tsx` - Service cards with 3D icons
 - `components/testimonials-carousel.tsx` - Rotating testimonials
@@ -90,6 +95,7 @@ Date: November 4, 2025
 - `components/particles/floating-orbs.tsx` - Spirit orb particles
 
 ### Library Files
+
 - `lib/db/mongodb.ts` - MongoDB connection and client
 - `lib/db/models/user.ts` - User model schema
 - `lib/db/models/spell.ts` - Spell model schema
@@ -120,12 +126,14 @@ Date: November 4, 2025
 - `lib/hooks/useAI.ts` - AI response generation hook
 
 ### Styles
+
 - `styles/fonts.ts` - Ancient font imports (UnifrakturMaguntia, Crimson Text, etc.)
 - `styles/textures.css` - Parchment and leather texture classes
 - `styles/animations.css` - Custom keyframe animations
 - `styles/particles.css` - Particle effect styles
 
 ### Testing
+
 - `__tests__/api/spells.test.ts` - Spell API endpoint tests
 - `__tests__/api/messages.test.ts` - Messaging API tests
 - `__tests__/api/ai-generation.test.ts` - AI generation tests
@@ -135,6 +143,7 @@ Date: November 4, 2025
 - `__tests__/lib/messaging/unified-inbox.test.ts` - Message aggregation tests
 
 ### Public Assets
+
 - `public/textures/parchment.webp` - Parchment texture
 - `public/textures/leather.webp` - Leather texture
 - `public/textures/stone.webp` - Stone texture
@@ -156,7 +165,7 @@ Date: November 4, 2025
   - [✓] 1.5 Install and configure shadcn/ui components library
   - [✓] 1.6 Set up Google Fonts or local font files for ancient fonts (UnifrakturMaguntia, Crimson Text, EB Garamond, etc.)
   - [✓] 1.7 Create project folder structure (app/, components/, lib/, styles/, public/)
-  - [ ] 1.8 Configure ESLint and Prettier with project-specific rules
+  - [✓] 1.8 Configure ESLint and Prettier with project-specific rules
   - [ ] 1.9 Set up Git repository and create .gitignore file
   - [ ] 1.10 Install testing libraries (Jest, React Testing Library)
 
@@ -479,6 +488,7 @@ Date: November 4, 2025
 ## Notes
 
 ### Implementation Priority
+
 1. Start with Project Setup & Infrastructure (Task 1.0)
 2. Build Authentication system early (Task 3.0) as it's required by both dashboards
 3. Implement Landing Page (Task 2.0) for marketing and user acquisition
@@ -489,6 +499,7 @@ Date: November 4, 2025
 8. Testing and optimization (Task 11.0) should be ongoing throughout development, not just at the end
 
 ### Key Dependencies
+
 - MongoDB must be configured before building any database models
 - BetterAuth must be set up before implementing any protected routes
 - Stripe setup is required before payment features can be tested
@@ -496,6 +507,7 @@ Date: November 4, 2025
 - WhatsApp/Messenger API credentials required before messaging integration
 
 ### Performance Considerations
+
 - Lazy load all 3D scenes and heavy animations
 - Use progressive enhancement for animations based on device capabilities
 - Implement service worker for offline support and faster load times
@@ -503,6 +515,7 @@ Date: November 4, 2025
 - Target Lighthouse score of 90+ on mobile devices
 
 ### Design Reminders
+
 - **NO left curved borders on cards** - This is "AI slop" design
 - Use ancient fonts (UnifrakturMaguntia, Crimson Text, EB Garamond)
 - Maintain parchment/leather texture backgrounds throughout

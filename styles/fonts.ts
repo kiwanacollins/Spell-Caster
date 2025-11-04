@@ -1,9 +1,9 @@
 /**
  * Ancient Mystical Fonts Configuration
- * 
+ *
  * Imports all custom fonts for the Spell Caster platform
  * These fonts evoke grimoires, medieval manuscripts, and mystical artifacts
- * 
+ *
  * Font families:
  * - Primary Headings: UnifrakturMaguntia (gothic blackletter)
  * - Secondary Headings: IM Fell English, Cinzel Decorative
@@ -11,7 +11,15 @@
  * - Mystical Accents: Almendra SC (small caps)
  */
 
-import { Crimson_Text, EB_Garamond, UnifrakturMaguntia, Cinzel_Decorative, IM_Fell_English, Philosopher, Almendra_SC } from 'next/font/google';
+import {
+  Crimson_Text,
+  EB_Garamond,
+  UnifrakturMaguntia,
+  Cinzel_Decorative,
+  IM_Fell_English,
+  Philosopher,
+  Almendra_SC,
+} from 'next/font/google';
 
 /**
  * Primary heading font - Gothic blackletter aesthetic

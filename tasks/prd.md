@@ -2510,29 +2510,29 @@ No training on user data without consent
 AI used ethically to enhance service quality, not to deceive
 
 🖥️ 4. Technical Stack
-Layer	Technology	Purpose
-Framework	Next.js 15 (React)	SEO + SSR + scalability
-Styling	Tailwind CSS + shadcn/ui	Modern responsive design
-Core Animations	Framer Motion	Declarative, GPU-accelerated animations (5KB gzipped)
-Advanced Animations	GSAP + ScrollTrigger	Complex scroll-based & timeline animations
-Lightweight 3D	Tres.js (Vue-based R3F alternative for React)	Optimized Three.js wrapper with tree-shaking
-3D Engine	Three.js (r3f-compatible)	WebGL rendering for mystical effects
-Mobile 3D Fallback	Spline (exported to web)	Pre-rendered 3D scenes, ultra-light
-Particle Effects	tsParticles (Particles.js v3)	Lightweight particle system (configurable)
-Canvas Effects	Rough.js	Hand-drawn, sketch-like ancient symbols
-SVG Animations	Anime.js	Minimal library for SVG path morphing
-Lazy Loading	react-intersection-observer	Load animations only when visible
-Auth	BetterAuth	Secure authentication
-Database	MongoDB	User, spell, and payment data
-CMS	Payload CMS	Manage content & testimonials
-Payments	Stripe	Handle secure online payments
-Messaging	WhatsApp Business API	Multi-channel communication, broadcast, rich media
-Messaging	Facebook Messenger API	Messenger integration, structured messages
-Real-Time	Socket.io or Pusher	Real-time messaging sync across channels
-AI Engine	OpenAI API (GPT-4)	Intelligent content generation, personalization, insights
-AI Vision	OpenAI Vision API	Image analysis for ritual verification
-Icons	React-icons	Consistent minimalist icons
-Image Optimization	Next.js Image + Sharp	Automatic WebP/AVIF conversion
+Layer Technology Purpose
+Framework Next.js 15 (React) SEO + SSR + scalability
+Styling Tailwind CSS + shadcn/ui Modern responsive design
+Core Animations Framer Motion Declarative, GPU-accelerated animations (5KB gzipped)
+Advanced Animations GSAP + ScrollTrigger Complex scroll-based & timeline animations
+Lightweight 3D Tres.js (Vue-based R3F alternative for React) Optimized Three.js wrapper with tree-shaking
+3D Engine Three.js (r3f-compatible) WebGL rendering for mystical effects
+Mobile 3D Fallback Spline (exported to web) Pre-rendered 3D scenes, ultra-light
+Particle Effects tsParticles (Particles.js v3) Lightweight particle system (configurable)
+Canvas Effects Rough.js Hand-drawn, sketch-like ancient symbols
+SVG Animations Anime.js Minimal library for SVG path morphing
+Lazy Loading react-intersection-observer Load animations only when visible
+Auth BetterAuth Secure authentication
+Database MongoDB User, spell, and payment data
+CMS Payload CMS Manage content & testimonials
+Payments Stripe Handle secure online payments
+Messaging WhatsApp Business API Multi-channel communication, broadcast, rich media
+Messaging Facebook Messenger API Messenger integration, structured messages
+Real-Time Socket.io or Pusher Real-time messaging sync across channels
+AI Engine OpenAI API (GPT-4) Intelligent content generation, personalization, insights
+AI Vision OpenAI Vision API Image analysis for ritual verification
+Icons React-icons Consistent minimalist icons
+Image Optimization Next.js Image + Sharp Automatic WebP/AVIF conversion
 📱 4.1 Animation & Performance Optimization Strategy
 
 Mobile-First Approach:
@@ -2895,18 +2895,20 @@ Payload CMS / Sanity – for managing services, content, testimonials.
 OpenAI API – for AI-powered responses, content generation, sentiment analysis.
 
 ⚙️ 8. Functional Requirements
-#	Feature	Requirement
-1	User Registration	Clerk authentication, unique profile per user
-2	Spell Request	User selects spell, submits form, stored in DB
-3	Spell Status	Admin updates status (auto notifies user)
-4	Consultation Booking	Book via integrated calendar API
-5	Messaging	User ↔ Admin chat (Supabase real-time)
-6	Payments	Stripe checkout, confirmation email
-7	Testimonials	Submitted → Admin approval → Display
-8	3D Animations	Progressive: Full Three.js scene on desktop, Spline export on mobile, lazy-loaded
-9	Admin CMS	Manage spells, users, testimonials, analytics
-10	Responsive UI	Works on desktop, tablet, and mobile with adaptive animations
-11	Performance	Lighthouse score 90+, FCP < 1.8s, animations pause when off-screen
+
+# Feature Requirement
+
+1 User Registration Clerk authentication, unique profile per user
+2 Spell Request User selects spell, submits form, stored in DB
+3 Spell Status Admin updates status (auto notifies user)
+4 Consultation Booking Book via integrated calendar API
+5 Messaging User ↔ Admin chat (Supabase real-time)
+6 Payments Stripe checkout, confirmation email
+7 Testimonials Submitted → Admin approval → Display
+8 3D Animations Progressive: Full Three.js scene on desktop, Spline export on mobile, lazy-loaded
+9 Admin CMS Manage spells, users, testimonials, analytics
+10 Responsive UI Works on desktop, tablet, and mobile with adaptive animations
+11 Performance Lighthouse score 90+, FCP < 1.8s, animations pause when off-screen
 🔐 9. Security & Privacy
 
 All requests served over HTTPS.
@@ -2920,12 +2922,12 @@ No sensitive data stored in frontend.
 GDPR-compliant user data handling.
 
 🧰 10. Development Milestones (Suggested)
-Phase	Tasks	Timeline
-Phase 1	UI Design Mockups + Landing Page
-Phase 2	Authentication + Dashboard Skeleton
-Phase 3	Database Setup + Services + Payments
-Phase 4	Animations + 3D + Final UI Polish
-Phase 5	Testing, SEO, Deployment
+Phase Tasks Timeline
+Phase 1 UI Design Mockups + Landing Page
+Phase 2 Authentication + Dashboard Skeleton
+Phase 3 Database Setup + Services + Payments
+Phase 4 Animations + 3D + Final UI Polish
+Phase 5 Testing, SEO, Deployment
 
 🚀 11. Success Metrics
 
