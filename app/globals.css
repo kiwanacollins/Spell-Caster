@@ -1,42 +1,46 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
 @layer base {
   :root {
     /* Ancient mystical theme - Light mode (parchment) */
     --background: 43 30 15; /* Warm parchment */
     --foreground: 26 26 10; /* Deep ink */
-    
+
     --card: 47 37 18; /* Aged parchment card */
     --card-foreground: 26 26 10;
-    
+
     --popover: 47 37 18;
     --popover-foreground: 26 26 10;
-    
+
     --primary: 269 47 25; /* Mystical purple */
     --primary-foreground: 48 37 95;
-    
+
     --secondary: 45 51 22; /* Bronze/gold accent */
     --secondary-foreground: 43 30 15;
-    
+
     --muted: 42 21 11;
     --muted-foreground: 43 30 40;
-    
+
     --accent: 45 100 50; /* Ancient gold */
     --accent-foreground: 43 30 15;
-    
+
     --destructive: 0 84 60;
     --destructive-foreground: 48 37 95;
-    
+
     --border: 42 21 25;
     --input: 42 21 25;
     --ring: 269 47 51;
-    
+
     --chart-1: 45 51 65;
     --chart-2: 269 47 51;
     --chart-3: 18 57 40;
     --chart-4: 45 100 50;
     --chart-5: 201 96 87;
-    
+
     --radius: 0.5rem;
   }
 
@@ -44,32 +48,32 @@
     /* Ancient mystical theme - Dark mode (obsidian/midnight ritual) */
     --background: 270 20 8; /* Deep mystical background */
     --foreground: 48 37 95; /* Moonstone text */
-    
+
     --card: 270 24 10;
     --card-foreground: 48 37 95;
-    
+
     --popover: 270 24 10;
     --popover-foreground: 48 37 95;
-    
+
     --primary: 269 47 51; /* Bright amethyst */
     --primary-foreground: 270 20 8;
-    
+
     --secondary: 45 51 65; /* Warm gold */
     --secondary-foreground: 270 20 8;
-    
+
     --muted: 270 16 15;
     --muted-foreground: 48 20 60;
-    
+
     --accent: 45 100 50; /* Ancient gold glow */
     --accent-foreground: 270 20 8;
-    
+
     --destructive: 0 62 50;
     --destructive-foreground: 48 37 95;
-    
+
     --border: 270 16 20;
     --input: 270 16 20;
     --ring: 269 47 66;
-    
+
     --chart-1: 45 51 65;
     --chart-2: 269 47 66;
     --chart-3: 18 57 60;
@@ -82,13 +86,13 @@
   * {
     border-color: hsl(var(--border));
   }
-  
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
+
   /* Parchment texture overlay for cards */
   .parchment-texture {
     background-image: 
@@ -96,30 +100,30 @@
       linear-gradient(90deg, rgba(235, 227, 205, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
   }
-  
+
   .dark .parchment-texture {
     background-image: 
       linear-gradient(rgba(153, 102, 204, 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgba(153, 102, 204, 0.02) 1px, transparent 1px);
     background-size: 50px 50px;
   }
-  
+
   /* Ink well effect for inputs */
   .ink-well {
     @apply transition-all duration-300;
     background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.02) 100%);
   }
-  
+
   .ink-well:focus {
     background: linear-gradient(to bottom, transparent 0%, rgba(74, 31, 94, 0.05) 100%);
   }
-  
+
   /* Hand-drawn border effect (NO left curves - avoid AI slop) */
   .hand-drawn-border {
     position: relative;
     border: 2px solid hsl(var(--border));
   }
-  
+
   .hand-drawn-border::before {
     content: '';
     position: absolute;
@@ -132,23 +136,139 @@
     transform: rotate(0.5deg);
     pointer-events: none;
   }
-  
+
   /* Ancient scroll text styling */
   .ancient-text {
     @apply font-serif tracking-wide;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Mystical glow effect */
   .mystical-glow {
     text-shadow: 0 0 10px rgba(153, 102, 204, 0.5),
                  0 0 20px rgba(153, 102, 204, 0.3),
                  0 0 30px rgba(153, 102, 204, 0.1);
   }
-  
+
   /* Weathered edges effect */
   .weathered-edges {
     mask-image: radial-gradient(circle at center, black 70%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle at center, black 70%, transparent 100%);
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

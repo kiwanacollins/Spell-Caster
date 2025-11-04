@@ -301,18 +301,4 @@ When working with task lists (`tasks/tasks-prd.md`), you must:
    - Add the new sub-tasks to the list with appropriate numbering (e.g., 1.1.1, 1.1.2).
    - Inform the user about the updated task breakdown.
 
-### Example Workflow
-
-```
-✅ Completed: 1.1 Initialize Next.js 15 project with TypeScript and App Router
-
-Files modified:
-- package.json (created with Next.js 15 and TypeScript dependencies)
-- tsconfig.json (created with Next.js TypeScript configuration)
-- app/layout.tsx (created root layout)
-- app/page.tsx (created homepage)
-
-Task list updated: Sub-task 1.1 marked as [x]
-
-Ready to proceed to sub-task 1.2 (Install and configure Tailwind CSS)? Respond with 'yes' or 'y' to continue.
-```
+### After completing a tasks ask the developer to type yes / y to continue to the next sub tasks / task
