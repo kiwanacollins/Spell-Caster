@@ -170,8 +170,8 @@ Date: November 4, 2025
   - [✓] 1.10 Install testing libraries (Jest, React Testing Library)
 
 - [ ] 2.0 Landing Page & Public Pages Implementation
-  - [ ] 2.1 Create root layout with ancient font imports and metadata
-  - [ ] 2.2 Design and implement hero section with headline and CTA buttons
+  - [✓] 2.1 Create root layout with ancient font imports and metadata
+  - [✓] 2.2 Design and implement hero section with headline and CTA buttons
   - [ ] 2.3 Integrate 3D hero background (purple-fire-flame and an-acient-book) and other cool elements you can find cool using Three.js/React Three Fiber
   - [ ] 2.4 Implement particle effects (smoke, mist, floating orbs) using tsParticles
   - [ ] 2.5 Create service cards grid showcasing all spiritual services (Love, Protection, Wealth, Readings, Energy Work, magic rings etc.)
