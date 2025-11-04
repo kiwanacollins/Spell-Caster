@@ -219,9 +219,16 @@ export function ServicesGrid() {
           </p>
           <Link
             href="/contact"
-            className="inline-block px-8 py-4 bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-mystical-amber transition-all duration-300 hover:shadow-candle hover:scale-105"
+            className="relative inline-block px-8 py-4 bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-mystical-amber transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
           >
-            Request Custom Service
+            <span className="relative z-10">Request Custom Service</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/textures/wax-seal-for-CTAs-&-buttons.png"
+              alt=""
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+              aria-hidden="true"
+            />
           </Link>
         </div>
       </div>

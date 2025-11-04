@@ -68,9 +68,18 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-mystical-amber hover:bg-sacred-gold text-charcoal font-philosopher text-lg px-8 py-6 rounded-none border-2 border-mystical-amber shadow-lg hover:shadow-mystical-amber/50 transition-all duration-300 hover:scale-105"
+              className="relative bg-mystical-amber hover:bg-sacred-gold text-charcoal font-philosopher text-lg px-8 py-6 rounded-none border-2 border-mystical-amber shadow-lg hover:shadow-mystical-amber/50 transition-all duration-300 hover:scale-105 overflow-hidden group"
             >
-              <Link href="/services">Begin Your Journey</Link>
+              <Link href="/services">
+                <span className="relative z-10">Begin Your Journey</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/textures/wax-seal-for-CTAs-&-buttons.png"
+                  alt=""
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                  aria-hidden="true"
+                />
+              </Link>
             </Button>
 
             <Button
