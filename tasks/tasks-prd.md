@@ -172,11 +172,11 @@ Date: November 4, 2025
 - [ ] 2.0 Landing Page & Public Pages Implementation
   - [ ] 2.1 Create root layout with ancient font imports and metadata
   - [ ] 2.2 Design and implement hero section with headline and CTA buttons
-  - [ ] 2.3 Integrate 3D hero background (floating crystals, candles, ritual circle) using Three.js/React Three Fiber
+  - [ ] 2.3 Integrate 3D hero background (purple-fire-flame and an-acient-book) and other cool elements you can find cool using Three.js/React Three Fiber
   - [ ] 2.4 Implement particle effects (smoke, mist, floating orbs) using tsParticles
-  - [ ] 2.5 Create service cards grid showcasing all spiritual services (Love, Protection, Wealth, Readings, Energy Work, etc.)
+  - [ ] 2.5 Create service cards grid showcasing all spiritual services (Love, Protection, Wealth, Readings, Energy Work, magic rings etc.)
   - [ ] 2.6 Style service cards with parchment texture, hand-drawn borders, NO left curved borders
-  - [ ] 2.7 Add 3D animated spell icons for each service type
+  - [ ] 2.7 Add spell icons for each service type
   - [ ] 2.8 Implement About section with healer story and philosophy
   - [ ] 2.9 Create testimonials carousel with rotating client stories
   - [ ] 2.10 Build Call-to-Action section ("Join the Circle")
