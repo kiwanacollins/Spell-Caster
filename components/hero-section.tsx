@@ -14,22 +14,34 @@ const AncientBookScene = dynamic(
   }
 );
 
+// Dynamically import particle effects (client-side only)
+const MysticalParticles = dynamic(
+  () =>
+    import('@/components/particles/mystical-particles').then(
+      (mod) => mod.MysticalParticles
+    ),
+  { ssr: false }
+);
+
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal">
+      {/* Mystical Particle Effects */}
+      <MysticalParticles type="both" className="opacity-60" />
+
       {/* 3D Ancient Book Background */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 z-10">
         <AncientBookScene />
       </div>
 
       {/* Background texture overlay */}
-      <div className="absolute inset-0 bg-[url('/textures/parchment-dark.webp')] bg-cover bg-center opacity-10" />
+      <div className="absolute inset-0 bg-[url('/textures/parchment-dark.webp')] bg-cover bg-center opacity-10 z-20" />
 
       {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-linear-to-b from-charcoal/90 via-charcoal/70 to-charcoal/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-charcoal/90 via-charcoal/70 to-charcoal/90 z-30" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
+      <div className="relative z-40 container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Main Headline */}
           <h1 className="font-unifraktur text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-parchment leading-tight animate-fade-in">
