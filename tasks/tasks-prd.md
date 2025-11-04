@@ -73,8 +73,10 @@ Date: November 4, 2025
 
 ### Components (Feature-Specific)
 
-- `components/hero-section.tsx` - 3D animated hero with crystals and candles
-- `components/services-grid.tsx` - Service cards with 3D icons
+- `components/hero-section.tsx` - 3D ancient book hero with particle effects (smoke/mist), mystical styling
+- `components/services-grid.tsx` - Service cards grid with all 11 spiritual services, parchment styling, corner decorations (NO left borders)
+- `components/3d/ancient-book.tsx` - Three.js scene for animated 3D book with rotation and float effects
+- `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
 - `components/testimonials-carousel.tsx` - Rotating testimonials
 - `components/spell-card.tsx` - Individual spell display card
 - `components/spell-request-form.tsx` - Multi-step spell request form
@@ -174,9 +176,9 @@ Date: November 4, 2025
   - [✓] 2.2 Design and implement hero section with headline and CTA buttons
   - [✓] 2.3 Integrate 3D hero background (An_ancient_book_aged.glb) using Three.js/React Three Fiber
   - [✓] 2.4 Implement particle effects (smoke, mist) using tsParticles
-  - [ ] 2.5 Create service cards grid showcasing all spiritual services (Love, Protection, Wealth, Readings, Energy Work, magic rings etc.)
-  - [ ] 2.6 Style service cards with parchment texture, hand-drawn borders, NO left curved borders
-  - [ ] 2.7 Add spell icons for each service type
+  - [✓] 2.5 Create service cards grid showcasing all spiritual services (Love, Protection, Wealth, Readings, Energy Work, magic rings etc. let the service svgs guide you and use them in the public/icons/services/)
+  - [✓] 2.6 Style service cards with parchment texture, hand-drawn borders, NO left curved borders
+  - [✓] 2.7 Add spell icons for each service type
   - [ ] 2.8 Implement About section with healer story and philosophy
   - [ ] 2.9 Create testimonials carousel with rotating client stories
   - [ ] 2.10 Build Call-to-Action section ("Join the Circle")

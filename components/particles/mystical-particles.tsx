@@ -30,6 +30,7 @@ export function MysticalParticles({
 
   // Mystical smoke configuration
   const smokeConfig = {
+    fullScreen: { enable: false },
     background: {
       color: {
         value: 'transparent',
@@ -83,6 +84,7 @@ export function MysticalParticles({
 
   // Mystical mist configuration
   const mistConfig = {
+    fullScreen: { enable: false },
     background: {
       color: {
         value: 'transparent',
