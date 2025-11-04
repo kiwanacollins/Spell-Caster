@@ -157,9 +157,11 @@ export function ServicesGrid() {
                   {/* Icon */}
                   <div className={`relative w-24 h-24 transition-all duration-500 group-hover:scale-110 group-hover:animate-float ${
                     service.id === 'protection-spells' || 
-                    service.id === 'moon-rituals' || 
-                    service.id === 'astrology' 
-                      ? 'mb-8' 
+                    service.id === 'moon-rituals' ||
+                    service.id === 'candle-magic'
+                      ? 'mb-12' 
+                      : service.id === 'astrology'
+                      ? 'mb-8'
                       : 'mb-6'
                   }`}>
                     <div className="absolute inset-0 bg-mystical-amber/20 rounded-full blur-xl group-hover:bg-mystical-amber/40 transition-all duration-500" />
