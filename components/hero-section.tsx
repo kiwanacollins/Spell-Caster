@@ -1,16 +1,32 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
+
+// Dynamically import 3D component (client-side only)
+const AncientBookScene = dynamic(
+  () =>
+    import('@/components/3d/ancient-book').then((mod) => mod.AncientBookScene),
+  {
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-charcoal/20" />,
+  }
+);
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal">
+      {/* 3D Ancient Book Background */}
+      <div className="absolute inset-0 opacity-30">
+        <AncientBookScene />
+      </div>
+
       {/* Background texture overlay */}
       <div className="absolute inset-0 bg-[url('/textures/parchment-dark.webp')] bg-cover bg-center opacity-10" />
 
       {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/90 via-charcoal/70 to-charcoal/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-charcoal/90 via-charcoal/70 to-charcoal/90" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
@@ -30,9 +46,9 @@ export function HeroSection() {
 
           {/* Decorative divider */}
           <div className="flex items-center justify-center gap-4 py-6">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-mystical-amber" />
+            <div className="h-px w-16 bg-linear-to-r from-transparent to-mystical-amber" />
             <span className="text-mystical-amber text-2xl">✦</span>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-mystical-amber" />
+            <div className="h-px w-16 bg-linear-to-l from-transparent to-mystical-amber" />
           </div>
 
           {/* CTA Buttons */}
