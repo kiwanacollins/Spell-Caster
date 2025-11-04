@@ -76,9 +76,9 @@ Date: November 4, 2025
 - `components/hero-section.tsx` - 3D ancient book hero with particle effects (smoke/mist), mystical styling
 - `components/services-grid.tsx` - Service cards grid with all 11 spiritual services, parchment styling, corner decorations (NO left borders)
 - `components/about-section.tsx` - About section with healer story, philosophy, expertise areas, and portrait image with mystical frame
+- `components/testimonials-carousel.tsx` - Auto-rotating carousel with 7 client testimonials, circular avatars, service badges, 5-star ratings, navigation arrows, dot indicators
 - `components/3d/ancient-book.tsx` - Three.js scene for animated 3D book with rotation and float effects
 - `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
-- `components/testimonials-carousel.tsx` - Rotating testimonials
 - `components/spell-card.tsx` - Individual spell display card
 - `components/spell-request-form.tsx` - Multi-step spell request form
 - `components/consultation-calendar.tsx` - Booking calendar with lunar phases
@@ -181,7 +181,7 @@ Date: November 4, 2025
   - [✓] 2.6 Style service cards with parchment texture, hand-drawn borders, NO left curved borders
   - [✓] 2.7 Add spell icons for each service type
   - [✓] 2.8 Implement About section with healer story and philosophy the image on the right side(in public/images/healer-potrait.webp) and text on the left side
-  - [ ] 2.9 Create testimonials carousel with rotating client stories
+  - [✓] 2.9 Create testimonials carousel with rotating client stories along with their images their names are the image names (in public/images/testimonials/) and mystical styling
   - [ ] 2.10 Build Call-to-Action section ("Join the Circle")
   - [ ] 2.11 Design and implement footer with contact info, social icons, security badges
   - [ ] 2.12 Add scroll-triggered animations (runes glow as they enter viewport)
