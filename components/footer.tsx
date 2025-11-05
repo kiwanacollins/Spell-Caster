@@ -55,14 +55,21 @@ export function Footer() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        position: 'relative',
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw',
       }}
     >
       {/* Mystical top border decoration */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-mystical-gold to-transparent opacity-50" />
 
-      <div className="container mx-auto px-6 py-16">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <div className="relative w-full max-w-none px-6 py-16">
+        <div className="container mx-auto max-w-7xl">
+          {/* Main footer content */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand & Contact Column */}
           <div className="space-y-6">
             <div>
@@ -245,6 +252,7 @@ export function Footer() {
               <span className="text-sm" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Secure Payments</span>
             </div>
           </div>
+        </div>
         </div>
       </div>
 

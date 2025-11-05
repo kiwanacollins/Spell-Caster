@@ -182,10 +182,10 @@ export function ServicesGrid() {
                     {service.name}
                   </h3>
 
-                  {/* Decorative divider */}
+                  {/* Decorative divider with rune that glows on scroll */}
                   <div className="flex items-center gap-2 mb-4">
                     <div className="h-px w-8 bg-linear-to-r from-transparent to-mystical-bronze" />
-                    <span className="text-mystical-bronze text-sm">❋</span>
+                    <span className="text-mystical-bronze text-sm js-rune rune">❋</span>
                     <div className="h-px w-8 bg-linear-to-l from-transparent to-mystical-bronze" />
                   </div>
 

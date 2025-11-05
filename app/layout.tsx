@@ -29,7 +29,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#1A1A1A" />
       </head>
-      <body className={`${fontClasses} antialiased`}>{children}</body>
+      <body className={`${fontClasses} antialiased overflow-x-hidden`} style={{ margin: 0, padding: 0 }}>
+        {children}
+      </body>
     </html>
   );
 }

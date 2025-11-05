@@ -3,11 +3,14 @@ import { ServicesGrid } from '@/components/services-grid';
 import { AboutSection } from '@/components/about-section';
 import { TestimonialsCarousel } from '@/components/testimonials-carousel';
 import { CTASection } from '@/components/cta-section';
+import { RuneObserver } from '@/components/rune-observer';
 import { Footer } from '@/components/footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
+      {/* Scroll-triggered rune glow observer */}
+      <RuneObserver />
       <HeroSection />
       <ServicesGrid />
       <AboutSection />

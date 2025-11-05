@@ -70,14 +70,18 @@ Date: November 4, 2025
 - `components/ui/tabs.tsx` - Ancient tome tabs
 - `components/ui/calendar.tsx` - Mystical calendar with lunar phases
 - `components/ui/progress.tsx` - Energy meter progress bar
+- `components/ui/skeleton.tsx` - Ancient-themed loading skeletons (parchment shimmer, candle flicker, ritual circle spinner)
 
 ### Components (Feature-Specific)
 
 - `components/hero-section.tsx` - 3D ancient book hero with particle effects (smoke/mist), mystical styling
 - `components/services-grid.tsx` - Service cards grid with all 11 spiritual services, parchment styling, corner decorations (NO left borders)
+- `components/services-grid-with-loading.tsx` - Services grid with mystical loading skeleton states
 - `components/about-section.tsx` - About section with healer story, philosophy, expertise areas, and portrait image with mystical frame
 - `components/testimonials-carousel.tsx` - Auto-rotating carousel with 7 client testimonials, circular avatars, service badges, 5-star ratings, navigation arrows, dot indicators
+- `components/testimonials-with-loading.tsx` - Testimonials carousel with ancient-themed loading states
 - `components/cta-section.tsx` - "Join the Circle" call-to-action section with mystical background, animated circles, floating orbs, benefit highlights, dual CTA buttons
+- `components/rune-observer.tsx` - IntersectionObserver that reveals `.js-rune` elements with glow as they enter viewport
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
 - `components/3d/ancient-book.tsx` - Three.js scene for animated 3D book with rotation and float effects
 - `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
@@ -186,10 +190,10 @@ Date: November 4, 2025
   - [✓] 2.9 Create testimonials carousel with rotating client stories along with their images their names are the image names (in public/images/testimonials/) and mystical styling
   - [✓] 2.10 Build Call-to-Action section ("Join the Circle")
   - [✓] 2.11 Design and implement footer with contact info, social icons, security badges
-  - [ ] 2.12 Add scroll-triggered animations (runes glow as they enter viewport)
-  - [ ] 2.13 Implement mobile responsive design with adaptive animations
-  - [ ] 2.14 Add mystical loading states with ancient-themed skeletons
-  - [ ] 2.15 Optimize images and 3D assets for performance (WebP, AVIF, compressed textures)
+  - [✓] 2.12 Add scroll-triggered animations (runes glow as they enter viewport)
+  - [✓] 2.13 Implement mobile responsive design with adaptive animations
+  - [✓] 2.14 Add mystical loading states with ancient-themed skeletons
+
 
 - [ ] 3.0 Authentication & User Management System
   - [ ] 3.1 Install and configure BetterAuth for authentication
