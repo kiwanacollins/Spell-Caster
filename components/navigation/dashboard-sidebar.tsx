@@ -14,6 +14,7 @@ import {
   GiPerson,
   GiMoon,
   GiPentacle,
+  GiBookmarklet,
 } from "react-icons/gi";
 import { LogoutButton } from "@/components/auth/logout-button";
 
@@ -29,6 +30,11 @@ const navItems: NavItem[] = [
     title: "Overview",
     href: "/dashboard",
     icon: GiCrystalBall,
+  },
+  {
+    title: "Services",
+    href: "/services",
+    icon: GiBookmarklet,
   },
   {
     title: "My Spells",
