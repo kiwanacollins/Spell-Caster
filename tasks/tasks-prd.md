@@ -61,7 +61,9 @@ Date: November 4, 2025
 - `app/api/ai/generate-reading/route.ts` - AI tarot/astrology readings
 - `app/api/ai/analyze-sentiment/route.ts` - Message sentiment analysis
 - `app/api/testimonials/route.ts` - Testimonial operations
-- `app/api/users/route.ts` - User management endpoints
+- `app/api/users/route.ts` - User management endpoints (list, search, initialize spiritual profile)
+- `app/api/users/[id]/route.ts` - Individual user CRUD operations (get, update, delete, admin actions)
+- `app/api/users/me/route.ts` - Current user profile endpoint (get own profile, update own profile, generate referral code)
 - `app/api/services/route.ts` - Service catalog management
 
 ### Components (UI)
@@ -223,7 +225,7 @@ Date: November 4, 2025
   - [✓] 3.7 Build protected route wrapper for dashboard pages
   - [✓] 3.8 Implement logout functionality
   - [✓] 3.9 Create user profile schema in MongoDB (name, email, birth date, location, spiritual profile)
-  - [ ] 3.10 Build API endpoints for user CRUD operations
+  - [✓] 3.10 Build API endpoints for user CRUD operations
   - [ ] 3.11 Implement two-factor authentication (2FA) setup
   - [ ] 3.12 Create login history tracking and active sessions management
   - [ ] 3.13 Add social login integration (Google, Apple) with account linking
