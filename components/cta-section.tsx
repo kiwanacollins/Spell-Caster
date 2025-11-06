@@ -95,9 +95,33 @@ export function CTASection() {
             <Button
               asChild
               size="lg"
-              className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-mystical-amber shadow-candle transition-all duration-300 hover:scale-105 hover:shadow-glow overflow-hidden group"
+              className="relative text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-amber-600 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden group"
             >
               <Link href="/services">
+                {/* Gold gradient background */}
+                <div 
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+                  }}
+                />
+                
+                {/* Metallic sheen overlay */}
+                <div 
+                  className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
+                  }}
+                />
+                
+                {/* Highlight effect */}
+                <div 
+                  className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                  style={{
+                    background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
+                  }}
+                />
+                
                 <span className="relative z-10">Explore Services</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -113,9 +137,18 @@ export function CTASection() {
               asChild
               size="lg"
               variant="outline"
-              className="bg-transparent hover:bg-parchment-100/10 text-parchment-100 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-parchment-200 hover:border-mystical-amber transition-all duration-300"
+              className="relative bg-transparent hover:bg-parchment-100/10 text-parchment-100 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-parchment-200 hover:border-amber-500 transition-all duration-300 overflow-hidden group"
             >
-              <Link href="/consultations">Book a Reading</Link>
+              <Link href="/consultations">
+                {/* Subtle gold glow on hover */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                  style={{
+                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+                  }}
+                />
+                <span className="relative z-10">Book a Reading</span>
+              </Link>
             </Button>
           </div>
 

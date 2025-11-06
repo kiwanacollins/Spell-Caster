@@ -106,9 +106,33 @@ export function AboutSection() {
               <Button
                 asChild
                 size="lg"
-                className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-mystical-amber transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
+                className="relative text-ink-900 font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-amber-600 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group"
               >
                 <Link href="/consultations">
+                  {/* Gold gradient background */}
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+                    }}
+                  />
+                  
+                  {/* Metallic sheen overlay */}
+                  <div 
+                    className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
+                    }}
+                  />
+                  
+                  {/* Highlight effect */}
+                  <div 
+                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                    style={{
+                      background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
+                    }}
+                  />
+                  
                   <span className="relative z-10">Begin Your Journey</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

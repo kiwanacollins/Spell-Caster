@@ -74,7 +74,7 @@ export function Footer() {
           <div className="space-y-6">
             <div>
               <h3
-                className="text-3xl font-bold mb-4 text-white"
+                className="text-5xl font-bold mb-4 text-white"
                 style={{
                   fontFamily: 'var(--font-unifraktur)',
                   textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
@@ -83,7 +83,7 @@ export function Footer() {
                 Mystic Healing
               </h3>
               <p
-                className="text-white text-base leading-relaxed"
+                className="text-white text-xl leading-relaxed"
                 style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
               >
                 Ancient wisdom meets modern spiritual practice. Transforming
@@ -94,20 +94,20 @@ export function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-white hover:text-mystical-gold transition-colors">
-                <FaEnvelope className="text-white text-lg" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
-                <a href="mailto:hello@mysticheraling.com" className="text-base" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
+                <FaEnvelope className="text-white text-2xl" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
+                <a href="mailto:hello@mysticheraling.com" className="text-xl" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
                   hello@mysticheraling.com
                 </a>
               </div>
               <div className="flex items-center gap-3 text-white hover:text-mystical-gold transition-colors">
-                <FaPhone className="text-white text-lg" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
-                <a href="tel:+1234567890" className="text-base" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
+                <FaPhone className="text-white text-2xl" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
+                <a href="tel:+1234567890" className="text-xl" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
                   +1 (234) 567-890
                 </a>
               </div>
               <div className="flex items-start gap-3 text-white">
-                <FaMapMarkerAlt className="text-white text-lg mt-1" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
-                <span className="text-base" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
+                <FaMapMarkerAlt className="text-white text-2xl mt-1" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
+                <span className="text-xl" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
                   123 Mystic Lane
                   <br />
                   Salem, MA 01970
@@ -135,7 +135,7 @@ export function Footer() {
           {/* Services Column */}
           <div>
             <h4
-              className="text-xl font-bold mb-6 text-white"
+              className="text-3xl font-bold mb-6 text-white"
               style={{
                 fontFamily: 'var(--font-cinzel)',
                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
@@ -148,7 +148,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white hover:text-mystical-gold transition-colors text-base flex items-center gap-2 group"
+                    className="text-white hover:text-mystical-gold transition-colors text-xl flex items-center gap-2 group"
                     style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
                   >
                     <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -164,7 +164,7 @@ export function Footer() {
           {/* Resources Column */}
           <div>
             <h4
-              className="text-xl font-bold mb-6 text-white"
+              className="text-3xl font-bold mb-6 text-white"
               style={{
                 fontFamily: 'var(--font-cinzel)',
                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
@@ -177,7 +177,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white hover:text-mystical-gold transition-colors text-base flex items-center gap-2 group"
+                    className="text-white hover:text-mystical-gold transition-colors text-xl flex items-center gap-2 group"
                     style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
                   >
                     <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -193,7 +193,7 @@ export function Footer() {
           {/* Legal Column */}
           <div>
             <h4
-              className="text-xl font-bold mb-6 text-white"
+              className="text-3xl font-bold mb-6 text-white"
               style={{
                 fontFamily: 'var(--font-cinzel)',
                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
@@ -206,7 +206,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white hover:text-mystical-gold transition-colors text-base flex items-center gap-2 group"
+                    className="text-white hover:text-mystical-gold transition-colors text-xl flex items-center gap-2 group"
                     style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
                   >
                     <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -231,7 +231,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-mystical-gold/20">
           {/* Copyright */}
           <p
-            className="text-white text-base text-center md:text-left"
+            className="text-white text-xl text-center md:text-left"
             style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
           >
             © {currentYear} Mystic Healing. All rights reserved. Blessed be.
@@ -240,16 +240,16 @@ export function Footer() {
           {/* Security Badges */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 text-white">
-              <FaShieldAlt className="text-white text-lg" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
-              <span className="text-sm" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>SSL Secure</span>
+              <FaShieldAlt className="text-white text-2xl" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
+              <span className="text-lg" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>SSL Secure</span>
             </div>
             <div className="flex items-center gap-2 text-white">
-              <FaLock className="text-white text-lg" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
-              <span className="text-sm" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Privacy Protected</span>
+              <FaLock className="text-white text-2xl" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
+              <span className="text-lg" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Privacy Protected</span>
             </div>
             <div className="flex items-center gap-2 text-white">
-              <FaCreditCard className="text-white text-lg" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
-              <span className="text-sm" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Secure Payments</span>
+              <FaCreditCard className="text-white text-2xl" style={{ filter: 'drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000)' }} />
+              <span className="text-lg" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Secure Payments</span>
             </div>
           </div>
         </div>

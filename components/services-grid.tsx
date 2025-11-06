@@ -36,6 +36,14 @@ const services: Service[] = [
     category: 'Spells',
   },
   {
+    id: 'magic-rings',
+    name: 'Magic Rings',
+    description:
+      'Channel mystical energies through sacred rings infused with ancient power to protect, attract, and transform your destiny.',
+    icon: '/icons/services/magic-rings.svg',
+    category: 'Artifacts',
+  },
+  {
     id: 'tarot-oracle',
     name: 'Tarot & Oracle Readings',
     description:
@@ -104,8 +112,18 @@ const services: Service[] = [
 export function ServicesGrid() {
   return (
     <section className="relative py-20 px-4 bg-ink-900">
-      {/* Background texture overlay */}
-      <div className="absolute inset-0 bg-parchment-texture opacity-5" />
+      {/* Background texture overlay - leaf impression stone */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: 'url(/textures/leaf-impression-stone.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      {/* Overlay to darken and blend the texture */}
+      <div className="absolute inset-0 bg-ink-900/60" />
 
       <div className="relative z-10 container mx-auto max-w-7xl">
         {/* Section Header */}
@@ -135,15 +153,58 @@ export function ServicesGrid() {
                 animationDelay: `${index * 100}ms`,
               }}
             >
-              <div className="relative h-full bg-parchment-100 rounded-ritual overflow-hidden border-2 border-parchment-400 transition-all duration-500 hover:border-mystical-amber hover:shadow-parchment-hover hover:-translate-y-2">
-                {/* Corner decorative elements */}
-                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-mystical-gold opacity-40" />
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-mystical-gold opacity-40" />
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-mystical-gold opacity-40" />
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-mystical-gold opacity-40" />
+              <div className="relative h-full rounded-ritual overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                {/* Golden background with metallic gradient */}
+                <div className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+                  }}
+                />
+                
+                {/* Metallic sheen overlay for realistic gold effect */}
+                <div 
+                  className="absolute inset-0 opacity-60"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
+                  }}
+                />
+                <div 
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
+                  }}
+                />
 
-                {/* Background texture */}
-                <div className="absolute inset-0 bg-parchment-texture opacity-20" />
+                {/* Corner decorative elements - ancient style */}
+                <div className="absolute top-0 left-0 w-12 h-12">
+                  <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-amber-700 opacity-60" />
+                  <div className="absolute top-3 left-3 w-6 h-6 border-t border-l border-yellow-600 opacity-40" />
+                </div>
+                <div className="absolute top-0 right-0 w-12 h-12">
+                  <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-amber-700 opacity-60" />
+                  <div className="absolute top-3 right-3 w-6 h-6 border-t border-r border-yellow-600 opacity-40" />
+                </div>
+                <div className="absolute bottom-0 left-0 w-12 h-12">
+                  <div className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2 border-amber-700 opacity-60" />
+                  <div className="absolute bottom-3 left-3 w-6 h-6 border-b border-l border-yellow-600 opacity-40" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-12 h-12">
+                  <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-amber-700 opacity-60" />
+                  <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-yellow-600 opacity-40" />
+                </div>
+
+                {/* Subtle texture overlay on gold */}
+                <div className="absolute inset-0 opacity-10 mix-blend-multiply"
+                  style={{
+                    backgroundImage: `repeating-linear-gradient(
+                      45deg,
+                      transparent,
+                      transparent 2px,
+                      rgba(139, 115, 85, 0.1) 2px,
+                      rgba(139, 115, 85, 0.1) 4px
+                    )`
+                  }}
+                />
 
                 {/* Card content */}
                 <div className="relative p-8 flex flex-col items-center text-center h-full">
@@ -221,8 +282,32 @@ export function ServicesGrid() {
           </p>
           <Link
             href="/contact"
-            className="relative inline-block px-8 py-4 bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-mystical-amber transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
+            className="relative inline-block px-8 py-4 text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-amber-600 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group"
           >
+            {/* Gold gradient background */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+              }}
+            />
+            
+            {/* Metallic sheen overlay */}
+            <div 
+              className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+              style={{
+                background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
+              }}
+            />
+            
+            {/* Highlight effect */}
+            <div 
+              className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+              style={{
+                background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
+              }}
+            />
+            
             <span className="relative z-10">Request Custom Service</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
