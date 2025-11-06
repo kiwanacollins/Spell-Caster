@@ -148,7 +148,24 @@ export function CTASection() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <div className="relative pt-8">
+            {/* Fog backdrop behind buttons */}
+            <div
+              className="absolute inset-0 -top-4 -bottom-4 mx-auto max-w-3xl pointer-events-none z-0"
+            >
+              <div className="absolute inset-0 bg-ink-900/25 rounded-tome blur-lg" />
+              <div className="absolute inset-0 bg-linear-to-b from-parchment-100/60 via-parchment-100/30 to-transparent rounded-tome" />
+              <div className="absolute -inset-x-16 inset-y-2 bg-mystical-purple/10 rounded-full blur-3xl opacity-60" />
+              {/* Additional heavy fog plumes */}
+              <div className="absolute inset-0" aria-hidden="true"
+                   style={{
+                     background: 'radial-gradient(600px 260px at 30% 50%, rgba(255,255,255,0.55), transparent 70%), radial-gradient(600px 260px at 70% 50%, rgba(255,255,255,0.5), transparent 70%)',
+                     filter: 'blur(8px)'
+                   }}
+              />
+            </div>
+
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               asChild
               size="lg"
@@ -178,6 +195,15 @@ export function CTASection() {
                     background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
                   }}
                 />
+
+                  {/* Mystic fog overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-50 group-hover:opacity-65 transition-opacity duration-300"
+                    style={{
+                      background: 'radial-gradient(circle at 25% 35%, rgba(255,255,255,0.75) 0%, rgba(255,245,210,0.5) 35%, transparent 70%), radial-gradient(circle at 70% 65%, rgba(255,255,255,0.7) 0%, rgba(255,245,210,0.45) 40%, transparent 75%)',
+                      filter: 'blur(4px)'
+                    }}
+                  />
                 
                 <span className="relative z-10">Explore Services</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -204,9 +230,18 @@ export function CTASection() {
                     background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
                   }}
                 />
+                  {/* Outline button fog */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-35 group-hover:opacity-50 transition-opacity duration-300"
+                    style={{
+                      background: 'radial-gradient(circle at 30% 40%, rgba(255,255,255,0.7) 0%, rgba(250,245,225,0.4) 35%, transparent 70%), radial-gradient(circle at 65% 60%, rgba(255,255,255,0.65) 0%, rgba(250,245,225,0.35) 40%, transparent 75%)',
+                      filter: 'blur(5px)'
+                    }}
+                  />
                 <span className="relative z-10">Book a Reading</span>
               </Link>
             </Button>
+            </div>
           </div>
 
           {/* Trust indicator */}
