@@ -20,9 +20,13 @@ Date: November 4, 2025
 - `app/layout.tsx` - Root layout with ancient fonts, metadata, providers
 - `app/page.tsx` - Landing page with hero, services, testimonials
 - `app/globals.css` - Global styles with custom CSS variables for ancient theme
-- `app/(auth)/login/page.tsx` - Login page
-- `app/(auth)/register/page.tsx` - Registration page
-- `app/(dashboard)/dashboard/page.tsx` - User dashboard overview
+- `app/(auth)/layout.tsx` - Auth pages layout with parchment background and mystical particles
+- `app/(auth)/login/page.tsx` - Login page with email/password form and OAuth buttons
+- `app/(auth)/register/page.tsx` - Registration page with password strength validation
+- `app/(auth)/forgot-password/page.tsx` - Forgot password email submission
+- `app/(auth)/reset-password/page.tsx` - Password reset form with token validation
+- `app/(dashboard)/layout.tsx` - Dashboard layout with ProtectedRoute wrapper
+- `app/(dashboard)/dashboard/page.tsx` - User dashboard overview with welcome message and placeholder stats
 - `app/(dashboard)/dashboard/spells/page.tsx` - My Spells page
 - `app/(dashboard)/dashboard/messages/page.tsx` - Multi-channel messaging
 - `app/(dashboard)/dashboard/consultations/page.tsx` - Consultations calendar
@@ -30,7 +34,8 @@ Date: November 4, 2025
 - `app/(dashboard)/dashboard/progress/page.tsx` - Spiritual progress tracker
 - `app/(dashboard)/dashboard/payments/page.tsx` - Payments & billing
 - `app/(dashboard)/dashboard/profile/page.tsx` - Profile & settings
-- `app/(admin)/admin/page.tsx` - Admin dashboard overview
+- `app/(admin)/layout.tsx` - Admin portal layout with AdminRoute wrapper
+- `app/(admin)/admin/page.tsx` - Admin dashboard with stats and quick actions
 - `app/(admin)/admin/users/page.tsx` - User management
 - `app/(admin)/admin/spells/page.tsx` - Spell management
 - `app/(admin)/admin/consultations/page.tsx` - Consultation management
@@ -86,8 +91,10 @@ Date: November 4, 2025
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
 - `components/3d/ancient-book.tsx` - Three.js scene for animated 3D book with rotation and float effects
 - `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
-- `components/auth/protected-route.tsx` - Protected route wrapper component with authentication check and mystical loading state
-- `components/auth/admin-route.tsx` - Admin-only route wrapper with role verification and forbidden state
+- `components/auth/protected-route.tsx` - Client-side protected route wrapper with authentication check and mystical loading state
+- `components/auth/admin-route.tsx` - Client-side admin-only route wrapper with role verification and forbidden state
+- `components/auth/server-protected-route.tsx` - Server Component protected route wrapper with redirect
+- `components/auth/server-admin-route.tsx` - Server Component admin-only route wrapper with redirect
 - `components/spell-card.tsx` - Individual spell display card
 - `components/spell-request-form.tsx` - Multi-step spell request form
 - `components/consultation-calendar.tsx` - Booking calendar with lunar phases
@@ -209,7 +216,7 @@ Date: November 4, 2025
   - [✓] 3.4 Build registration page with mystical validation messages
   - [✓] 3.5 Implement forgot password flow with email reset
   - [✓] 3.6 Create session management utilities and middleware
-  - [ ] 3.7 Build protected route wrapper for dashboard pages
+  - [✓] 3.7 Build protected route wrapper for dashboard pages
   - [ ] 3.8 Implement logout functionality
   - [ ] 3.9 Create user profile schema in MongoDB (name, email, birth date, location, spiritual profile)
   - [ ] 3.10 Build API endpoints for user CRUD operations
