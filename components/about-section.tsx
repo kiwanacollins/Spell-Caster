@@ -5,43 +5,14 @@ import { Button } from '@/components/ui/button';
 
 export function AboutSection() {
   return (
-    <section className="relative py-20 px-4 bg-transparent overflow-hidden">
+    <section className="relative py-20 px-4 bg-parchment-100">
       {/* Background texture overlay */}
       <div className="absolute inset-0 bg-parchment-texture opacity-30" />
 
-      <div className="relative container mx-auto max-w-7xl">
+      <div className="relative z-10 container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Content with Fire Animation Behind */}
-          <div className="relative min-h-[800px]">
-            {/* Sketchfab Fire Animation Background */}
-            <div 
-              className="absolute top-0 left-0 pointer-events-none opacity-30"
-              style={{ 
-                width: '600px', 
-                height: '600px',
-                transform: 'translate(-100px, 50px)',
-                zIndex: 0
-              }}
-            >
-              <div className="sketchfab-embed-wrapper w-full h-full">
-                <iframe 
-                  title="Fire animated" 
-                  frameBorder="0" 
-                  allowFullScreen 
-                  allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; magnetometer; gyroscope" 
-                  src="https://sketchfab.com/models/8cf82052fb164a25a0ca40d09a19c4dc/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark=0"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    border: 'none'
-                  }}
-                />
-              </div>
-            </div>
-            
-            {/* Content wrapper with proper z-index */}
-            <div className="relative space-y-6" style={{ zIndex: 10 }}>
-            
+          {/* Left: Content */}
+          <div className="space-y-6">
             {/* Section Header */}
             <div className="mb-8">
               <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-ink-900 mb-6">
@@ -55,14 +26,14 @@ export function AboutSection() {
             </div>
 
             {/* Introduction */}
-            <p className="font-serif text-lg text-ink-800 leading-relaxed bg-parchment-100/80 p-4 rounded-lg backdrop-blur-sm">
+            <p className="font-serif text-lg text-ink-800 leading-relaxed">
               For over two decades, I have walked the sacred path between the
               seen and unseen worlds, serving as a bridge for those seeking
               spiritual healing, guidance, and transformation.
             </p>
 
             {/* Story */}
-            <p className="font-serif text-base text-ink-700 leading-relaxed bg-parchment-100/80 p-4 rounded-lg backdrop-blur-sm">
+            <p className="font-serif text-base text-ink-700 leading-relaxed">
               My journey began in childhood, when I first discovered my innate
               connection to the mystical forces that govern our universe. Through
               years of study with master practitioners, deep meditation, and
@@ -70,7 +41,7 @@ export function AboutSection() {
               divine energy and ancient wisdom.
             </p>
 
-            <p className="font-serif text-base text-ink-700 leading-relaxed bg-parchment-100/80 p-4 rounded-lg backdrop-blur-sm">
+            <p className="font-serif text-base text-ink-700 leading-relaxed">
               I work with the energies of the moon, the power of sacred herbs,
               the wisdom of the tarot, and the ancient art of spell casting to
               help guide souls toward their highest purpose. Every spell I cast,
@@ -135,33 +106,9 @@ export function AboutSection() {
               <Button
                 asChild
                 size="lg"
-                className="relative text-ink-900 font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-amber-600 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group"
+                className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-mystical-amber transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
               >
                 <Link href="/consultations">
-                  {/* Gold gradient background */}
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                    }}
-                  />
-                  
-                  {/* Metallic sheen overlay */}
-                  <div 
-                    className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
-                    }}
-                  />
-                  
-                  {/* Highlight effect */}
-                  <div 
-                    className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                    style={{
-                      background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
-                    }}
-                  />
-                  
                   <span className="relative z-10">Begin Your Journey</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -172,7 +119,6 @@ export function AboutSection() {
                   />
                 </Link>
               </Button>
-            </div>
             </div>
           </div>
 

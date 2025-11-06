@@ -94,6 +94,7 @@ Date: November 4, 2025
 - `components/cta-section.tsx` - "Join the Circle" call-to-action section with mystical background, animated circles, floating orbs, benefit highlights, dual CTA buttons
 - `components/rune-observer.tsx` - IntersectionObserver that reveals `.js-rune` elements with glow as they enter viewport
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
+- `components/energy-reading-widget.tsx` - Reusable Energy Reading Widget with shadcn Progress, 0-100% animated meter, mystical styling, moon phase and chakra balance display, size variants (sm/md/lg)
 - `components/3d/ancient-book.tsx` - Three.js scene for animated 3D book with rotation and float effects
 - `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
 - `components/auth/protected-route.tsx` - Client-side protected route wrapper with authentication check and mystical loading state
@@ -279,8 +280,8 @@ Date: November 4, 2025
 
 - [ ] 4.0 User Dashboard (Client Portal) Implementation **[Use shadcn/ui components extensively]**
   - [✓] 4.1 Create dashboard layout with shadcn Sidebar component and ancient tome styling
-  - [ ] 4.2 Build Overview/Home page with personalized welcome message using shadcn Card and Alert components
-  - [ ] 4.3 Implement Energy Reading Widget (shadcn Progress component with 0-100% animated meter and mystical styling)
+  - [✓] 4.2 Build Overview/Home page with personalized welcome message using shadcn Card and Alert components
+  - [✓] 4.3 Implement Energy Reading Widget (shadcn Progress component with 0-100% animated meter and mystical styling)
   - [ ] 4.4 Create Quick Stats Cards using shadcn Card component (Active Spells, Upcoming Consultations, Unread Messages, Spiritual Points)
   - [ ] 4.5 Build Recent Activity Feed with real-time notifications using shadcn ScrollArea and Badge components
   - [ ] 4.6 Add Quick Action Buttons using shadcn Button component ("Request New Spell", "Book Consultation", "Message Healer")

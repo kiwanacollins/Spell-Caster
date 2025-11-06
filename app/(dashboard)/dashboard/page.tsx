@@ -5,19 +5,20 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { EnergyReadingWidget } from "@/components/energy-reading-widget";
 import Link from "next/link";
 import { 
   GiSpellBook, 
   GiCalendar, 
   GiChatBubble, 
   GiCrystalBall,
-  GiMoon,
-  GiSun,
   GiProgression,
   GiScrollUnfurled,
-  GiSparkles,
   GiCandles,
-  GiPentacle
+  GiPentacle,
+  GiMoon,
+  GiSun,
+  GiSparkles
 } from "react-icons/gi";
 
 export default async function DashboardPage() {
@@ -39,11 +40,11 @@ export default async function DashboardPage() {
   const pointsToNextLevel = 750;
 
   return (
-    <div className="min-h-screen p-4 md:p-8 bg-gradient-to-b from-[#2C2416] to-[#1A1A1A]">
+    <div className="min-h-screen p-4 md:p-8 bg-linear-to-b from-[#2C2416] to-[#1A1A1A]">
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Personalized Welcome Alert with Ancient Styling */}
-        <Alert className="border-4 border-[#8B6F47] bg-gradient-to-br from-[#F4E8D0] to-[#E8DCC0] shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
+        <Alert className="border-4 border-[#8B6F47] bg-linear-to-br from-[#F4E8D0] to-[#E8DCC0] shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
           <GiCrystalBall className="h-6 w-6 text-[#B8860B] drop-shadow-[0_0_8px_rgba(184,134,11,0.6)]" />
           <AlertTitle className="font-['MedievalSharp'] text-2xl text-[#1A1A1A] mb-2">
             {greeting}, {user.name || "Seeker"}
@@ -53,53 +54,16 @@ export default async function DashboardPage() {
           </AlertDescription>
         </Alert>
 
-        {/* Energy Reading Widget */}
-        <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[0_6px_16px_rgba(0,0,0,0.3)] overflow-hidden relative">
-          {/* Corner decorations */}
-          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#B8860B] opacity-60" />
-          <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#B8860B] opacity-60" />
-          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#B8860B] opacity-60" />
-          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#B8860B] opacity-60" />
-          
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between font-['MedievalSharp'] text-[#1A1A1A]">
-              <span className="flex items-center gap-2">
-                <GiSparkles className="h-6 w-6 text-[#CC8800]" />
-                Energy Alignment
-              </span>
-              <Badge className="bg-[#B8860B] text-[#1A1A1A] font-['Crimson_Text'] border-2 border-[#8B6F47]">
-                {energyAlignment}%
-              </Badge>
-            </CardTitle>
-            <CardDescription className="font-['Crimson_Text'] text-[#4A4A4A]">
-              Your spiritual energy flows with the universe
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="relative">
-              <Progress 
-                value={energyAlignment} 
-                className="h-4 bg-[#8B6F47]/30 border-2 border-[#8B6F47]" 
-              />
-              <div className="flex justify-between mt-2">
-                <span className="text-xs font-['Crimson_Text'] text-[#4A4A4A]">Misaligned</span>
-                <span className="text-xs font-['Crimson_Text'] text-[#4A4A4A]">Perfect Harmony</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="text-center">
-                <GiMoon className="h-8 w-8 text-[#C0C0C0] mx-auto mb-1" />
-                <p className="text-xs font-['Crimson_Text'] text-[#4A4A4A]">Moon Phase</p>
-                <p className="text-sm font-semibold font-['Crimson_Text'] text-[#1A1A1A]">Waxing Crescent</p>
-              </div>
-              <div className="text-center">
-                <GiSun className="h-8 w-8 text-[#CC8800] mx-auto mb-1" />
-                <p className="text-xs font-['Crimson_Text'] text-[#4A4A4A]">Chakra Balance</p>
-                <p className="text-sm font-semibold font-['Crimson_Text'] text-[#1A1A1A]">Harmonious</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Energy Reading Widget - Reusable Component */}
+        <EnergyReadingWidget
+          energyLevel={energyAlignment}
+          showMoonPhase
+          showChakra
+          moonPhase="Waxing Crescent"
+          chakraStatus="Harmonious"
+          animateOnMount
+          size="md"
+        />
 
         {/* Quick Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -279,7 +243,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* Today's Mystical Insight Alert */}
-        <Alert className="border-4 border-[#CC8800] bg-gradient-to-br from-[#1A1A1A] to-[#2C2416] shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
+        <Alert className="border-4 border-[#CC8800] bg-linear-to-br from-[#1A1A1A] to-[#2C2416] shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
           <GiMoon className="h-6 w-6 text-[#C0C0C0]" />
           <AlertTitle className="font-['MedievalSharp'] text-xl text-[#F4E8D0]">
             Today's Mystical Insight

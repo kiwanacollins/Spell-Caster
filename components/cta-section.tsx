@@ -2,67 +2,10 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useEffect, useRef } from 'react';
 
 export function CTASection() {
-  const statueRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!statueRef.current) return;
-      
-      const scrolled = window.scrollY;
-      const statueElement = statueRef.current;
-      const rect = statueElement.getBoundingClientRect();
-      const elementTop = rect.top + scrolled;
-      const elementHeight = rect.height;
-      
-      // Apply 3D parallax when element is in view
-      if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
-        const scrollProgress = (scrolled - elementTop + window.innerHeight) / (elementHeight + window.innerHeight);
-        const yPos = scrollProgress * 100 - 50; // Move from -50 to 50
-        const rotateY = scrollProgress * 30 - 15; // Rotate from -15deg to 15deg
-        const scale = 0.8 + scrollProgress * 0.4; // Scale from 0.8 to 1.2
-        
-        statueElement.style.transform = `translateY(${yPos}px) rotateY(${rotateY}deg) scale(${scale})`;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section className="relative py-20 px-4 bg-transparent overflow-hidden">
-      {/* 3D Statue Background with Parallax */}
-      <div 
-        ref={statueRef}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-20"
-        style={{ 
-          width: '800px', 
-          height: '800px',
-          zIndex: 0,
-          transition: 'transform 0.1s ease-out',
-          perspective: '1000px',
-        }}
-      >
-        <div className="sketchfab-embed-wrapper w-full h-full">
-          <iframe 
-            title="Saint Antonius / Anthony the Great - Statue" 
-            frameBorder="0" 
-            allowFullScreen 
-            allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; magnetometer; gyroscope" 
-            src="https://sketchfab.com/models/e99f4472b5a743a5b4f046fecd3229bd/embed?autospin=1&autostart=1&transparent=1&ui_hint=0&ui_controls=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark=0"
-            style={{
-              width: '100%',
-              height: '100%',
-              border: 'none'
-            }}
-          />
-        </div>
-      </div>
-
+    <section className="relative py-20 px-4 bg-mystical-deepPurple overflow-hidden">
       {/* Background mystical elements */}
       <div className="absolute inset-0 bg-parchment-texture opacity-5" />
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-mystical-purple/30 via-transparent to-mystical-amber/20" />
@@ -93,7 +36,7 @@ export function CTASection() {
 
           {/* Headline */}
           <div className="space-y-4">
-            <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ink-900 leading-tight">
+            <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-parchment-100 leading-tight">
               Join the Circle
             </h2>
             
@@ -106,12 +49,12 @@ export function CTASection() {
           </div>
 
           {/* Subheadline */}
-          <p className="font-serif text-xl sm:text-2xl md:text-3xl text-ink-800 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-serif text-xl sm:text-2xl md:text-3xl text-parchment-200 max-w-3xl mx-auto leading-relaxed">
             Step into a world of ancient wisdom and spiritual transformation
           </p>
 
           {/* Description */}
-          <p className="font-serif text-base sm:text-lg text-ink-700 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-serif text-base sm:text-lg text-parchment-300 max-w-2xl mx-auto leading-relaxed">
             Whether you seek love, protection, prosperity, or guidance, your
             journey begins here. Join thousands who have discovered the power of
             authentic spiritual healing.
@@ -123,7 +66,7 @@ export function CTASection() {
               <div className="w-12 h-12 bg-mystical-amber/20 rounded-full flex items-center justify-center border-2 border-mystical-amber/40">
                 <span className="text-2xl text-mystical-amber">✓</span>
               </div>
-              <p className="font-serif text-sm text-ink-800">
+              <p className="font-serif text-sm text-parchment-200">
                 Authentic Spiritual Guidance
               </p>
             </div>
@@ -132,7 +75,7 @@ export function CTASection() {
               <div className="w-12 h-12 bg-mystical-amber/20 rounded-full flex items-center justify-center border-2 border-mystical-amber/40">
                 <span className="text-2xl text-mystical-amber">✓</span>
               </div>
-              <p className="font-serif text-sm text-ink-800">
+              <p className="font-serif text-sm text-parchment-200">
                 Confidential & Sacred
               </p>
             </div>
@@ -141,70 +84,20 @@ export function CTASection() {
               <div className="w-12 h-12 bg-mystical-amber/20 rounded-full flex items-center justify-center border-2 border-mystical-amber/40">
                 <span className="text-2xl text-mystical-amber">✓</span>
               </div>
-              <p className="font-serif text-sm text-ink-800">
+              <p className="font-serif text-sm text-parchment-200">
                 Proven Results
               </p>
             </div>
           </div>
 
           {/* CTA Buttons */}
-          <div className="relative pt-8">
-            {/* Fog backdrop behind buttons */}
-            <div
-              className="absolute inset-0 -top-4 -bottom-4 mx-auto max-w-3xl pointer-events-none z-0"
-            >
-              <div className="absolute inset-0 bg-ink-900/25 rounded-tome blur-lg" />
-              <div className="absolute inset-0 bg-linear-to-b from-parchment-100/60 via-parchment-100/30 to-transparent rounded-tome" />
-              <div className="absolute -inset-x-16 inset-y-2 bg-mystical-purple/10 rounded-full blur-3xl opacity-60" />
-              {/* Additional heavy fog plumes */}
-              <div className="absolute inset-0" aria-hidden="true"
-                   style={{
-                     background: 'radial-gradient(600px 260px at 30% 50%, rgba(255,255,255,0.55), transparent 70%), radial-gradient(600px 260px at 70% 50%, rgba(255,255,255,0.5), transparent 70%)',
-                     filter: 'blur(8px)'
-                   }}
-              />
-            </div>
-
-            <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <Button
               asChild
               size="lg"
-              className="relative text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-amber-600 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden group"
+              className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-mystical-amber shadow-candle transition-all duration-300 hover:scale-105 hover:shadow-glow overflow-hidden group"
             >
               <Link href="/services">
-                {/* Gold gradient background */}
-                <div 
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                  }}
-                />
-                
-                {/* Metallic sheen overlay */}
-                <div 
-                  className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
-                  }}
-                />
-                
-                {/* Highlight effect */}
-                <div 
-                  className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                  style={{
-                    background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
-                  }}
-                />
-
-                  {/* Mystic fog overlay */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-50 group-hover:opacity-65 transition-opacity duration-300"
-                    style={{
-                      background: 'radial-gradient(circle at 25% 35%, rgba(255,255,255,0.75) 0%, rgba(255,245,210,0.5) 35%, transparent 70%), radial-gradient(circle at 70% 65%, rgba(255,255,255,0.7) 0%, rgba(255,245,210,0.45) 40%, transparent 75%)',
-                      filter: 'blur(4px)'
-                    }}
-                  />
-                
                 <span className="relative z-10">Explore Services</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -220,33 +113,15 @@ export function CTASection() {
               asChild
               size="lg"
               variant="outline"
-              className="relative bg-transparent hover:bg-parchment-100/10 text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-ink-800 hover:border-amber-500 transition-all duration-300 overflow-hidden group"
+              className="bg-transparent hover:bg-parchment-100/10 text-parchment-100 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-parchment-200 hover:border-mystical-amber transition-all duration-300"
             >
-              <Link href="/consultations">
-                {/* Subtle gold glow on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                  }}
-                />
-                  {/* Outline button fog */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-35 group-hover:opacity-50 transition-opacity duration-300"
-                    style={{
-                      background: 'radial-gradient(circle at 30% 40%, rgba(255,255,255,0.7) 0%, rgba(250,245,225,0.4) 35%, transparent 70%), radial-gradient(circle at 65% 60%, rgba(255,255,255,0.65) 0%, rgba(250,245,225,0.35) 40%, transparent 75%)',
-                      filter: 'blur(5px)'
-                    }}
-                  />
-                <span className="relative z-10">Book a Reading</span>
-              </Link>
+              <Link href="/consultations">Book a Reading</Link>
             </Button>
-            </div>
           </div>
 
           {/* Trust indicator */}
           <div className="pt-8">
-            <p className="font-serif text-sm text-ink-600 italic">
+            <p className="font-serif text-sm text-parchment-400 italic">
               Join our sacred community • No commitment required • Begin your
               transformation today
             </p>

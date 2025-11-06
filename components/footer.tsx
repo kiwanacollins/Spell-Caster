@@ -49,7 +49,7 @@ export function Footer() {
 
   return (
     <footer
-      className="relative border-t-2 border-mystical-amber/30"
+      className="relative mt-20 border-t-2 border-mystical-amber/30"
       style={{
         backgroundImage: 'url(/textures/parchment-dark.webp)',
         backgroundSize: 'cover',

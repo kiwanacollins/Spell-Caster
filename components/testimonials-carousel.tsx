@@ -106,7 +106,7 @@ export function TestimonialsCarousel() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="relative py-20 px-4 bg-transparent overflow-hidden">
+    <section className="relative py-20 px-4 bg-ink-900 overflow-hidden">
       {/* Background mystical elements */}
       <div className="absolute inset-0 bg-parchment-texture opacity-5" />
       <div className="absolute top-20 left-10 w-64 h-64 bg-mystical-purple/10 rounded-full blur-3xl animate-float-slow" />
@@ -115,7 +115,7 @@ export function TestimonialsCarousel() {
       <div className="relative z-10 container mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-ink-900 mb-6">
+          <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-parchment-200 mb-6">
             Voices of Transformation
           </h2>
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -123,33 +123,34 @@ export function TestimonialsCarousel() {
             <span className="text-mystical-amber text-2xl">✦</span>
             <div className="h-px w-16 bg-linear-to-l from-transparent to-mystical-amber" />
           </div>
-          <p className="font-serif text-lg sm:text-xl text-ink-800 max-w-2xl mx-auto">
+          <p className="font-serif text-lg sm:text-xl text-parchment-300 max-w-2xl mx-auto">
             Real stories from souls who have experienced authentic spiritual
             healing
           </p>
         </div>
 
         {/* Testimonial Card */}
-        <div className="relative px-8 py-4">
+        <div className="relative">
           {/* Main testimonial container */}
-          <div
-            className="shadow-obsidian"
-            style={{
-              backgroundImage: `url(/textures/paper-torn-edge.png)`,
-              backgroundSize: '105% 100%',
-              backgroundRepeat: 'no-repeat',
-              padding: 'clamp(2rem, 8vw, 5rem) clamp(1.5rem, 6vw, 4rem)',
-            }}
-          >
+          <div className="bg-parchment-100 rounded-ritual border-4 border-mystical-bronze shadow-obsidian overflow-hidden">
+            {/* Decorative corner elements */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-mystical-gold opacity-60 z-10" />
+            <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-mystical-gold opacity-60 z-10" />
+            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-mystical-gold opacity-60 z-10" />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-mystical-gold opacity-60 z-10" />
+
+            {/* Background texture */}
+            <div className="absolute inset-0 bg-parchment-texture opacity-30" />
+
             {/* Content */}
-            <div className="relative z-20">
+            <div className="relative z-20 p-8 md:p-12">
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                 {/* Client Image */}
                 <div className="shrink-0">
                   <div className="relative w-32 h-32 md:w-40 md:h-40">
                     {/* Glow effect */}
                     <div className="absolute inset-0 bg-mystical-amber/30 rounded-full blur-xl" />
-
+                    
                     {/* Image container */}
                     <div className="relative w-full h-full rounded-full border-4 border-mystical-bronze overflow-hidden shadow-parchment">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -164,13 +165,7 @@ export function TestimonialsCarousel() {
 
                     {/* Service badge */}
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 bg-mystical-purple border-2 border-[#d4af37] rounded-ritual shadow-lg">
-                      <span
-                        className="text-xs font-serif text-[#d4af37] font-bold tracking-wide"
-                        style={{
-                          textShadow:
-                            '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
-                        }}
-                      >
+                      <span className="text-xs font-serif text-[#d4af37] font-bold tracking-wide" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
                         {currentTestimonial.service}
                       </span>
                     </div>
@@ -184,7 +179,7 @@ export function TestimonialsCarousel() {
                     {[...Array(currentTestimonial.rating)].map((_, i) => (
                       <span
                         key={i}
-                        className="text-yellow-400 text-xl animate-glow"
+                        className="text-mystical-amber text-xl animate-glow"
                       >
                         ★
                       </span>
@@ -216,7 +211,7 @@ export function TestimonialsCarousel() {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
             aria-label="Previous testimonial"
           >
             <span className="text-2xl">‹</span>
@@ -224,7 +219,7 @@ export function TestimonialsCarousel() {
 
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
             aria-label="Next testimonial"
           >
             <span className="text-2xl">›</span>
@@ -249,7 +244,7 @@ export function TestimonialsCarousel() {
 
         {/* Trust Indicator */}
         <div className="text-center mt-12">
-          <p className="font-serif text-ink-800 text-xl">
+          <p className="font-serif text-parchment-300 text-sm">
             Join thousands of satisfied clients who have experienced authentic
             spiritual transformation
           </p>

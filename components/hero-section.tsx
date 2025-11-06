@@ -87,33 +87,9 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="relative text-charcoal font-philosopher text-lg px-8 py-6 rounded-none border-2 border-amber-600 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden group"
+              className="relative bg-mystical-amber hover:bg-sacred-gold text-charcoal font-philosopher text-lg px-8 py-6 rounded-none border-2 border-mystical-amber shadow-lg hover:shadow-mystical-amber/50 transition-all duration-300 hover:scale-105 overflow-hidden group"
             >
               <Link href="/services">
-                {/* Gold gradient background */}
-                <div 
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                  }}
-                />
-                
-                {/* Metallic sheen overlay */}
-                <div 
-                  className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
-                  }}
-                />
-                
-                {/* Highlight effect */}
-                <div 
-                  className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                  style={{
-                    background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)',
-                  }}
-                />
-                
                 <span className="relative z-10">Begin Your Journey</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -129,18 +105,9 @@ export function HeroSection() {
               asChild
               size="lg"
               variant="outline"
-              className="relative bg-transparent hover:bg-parchment/10 text-parchment font-philosopher text-lg px-8 py-6 rounded-none border-2 border-parchment hover:border-amber-500 transition-all duration-300 overflow-hidden group"
+              className="bg-transparent hover:bg-parchment/10 text-parchment font-philosopher text-lg px-8 py-6 rounded-none border-2 border-parchment hover:border-mystical-amber transition-all duration-300"
             >
-              <Link href="/consultations">
-                {/* Subtle gold glow on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                  }}
-                />
-                <span className="relative z-10">Book a Consultation</span>
-              </Link>
+              <Link href="/consultations">Book a Consultation</Link>
             </Button>
           </div>
 
