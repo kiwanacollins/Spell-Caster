@@ -79,7 +79,9 @@ Date: November 4, 2025
 - `components/ui/tabs.tsx` - Ancient tome tabs
 - `components/ui/calendar.tsx` - Mystical calendar with lunar phases
 - `components/ui/progress.tsx` - Energy meter progress bar
-- `components/ui/skeleton.tsx` - Ancient-themed loading skeletons (parchment shimmer, candle flicker, ritual circle spinner)
+- `components/ui/skeleton.tsx` - Ancient-themed loading skeletons with ServiceCardSkeleton and TestimonialSkeleton using MysticalLoader
+- `components/ui/mystical-loader.tsx` - Radial gradient pulsing loader component with customizable size and color
+- `components/ui/mystical-loader.css` - CSS animation for mystical pulsing effect (scale/opacity)
 
 ### Components (Feature-Specific)
 

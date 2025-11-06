@@ -140,44 +140,50 @@
   }
 
   .hand-drawn-border::before {
-    /* Rune glow animation (scroll-triggered) */
-    @keyframes runeGlow {
-      0% {
-        opacity: 0.3;
-        transform: translateY(8px);
-        text-shadow: none;
-        filter: drop-shadow(0 0 0 rgba(184, 134, 11, 0));
-      }
-      50% {
-        opacity: 0.9;
-        text-shadow: 0 0 6px #b8860b, 0 0 12px rgba(184, 134, 11, 0.6);
-        filter: drop-shadow(0 0 8px rgba(184, 134, 11, 0.6));
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-        text-shadow: 0 0 10px #b8860b, 0 0 20px rgba(184, 134, 11, 0.75);
-        filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.75));
-      }
-    }
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid hsl(var(--border) / 0.5);
+    opacity: 0.5;
+    transform: rotate(0.5deg);
+    pointer-events: none;
+  }
 
-    .rune {
-      opacity: 0.4;
-      transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
-    }
+  /* Rune elements with scroll-triggered glow */
+  .rune {
+    opacity: 0.4;
+    transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
+  }
 
-    .rune.is-visible {
-      animation: runeGlow 1200ms ease-out both;
-    }
-
-@media (prefers-reduced-motion: reduce) {
   .rune.is-visible {
-    animation: none;
-    opacity: 1;
+    animation: runeGlow 1200ms ease-out both;
   }
 }
 
-/* Ancient-themed loading animations */
+/* Ancient-themed keyframe animations */
+@keyframes runeGlow {
+  0% {
+    opacity: 0.3;
+    transform: translateY(8px);
+    text-shadow: none;
+    filter: drop-shadow(0 0 0 rgba(184, 134, 11, 0));
+  }
+  50% {
+    opacity: 0.9;
+    text-shadow: 0 0 6px #b8860b, 0 0 12px rgba(184, 134, 11, 0.6);
+    filter: drop-shadow(0 0 8px rgba(184, 134, 11, 0.6));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 10px #b8860b, 0 0 20px rgba(184, 134, 11, 0.75);
+    filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.75));
+  }
+}
+
 @keyframes parchmentShimmer {
   0% {
     background-position: -200px 0;
@@ -204,46 +210,43 @@
   to { transform: rotate(0deg); }
 }
 
-.animate-parchment-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(184, 134, 11, 0.1),
-    transparent
-  );
-  background-size: 200px 100%;
-  animation: parchmentShimmer 2s infinite linear;
-}
-
-.animate-candle-flicker {
-  animation: candleFlicker 2s ease-in-out infinite;
-}
-
-.animate-ritual-spin {
-  animation: ritualSpin 3s linear infinite;
-}
-
-.animate-ritual-spin-reverse {
-  animation: ritualSpinReverse 2s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-parchment-shimmer,
-  .animate-candle-flicker,
-  .animate-ritual-spin,
-  .animate-ritual-spin-reverse {
-    animation: none;
+/* Animation utility classes */
+@layer base {
+  .animate-parchment-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(184, 134, 11, 0.1),
+      transparent
+    );
+    background-size: 200px 100%;
+    animation: parchmentShimmer 2s infinite linear;
   }
-}    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border: 1px solid hsl(var(--border) / 0.5);
-    opacity: 0.5;
-    transform: rotate(0.5deg);
-    pointer-events: none;
+
+  .animate-candle-flicker {
+    animation: candleFlicker 2s ease-in-out infinite;
+  }
+
+  .animate-ritual-spin {
+    animation: ritualSpin 3s linear infinite;
+  }
+
+  .animate-ritual-spin-reverse {
+    animation: ritualSpinReverse 2s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rune.is-visible {
+      animation: none;
+      opacity: 1;
+    }
+    
+    .animate-parchment-shimmer,
+    .animate-candle-flicker,
+    .animate-ritual-spin,
+    .animate-ritual-spin-reverse {
+      animation: none;
+    }
   }
 
   /* Ancient scroll text styling */

@@ -20,7 +20,7 @@ import {
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
@@ -32,7 +32,7 @@ export async function GET(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Users can only view their own profile unless admin
     if (currentUser.role !== "admin" && currentUser.id !== id) {
@@ -93,7 +93,7 @@ export async function GET(
  */
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
@@ -105,7 +105,7 @@ export async function PATCH(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Users can only update their own profile unless admin
     if (currentUser.role !== "admin" && currentUser.id !== id) {
@@ -227,7 +227,7 @@ export async function PATCH(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
@@ -247,7 +247,7 @@ export async function DELETE(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Soft delete by suspending the account
     const success = await suspendUser(id, "Account deleted by admin");
