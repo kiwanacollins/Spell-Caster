@@ -13,11 +13,19 @@ export default function Home() {
       {/* Scroll-triggered rune glow observer */}
       <RuneObserver />
       <HeroSection />
-      <ServicesGrid />
-      <ParallaxSection />
-      <AboutSection />
-      <TestimonialsCarousel />
-      <CTASection />
+      <div
+        style={{
+          backgroundImage: `url(/textures/parchment-light.webp)`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+        }}
+      >
+        <ServicesGrid />
+        <ParallaxSection />
+        <AboutSection />
+        <TestimonialsCarousel />
+        <CTASection />
+      </div>
       <Footer />
     </main>
   );

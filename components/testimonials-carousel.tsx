@@ -184,7 +184,7 @@ export function TestimonialsCarousel() {
                     {[...Array(currentTestimonial.rating)].map((_, i) => (
                       <span
                         key={i}
-                        className="text-mystical-amber text-xl animate-glow"
+                        className="text-yellow-400 text-xl animate-glow"
                       >
                         ★
                       </span>
