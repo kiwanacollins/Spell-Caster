@@ -224,92 +224,92 @@ Date: November 4, 2025
   - [ ] 3.12 Create login history tracking and active sessions management
   - [ ] 3.13 Add social login integration (Google, Apple) with account linking
 
-- [ ] 4.0 User Dashboard (Client Portal) Implementation
-  - [ ] 4.1 Create dashboard layout with sidebar navigation and ancient tome styling
-  - [ ] 4.2 Build Overview/Home page with personalized welcome message
-  - [ ] 4.3 Implement Energy Reading Widget (0-100% animated progress meter with mystical styling)
-  - [ ] 4.4 Create Quick Stats Cards (Active Spells, Upcoming Consultations, Unread Messages, Spiritual Points)
-  - [ ] 4.5 Build Recent Activity Feed with real-time notifications
-  - [ ] 4.6 Add Quick Action Buttons ("Request New Spell", "Book Consultation", "Message Healer")
-  - [ ] 4.7 Implement Spiritual Calendar with lunar phases and consultation dates
-  - [ ] 4.8 Build My Spells page with filter/sort options (status, type, date)
-  - [ ] 4.9 Create Spell Card component with 3D animated icons and status indicators
-  - [ ] 4.10 Implement Detailed Spell View modal with ritual timeline and healer notes
-  - [ ] 4.11 Add Spell History Archive with success tracking
-  - [ ] 4.12 Build multi-channel Messages page (In-App, WhatsApp, Messenger unified inbox)
-  - [ ] 4.13 Implement real-time chat interface with read receipts and typing indicators
-  - [ ] 4.14 Add file attachment support (images, documents) and voice message recording
-  - [ ] 4.15 Create message categories and threading (spell-specific, general, urgent)
-  - [ ] 4.16 Build Consultations page with calendar view (monthly/weekly/daily)
-  - [ ] 4.17 Implement consultation booking interface with time slot selection
-  - [ ] 4.18 Add pre-consultation questionnaire and preparation instructions
-  - [ ] 4.19 Create Past Consultations view with session notes and ratings
-  - [ ] 4.20 Build Spiritual Journal with rich text editor and mystical styling
-  - [ ] 4.21 Implement Manifestation Tracker and Dream Journal features
-  - [ ] 4.22 Add Guided Prompts for daily reflection and moon rituals
-  - [ ] 4.23 Create Spiritual Progress page with energy alignment graph
-  - [ ] 4.24 Implement Badges & Achievements system with 3D unlock animations
-  - [ ] 4.25 Build Spiritual Level System (Novice → Master) with perks
-  - [ ] 4.26 Create Payments & Billing page with transaction history
-  - [ ] 4.27 Implement Stripe payment method management (add/remove cards)
-  - [ ] 4.28 Add invoice downloads and receipt generation
-  - [ ] 4.29 Build subscription management interface for recurring services
-  - [ ] 4.30 Create Profile & Settings page with personal information editing
-  - [ ] 4.31 Implement notification preferences (email, SMS, push, per channel)
-  - [ ] 4.32 Add accessibility settings (dark mode, font size, reduce motion)
-  - [ ] 4.33 Build Referrals & Community section with unique referral links
-  - [ ] 4.34 Create Resources & Learning library with articles and videos
-  - [ ] 4.35 Implement responsive mobile menu with ancient scroll motif
+- [ ] 4.0 User Dashboard (Client Portal) Implementation **[Use shadcn/ui components extensively]**
+  - [ ] 4.1 Create dashboard layout with shadcn Sidebar component and ancient tome styling
+  - [ ] 4.2 Build Overview/Home page with personalized welcome message using shadcn Card and Alert components
+  - [ ] 4.3 Implement Energy Reading Widget (shadcn Progress component with 0-100% animated meter and mystical styling)
+  - [ ] 4.4 Create Quick Stats Cards using shadcn Card component (Active Spells, Upcoming Consultations, Unread Messages, Spiritual Points)
+  - [ ] 4.5 Build Recent Activity Feed with real-time notifications using shadcn ScrollArea and Badge components
+  - [ ] 4.6 Add Quick Action Buttons using shadcn Button component ("Request New Spell", "Book Consultation", "Message Healer")
+  - [ ] 4.7 Implement Spiritual Calendar with shadcn Calendar component (lunar phases and consultation dates)
+  - [ ] 4.8 Build My Spells page with shadcn Select, DropdownMenu for filter/sort options (status, type, date)
+  - [ ] 4.9 Create Spell Card component using shadcn Card with 3D animated icons and shadcn Badge for status indicators
+  - [ ] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes
+  - [ ] 4.11 Add Spell History Archive using shadcn Table component with success tracking
+  - [ ] 4.12 Build multi-channel Messages page using shadcn Tabs (In-App, WhatsApp, Messenger unified inbox)
+  - [ ] 4.13 Implement real-time chat interface with shadcn ScrollArea, Avatar, and Badge for read receipts and typing indicators
+  - [ ] 4.14 Add file attachment support using shadcn Input (file type) and voice message recording
+  - [ ] 4.15 Create message categories using shadcn Tabs and threading (spell-specific, general, urgent)
+  - [ ] 4.16 Build Consultations page with shadcn Calendar component (monthly/weekly/daily views)
+  - [ ] 4.17 Implement consultation booking interface using shadcn Calendar, Select, RadioGroup for time slot selection
+  - [ ] 4.18 Add pre-consultation questionnaire using shadcn Form components and preparation instructions
+  - [ ] 4.19 Create Past Consultations view using shadcn Table with session notes and shadcn Rating component
+  - [ ] 4.20 Build Spiritual Journal with shadcn Textarea (rich text editor integration) and mystical styling
+  - [ ] 4.21 Implement Manifestation Tracker and Dream Journal using shadcn Card and Form components
+  - [ ] 4.22 Add Guided Prompts using shadcn Alert and Card components for daily reflection and moon rituals
+  - [ ] 4.23 Create Spiritual Progress page with energy alignment graph using shadcn Chart components
+  - [ ] 4.24 Implement Badges & Achievements system using shadcn Badge and Dialog with 3D unlock animations
+  - [ ] 4.25 Build Spiritual Level System using shadcn Progress (Novice → Master) with perks display using shadcn Card
+  - [ ] 4.26 Create Payments & Billing page using shadcn Table component with transaction history
+  - [ ] 4.27 Implement Stripe payment method management using shadcn Card, Button (add/remove cards)
+  - [ ] 4.28 Add invoice downloads using shadcn Button and receipt generation
+  - [ ] 4.29 Build subscription management interface using shadcn Card, Switch, and Badge for recurring services
+  - [ ] 4.30 Create Profile & Settings page using shadcn Form, Input, Textarea for personal information editing
+  - [ ] 4.31 Implement notification preferences using shadcn Switch, Checkbox (email, SMS, push, per channel)
+  - [ ] 4.32 Add accessibility settings using shadcn Switch (dark mode, font size, reduce motion)
+  - [ ] 4.33 Build Referrals & Community section using shadcn Card and Input with unique referral links
+  - [ ] 4.34 Create Resources & Learning library using shadcn Card and Accordion for articles and videos
+  - [ ] 4.35 Implement responsive mobile menu using shadcn Sheet with ancient scroll motif
 
-- [ ] 5.0 Admin Dashboard (Healer Portal) Implementation
-  - [ ] 5.1 Create admin layout with enhanced navigation and permissions check
-  - [ ] 5.2 Build Admin Overview page with key metrics dashboard
-  - [ ] 5.3 Implement real-time activity feed for new requests, messages, bookings
-  - [ ] 5.4 Create Quick Stats Cards (completion rate, satisfaction, revenue, subscriptions)
-  - [ ] 5.5 Build Calendar Overview with today's consultations and week view
-  - [ ] 5.6 Implement Revenue Snapshot with earnings breakdown
-  - [ ] 5.7 Create User Management page with searchable directory
-  - [ ] 5.8 Build User Profile View (admin) with complete history and internal notes
-  - [ ] 5.9 Implement user actions (suspend, refund, grant credits, delete account)
-  - [ ] 5.10 Add user segmentation and tagging (VIP, at-risk, high-engagement)
-  - [ ] 5.11 Build bulk user operations and communication tools
-  - [ ] 5.12 Create Spell Management page with request queue
-  - [ ] 5.13 Implement spell status filters and priority flags
-  - [ ] 5.14 Build Spell Detail View (admin) with all user information
-  - [ ] 5.15 Create spell action controls (accept/decline, update status, add notes)
-  - [ ] 5.16 Implement photo/video upload for ritual progress updates
-  - [ ] 5.17 Build Spell Templates system for common requests
-  - [ ] 5.18 Add Spell Analytics (completion rate, average time, revenue by type)
-  - [ ] 5.19 Implement bulk spell operations (status updates, exports, assignments)
-  - [ ] 5.20 Create Consultation Management page with calendar system
-  - [ ] 5.21 Implement drag-and-drop rescheduling and color-coded events
-  - [ ] 5.22 Build consultation detail view with user notes and payment status
-  - [ ] 5.23 Add session notes interface (post-consultation) with visibility toggle
-  - [ ] 5.24 Create consultation settings (types, pricing, buffer time, cancellation policy)
-  - [ ] 5.25 Implement consultation analytics (bookings, ratings, revenue, no-shows)
-  - [ ] 5.26 Build Testimonials Management page with approval queue
-  - [ ] 5.27 Implement testimonial actions (approve, reject, feature, reply publicly)
-  - [ ] 5.28 Add testimonial analytics (average rating, sentiment analysis)
-  - [ ] 5.29 Create Payments & Financial Management page with revenue dashboard
-  - [ ] 5.30 Build transaction list with filtering and export capabilities
-  - [ ] 5.31 Implement payment actions (refunds, resend receipts, mark as paid)
-  - [ ] 5.32 Add financial reports generation (custom date ranges, tax documentation)
-  - [ ] 5.33 Build pricing management interface for service updates
-  - [ ] 5.34 Create discount code and promotional offer management
-  - [ ] 5.35 Implement subscription management with churn tracking
-  - [ ] 5.36 Build Analytics & Insights page with traffic metrics
-  - [ ] 5.37 Add user behavior analytics and journey mapping
-  - [ ] 5.38 Implement goal tracking and conversion funnels
-  - [ ] 5.39 Create custom reports builder with scheduled reports
-  - [ ] 5.40 Build CMS interface for service pages and blog articles
-  - [ ] 5.41 Add media library with upload and organization tools
-  - [ ] 5.42 Implement landing page management with A/B testing
-  - [ ] 5.43 Create FAQ and email template management
-  - [ ] 5.44 Build Settings & Configuration page with business settings
-  - [ ] 5.45 Implement notification settings and team management (if applicable)
-  - [ ] 5.46 Add integration settings (Stripe, Calendar APIs, Analytics)
-  - [ ] 5.47 Build backup & security management interface
-  - [ ] 5.48 Create system health monitoring dashboard
+- [ ] 5.0 Admin Dashboard (Healer Portal) Implementation **[Use shadcn/ui components extensively]**
+  - [ ] 5.1 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
+  - [ ] 5.2 Build Admin Overview page with key metrics dashboard using shadcn Card components
+  - [ ] 5.3 Implement real-time activity feed using shadcn ScrollArea, Badge, and Avatar for new requests, messages, bookings
+  - [ ] 5.4 Create Quick Stats Cards using shadcn Card (completion rate, satisfaction, revenue, subscriptions)
+  - [ ] 5.5 Build Calendar Overview using shadcn Calendar with today's consultations and week view
+  - [ ] 5.6 Implement Revenue Snapshot using shadcn Card with earnings breakdown
+  - [ ] 5.7 Create User Management page using shadcn Table, Input (search), and Select for searchable directory
+  - [ ] 5.8 Build User Profile View (admin) using shadcn Tabs with complete history and shadcn Textarea for internal notes
+  - [ ] 5.9 Implement user actions using shadcn DropdownMenu and Dialog (suspend, refund, grant credits, delete account)
+  - [ ] 5.10 Add user segmentation using shadcn Badge for tagging (VIP, at-risk, high-engagement)
+  - [ ] 5.11 Build bulk user operations using shadcn Checkbox and Command for communication tools
+  - [ ] 5.12 Create Spell Management page using shadcn Table with request queue
+  - [ ] 5.13 Implement spell status filters using shadcn Select, Tabs and shadcn Badge for priority flags
+  - [ ] 5.14 Build Spell Detail View (admin) using shadcn Sheet/Dialog with all user information
+  - [ ] 5.15 Create spell action controls using shadcn Button, RadioGroup (accept/decline, update status, add notes)
+  - [ ] 5.16 Implement photo/video upload using shadcn Input (file) for ritual progress updates
+  - [ ] 5.17 Build Spell Templates system using shadcn Command, Dialog for common requests
+  - [ ] 5.18 Add Spell Analytics using shadcn Card and Chart components (completion rate, average time, revenue by type)
+  - [ ] 5.19 Implement bulk spell operations using shadcn Checkbox, DropdownMenu (status updates, exports, assignments)
+  - [ ] 5.20 Create Consultation Management page using shadcn Calendar with calendar system
+  - [ ] 5.21 Implement drag-and-drop rescheduling using shadcn Calendar and color-coded events with shadcn Badge
+  - [ ] 5.22 Build consultation detail view using shadcn Sheet with user notes and payment status
+  - [ ] 5.23 Add session notes interface using shadcn Textarea with shadcn Switch for visibility toggle
+  - [ ] 5.24 Create consultation settings using shadcn Form, Input, Select (types, pricing, buffer time, cancellation policy)
+  - [ ] 5.25 Implement consultation analytics using shadcn Card and Chart (bookings, ratings, revenue, no-shows)
+  - [ ] 5.26 Build Testimonials Management page using shadcn Table with approval queue
+  - [ ] 5.27 Implement testimonial actions using shadcn DropdownMenu (approve, reject, feature, reply publicly)
+  - [ ] 5.28 Add testimonial analytics using shadcn Card (average rating, sentiment analysis)
+  - [ ] 5.29 Create Payments & Financial Management page using shadcn Card with revenue dashboard
+  - [ ] 5.30 Build transaction list using shadcn Table with filtering (shadcn Select) and export capabilities
+  - [ ] 5.31 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, resend receipts, mark as paid)
+  - [ ] 5.32 Add financial reports generation using shadcn Form, Calendar for custom date ranges, tax documentation
+  - [ ] 5.33 Build pricing management interface using shadcn Form, Input for service updates
+  - [ ] 5.34 Create discount code and promotional offer management using shadcn Table, Dialog, Form
+  - [ ] 5.35 Implement subscription management using shadcn Table, Badge with churn tracking
+  - [ ] 5.36 Build Analytics & Insights page using shadcn Card, Tabs with traffic metrics
+  - [ ] 5.37 Add user behavior analytics using shadcn Chart components and journey mapping
+  - [ ] 5.38 Implement goal tracking using shadcn Progress and conversion funnels
+  - [ ] 5.39 Create custom reports builder using shadcn Form, Select with scheduled reports
+  - [ ] 5.40 Build CMS interface using shadcn Textarea, Form for service pages and blog articles
+  - [ ] 5.41 Add media library using shadcn Card, Dialog with upload (shadcn Input file) and organization tools
+  - [ ] 5.42 Implement landing page management using shadcn Tabs with A/B testing
+  - [ ] 5.43 Create FAQ and email template management using shadcn Accordion, Textarea
+  - [ ] 5.44 Build Settings & Configuration page using shadcn Tabs, Form with business settings
+  - [ ] 5.45 Implement notification settings using shadcn Switch and team management using shadcn Table (if applicable)
+  - [ ] 5.46 Add integration settings using shadcn Form, Input (Stripe, Calendar APIs, Analytics)
+  - [ ] 5.47 Build backup & security management interface using shadcn Card, Button, Alert
+  - [ ] 5.48 Create system health monitoring dashboard using shadcn Card, Badge, Progress
 
 - [ ] 6.0 Multi-Channel Messaging Integration (WhatsApp, Messenger, In-App)
   - [ ] 6.1 Set up WhatsApp Business API account and obtain credentials
@@ -528,6 +528,22 @@ Date: November 4, 2025
 - Stripe setup is required before payment features can be tested
 - OpenAI API access is needed before AI features can be developed
 - WhatsApp/Messenger API credentials required before messaging integration
+- **shadcn/ui components must be installed and configured** (already done in Task 1.5) before building dashboards
+
+### shadcn/ui Component Usage Guidelines
+
+- **Prioritize shadcn/ui components** for all dashboard UI elements (Tasks 4.0 and 5.0)
+- **Customize shadcn components** with ancient theme styling (parchment backgrounds, weathered borders, mystical colors)
+- **Never use default shadcn styling** - always apply the ancient aesthetic (UnifrakturMaguntia/Crimson Text fonts, aged textures)
+- **Common component mappings:**
+  - Data display: Table, Card, Badge, Avatar, ScrollArea
+  - Forms: Form, Input, Textarea, Select, Checkbox, RadioGroup, Switch
+  - Navigation: Tabs, Sidebar, Command, DropdownMenu, Sheet (mobile menu)
+  - Feedback: Dialog, Alert, Toast, Progress
+  - Layout: Accordion, Separator, AspectRatio
+  - Data visualization: Integrate Chart.js/Recharts with shadcn Card containers
+- **Maintain ancient aesthetic** even when using modern UI patterns from shadcn
+- **No glassmorphism or modern gradients** - use textured overlays and solid colors instead
 
 ### Performance Considerations
 
