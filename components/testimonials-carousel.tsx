@@ -249,7 +249,7 @@ export function TestimonialsCarousel() {
 
         {/* Trust Indicator */}
         <div className="text-center mt-12">
-          <p className="font-serif text-parchment-300 text-sm">
+          <p className="font-serif text-parchment-300 text-xl">
             Join thousands of satisfied clients who have experienced authentic
             spiritual transformation
           </p>
