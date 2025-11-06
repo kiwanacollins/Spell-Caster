@@ -2,10 +2,67 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useEffect, useRef } from 'react';
 
 export function CTASection() {
+  const statueRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!statueRef.current) return;
+      
+      const scrolled = window.scrollY;
+      const statueElement = statueRef.current;
+      const rect = statueElement.getBoundingClientRect();
+      const elementTop = rect.top + scrolled;
+      const elementHeight = rect.height;
+      
+      // Apply 3D parallax when element is in view
+      if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
+        const scrollProgress = (scrolled - elementTop + window.innerHeight) / (elementHeight + window.innerHeight);
+        const yPos = scrollProgress * 100 - 50; // Move from -50 to 50
+        const rotateY = scrollProgress * 30 - 15; // Rotate from -15deg to 15deg
+        const scale = 0.8 + scrollProgress * 0.4; // Scale from 0.8 to 1.2
+        
+        statueElement.style.transform = `translateY(${yPos}px) rotateY(${rotateY}deg) scale(${scale})`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section className="relative py-20 px-4 bg-transparent overflow-hidden">
+      {/* 3D Statue Background with Parallax */}
+      <div 
+        ref={statueRef}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-20"
+        style={{ 
+          width: '800px', 
+          height: '800px',
+          zIndex: 0,
+          transition: 'transform 0.1s ease-out',
+          perspective: '1000px',
+        }}
+      >
+        <div className="sketchfab-embed-wrapper w-full h-full">
+          <iframe 
+            title="Saint Antonius / Anthony the Great - Statue" 
+            frameBorder="0" 
+            allowFullScreen 
+            allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; magnetometer; gyroscope" 
+            src="https://sketchfab.com/models/e99f4472b5a743a5b4f046fecd3229bd/embed?autospin=1&autostart=1&transparent=1&ui_hint=0&ui_controls=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark=0"
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'none'
+            }}
+          />
+        </div>
+      </div>
+
       {/* Background mystical elements */}
       <div className="absolute inset-0 bg-parchment-texture opacity-5" />
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-mystical-purple/30 via-transparent to-mystical-amber/20" />
