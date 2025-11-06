@@ -10,19 +10,14 @@ import { Badge } from "@/components/ui/badge";
 import { EnergyReadingWidget } from "@/components/energy-reading-widget";
 import { QuickStatsCards } from "@/components/quick-stats-cards";
 import { RecentActivityFeed } from "@/components/recent-activity-feed";
+import { QuickActionButtons } from "@/components/quick-action-buttons";
 import Link from "next/link";
 import { 
-  GiSpellBook, 
-  GiCalendar, 
-  GiChatBubble, 
   GiCrystalBall,
+  GiPentacle,
   GiProgression,
   GiScrollUnfurled,
-  GiCandles,
-  GiPentacle,
-  GiMoon,
-  GiSun,
-  GiSparkles
+  GiMoon
 } from "react-icons/gi";
 
 export default async function DashboardPage() {
@@ -92,28 +87,7 @@ export default async function DashboardPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Link href="/services">
-                <Button className="w-full h-auto py-4 flex flex-col items-center gap-2 bg-[#1A1A1A] hover:bg-[#8B6F47] border-2 border-[#8B6F47] text-[#F4E8D0] font-['Crimson_Text'] transition-all shadow-[2px_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[4px_4px_12px_rgba(0,0,0,0.4)]">
-                  <GiSpellBook className="h-8 w-8" />
-                  <span className="text-sm">Request New Spell</span>
-                </Button>
-              </Link>
-              
-              <Link href="/dashboard/consultations">
-                <Button className="w-full h-auto py-4 flex flex-col items-center gap-2 bg-[#1A1A1A] hover:bg-[#8B6F47] border-2 border-[#8B6F47] text-[#F4E8D0] font-['Crimson_Text'] transition-all shadow-[2px_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[4px_4px_12px_rgba(0,0,0,0.4)]">
-                  <GiCalendar className="h-8 w-8" />
-                  <span className="text-sm">Book Consultation</span>
-                </Button>
-              </Link>
-              
-              <Link href="/dashboard/messages">
-                <Button className="w-full h-auto py-4 flex flex-col items-center gap-2 bg-[#1A1A1A] hover:bg-[#8B6F47] border-2 border-[#8B6F47] text-[#F4E8D0] font-['Crimson_Text'] transition-all shadow-[2px_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[4px_4px_12px_rgba(0,0,0,0.4)]">
-                  <GiChatBubble className="h-8 w-8" />
-                  <span className="text-sm">Message Healer</span>
-                </Button>
-              </Link>
-            </div>
+            <QuickActionButtons layout="row" variant="default" />
           </CardContent>
         </Card>
 
