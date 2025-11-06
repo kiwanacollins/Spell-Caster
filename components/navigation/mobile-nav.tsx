@@ -17,7 +17,7 @@ import {
   GiCancel,
   GiPentacle,
 } from "react-icons/gi";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { LogoutButton } from "@/components/auth/logout-button";
 
 interface NavItem {
@@ -106,10 +106,15 @@ export function MobileNav({ userName = "Seeker", energyAlignment = 0 }: MobileNa
         >
           <SheetHeader className="border-b-4 border-[#8B6F47] bg-[#1A1A1A] p-6">
             <div className="flex items-center justify-between">
-              <SheetTitle className="flex items-center gap-3 text-[#F4E8D0]">
-                <GiScrollUnfurled className="h-7 w-7 text-[#B8860B]" />
-                <span className="font-['MedievalSharp'] text-xl">Sacred Menu</span>
-              </SheetTitle>
+              <div className="flex flex-col items-start gap-1">
+                <SheetTitle className="flex items-center gap-3 text-[#F4E8D0]">
+                  <GiScrollUnfurled className="h-7 w-7 text-[#B8860B]" />
+                  <span className="font-['MedievalSharp'] text-xl">Sacred Menu</span>
+                </SheetTitle>
+                <SheetDescription className="font-['Crimson_Text'] text-sm text-[#C0C0C0]">
+                  Navigate your spiritual journey
+                </SheetDescription>
+              </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-[#F4E8D0] transition-colors hover:text-[#B8860B]"
