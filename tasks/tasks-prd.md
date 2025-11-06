@@ -86,6 +86,8 @@ Date: November 4, 2025
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
 - `components/3d/ancient-book.tsx` - Three.js scene for animated 3D book with rotation and float effects
 - `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
+- `components/auth/protected-route.tsx` - Protected route wrapper component with authentication check and mystical loading state
+- `components/auth/admin-route.tsx` - Admin-only route wrapper with role verification and forbidden state
 - `components/spell-card.tsx` - Individual spell display card
 - `components/spell-request-form.tsx` - Multi-step spell request form
 - `components/consultation-calendar.tsx` - Booking calendar with lunar phases
@@ -114,8 +116,10 @@ Date: November 4, 2025
 - `lib/db/models/payment.ts` - Payment model schema
 - `lib/db/models/testimonial.ts` - Testimonial model schema
 - `lib/auth/auth.config.ts` - BetterAuth configuration with MongoDB adapter, email/password, OAuth providers (Google, Apple)
-- `lib/auth/session.ts` - Server-side session management utilities (getSession, getCurrentUser, requireAuth, requireAdmin)
+- `lib/auth/session.ts` - Server-side session management utilities (getSession, getCurrentUser, requireAuth, requireAdmin, isAdmin, signOut)
 - `lib/auth/client.ts` - Client-side authentication helpers for React components (signIn, signUp, signOut, useSession)
+- `lib/auth/hooks.ts` - Client-side authentication hooks (useUser, useRequireAuth, useIsAdmin)
+- `lib/auth/index.ts` - Barrel export for all auth utilities
 - `lib/auth/README.md` - Authentication system documentation and usage examples
 - `lib/payments/stripe.ts` - Stripe client and utilities
 - `lib/payments/pricing.ts` - Pricing calculations and management
@@ -204,7 +208,7 @@ Date: November 4, 2025
   - [✓] 3.3 Build login page with ancient themed form (ink-well inputs)
   - [✓] 3.4 Build registration page with mystical validation messages
   - [✓] 3.5 Implement forgot password flow with email reset
-  - [ ] 3.6 Create session management utilities and middleware
+  - [✓] 3.6 Create session management utilities and middleware
   - [ ] 3.7 Build protected route wrapper for dashboard pages
   - [ ] 3.8 Implement logout functionality
   - [ ] 3.9 Create user profile schema in MongoDB (name, email, birth date, location, spiritual profile)

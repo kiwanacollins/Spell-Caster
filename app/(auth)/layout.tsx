@@ -30,7 +30,7 @@ export default function AuthLayout({
       />
       
       {/* Dark overlay for depth */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-ink-900/30 via-transparent to-ink-900/40" />
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-ink-900/30 via-transparent to-ink-900/40" />
       
       {/* Mystical particle effects (subtle) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
