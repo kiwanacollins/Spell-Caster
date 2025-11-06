@@ -28,13 +28,7 @@ export function AboutSection() {
                   title="Fire animated" 
                   frameBorder="0" 
                   allowFullScreen 
-                  mozallowfullscreen="true"
-                  webkitallowfullscreen="true"
                   allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; magnetometer; gyroscope" 
-                  xr-spatial-tracking="true"
-                  execution-while-out-of-viewport="true"
-                  execution-while-not-rendered="true"
-                  web-share="true"
                   src="https://sketchfab.com/models/8cf82052fb164a25a0ca40d09a19c4dc/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark=0"
                   style={{
                     width: '100%',
