@@ -1,4 +1,5 @@
 import { getCurrentUser } from "@/lib/auth";
+import { getDefaultQuickStats } from "@/lib/utils/quick-stats";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { EnergyReadingWidget } from "@/components/energy-reading-widget";
+import { QuickStatsCards } from "@/components/quick-stats-cards";
 import Link from "next/link";
 import { 
   GiSpellBook, 
@@ -65,72 +67,13 @@ export default async function DashboardPage() {
           size="md"
         />
 
-        {/* Quick Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Active Spells */}
-          <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[4px_4px_12px_rgba(0,0,0,0.3)] transition-all hover:shadow-[6px_6px_16px_rgba(0,0,0,0.4)] hover:-translate-y-1">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 font-['MedievalSharp'] text-lg text-[#1A1A1A]">
-                <GiSpellBook className="h-5 w-5 text-[#8B6F47]" />
-                Active Spells
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-[#CC8800] font-['Crimson_Text']">0</p>
-              <p className="text-xs text-[#4A4A4A] font-['Crimson_Text'] mt-1">
-                Currently manifesting
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Consultations */}
-          <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[4px_4px_12px_rgba(0,0,0,0.3)] transition-all hover:shadow-[6px_6px_16px_rgba(0,0,0,0.4)] hover:-translate-y-1">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 font-['MedievalSharp'] text-lg text-[#1A1A1A]">
-                <GiCalendar className="h-5 w-5 text-[#8B6F47]" />
-                Consultations
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-[#CC8800] font-['Crimson_Text']">0</p>
-              <p className="text-xs text-[#4A4A4A] font-['Crimson_Text'] mt-1">
-                Scheduled sessions
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Messages */}
-          <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[4px_4px_12px_rgba(0,0,0,0.3)] transition-all hover:shadow-[6px_6px_16px_rgba(0,0,0,0.4)] hover:-translate-y-1">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 font-['MedievalSharp'] text-lg text-[#1A1A1A]">
-                <GiChatBubble className="h-5 w-5 text-[#8B6F47]" />
-                Messages
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-[#CC8800] font-['Crimson_Text']">0</p>
-              <p className="text-xs text-[#4A4A4A] font-['Crimson_Text'] mt-1">
-                Unread messages
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Spiritual Points */}
-          <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[4px_4px_12px_rgba(0,0,0,0.3)] transition-all hover:shadow-[6px_6px_16px_rgba(0,0,0,0.4)] hover:-translate-y-1">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 font-['MedievalSharp'] text-lg text-[#1A1A1A]">
-                <GiProgression className="h-5 w-5 text-[#8B6F47]" />
-                Spirit Points
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-[#CC8800] font-['Crimson_Text']">{spiritualPoints}</p>
-              <p className="text-xs text-[#4A4A4A] font-['Crimson_Text'] mt-1">
-                Level: {currentLevel}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+        {/* Quick Stats Cards Grid */}
+        <QuickStatsCards
+          stats={getDefaultQuickStats(0, 0, 0, spiritualPoints, currentLevel)}
+          columns={4}
+          enableHover
+          animateOnMount
+        />
 
         {/* Quick Actions Section */}
         <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[0_6px_16px_rgba(0,0,0,0.3)]">
