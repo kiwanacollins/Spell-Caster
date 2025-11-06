@@ -39,11 +39,32 @@ export const auth = betterAuth({
     })(options);
   },
   
+  /**
+   * Email & Password Authentication
+   * 
+   * Users can register and sign in with email/password.
+   * Email verification is disabled in development but should be enabled in production.
+   */
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false, // Set to true in production
+    autoSignIn: true, // Automatically sign in after registration
+    sendResetPassword: async ({ user, url }: { user: any; url: string }) => {
+      // TODO: Implement email sending for password reset
+      console.log(`Password reset link for ${user.email}: ${url}`);
+    },
+    sendVerificationEmail: async ({ user, url }: { user: any; url: string }) => {
+      // TODO: Implement email sending for verification
+      console.log(`Verification link for ${user.email}: ${url}`);
+    },
   },
 
+  /**
+   * Session Configuration
+   * 
+   * Sessions expire after 7 days and are updated daily.
+   * Cookie cache improves performance by caching session data.
+   */
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day - session updated if older than this
@@ -53,35 +74,111 @@ export const auth = betterAuth({
     },
   },
 
-  // Social providers (to be enabled when OAuth credentials are available)
+  /**
+   * Social OAuth Providers
+   * 
+   * Google and Apple sign-in support.
+   * To enable:
+   * 1. Add credentials to .env.local
+   * 2. Set enabled: true for the provider
+   * 3. Configure OAuth apps in respective consoles
+   */
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-      enabled: false, // Enable when credentials are added
+      // Uncomment when credentials are configured:
+      // enabled: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
     },
     apple: {
       clientId: process.env.APPLE_CLIENT_ID || "",
       clientSecret: process.env.APPLE_CLIENT_SECRET || "",
-      enabled: false, // Enable when credentials are added
+      // Uncomment when credentials are configured:
+      // enabled: Boolean(process.env.APPLE_CLIENT_ID && process.env.APPLE_CLIENT_SECRET),
     },
   },
 
+  /**
+   * User Schema Customization
+   * 
+   * Define additional user fields beyond the defaults (email, name, etc.)
+   */
+  user: {
+    additionalFields: {
+      // Birth date for astrological readings
+      birthDate: {
+        type: "string",
+        required: false,
+      },
+      // Location for spiritual consultations
+      location: {
+        type: "string",
+        required: false,
+      },
+      // Phone number for WhatsApp integration
+      phoneNumber: {
+        type: "string",
+        required: false,
+      },
+      // Spiritual profile preferences
+      spiritualProfile: {
+        type: "string",
+        required: false,
+      },
+      // User role (client or admin)
+      role: {
+        type: "string",
+        defaultValue: "client",
+      },
+      // Account creation timestamp
+      createdAt: {
+        type: "date",
+        defaultValue: () => new Date(),
+      },
+    },
+  },
+
+  /**
+   * Advanced Configuration
+   */
   advanced: {
+    // Generate custom user IDs
     generateId: () => {
-      // Generate a custom ID (could use nanoid, uuid, etc.)
-      return `${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
+      return `user_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    },
+    // Use secure cookies in production
+    useSecureCookies: process.env.NODE_ENV === "production",
+    // Cross-site request protection
+    crossSubDomainCookies: {
+      enabled: false,
     },
   },
 
-  // Security settings
+  /**
+   * Security Settings
+   */
   secret: process.env.BETTER_AUTH_SECRET || "development-secret-change-in-production",
   baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
 
-  // Trust host in production
+  /**
+   * Trusted Origins
+   * 
+   * Add your production domain here
+   */
   trustedOrigins: [
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   ],
+  
+  /**
+   * Rate Limiting
+   * 
+   * Prevent brute force attacks
+   */
+  rateLimit: {
+    enabled: true,
+    window: 60, // 1 minute window
+    max: 10, // Max 10 requests per window
+  },
 });
 
 export type Session = typeof auth.$Infer.Session;

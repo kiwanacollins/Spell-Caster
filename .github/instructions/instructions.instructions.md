@@ -336,4 +336,5 @@ When working with task lists (`tasks/tasks-prd.md`), you must:
    - Add the new sub-tasks to the list with appropriate numbering (e.g., 1.1.1, 1.1.2).
    - Inform the user about the updated task breakdown.
 
+### After a task dont create a documentation file
 ### After completing a tasks ask the developer to type yes / y to continue to the next sub tasks / task
