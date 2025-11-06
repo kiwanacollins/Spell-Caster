@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 function ResetPasswordForm() {
   const router = useRouter();
@@ -15,6 +16,8 @@ function ResetPasswordForm() {
     password: "",
     confirmPassword: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -188,15 +191,29 @@ function ResetPasswordForm() {
             <label htmlFor="password" className="block text-sm font-serif text-ink-800 font-medium">
               New Password
             </label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="Create a strong password"
-              value={formData.password}
-              onChange={(e) => handleChange("password", e.target.value)}
-              className="w-full"
-              disabled={isLoading || !token}
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Create a strong password"
+                value={formData.password}
+                onChange={(e) => handleChange("password", e.target.value)}
+                className="w-full pr-10"
+                disabled={isLoading || !token}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-600 hover:text-ink-800 transition-colors"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible className="w-5 h-5" />
+                ) : (
+                  <AiOutlineEye className="w-5 h-5" />
+                )}
+              </button>
+            </div>
             
             {formData.password && (
               <div className="mt-2">
@@ -233,15 +250,29 @@ function ResetPasswordForm() {
             <label htmlFor="confirmPassword" className="block text-sm font-serif text-ink-800 font-medium">
               Confirm Password
             </label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              value={formData.confirmPassword}
-              onChange={(e) => handleChange("confirmPassword", e.target.value)}
-              className="w-full"
-              disabled={isLoading || !token}
-            />
+            <div className="relative">
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm your password"
+                value={formData.confirmPassword}
+                onChange={(e) => handleChange("confirmPassword", e.target.value)}
+                className="w-full pr-10"
+                disabled={isLoading || !token}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-600 hover:text-ink-800 transition-colors"
+                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+              >
+                {showConfirmPassword ? (
+                  <AiOutlineEyeInvisible className="w-5 h-5" />
+                ) : (
+                  <AiOutlineEye className="w-5 h-5" />
+                )}
+              </button>
+            </div>
             {errors.confirmPassword && (
               <p className="text-blood-moon-red text-xs font-serif mt-1">✦ {errors.confirmPassword}</p>
             )}
