@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/auth";
 import { getDefaultQuickStats } from "@/lib/utils/quick-stats";
 import { getSampleActivityFeed } from "@/lib/utils/activity-feed";
+import { getSampleCalendarEvents } from "@/lib/utils/spiritual-calendar";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -11,6 +12,7 @@ import { EnergyReadingWidget } from "@/components/energy-reading-widget";
 import { QuickStatsCards } from "@/components/quick-stats-cards";
 import { RecentActivityFeed } from "@/components/recent-activity-feed";
 import { QuickActionButtons } from "@/components/quick-action-buttons";
+import { SpiritualCalendar } from "@/components/spiritual-calendar";
 import Link from "next/link";
 import { 
   GiCrystalBall,
@@ -40,6 +42,9 @@ export default async function DashboardPage() {
   
   // Get activity feed data once (server-side)
   const activities = getSampleActivityFeed();
+  
+  // Get calendar events data (server-side)
+  const calendarEvents = getSampleCalendarEvents();
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-linear-to-b from-[#2C2416] to-[#1A1A1A]">
@@ -140,6 +145,13 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Spiritual Calendar with Lunar Phases */}
+        <SpiritualCalendar 
+          events={calendarEvents}
+          showLunarPhases
+          showEventDetails
+        />
 
         {/* Today's Mystical Insight Alert */}
         <Alert className="border-4 border-[#CC8800] bg-linear-to-br from-[#1A1A1A] to-[#2C2416] shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
