@@ -8,7 +8,7 @@ export interface QuickStat {
   label: string;
   value: number | string;
   sublabel: string;
-  icon: string; // Icon key for client-side rendering
+  icon: 'GiSpellBook' | 'GiCalendar' | 'GiChatBubble' | 'GiProgression';
   href?: string;
   animated?: boolean;
 }

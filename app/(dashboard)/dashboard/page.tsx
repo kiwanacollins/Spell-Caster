@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/lib/auth";
 import { getDefaultQuickStats } from "@/lib/utils/quick-stats";
+import { getSampleActivityFeed } from "@/lib/utils/activity-feed";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -8,6 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { EnergyReadingWidget } from "@/components/energy-reading-widget";
 import { QuickStatsCards } from "@/components/quick-stats-cards";
+import { RecentActivityFeed } from "@/components/recent-activity-feed";
 import Link from "next/link";
 import { 
   GiSpellBook, 
@@ -40,6 +42,9 @@ export default async function DashboardPage() {
   const currentLevel = "Seeker";
   const nextLevel = "Adept";
   const pointsToNextLevel = 750;
+  
+  // Get activity feed data once (server-side)
+  const activities = getSampleActivityFeed();
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-linear-to-b from-[#2C2416] to-[#1A1A1A]">
@@ -112,37 +117,14 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
 
-        {/* Recent Activity Feed */}
+        {/* Recent Activity Feed and Spiritual Level Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[0_6px_16px_rgba(0,0,0,0.3)]">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 font-['MedievalSharp'] text-[#1A1A1A]">
-                <GiScrollUnfurled className="h-6 w-6 text-[#8B6F47]" />
-                Recent Activity
-              </CardTitle>
-              <CardDescription className="font-['Crimson_Text'] text-[#4A4A4A]">
-                Your spiritual journey timeline
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 p-3 bg-[#E8DCC0] rounded border-2 border-[#8B6F47]/30">
-                  <GiCandles className="h-5 w-5 text-[#CC8800] mt-1 shrink-0" />
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold font-['Crimson_Text'] text-[#1A1A1A]">
-                      Welcome to your sacred space
-                    </p>
-                    <p className="text-xs font-['Crimson_Text'] text-[#4A4A4A] mt-1">
-                      Your spiritual journey begins now. Explore our services to manifest your desires.
-                    </p>
-                    <p className="text-xs font-['Crimson_Text'] text-[#8B6F47] mt-2">
-                      Just now
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Recent Activity Feed - Using New Component */}
+          <RecentActivityFeed 
+            activities={activities}
+            maxHeight="h-96"
+            showHeader
+          />
 
           {/* Spiritual Level Progress */}
           <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[0_6px_16px_rgba(0,0,0,0.3)]">
