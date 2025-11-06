@@ -48,27 +48,17 @@ import {
   filterSpellsByType,
   sortSpells
 } from '@/lib/utils/spells';
+import { SpellCard } from '@/components/spell-card';
 
 interface SpellsPageClientProps {
   spells: Spell[];
 }
 
-const SPELL_TYPE_ICONS: Record<SpellType, typeof GiHearts> = {
-  'love': GiHearts,
-  'prosperity': GiCoins,
-  'protection': GiShield,
-  'healing': GiHeartBottle,
-  'clarity': GiCrystalBall,
-  'luck': GiHorseshoe,
-  'career': GiBriefcase,
-  'family': GiFamilyTree,
-  'spiritual-growth': GiMoonOrbit,
-};
-
 export function SpellsPageClient({ spells: initialSpells }: SpellsPageClientProps) {
   const [statusFilter, setStatusFilter] = useState<SpellStatus | 'all'>('all');
   const [typeFilter, setTypeFilter] = useState<SpellType | 'all'>('all');
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'status'>('newest');
+  const [selectedSpell, setSelectedSpell] = useState<Spell | null>(null);
 
   // Apply filters and sorting
   let filteredSpells = initialSpells;
@@ -248,111 +238,15 @@ export function SpellsPageClient({ spells: initialSpells }: SpellsPageClientProp
       {/* Spells Grid */}
       {filteredSpells.length > 0 ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {filteredSpells.map((spell) => {
-            const SpellIcon = SPELL_TYPE_ICONS[spell.type];
-            return (
-              <Card 
-                key={spell.id}
-                className="border-2 border-[#8B6F47]/30 bg-[#F4E8D0]/95 hover:shadow-[0_0_20px_rgba(139,111,71,0.3)] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-              >
-                {/* Corner decorations */}
-                <div className="pointer-events-none absolute left-0 top-0 h-6 w-6 border-l-2 border-t-2 border-[#8B6F47]/40" />
-                <div className="pointer-events-none absolute right-0 top-0 h-6 w-6 border-r-2 border-t-2 border-[#8B6F47]/40" />
-                <div className="pointer-events-none absolute bottom-0 left-0 h-6 w-6 border-b-2 border-l-2 border-[#8B6F47]/40" />
-                <div className="pointer-events-none absolute bottom-0 right-0 h-6 w-6 border-b-2 border-r-2 border-[#8B6F47]/40" />
-
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="p-2 rounded-lg bg-[#8B6F47]/10 border border-[#8B6F47]/30">
-                        <SpellIcon className="h-6 w-6 text-[#8B6F47]" />
-                      </div>
-                      <div className="flex-1">
-                        <CardTitle className="font-['MedievalSharp'] text-xl text-[#1A1A1A] mb-1">
-                          {spell.name}
-                        </CardTitle>
-                        <CardDescription className="font-['Crimson_Text'] text-sm text-[#4A4A4A]">
-                          {SPELL_TYPE_LABELS[spell.type]}
-                        </CardDescription>
-                      </div>
-                    </div>
-                    <Badge className={cn("font-['Crimson_Text'] text-xs", SPELL_STATUS_COLORS[spell.status])}>
-                      {SPELL_STATUS_LABELS[spell.status]}
-                    </Badge>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  <p className="font-['Crimson_Text'] text-sm text-[#1A1A1A] leading-relaxed">
-                    {spell.description}
-                  </p>
-
-                  {/* Energy Level Progress */}
-                  {spell.energyLevel !== undefined && (
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-['Crimson_Text'] text-xs text-[#4A4A4A]">
-                          Energy Level
-                        </span>
-                        <span className="font-['Crimson_Text'] text-xs font-semibold text-[#8B6F47]">
-                          {spell.energyLevel}%
-                        </span>
-                      </div>
-                      <Progress 
-                        value={spell.energyLevel} 
-                        className="h-2 bg-[#8B6F47]/20 border border-[#8B6F47]/30"
-                      />
-                    </div>
-                  )}
-
-                  {/* Ritual Date */}
-                  {spell.ritualDate && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <GiMoonOrbit className="h-4 w-4 text-[#CC8800]" />
-                      <span className="font-['Crimson_Text'] text-[#4A4A4A]">
-                        Ritual Date:{' '}
-                        <span className="font-semibold text-[#1A1A1A]">
-                          {spell.ritualDate.toLocaleDateString('en-US', { 
-                            month: 'short', 
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
-                        </span>
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Lunar Phase */}
-                  {spell.lunarPhase && (
-                    <div className="flex items-center gap-2">
-                      <Badge className="bg-[#CC8800]/10 text-[#CC8800] border border-[#CC8800]/30 font-['Crimson_Text'] text-xs">
-                        🌙 {spell.lunarPhase}
-                      </Badge>
-                    </div>
-                  )}
-
-                  {/* Healer Notes */}
-                  {spell.healerNotes && (
-                    <div className="rounded-md bg-[#E8DCC0] border border-[#8B6F47]/20 p-3">
-                      <p className="font-['Crimson_Text'] text-xs text-[#4A4A4A] italic">
-                        <strong className="text-[#1A1A1A] not-italic">Healer&apos;s Notes:</strong>{' '}
-                        {spell.healerNotes}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Requested Date */}
-                  <div className="pt-2 border-t border-[#8B6F47]/20 font-['Crimson_Text'] text-xs text-[#4A4A4A]">
-                    Requested {spell.requestedDate.toLocaleDateString('en-US', { 
-                      month: 'long', 
-                      day: 'numeric',
-                      year: 'numeric'
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {filteredSpells.map((spell) => (
+            <SpellCard
+              key={spell.id}
+              spell={spell}
+              onClick={setSelectedSpell}
+              variant="default"
+              showActions={true}
+            />
+          ))}
         </div>
       ) : (
         <Card className="border-2 border-[#8B6F47]/30 bg-[#F4E8D0]/95">

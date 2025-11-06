@@ -51,6 +51,30 @@ export const SPELL_STATUS_COLORS: Record<SpellStatus, string> = {
   'cancelled': 'bg-[#4A4A4A]/20 text-[#4A4A4A] border-[#4A4A4A]/30',
 };
 
+import { 
+  GiHearts, 
+  GiCoins, 
+  GiShield, 
+  GiHeartBottle,
+  GiCrystalBall,
+  GiHorseshoe,
+  GiBriefcase,
+  GiFamilyTree,
+  GiMoonOrbit,
+} from 'react-icons/gi';
+
+export const SPELL_TYPE_ICONS: Record<SpellType, typeof GiHearts> = {
+  'love': GiHearts,
+  'prosperity': GiCoins,
+  'protection': GiShield,
+  'healing': GiHeartBottle,
+  'clarity': GiCrystalBall,
+  'luck': GiHorseshoe,
+  'career': GiBriefcase,
+  'family': GiFamilyTree,
+  'spiritual-growth': GiMoonOrbit,
+};
+
 /**
  * Generate sample spell data for demonstration
  */
