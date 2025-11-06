@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { DashboardHeader } from "@/components/auth/dashboard-header";
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
@@ -11,15 +12,8 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Ancient parchment header */}
-        <div className="bg-[#F4E8D0] border-4 border-[#8B6F47] rounded-sm p-8 mb-8 relative">
-          <h1 className="text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
-            Welcome Back, {user.name}
-          </h1>
-          <p className="text-[#4A4A4A] font-['Crimson_Text'] text-lg">
-            Your spiritual journey continues...
-          </p>
-        </div>
+        {/* Dashboard header with logout button */}
+        <DashboardHeader userName={user.name} />
 
         {/* Placeholder for dashboard content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
