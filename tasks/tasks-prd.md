@@ -112,8 +112,6 @@ Date: November 4, 2025
 - `components/admin-ai-dashboard.tsx` - AI usage analytics
 - `components/navigation/sidebar.tsx` - Dashboard sidebar navigation
 - `components/navigation/mobile-menu.tsx` - Ancient scroll mobile menu
-- `components/navigation/dashboard-sidebar.tsx` - Dashboard sidebar with ancient tome styling, mystical navigation sections, spiritual level indicator
-- `components/navigation/dashboard-user-menu.tsx` - User profile dropdown menu with avatar, account links, logout functionality
 - `components/3d/floating-crystals.tsx` - Three.js crystal component
 - `components/3d/ritual-circle.tsx` - Rotating pentacle 3D element
 - `components/3d/animated-candles.tsx` - 3D candles with flames
@@ -236,7 +234,7 @@ Date: November 4, 2025
   - [ ] 3.13 Add social login integration (Google, Apple) with account linking
 
 - [ ] 4.0 User Dashboard (Client Portal) Implementation **[Use shadcn/ui components extensively]**
-  - [✓] 4.1 Create dashboard layout with shadcn Sidebar component and ancient tome styling
+  - [ ] 4.1 Create dashboard layout with shadcn Sidebar component and ancient tome styling
   - [ ] 4.2 Build Overview/Home page with personalized welcome message using shadcn Card and Alert components
   - [ ] 4.3 Implement Energy Reading Widget (shadcn Progress component with 0-100% animated meter and mystical styling)
   - [ ] 4.4 Create Quick Stats Cards using shadcn Card component (Active Spells, Upcoming Consultations, Unread Messages, Spiritual Points)
