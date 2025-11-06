@@ -49,6 +49,7 @@ import {
   sortSpells
 } from '@/lib/utils/spells';
 import { SpellCard } from '@/components/spell-card';
+import { DetailedSpellView } from '@/components/detailed-spell-view';
 
 interface SpellsPageClientProps {
   spells: Spell[];
@@ -275,6 +276,13 @@ export function SpellsPageClient({ spells: initialSpells }: SpellsPageClientProp
       <div className="text-center font-['Crimson_Text'] text-sm text-[#C0C0C0]">
         Showing {filteredSpells.length} of {initialSpells.length} spell{initialSpells.length !== 1 ? 's' : ''}
       </div>
+
+      {/* Detailed Spell View Modal */}
+      <DetailedSpellView
+        spell={selectedSpell}
+        isOpen={!!selectedSpell}
+        onClose={() => setSelectedSpell(null)}
+      />
     </div>
   );
 }

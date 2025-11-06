@@ -99,8 +99,10 @@ Date: November 4, 2025
 - `components/recent-activity-feed.tsx` - Reusable RecentActivityFeed component using shadcn ScrollArea and Badge, displays activity timeline with icons, timestamps, and mystical styling, stagger animation on mount
 - `components/quick-action-buttons.tsx` - Reusable QuickActionButtons component with shadcn Button, displays default actions (Request Spell, Book Consultation, Message Healer), customizable layout and variant (default/compact)
 - `components/spiritual-calendar.tsx` - Reusable SpiritualCalendar component using shadcn Calendar, displays lunar phases, consultation dates, mystical events with moon phase indicators, event details panel, upcoming events list
-- `components/spells-page-client.tsx` - Client-side Spells page component with shadcn Select and DropdownMenu for filtering/sorting, displays spell cards with status badges, energy levels, ritual dates
+- `components/spells-page-client.tsx` - Client-side Spells page component with shadcn Select and DropdownMenu for filtering/sorting, displays spell cards with status badges, energy levels, ritual dates, integrated with DetailedSpellView modal
 - `components/spell-card.tsx` - Reusable SpellCard component using shadcn Card and Badge, displays individual spells with 3D hover effects, energy levels, lunar phases, healer notes (default/compact/detailed variants)
+- `components/detailed-spell-view.tsx` - Detailed spell view modal using shadcn Dialog, displays full spell information with shadcn Accordion for ritual timeline, ingredients, notes, and healer guidance
+- `components/ui/accordion.tsx` - Radix UI Accordion wrapper component for displaying collapsible content sections
 - `components/ui/scroll-area.tsx` - Radix UI ScrollArea wrapper component with custom mystical styling
 - `lib/utils/activity-feed.ts` - Server-side utility for building activity feed data with timestamps, badges, and activity types
 - `lib/utils/quick-stats.ts` - Server-side utility for building quick stats data with icon mappings
@@ -298,8 +300,8 @@ Date: November 4, 2025
   - [✓] 4.7 Implement Spiritual Calendar with shadcn Calendar component (lunar phases and consultation dates)
   - [✓] 4.8 Build My Spells page with shadcn Select, DropdownMenu for filter/sort options (status, type, date)
   - [✓] 4.9 Create Spell Card component using shadcn Card with shadcn Badge for status indicators
-  - [ ] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes ← **NEXT**
-  - [ ] 4.11 Add Spell History Archive using shadcn Table component with success tracking
+  - [✓] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes
+  - [ ] 4.11 Add Spell History Archive using shadcn Table component with success tracking ← **NEXT**
   - [ ] 4.12 Build multi-channel Messages page using shadcn Tabs (In-App, WhatsApp, Messenger unified inbox)
   - [ ] 4.13 Implement real-time chat interface with shadcn ScrollArea, Avatar, and Badge for read receipts and typing indicators
   - [ ] 4.14 Add file attachment support using shadcn Input (file type) and voice message recording
