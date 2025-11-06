@@ -64,6 +64,7 @@ Date: November 4, 2025
 - `app/api/users/route.ts` - User management endpoints (list, search, initialize spiritual profile)
 - `app/api/users/[id]/route.ts` - Individual user CRUD operations (get, update, delete, admin actions)
 - `app/api/users/me/route.ts` - Current user profile endpoint (get own profile, update own profile, generate referral code)
+- `app/api/sessions/route.ts` - Session management (get active sessions, login history, statistics, revoke sessions)
 - `app/api/services/route.ts` - Service catalog management
 
 ### Components (UI)
@@ -122,6 +123,8 @@ Date: November 4, 2025
 - `lib/db/mongodb.ts` - MongoDB connection and client
 - `lib/db/models/user.ts` - User model schema with spiritual profile, preferences, stats, and extended fields
 - `lib/db/models/user-operations.ts` - User database operations (CRUD, energy tracking, badges, stats updates)
+- `lib/db/models/session.ts` - Session and login history model schema with device tracking, location tracking, suspicious activity detection
+- `lib/db/models/session-operations.ts` - Session database operations (login tracking, active sessions, revocation, statistics)
 - `lib/db/models/index.ts` - Barrel export for all database models
 - `lib/db/models/spell.ts` - Spell model schema
 - `lib/db/models/consultation.ts` - Consultation model schema
@@ -227,7 +230,7 @@ Date: November 4, 2025
   - [✓] 3.9 Create user profile schema in MongoDB (name, email, birth date, location, spiritual profile)
   - [✓] 3.10 Build API endpoints for user CRUD operations
   - [ ] 3.11 Implement two-factor authentication (2FA) setup
-  - [ ] 3.12 Create login history tracking and active sessions management
+  - [✓] 3.12 Create login history tracking and active sessions management
   - [ ] 3.13 Add social login integration (Google, Apple) with account linking
 
 - [ ] 4.0 User Dashboard (Client Portal) Implementation **[Use shadcn/ui components extensively]**

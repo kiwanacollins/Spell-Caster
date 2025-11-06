@@ -4,7 +4,7 @@
  * Central export for all user-related types and database operations
  */
 
-// Types and interfaces
+// User types and interfaces
 export type {
   UserDocument,
   SpiritualProfile,
@@ -15,17 +15,17 @@ export type {
   UpdateUserProfileInput,
 } from "./user";
 
-// Constants
+// User constants
 export { USER_COLLECTION } from "./user";
 
-// Helper functions
+// User helper functions
 export {
   initializeSpiritualProfile,
   initializeUserStats,
   initializeUserPreferences,
 } from "./user";
 
-// Database operations
+// User database operations
 export {
   getUserById,
   getUserByEmail,
@@ -42,3 +42,42 @@ export {
   suspendUser,
   reactivateUser,
 } from "./user-operations";
+
+// Session types and interfaces
+export type {
+  LoginHistoryEntry,
+  ActiveSession,
+  SessionDevice,
+  SessionLocation,
+} from "./session";
+
+// Session constants
+export {
+  LOGIN_HISTORY_COLLECTION,
+  ACTIVE_SESSIONS_COLLECTION,
+} from "./session";
+
+// Session helper functions
+export {
+  parseUserAgent,
+  getLocationFromIP,
+  detectSuspiciousActivity,
+  calculateTrustScore,
+} from "./session";
+
+// Session database operations
+export {
+  recordLoginAttempt,
+  getLoginHistory,
+  createActiveSession,
+  getActiveSessions,
+  updateSessionActivity,
+  revokeSession,
+  revokeAllSessionsExcept,
+  revokeAllSessions,
+  cleanupExpiredSessions,
+  getSessionById,
+  markCurrentSession,
+  getLoginStatistics,
+  recordLogout,
+} from "./session-operations";
