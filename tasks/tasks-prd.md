@@ -118,7 +118,9 @@ Date: November 4, 2025
 ### Library Files
 
 - `lib/db/mongodb.ts` - MongoDB connection and client
-- `lib/db/models/user.ts` - User model schema
+- `lib/db/models/user.ts` - User model schema with spiritual profile, preferences, stats, and extended fields
+- `lib/db/models/user-operations.ts` - User database operations (CRUD, energy tracking, badges, stats updates)
+- `lib/db/models/index.ts` - Barrel export for all database models
 - `lib/db/models/spell.ts` - Spell model schema
 - `lib/db/models/consultation.ts` - Consultation model schema
 - `lib/db/models/message.ts` - Message model schema
@@ -220,7 +222,7 @@ Date: November 4, 2025
   - [✓] 3.6 Create session management utilities and middleware
   - [✓] 3.7 Build protected route wrapper for dashboard pages
   - [✓] 3.8 Implement logout functionality
-  - [ ] 3.9 Create user profile schema in MongoDB (name, email, birth date, location, spiritual profile)
+  - [✓] 3.9 Create user profile schema in MongoDB (name, email, birth date, location, spiritual profile)
   - [ ] 3.10 Build API endpoints for user CRUD operations
   - [ ] 3.11 Implement two-factor authentication (2FA) setup
   - [ ] 3.12 Create login history tracking and active sessions management
