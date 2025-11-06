@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export function CTASection() {
   return (
-    <section className="relative py-20 px-4 bg-mystical-deepPurple overflow-hidden">
+    <section className="relative py-20 px-4 bg-transparent overflow-hidden">
       {/* Background mystical elements */}
       <div className="absolute inset-0 bg-parchment-texture opacity-5" />
       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-mystical-purple/30 via-transparent to-mystical-amber/20" />
@@ -36,7 +36,7 @@ export function CTASection() {
 
           {/* Headline */}
           <div className="space-y-4">
-            <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-parchment-100 leading-tight">
+            <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ink-900 leading-tight">
               Join the Circle
             </h2>
             
@@ -49,12 +49,12 @@ export function CTASection() {
           </div>
 
           {/* Subheadline */}
-          <p className="font-serif text-xl sm:text-2xl md:text-3xl text-parchment-200 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-serif text-xl sm:text-2xl md:text-3xl text-ink-800 max-w-3xl mx-auto leading-relaxed">
             Step into a world of ancient wisdom and spiritual transformation
           </p>
 
           {/* Description */}
-          <p className="font-serif text-base sm:text-lg text-parchment-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-serif text-base sm:text-lg text-ink-700 max-w-2xl mx-auto leading-relaxed">
             Whether you seek love, protection, prosperity, or guidance, your
             journey begins here. Join thousands who have discovered the power of
             authentic spiritual healing.
@@ -66,7 +66,7 @@ export function CTASection() {
               <div className="w-12 h-12 bg-mystical-amber/20 rounded-full flex items-center justify-center border-2 border-mystical-amber/40">
                 <span className="text-2xl text-mystical-amber">✓</span>
               </div>
-              <p className="font-serif text-sm text-parchment-200">
+              <p className="font-serif text-sm text-ink-800">
                 Authentic Spiritual Guidance
               </p>
             </div>
@@ -75,7 +75,7 @@ export function CTASection() {
               <div className="w-12 h-12 bg-mystical-amber/20 rounded-full flex items-center justify-center border-2 border-mystical-amber/40">
                 <span className="text-2xl text-mystical-amber">✓</span>
               </div>
-              <p className="font-serif text-sm text-parchment-200">
+              <p className="font-serif text-sm text-ink-800">
                 Confidential & Sacred
               </p>
             </div>
@@ -84,7 +84,7 @@ export function CTASection() {
               <div className="w-12 h-12 bg-mystical-amber/20 rounded-full flex items-center justify-center border-2 border-mystical-amber/40">
                 <span className="text-2xl text-mystical-amber">✓</span>
               </div>
-              <p className="font-serif text-sm text-parchment-200">
+              <p className="font-serif text-sm text-ink-800">
                 Proven Results
               </p>
             </div>
@@ -137,7 +137,7 @@ export function CTASection() {
               asChild
               size="lg"
               variant="outline"
-              className="relative bg-transparent hover:bg-parchment-100/10 text-parchment-100 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-parchment-200 hover:border-amber-500 transition-all duration-300 overflow-hidden group"
+              className="relative bg-transparent hover:bg-parchment-100/10 text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-ink-800 hover:border-amber-500 transition-all duration-300 overflow-hidden group"
             >
               <Link href="/consultations">
                 {/* Subtle gold glow on hover */}
@@ -154,7 +154,7 @@ export function CTASection() {
 
           {/* Trust indicator */}
           <div className="pt-8">
-            <p className="font-serif text-sm text-parchment-400 italic">
+            <p className="font-serif text-sm text-ink-600 italic">
               Join our sacred community • No commitment required • Begin your
               transformation today
             </p>

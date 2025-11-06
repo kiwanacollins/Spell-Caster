@@ -111,7 +111,7 @@ const services: Service[] = [
 
 export function ServicesGrid() {
   return (
-    <section className="relative py-20 px-4 bg-ink-900">
+    <section className="relative py-20 px-4 bg-transparent">
       {/* Background texture overlay - leaf impression stone */}
       <div 
         className="absolute inset-0 opacity-30"
@@ -123,12 +123,12 @@ export function ServicesGrid() {
         }}
       />
       {/* Overlay to darken and blend the texture */}
-      <div className="absolute inset-0 bg-ink-900/60" />
+      <div className="absolute inset-0 bg-parchment-100/60" />
 
       <div className="relative z-10 container mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-parchment-200 mb-6">
+          <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-ink-900 mb-6">
             Sacred Services
           </h2>
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -136,7 +136,7 @@ export function ServicesGrid() {
             <span className="text-mystical-amber text-2xl">✦</span>
             <div className="h-px w-16 bg-linear-to-l from-transparent to-mystical-amber" />
           </div>
-          <p className="font-serif text-lg sm:text-xl text-parchment-300 max-w-2xl mx-auto">
+          <p className="font-serif text-lg sm:text-xl text-ink-800 max-w-2xl mx-auto">
             Explore the ancient arts and mystical services offered to guide your
             spiritual journey
           </p>
@@ -277,7 +277,7 @@ export function ServicesGrid() {
 
         {/* Call to action */}
         <div className="text-center mt-16">
-          <p className="font-serif text-parchment-300 mb-6">
+          <p className="font-serif text-ink-800 mb-6">
             Can&apos;t find what you&apos;re seeking?
           </p>
           <Link

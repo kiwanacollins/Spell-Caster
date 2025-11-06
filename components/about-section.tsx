@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export function AboutSection() {
   return (
-    <section className="relative py-20 px-4 bg-parchment-100 overflow-hidden">
+    <section className="relative py-20 px-4 bg-transparent overflow-hidden">
       {/* Background texture overlay */}
       <div className="absolute inset-0 bg-parchment-texture opacity-30" />
 

@@ -106,7 +106,7 @@ export function TestimonialsCarousel() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="relative py-20 px-4 bg-ink-900 overflow-hidden">
+    <section className="relative py-20 px-4 bg-transparent overflow-hidden">
       {/* Background mystical elements */}
       <div className="absolute inset-0 bg-parchment-texture opacity-5" />
       <div className="absolute top-20 left-10 w-64 h-64 bg-mystical-purple/10 rounded-full blur-3xl animate-float-slow" />
@@ -115,7 +115,7 @@ export function TestimonialsCarousel() {
       <div className="relative z-10 container mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-parchment-200 mb-6">
+          <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-ink-900 mb-6">
             Voices of Transformation
           </h2>
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -123,7 +123,7 @@ export function TestimonialsCarousel() {
             <span className="text-mystical-amber text-2xl">✦</span>
             <div className="h-px w-16 bg-linear-to-l from-transparent to-mystical-amber" />
           </div>
-          <p className="font-serif text-lg sm:text-xl text-parchment-300 max-w-2xl mx-auto">
+          <p className="font-serif text-lg sm:text-xl text-ink-800 max-w-2xl mx-auto">
             Real stories from souls who have experienced authentic spiritual
             healing
           </p>
@@ -249,7 +249,7 @@ export function TestimonialsCarousel() {
 
         {/* Trust Indicator */}
         <div className="text-center mt-12">
-          <p className="font-serif text-parchment-300 text-xl">
+          <p className="font-serif text-ink-800 text-xl">
             Join thousands of satisfied clients who have experienced authentic
             spiritual transformation
           </p>
