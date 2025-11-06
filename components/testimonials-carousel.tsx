@@ -130,27 +130,26 @@ export function TestimonialsCarousel() {
         </div>
 
         {/* Testimonial Card */}
-        <div className="relative">
+        <div className="relative px-8 py-4">
           {/* Main testimonial container */}
-          <div className="bg-parchment-100 rounded-ritual border-4 border-mystical-bronze shadow-obsidian overflow-hidden">
-            {/* Decorative corner elements */}
-            <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-mystical-gold opacity-60 z-10" />
-            <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-mystical-gold opacity-60 z-10" />
-            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-mystical-gold opacity-60 z-10" />
-            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-mystical-gold opacity-60 z-10" />
-
-            {/* Background texture */}
-            <div className="absolute inset-0 bg-parchment-texture opacity-30" />
-
+          <div
+            className="shadow-obsidian"
+            style={{
+              backgroundImage: `url(/textures/paper-torn-edge.png)`,
+              backgroundSize: '105% 100%',
+              backgroundRepeat: 'no-repeat',
+              padding: 'clamp(2rem, 8vw, 5rem) clamp(1.5rem, 6vw, 4rem)',
+            }}
+          >
             {/* Content */}
-            <div className="relative z-20 p-8 md:p-12">
+            <div className="relative z-20">
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                 {/* Client Image */}
                 <div className="shrink-0">
                   <div className="relative w-32 h-32 md:w-40 md:h-40">
                     {/* Glow effect */}
                     <div className="absolute inset-0 bg-mystical-amber/30 rounded-full blur-xl" />
-                    
+
                     {/* Image container */}
                     <div className="relative w-full h-full rounded-full border-4 border-mystical-bronze overflow-hidden shadow-parchment">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -165,7 +164,13 @@ export function TestimonialsCarousel() {
 
                     {/* Service badge */}
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 bg-mystical-purple border-2 border-[#d4af37] rounded-ritual shadow-lg">
-                      <span className="text-xs font-serif text-[#d4af37] font-bold tracking-wide" style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
+                      <span
+                        className="text-xs font-serif text-[#d4af37] font-bold tracking-wide"
+                        style={{
+                          textShadow:
+                            '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+                        }}
+                      >
                         {currentTestimonial.service}
                       </span>
                     </div>
@@ -211,7 +216,7 @@ export function TestimonialsCarousel() {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
             aria-label="Previous testimonial"
           >
             <span className="text-2xl">‹</span>
@@ -219,7 +224,7 @@ export function TestimonialsCarousel() {
 
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 w-12 h-12 bg-mystical-amber hover:bg-mystical-gold text-ink-900 rounded-full border-2 border-mystical-bronze shadow-lg transition-all duration-300 hover:scale-110 z-30"
             aria-label="Next testimonial"
           >
             <span className="text-2xl">›</span>
