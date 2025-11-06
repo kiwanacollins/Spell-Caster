@@ -5,14 +5,49 @@ import { Button } from '@/components/ui/button';
 
 export function AboutSection() {
   return (
-    <section className="relative py-20 px-4 bg-parchment-100">
+    <section className="relative py-20 px-4 bg-parchment-100 overflow-hidden">
       {/* Background texture overlay */}
       <div className="absolute inset-0 bg-parchment-texture opacity-30" />
 
-      <div className="relative z-10 container mx-auto max-w-7xl">
+      <div className="relative container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Content */}
-          <div className="space-y-6">
+          {/* Left: Content with Fire Animation Behind */}
+          <div className="relative min-h-[800px]">
+            {/* Sketchfab Fire Animation Background */}
+            <div 
+              className="absolute top-0 left-0 pointer-events-none opacity-30"
+              style={{ 
+                width: '600px', 
+                height: '600px',
+                transform: 'translate(-100px, 50px)',
+                zIndex: 0
+              }}
+            >
+              <div className="sketchfab-embed-wrapper w-full h-full">
+                <iframe 
+                  title="Fire animated" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  mozallowfullscreen="true"
+                  webkitallowfullscreen="true"
+                  allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; magnetometer; gyroscope" 
+                  xr-spatial-tracking="true"
+                  execution-while-out-of-viewport="true"
+                  execution-while-not-rendered="true"
+                  web-share="true"
+                  src="https://sketchfab.com/models/8cf82052fb164a25a0ca40d09a19c4dc/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark=0"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    border: 'none'
+                  }}
+                />
+              </div>
+            </div>
+            
+            {/* Content wrapper with proper z-index */}
+            <div className="relative space-y-6" style={{ zIndex: 10 }}>
+            
             {/* Section Header */}
             <div className="mb-8">
               <h2 className="font-gothic text-4xl sm:text-5xl md:text-6xl text-ink-900 mb-6">
@@ -26,14 +61,14 @@ export function AboutSection() {
             </div>
 
             {/* Introduction */}
-            <p className="font-serif text-lg text-ink-800 leading-relaxed">
+            <p className="font-serif text-lg text-ink-800 leading-relaxed bg-parchment-100/80 p-4 rounded-lg backdrop-blur-sm">
               For over two decades, I have walked the sacred path between the
               seen and unseen worlds, serving as a bridge for those seeking
               spiritual healing, guidance, and transformation.
             </p>
 
             {/* Story */}
-            <p className="font-serif text-base text-ink-700 leading-relaxed">
+            <p className="font-serif text-base text-ink-700 leading-relaxed bg-parchment-100/80 p-4 rounded-lg backdrop-blur-sm">
               My journey began in childhood, when I first discovered my innate
               connection to the mystical forces that govern our universe. Through
               years of study with master practitioners, deep meditation, and
@@ -41,7 +76,7 @@ export function AboutSection() {
               divine energy and ancient wisdom.
             </p>
 
-            <p className="font-serif text-base text-ink-700 leading-relaxed">
+            <p className="font-serif text-base text-ink-700 leading-relaxed bg-parchment-100/80 p-4 rounded-lg backdrop-blur-sm">
               I work with the energies of the moon, the power of sacred herbs,
               the wisdom of the tarot, and the ancient art of spell casting to
               help guide souls toward their highest purpose. Every spell I cast,
@@ -143,6 +178,7 @@ export function AboutSection() {
                   />
                 </Link>
               </Button>
+            </div>
             </div>
           </div>
 

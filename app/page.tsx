@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/hero-section';
 import { ServicesGrid } from '@/components/services-grid';
+import { ParallaxSection } from '@/components/parallax-section';
 import { AboutSection } from '@/components/about-section';
 import { TestimonialsCarousel } from '@/components/testimonials-carousel';
 import { CTASection } from '@/components/cta-section';
@@ -13,6 +14,7 @@ export default function Home() {
       <RuneObserver />
       <HeroSection />
       <ServicesGrid />
+      <ParallaxSection />
       <AboutSection />
       <TestimonialsCarousel />
       <CTASection />

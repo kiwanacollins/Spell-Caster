@@ -25,7 +25,7 @@ export function MysticalParticles({
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.debug('Particles loaded:', container);
+    // Particles loaded successfully - removed console.debug to prevent CORS errors with iframes
   };
 
   // Mystical smoke configuration
