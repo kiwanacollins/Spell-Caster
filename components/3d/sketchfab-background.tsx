@@ -19,7 +19,6 @@ export function SketchfabBackground({
       <iframe 
         title="3D Background Scene" 
         frameBorder={0}
-        allowFullScreen 
         allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; magnetometer; gyroscope" 
         src={`https://sketchfab.com/models/${modelId}/embed?autostart=1&transparent=1&ui_hint=0&ui_controls=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark=0`}
         style={{
