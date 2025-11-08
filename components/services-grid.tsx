@@ -12,11 +12,107 @@ interface Service {
 
 const services: Service[] = [
   {
-    id: 'love-spells',
-    name: 'Love & Relationships',
+    id: 'get-back-lost-items',
+    name: 'Get Back Lost Items',
     description:
-      'Attract true love, heal broken hearts, and strengthen the bonds between souls destined to unite.',
-    icon: '/icons/services/Love_Gloss_Be_Mine.svg',
+      'Powerful rituals to recover lost possessions, retrieve stolen items, and restore what rightfully belongs to you through ancient tracking magic.',
+    icon: '/icons/services/get-back-lost-items.png',
+    category: 'Spells',
+  },
+  {
+    id: 'land-solving-spell',
+    name: 'Land Solving Spell',
+    description:
+      'Resolve property disputes, clear land titles, and manifest rightful ownership through sacred land blessing rituals.',
+    icon: '/icons/services/land-solving-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'obsession-spell',
+    name: 'Obsession Spell',
+    description:
+      'Create powerful magnetic attraction and deep emotional connection, making someone unable to stop thinking about you.',
+    icon: '/icons/services/obsession-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'stop-cheating-spell',
+    name: 'Stop Cheating Spell',
+    description:
+      'End infidelity and restore loyalty in relationships through powerful binding and truth-revealing rituals.',
+    icon: '/icons/services/stop-cheating-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'binding-spell',
+    name: 'Binding Spell',
+    description:
+      'Create unbreakable bonds, prevent separation, and secure lasting commitment through ancient binding rituals.',
+    icon: '/icons/services/bonding-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'gay-lesbian-spell',
+    name: 'Gay & Lesbian Spell',
+    description:
+      'Specialized love spells for LGBTQ+ relationships, attracting compatible partners and strengthening same-sex bonds.',
+    icon: '/icons/services/gay-and-lesibian-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'winning-court-case',
+    name: 'Winning a Court Case',
+    description:
+      'Gain favor in legal matters, influence judges and juries, and ensure justice prevails in your favor.',
+    icon: '/icons/services/winning-a-court-case.png',
+    category: 'Spells',
+  },
+  {
+    id: 'business-boost-spells',
+    name: 'Business Boost Spells',
+    description:
+      'Attract customers, increase profits, overcome competition, and manifest unprecedented business success.',
+    icon: '/icons/services/business-boost-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'cleansing-rituals',
+    name: 'Cleansing Rituals and Spells',
+    description:
+      'Remove negative energy, break curses, cleanse your aura, and purify your space from all harmful influences.',
+    icon: '/icons/services/Chakra-Meditation.svg',
+    category: 'Rituals',
+  },
+  {
+    id: 'divorce-spell',
+    name: 'Divorce Spell',
+    description:
+      'Facilitate peaceful separation, speed up divorce proceedings, and help both parties move on to new beginnings.',
+    icon: '/icons/services/divorce-spell.png',
+    category: 'Spells',
+  },
+  {
+    id: 'marriage-commitment',
+    name: 'Marriage and Commitment',
+    description:
+      'Manifest marriage proposals, strengthen commitment, and create lasting unions blessed by ancient spirits.',
+    icon: '/icons/services/marriage-and-commitment.png',
+    category: 'Spells',
+  },
+  {
+    id: 'magic-wallet',
+    name: 'Magic Wallet',
+    description:
+      'Enchanted wallets that continuously attract money, multiply wealth, and ensure your pockets never run empty.',
+    icon: '/icons/services/magic-wallet.png',
+    category: 'Artifacts',
+  },
+  {
+    id: 'financial-issues',
+    name: 'Financial Issues',
+    description:
+      'Overcome debt, attract financial opportunities, break poverty cycles, and manifest abundance and prosperity.',
+    icon: '/icons/services/financial-issues.png',
     category: 'Spells',
   },
   {
@@ -28,84 +124,12 @@ const services: Service[] = [
     category: 'Spells',
   },
   {
-    id: 'wealth-prosperity',
-    name: 'Wealth & Prosperity',
-    description:
-      'Open the doors to abundance, attract financial success, and manifest prosperity in all areas of life.',
-    icon: '/icons/services/cash-and-coins.svg',
-    category: 'Spells',
-  },
-  {
     id: 'magic-rings',
     name: 'Magic Rings',
     description:
       'Channel mystical energies through sacred rings infused with ancient power to protect, attract, and transform your destiny.',
     icon: '/icons/services/magic-rings.svg',
     category: 'Artifacts',
-  },
-  {
-    id: 'tarot-oracle',
-    name: 'Tarot & Oracle Readings',
-    description:
-      'Receive divine guidance through the sacred cards, revealing hidden truths and illuminating your path forward.',
-    icon: '/icons/services/Oracle-card-deck.svg',
-    category: 'Readings',
-  },
-  {
-    id: 'crystal-ball',
-    name: 'Crystal Ball Divination',
-    description:
-      'Peer into the mystical depths of the crystal sphere to glimpse future events and spiritual visions.',
-    icon: '/icons/services/fortune-telling-crystal-ball.svg',
-    category: 'Readings',
-  },
-  {
-    id: 'astrology',
-    name: 'Astrology & Zodiac',
-    description:
-      'Unlock the secrets written in the stars, understand your cosmic blueprint and planetary influences.',
-    icon: '/icons/services/zodiac-wheel.svg',
-    category: 'Readings',
-  },
-  {
-    id: 'numerology',
-    name: 'Sacred Numerology',
-    description:
-      'Decode the mystical language of numbers to reveal your life path, destiny, and spiritual purpose.',
-    icon: '/icons/services/sacred-geometry-numbers.svg',
-    category: 'Readings',
-  },
-  {
-    id: 'energy-work',
-    name: 'Chakra & Energy Healing',
-    description:
-      'Balance your energy centers, cleanse your aura, and restore harmony to body, mind, and spirit.',
-    icon: '/icons/services/Chakra-Meditation.svg',
-    category: 'Energy Work',
-  },
-  {
-    id: 'moon-rituals',
-    name: 'Lunar Rituals',
-    description:
-      'Harness the power of moon phases for manifestation, release, and spiritual transformation.',
-    icon: '/icons/services/crescent-moon-with-stars.svg',
-    category: 'Rituals',
-  },
-  {
-    id: 'candle-magic',
-    name: 'Candle Magic',
-    description:
-      'Direct your intentions through the sacred flame, using colors and herbs to manifest your desires.',
-    icon: '/icons/services/ritual-candle-icon.svg',
-    category: 'Rituals',
-  },
-  {
-    id: 'herbal-remedies',
-    name: 'Herbal Magic & Potions',
-    description:
-      "Craft sacred blends using nature's ancient wisdom to heal, protect, and empower your spiritual journey.",
-    icon: '/icons/services/mortar-and-pestle-with-herbs.svg',
-    category: 'Rituals',
   },
 ];
 
