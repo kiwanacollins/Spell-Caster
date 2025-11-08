@@ -37,10 +37,8 @@ Date: November 4, 2025
 - `app/(admin)/layout.tsx` - Admin portal layout with AdminRoute wrapper
 - `app/(admin)/admin/page.tsx` - Admin dashboard with stats and quick actions
 - `app/(admin)/admin/users/page.tsx` - User management
-- `app/(admin)/admin/spells/page.tsx` - Spell management
-- `app/(admin)/admin/consultations/page.tsx` - Consultation management
-- `app/(admin)/admin/messages/page.tsx` - Multi-channel inbox with AI responses
-- `app/(admin)/admin/testimonials/page.tsx` - Testimonial management
+- `app/(admin)/admin/services/page.tsx` - Service request management
+- `app/(admin)/admin/testimonials/page.tsx` - Video testimonial management
 - `app/(admin)/admin/payments/page.tsx` - Financial management
 - `app/(admin)/admin/analytics/page.tsx` - Analytics dashboard
 - `app/(admin)/admin/cms/page.tsx` - Content management
@@ -49,23 +47,21 @@ Date: November 4, 2025
 ### API Routes
 
 - `app/api/auth/[...all]/route.ts` - BetterAuth authentication endpoints (handles sign-in, sign-up, sign-out, session)
-- `app/api/spells/route.ts` - Spell CRUD operations
-- `app/api/spells/[id]/route.ts` - Individual spell operations
-- `app/api/consultations/route.ts` - Consultation booking endpoints
-- `app/api/messages/route.ts` - In-app messaging
-- `app/api/messages/whatsapp/route.ts` - WhatsApp webhook handler
-- `app/api/messages/messenger/route.ts` - Messenger webhook handler
+- `app/api/services/route.ts` - Service catalog management and CRUD operations
+- `app/api/services/[id]/route.ts` - Individual service operations
+- `app/api/service-requests/route.ts` - Service request CRUD operations
+- `app/api/service-requests/[id]/route.ts` - Individual service request operations
 - `app/api/payments/route.ts` - Payment processing
 - `app/api/payments/webhook/route.ts` - Stripe webhook handler
-- `app/api/ai/generate-response/route.ts` - AI response generation
-- `app/api/ai/generate-reading/route.ts` - AI tarot/astrology readings
-- `app/api/ai/analyze-sentiment/route.ts` - Message sentiment analysis
-- `app/api/testimonials/route.ts` - Testimonial operations
-- `app/api/users/route.ts` - User management endpoints (list, search, initialize spiritual profile)
+- `app/api/ai/generate-content/route.ts` - AI content generation (service descriptions, guidance, blog articles)
+- `app/api/ai/service-recommendations/route.ts` - AI service recommendation engine
+- `app/api/testimonials/route.ts` - Testimonial operations (video upload, management)
+- `app/api/users/route.ts` - User management endpoints (list, search, profile management)
 - `app/api/users/[id]/route.ts` - Individual user CRUD operations (get, update, delete, admin actions)
-- `app/api/users/me/route.ts` - Current user profile endpoint (get own profile, update own profile, generate referral code)
+- `app/api/users/me/route.ts` - Current user profile endpoint (get own profile, update own profile)
 - `app/api/sessions/route.ts` - Session management (get active sessions, login history, statistics, revoke sessions)
-- `app/api/services/route.ts` - Service catalog management
+- `app/api/contact/whatsapp/route.ts` - Generate WhatsApp contact links with pre-filled messages
+- `app/api/contact/messenger/route.ts` - Generate Messenger contact links with pre-filled messages
 
 ### Components (UI)
 
@@ -98,8 +94,11 @@ Date: November 4, 2025
 - `components/dashboard/sacred-offerings.tsx` - Service summary section with category tabs, service cards, energy level indicators, using shadcn Tabs and Card
 - `components/dashboard/video-testimonials-section.tsx` - Dashboard video testimonials player with HTML5 video, auto-rotating carousel, success rate badge, ancient frame styling
 - `components/dashboard/mystical-insights.tsx` - Daily/weekly spiritual guidance with moon phases, astrology insights, ritual suggestions using shadcn Card
-- `components/dashboard/contact-support.tsx` - Kiwana contact card with office hours, booking button, quick contact options using shadcn Card and Button
+- `components/dashboard/contact-support.tsx` - Kiwana contact card with WhatsApp/Messenger buttons, office hours, availability status using shadcn Card and Button
 - `components/dashboard/trust-authenticity.tsx` - Credibility badges, experience statement, disclaimers using shadcn Badge and Alert
+- `components/contact/whatsapp-button.tsx` - WhatsApp contact button with pre-filled message, green styling, ancient theme
+- `components/contact/messenger-button.tsx` - Messenger contact button with pre-filled message, blue styling, ancient theme
+- `components/contact/floating-contact-buttons.tsx` - Floating WhatsApp/Messenger action buttons (optional, for persistent access)
 - `components/energy-reading-widget.tsx` - Reusable Energy Reading Widget with shadcn Progress, 0-100% animated meter, mystical styling, moon phase and chakra balance display, size variants (sm/md/lg)
 - `components/quick-stats-cards.tsx` - Reusable QuickStatsCards component displaying stat metrics (Active Spells, Consultations, Messages, Spirit Points), configurable grid layout, animated on mount, optional links to dashboard pages
 - `components/recent-activity-feed.tsx` - Reusable RecentActivityFeed component using shadcn ScrollArea and Badge, displays activity timeline with icons, timestamps, and mystical styling, stagger animation on mount
@@ -123,20 +122,12 @@ Date: November 4, 2025
 - `components/auth/server-admin-route.tsx` - Server Component admin-only route wrapper with redirect
 - `components/auth/logout-button.tsx` - Reusable logout button component with loading state and mystical messaging
 - `components/auth/dashboard-header.tsx` - Dashboard header with user welcome message and logout button
-- `components/navigation/dashboard-sidebar.tsx` - Desktop sidebar navigation with ancient tome styling, energy meter, user info, using react-icons
+- `components/navigation/dashboard-sidebar.tsx` - Desktop sidebar navigation with ancient tome styling, user info, using react-icons (Overview, Sacred Services, Payments)
 - `components/navigation/mobile-nav.tsx` - Mobile navigation with ancient scroll Sheet component, responsive menu using react-icons
-- `components/spell-card.tsx` - Individual spell display card
-- `components/spell-request-form.tsx` - Multi-step spell request form
-- `components/consultation-calendar.tsx` - Booking calendar with lunar phases
-- `components/message-thread.tsx` - Multi-channel message display
-- `components/ai-response-generator.tsx` - Admin AI response interface
-- `components/energy-meter.tsx` - Animated energy alignment visualization
-- `components/badge-unlock-animation.tsx` - 3D badge reveal animation
-- `components/payment-checkout.tsx` - Stripe checkout integration
-- `components/admin-spell-queue.tsx` - Spell request management
-- `components/admin-ai-dashboard.tsx` - AI usage analytics
-- `components/navigation/sidebar.tsx` - Dashboard sidebar navigation
-- `components/navigation/mobile-menu.tsx` - Ancient scroll mobile menu
+- `components/service-request-form.tsx` - Multi-step service request form for all 15 services
+- `components/payment-checkout.tsx` - Stripe checkout integration for service payments
+- `components/admin-service-queue.tsx` - Service request management queue
+- `components/admin-ai-dashboard.tsx` - AI content generation usage analytics
 - `components/3d/floating-crystals.tsx` - Three.js crystal component
 - `components/3d/ritual-circle.tsx` - Rotating pentacle 3D element
 - `components/3d/animated-candles.tsx` - 3D candles with flames
@@ -146,19 +137,17 @@ Date: November 4, 2025
 ### Library Files
 
 - `lib/db/mongodb.ts` - MongoDB connection and client
-- `lib/db/models/user.ts` - User model schema with spiritual profile, preferences, stats, and extended fields
-- `lib/db/models/user-operations.ts` - User database operations (CRUD, energy tracking, badges, stats updates)
+- `lib/db/models/user.ts` - User model schema with spiritual profile, preferences, contact preferences (WhatsApp/Messenger)
+- `lib/db/models/user-operations.ts` - User database operations (CRUD, contact preference tracking)
 - `lib/db/models/session.ts` - Session and login history model schema with device tracking, location tracking, suspicious activity detection
 - `lib/db/models/session-operations.ts` - Session database operations (login tracking, active sessions, revocation, statistics)
-- `lib/db/models/index.ts` - Barrel export for all database models
-- `lib/db/models/spell.ts` - Spell model schema
-- `lib/db/models/consultation.ts` - Consultation model schema
-- `lib/db/models/message.ts` - Message model schema
+- `lib/db/models/service.ts` - Service model schema for all 15 services (type, pricing, duration, requirements)
+- `lib/db/models/service-request.ts` - Service request model schema (user, service type, status, payment, notes)
 - `lib/db/models/payment.ts` - Payment model schema
-- `lib/db/models/testimonial.ts` - Testimonial model schema
-- `lib/store/message-store.ts` - Zustand store for multi-channel messaging (WhatsApp, Messenger, In-App) with real-time updates
-- `lib/store/user-store.ts` - Zustand store for user profile, spiritual progress, energy tracking, badges, and preferences
-- `lib/store/spell-queue-store.ts` - Zustand store for admin spell queue management, AI responses, filtering, and bulk operations
+- `lib/db/models/testimonial.ts` - Video testimonial model schema
+- `lib/db/models/index.ts` - Barrel export for all database models
+- `lib/store/user-store.ts` - Zustand store for user profile, service history, contact preferences
+- `lib/store/service-queue-store.ts` - Zustand store for admin service queue management, filtering, and bulk operations
 - `lib/store/notification-store.ts` - Zustand store for toast notifications with mystical theming and auto-dismiss
 - `lib/store/index.ts` - Barrel export for all Zustand stores
 - `lib/store/README.md` - Comprehensive state management documentation with usage examples and best practices
@@ -169,24 +158,22 @@ Date: November 4, 2025
 - `lib/auth/index.ts` - Barrel export for all auth utilities
 - `lib/auth/README.md` - Authentication system documentation and usage examples
 - `lib/payments/stripe.ts` - Stripe client and utilities
-- `lib/payments/pricing.ts` - Pricing calculations and management
+- `lib/payments/pricing.ts` - Pricing calculations and management for all 15 services
 - `lib/ai/openai.ts` - OpenAI client configuration
-- `lib/ai/prompts.ts` - AI prompt templates for different services
-- `lib/ai/response-generator.ts` - AI response generation logic
-- `lib/ai/reading-generator.ts` - AI tarot/astrology reading generator
-- `lib/ai/sentiment-analyzer.ts` - Message sentiment analysis
-- `lib/messaging/whatsapp.ts` - WhatsApp Business API client
-- `lib/messaging/messenger.ts` - Facebook Messenger API client
-- `lib/messaging/unified-inbox.ts` - Multi-channel message aggregation
+- `lib/ai/prompts.ts` - AI prompt templates for service descriptions, guidance, blog content
+- `lib/ai/content-generator.ts` - AI content generation logic (service pages, mystical insights, FAQs)
+- `lib/ai/service-recommender.ts` - AI service recommendation engine
+- `lib/contact/whatsapp.ts` - WhatsApp contact link generator with pre-filled messages
+- `lib/contact/messenger.ts` - Messenger contact link generator with pre-filled messages
 - `lib/3d/scene-loader.ts` - Three.js scene management
 - `lib/animations/particle-system.ts` - tsParticles configuration
 - `lib/utils/date.ts` - Date and lunar phase utilities
 - `lib/utils/validation.ts` - Form validation helpers
 - `lib/utils/formatting.ts` - Text and number formatting
+- `lib/utils/moon-phases.ts` - Lunar phase calculation utilities, moon phase icons, spiritual timing recommendations
+- `lib/utils/testimonials.ts` - Video testimonial data management, success rate calculations
 - `lib/hooks/useUser.ts` - User data hook
-- `lib/hooks/useSpells.ts` - Spells data hook
-- `lib/hooks/useMessages.ts` - Messages data hook
-- `lib/hooks/useAI.ts` - AI response generation hook
+- `lib/hooks/useServices.ts` - Services data hook (service requests, status tracking)
 
 ### Styles
 
@@ -197,13 +184,14 @@ Date: November 4, 2025
 
 ### Testing
 
-- `__tests__/api/spells.test.ts` - Spell API endpoint tests
-- `__tests__/api/messages.test.ts` - Messaging API tests
-- `__tests__/api/ai-generation.test.ts` - AI generation tests
-- `__tests__/components/spell-card.test.tsx` - Spell card component tests
-- `__tests__/lib/ai/response-generator.test.ts` - AI response logic tests
-- `__tests__/lib/payments/pricing.test.ts` - Pricing calculation tests
-- `__tests__/lib/messaging/unified-inbox.test.ts` - Message aggregation tests
+- `__tests__/api/services.test.ts` - Service API endpoint tests
+- `__tests__/api/service-requests.test.ts` - Service request API tests
+- `__tests__/api/payments.test.ts` - Payment processing tests
+- `__tests__/api/ai-content-generation.test.ts` - AI content generation tests
+- `__tests__/components/service-card.test.tsx` - Service card component tests
+- `__tests__/lib/ai/content-generator.test.ts` - AI content logic tests
+- `__tests__/lib/payments/pricing.test.ts` - Pricing calculation tests for all 15 services
+- `__tests__/lib/contact/link-generator.test.ts` - WhatsApp/Messenger link generation tests
 
 ### Public Assets
 
@@ -327,142 +315,141 @@ Date: November 4, 2025
       - [ ] 4.2.4.4 Include ritual suggestion (e.g., "Light a white candle and set your intention")
       - [ ] 4.2.4.5 Integrate astrology insights tied to spell timing
     - [ ] 4.2.5 Build Contact & Support Section
-      - [ ] 4.2.5.1 Create "Message Kiwana" card using shadcn Card with contact button
-      - [ ] 4.2.5.2 Display office hours with mystical styling
-      - [ ] 4.2.5.3 Add "Book Consultation" button using shadcn Button with ancient theme
-      - [ ] 4.2.5.4 Include quick contact options (email, chat, call)
-      - [ ] 4.2.5.5 Show Kiwana's avatar and availability status
+      - [ ] 4.2.5.1 Create "Contact Kiwana" card using shadcn Card with WhatsApp and Messenger buttons
+      - [ ] 4.2.5.2 Add WhatsApp button with pre-filled message link (left side, green styling)
+      - [ ] 4.2.5.3 Add Messenger button with pre-filled message link (right side, blue styling)
+      - [ ] 4.2.5.4 Display office hours with mystical styling
+      - [ ] 4.2.5.5 Show Kiwana's avatar and availability status (online/offline indicator)
     - [ ] 4.2.6 Build Trust & Authenticity Section
       - [ ] 4.2.6.1 Create credibility badges using shadcn Badge (15+ years experience, safe practices, privacy guaranteed)
       - [ ] 4.2.6.2 Add "Ancestral spell work and energy healing" statement
       - [ ] 4.2.6.3 Include "Pure white light energy" promise with mystical icon
       - [ ] 4.2.6.4 Display disclaimers using shadcn Alert: "For spiritual and empowerment purposes only"
       - [ ] 4.2.6.5 Add security badges and trust seals with ancient styling
-  - [✓] 4.8 Build My Spells page with shadcn Select, DropdownMenu for filter/sort options (status, type, date)
-  - [✓] 4.9 Create Spell Card component using shadcn Card with shadcn Badge for status indicators
-  - [✓] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes
-  - [✓] 4.11 Add Spell History Archive using shadcn Table component with success tracking
-  - [ ] 4.12 Build multi-channel Messages page using shadcn Tabs (In-App, WhatsApp, Messenger unified inbox)
-  - [ ] 4.13 Implement real-time chat interface with shadcn ScrollArea, Avatar, and Badge for read receipts and typing indicators
-  - [ ] 4.14 Add file attachment support using shadcn Input (file type) and voice message recording
-  - [ ] 4.15 Create message categories using shadcn Tabs and threading (spell-specific, general, urgent)
-  - [ ] 4.16 Build Consultations page with shadcn Calendar component (monthly/weekly/daily views)
-  - [ ] 4.17 Implement consultation booking interface using shadcn Calendar, Select, RadioGroup for time slot selection
-  - [ ] 4.18 Add pre-consultation questionnaire using shadcn Form components and preparation instructions
-  - [ ] 4.19 Create Past Consultations view using shadcn Table with session notes and shadcn Rating component
-  - [ ] 4.20 Build Spiritual Journal with shadcn Textarea (rich text editor integration) and mystical styling
-  - [ ] 4.21 Implement Manifestation Tracker and Dream Journal using shadcn Card and Form components
-  - [ ] 4.22 Add Guided Prompts using shadcn Alert and Card components for daily reflection and moon rituals
-  - [ ] 4.23 Create Spiritual Progress page with energy alignment graph using shadcn Chart components
-  - [ ] 4.24 Implement Badges & Achievements system using shadcn Badge and Dialog with 3D unlock animations
-  - [ ] 4.25 Build Spiritual Level System using shadcn Progress (Novice → Master) with perks display using shadcn Card
-  - [ ] 4.26 Create Payments & Billing page using shadcn Table component with transaction history
-  - [ ] 4.27 Implement Stripe payment method management using shadcn Card, Button (add/remove cards)
-  - [ ] 4.28 Add invoice downloads using shadcn Button and receipt generation
-  - [ ] 4.29 Build subscription management interface using shadcn Card, Switch, and Badge for recurring services
-  - [ ] 4.30 Create Profile & Settings page using shadcn Form, Input, Textarea for personal information editing
-  - [ ] 4.31 Implement notification preferences using shadcn Switch, Checkbox (email, SMS, push, per channel)
-  - [ ] 4.32 Add accessibility settings using shadcn Switch (dark mode, font size, reduce motion)
-  - [ ] 4.33 Build Referrals & Community section using shadcn Card and Input with unique referral links
-  - [ ] 4.34 Create Resources & Learning library using shadcn Card and Accordion for articles and videos
-  - [ ] 4.35 Implement responsive mobile menu using shadcn Sheet with ancient scroll motif
+  - [ ] 4.3 Build Sacred Services Pages (Individual Service Detail Pages)
+    - [ ] 4.3.1 Create service detail page template with ancient styling
+    - [ ] 4.3.2 Build "Get Back Lost Items" service page with description, energy requirements, pricing reveal
+    - [ ] 4.3.3 Build "Land Solving Spell" service page with property ritual details
+    - [ ] 4.3.4 Build "Obsession Spell" service page with attraction magic details
+    - [ ] 4.3.5 Build "Stop Cheating Spell" service page with loyalty binding details
+    - [ ] 4.3.6 Build "Binding Spell" service page with commitment ritual details
+    - [ ] 4.3.7 Build "Gay & Lesbian Spell" service page with LGBTQ+ love magic details
+    - [ ] 4.3.8 Build "Winning a Court Case" service page with justice ritual details
+    - [ ] 4.3.9 Build "Business Boost Spells" service page with prosperity magic details
+    - [ ] 4.3.10 Build "Cleansing Rituals" service page with purification details
+    - [ ] 4.3.11 Build "Divorce Spell" service page with separation ritual details
+    - [ ] 4.3.12 Build "Marriage & Commitment" service page with union blessing details
+    - [ ] 4.3.13 Build "Magic Wallet" artifact page with wealth attraction details
+    - [ ] 4.3.14 Build "Financial Issues" service page with abundance ritual details
+    - [ ] 4.3.15 Build "Protection & Shielding" service page with defensive magic details
+    - [ ] 4.3.16 Build "Magic Rings" artifact page with power channeling details
+    - [ ] 4.3.17 Add service request forms for each service using shadcn Form components
+    - [ ] 4.3.18 Implement pricing reveal on "Request Service" button click
+    - [ ] 4.3.19 Add testimonials specific to each service type
+    - [ ] 4.3.20 Include ritual timeline and what to expect sections
+  - [ ] 4.4 Build Payments & Billing Page
+    - [ ] 4.4.1 Create payments overview dashboard using shadcn Card components
+    - [ ] 4.4.2 Display transaction history using shadcn Table with filtering
+    - [ ] 4.4.3 Implement Stripe payment method management using shadcn Card, Button
+    - [ ] 4.4.4 Add invoice downloads using shadcn Button and receipt generation
+    - [ ] 4.4.5 Build subscription management for recurring services using shadcn Card, Switch, Badge
+    - [ ] 4.4.6 Create payment processing for service requests with Stripe integration
+    - [ ] 4.4.7 Add refund request functionality using shadcn Dialog
+    - [ ] 4.4.8 Display pending payments and due amounts
+    - [ ] 4.4.9 Implement payment plan tracking for services over $200
+    - [ ] 4.4.10 Add discount code application interface
 
 - [ ] 5.0 Admin Dashboard (Healer Portal) Implementation **[Use shadcn/ui components extensively]**
   - [ ] 5.1 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
-  - [ ] 5.2 Build Admin Overview page with key metrics dashboard using shadcn Card components
-  - [ ] 5.3 Implement real-time activity feed using shadcn ScrollArea, Badge, and Avatar for new requests, messages, bookings
-  - [ ] 5.4 Create Quick Stats Cards using shadcn Card (completion rate, satisfaction, revenue, subscriptions)
-  - [ ] 5.5 Build Calendar Overview using shadcn Calendar with today's consultations and week view
-  - [ ] 5.6 Implement Revenue Snapshot using shadcn Card with earnings breakdown
-  - [ ] 5.7 Create User Management page using shadcn Table, Input (search), and Select for searchable directory
-  - [ ] 5.8 Build User Profile View (admin) using shadcn Tabs with complete history and shadcn Textarea for internal notes
-  - [ ] 5.9 Implement user actions using shadcn DropdownMenu and Dialog (suspend, refund, grant credits, delete account)
-  - [ ] 5.10 Add user segmentation using shadcn Badge for tagging (VIP, at-risk, high-engagement)
-  - [ ] 5.11 Build bulk user operations using shadcn Checkbox and Command for communication tools
-  - [ ] 5.12 Create Spell Management page using shadcn Table with request queue
-  - [ ] 5.13 Implement spell status filters using shadcn Select, Tabs and shadcn Badge for priority flags
-  - [ ] 5.14 Build Spell Detail View (admin) using shadcn Sheet/Dialog with all user information
-  - [ ] 5.15 Create spell action controls using shadcn Button, RadioGroup (accept/decline, update status, add notes)
-  - [ ] 5.16 Implement photo/video upload using shadcn Input (file) for ritual progress updates
-  - [ ] 5.17 Build Spell Templates system using shadcn Command, Dialog for common requests
-  - [ ] 5.18 Add Spell Analytics using shadcn Card and Chart components (completion rate, average time, revenue by type)
-  - [ ] 5.19 Implement bulk spell operations using shadcn Checkbox, DropdownMenu (status updates, exports, assignments)
-  - [ ] 5.20 Create Consultation Management page using shadcn Calendar with calendar system
-  - [ ] 5.21 Implement drag-and-drop rescheduling using shadcn Calendar and color-coded events with shadcn Badge
-  - [ ] 5.22 Build consultation detail view using shadcn Sheet with user notes and payment status
-  - [ ] 5.23 Add session notes interface using shadcn Textarea with shadcn Switch for visibility toggle
-  - [ ] 5.24 Create consultation settings using shadcn Form, Input, Select (types, pricing, buffer time, cancellation policy)
-  - [ ] 5.25 Implement consultation analytics using shadcn Card and Chart (bookings, ratings, revenue, no-shows)
-  - [ ] 5.26 Build Testimonials Management page using shadcn Table with approval queue
-  - [ ] 5.27 Implement testimonial actions using shadcn DropdownMenu (approve, reject, feature, reply publicly)
-  - [ ] 5.28 Add testimonial analytics using shadcn Card (average rating, sentiment analysis)
-  - [ ] 5.29 Create Payments & Financial Management page using shadcn Card with revenue dashboard
-  - [ ] 5.30 Build transaction list using shadcn Table with filtering (shadcn Select) and export capabilities
-  - [ ] 5.31 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, resend receipts, mark as paid)
-  - [ ] 5.32 Add financial reports generation using shadcn Form, Calendar for custom date ranges, tax documentation
-  - [ ] 5.33 Build pricing management interface using shadcn Form, Input for service updates
-  - [ ] 5.34 Create discount code and promotional offer management using shadcn Table, Dialog, Form
-  - [ ] 5.35 Implement subscription management using shadcn Table, Badge with churn tracking
-  - [ ] 5.36 Build Analytics & Insights page using shadcn Card, Tabs with traffic metrics
-  - [ ] 5.37 Add user behavior analytics using shadcn Chart components and journey mapping
-  - [ ] 5.38 Implement goal tracking using shadcn Progress and conversion funnels
-  - [ ] 5.39 Create custom reports builder using shadcn Form, Select with scheduled reports
-  - [ ] 5.40 Build CMS interface using shadcn Textarea, Form for service pages and blog articles
-  - [ ] 5.41 Add media library using shadcn Card, Dialog with upload (shadcn Input file) and organization tools
-  - [ ] 5.42 Implement landing page management using shadcn Tabs with A/B testing
-  - [ ] 5.43 Create FAQ and email template management using shadcn Accordion, Textarea
-  - [ ] 5.44 Build Settings & Configuration page using shadcn Tabs, Form with business settings
-  - [ ] 5.45 Implement notification settings using shadcn Switch and team management using shadcn Table (if applicable)
-  - [ ] 5.46 Add integration settings using shadcn Form, Input (Stripe, Calendar APIs, Analytics)
-  - [ ] 5.47 Build backup & security management interface using shadcn Card, Button, Alert
-  - [ ] 5.48 Create system health monitoring dashboard using shadcn Card, Badge, Progress
+  - [ ] 5.2 Build Admin Overview Dashboard
+    - [ ] 5.2.1 Create overview page with key metrics using shadcn Card components
+    - [ ] 5.2.2 Implement real-time activity feed for new service requests using shadcn ScrollArea, Badge, Avatar
+    - [ ] 5.2.3 Create Quick Stats Cards (completion rate, satisfaction, revenue, active requests) using shadcn Card
+    - [ ] 5.2.4 Add Revenue Snapshot with earnings breakdown by service type
+    - [ ] 5.2.5 Display pending service requests queue with priority indicators
+  - [ ] 5.3 Build Service Request Management System
+    - [ ] 5.3.1 Create service requests queue using shadcn Table with filtering by service type
+    - [ ] 5.3.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
+    - [ ] 5.3.3 Build request detail view using shadcn Sheet/Dialog with client information
+    - [ ] 5.3.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
+    - [ ] 5.3.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)
+    - [ ] 5.3.6 Create request templates for common services using shadcn Command, Dialog
+    - [ ] 5.3.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
+    - [ ] 5.3.8 Build request analytics (completion rate, average time, revenue by service) using shadcn Card, Chart
+  - [ ] 5.4 Build User Management System
+    - [ ] 5.4.1 Create user directory using shadcn Table, Input (search), Select for filtering
+    - [ ] 5.4.2 Build user profile view using shadcn Tabs with service history and internal notes
+    - [ ] 5.4.3 Implement user actions using shadcn DropdownMenu, Dialog (suspend, refund, grant credits, delete)
+    - [ ] 5.4.4 Add user segmentation using shadcn Badge (VIP, high-value, frequent requester)
+    - [ ] 5.4.5 Build bulk user operations using shadcn Checkbox, Command
+  - [ ] 5.5 Build Payment Management System
+    - [ ] 5.5.1 Create payments dashboard using shadcn Card with revenue metrics
+    - [ ] 5.5.2 Build transaction list using shadcn Table with filtering and export
+    - [ ] 5.5.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
+    - [ ] 5.5.4 Add financial reports generation using shadcn Form, Calendar for date ranges
+    - [ ] 5.5.5 Build pricing management for all 15 services using shadcn Form, Input
+    - [ ] 5.5.6 Create discount code management using shadcn Table, Dialog, Form
+    - [ ] 5.5.7 Implement subscription tracking using shadcn Table, Badge
+  - [ ] 5.6 Build Video Testimonials Management
+    - [ ] 5.6.1 Create testimonials management page using shadcn Table with approval queue
+    - [ ] 5.6.2 Implement video upload and management using shadcn Input (file), Card
+    - [ ] 5.6.3 Add testimonial actions using shadcn DropdownMenu (approve, reject, feature, archive)
+    - [ ] 5.6.4 Build testimonial analytics using shadcn Card (average rating, service-specific feedback)
+    - [ ] 5.6.5 Create testimonial association with specific services
+  - [ ] 5.7 Build Analytics & Insights System
+    - [ ] 5.7.1 Create analytics dashboard using shadcn Card, Tabs with service metrics
+    - [ ] 5.7.2 Add service performance tracking using shadcn Chart (requests, completions, revenue by service)
+    - [ ] 5.7.3 Implement user behavior analytics and journey mapping
+    - [ ] 5.7.4 Build conversion funnel tracking (landing → service view → request → payment)
+    - [ ] 5.7.5 Create custom reports builder using shadcn Form, Select with scheduled reports
+  - [ ] 5.8 Build Content Management System (CMS)
+    - [ ] 5.8.1 Create CMS interface using shadcn Textarea, Form for service page content
+    - [ ] 5.8.2 Build media library using shadcn Card, Dialog with upload and organization
+    - [ ] 5.8.3 Implement landing page management using shadcn Tabs
+    - [ ] 5.8.4 Create FAQ and email template management using shadcn Accordion, Textarea
+    - [ ] 5.8.5 Add mystical insights/guidance content editor
+  - [ ] 5.9 Build Settings & Configuration
+    - [ ] 5.9.1 Create settings page using shadcn Tabs, Form with business configuration
+    - [ ] 5.9.2 Implement notification preferences using shadcn Switch
+    - [ ] 5.9.3 Add integration settings using shadcn Form, Input (Stripe, WhatsApp, Messenger)
+    - [ ] 5.9.4 Build backup & security management using shadcn Card, Button, Alert
+    - [ ] 5.9.5 Create system health monitoring dashboard using shadcn Card, Badge, Progress
 
-- [ ] 6.0 Multi-Channel Messaging Integration (WhatsApp, Messenger, In-App)
-  - [ ] 6.1 Set up WhatsApp Business API account and obtain credentials
-  - [ ] 6.2 Set up Facebook Messenger Platform API and obtain credentials
-  - [ ] 6.3 Create WhatsApp client utility in lib/messaging/whatsapp.ts
-  - [ ] 6.4 Create Messenger client utility in lib/messaging/messenger.ts
-  - [ ] 6.5 Build unified inbox aggregation system to combine all channels
-  - [ ] 6.6 Create message model schema supporting multi-channel metadata
-  - [ ] 6.7 Implement webhook handler for WhatsApp incoming messages
-  - [ ] 6.8 Implement webhook handler for Messenger incoming messages
-  - [ ] 6.9 Build real-time message sync using Socket.io or Pusher
-  - [ ] 6.10 Create unified message thread component showing all channels
-  - [ ] 6.11 Add channel indicators (icons) for WhatsApp, Messenger, In-App
-  - [ ] 6.12 Implement channel switching functionality (continue conversation across platforms)
-  - [ ] 6.13 Build WhatsApp-specific features (voice notes, location sharing, business profile)
-  - [ ] 6.14 Implement Messenger-specific features (GIFs, stickers, quick replies)
-  - [ ] 6.15 Add rich media support (images, documents, audio) for all channels
-  - [ ] 6.16 Create channel preference settings for users
-  - [ ] 6.17 Implement notification routing per channel (WhatsApp native, Messenger native, push)
-  - [ ] 6.18 Build admin multi-channel inbox with channel filters
-  - [ ] 6.19 Add conversation history showing channel switches
-  - [ ] 6.20 Implement broadcast messaging with channel selection
-  - [ ] 6.21 Create message templates system (channel-specific formatting)
-  - [ ] 6.22 Add read receipts and online status across all channels
-  - [ ] 6.23 Implement Do Not Disturb scheduling synced across channels
-  - [ ] 6.24 Build communication analytics per channel
-  - [ ] 6.25 Add WhatsApp Business features (labels, quick replies, templates)
+- [ ] 6.0 External Communication Integration (WhatsApp & Messenger) **[No Built-in Messaging]**
+  - [ ] 6.1 Create WhatsApp contact links with pre-filled service-specific messages
+  - [ ] 6.2 Create Messenger contact links with pre-filled service-specific messages
+  - [ ] 6.3 Build WhatsApp button component with ancient styling (green theme, left placement)
+  - [ ] 6.4 Build Messenger button component with ancient styling (blue theme, right placement)
+  - [ ] 6.5 Implement dynamic message templates for each service type (pre-filled in contact links)
+  - [ ] 6.6 Add WhatsApp/Messenger buttons to dashboard contact section
+  - [ ] 6.7 Add WhatsApp/Messenger buttons to each service detail page
+  - [ ] 6.8 Add WhatsApp/Messenger buttons to payment confirmation pages
+  - [ ] 6.9 Create "Contact via WhatsApp/Messenger" floating action buttons (optional)
+  - [ ] 6.10 Set up WhatsApp Business API for automated service update notifications (optional - admin sends updates)
+  - [ ] 6.11 Set up Messenger API for automated service update notifications (optional - admin sends updates)
+  - [ ] 6.12 Store user's preferred contact method (WhatsApp or Messenger) in profile
+  - [ ] 6.13 Add analytics tracking for WhatsApp vs Messenger usage
+  - [ ] 6.14 Create admin documentation for managing WhatsApp/Messenger conversations externally
 
 - [ ] 7.0 Payment System & Pricing Management
   - [ ] 7.1 Set up Stripe account and obtain API keys
   - [ ] 7.2 Install and configure Stripe SDK
   - [ ] 7.3 Create Stripe client utility in lib/payments/stripe.ts
   - [ ] 7.4 Build payment model schema in MongoDB
-  - [ ] 7.5 Implement pricing structure with all service rates (spells, readings, consultations, subscriptions)
-  - [ ] 7.6 Create pricing management system in admin dashboard
+  - [ ] 7.5 Implement pricing structure for all 15 services (Get Back Lost Items, Land Solving, Obsession, Stop Cheating, Binding, Gay & Lesbian, Court Case, Business Boost, Cleansing, Divorce, Marriage, Magic Wallet, Financial Issues, Protection, Magic Rings)
+  - [ ] 7.6 Create pricing management system in admin dashboard for all services
   - [ ] 7.7 Build checkout API endpoint with Stripe integration
-  - [ ] 7.8 Implement payment intent creation for single purchases
-  - [ ] 7.9 Add subscription payment setup for recurring services
+  - [ ] 7.8 Implement payment intent creation for service purchases
+  - [ ] 7.9 Add subscription payment setup for recurring services (monthly cleansing, protection renewals)
   - [ ] 7.10 Create Stripe webhook handler for payment events
   - [ ] 7.11 Implement payment confirmation and receipt generation
   - [ ] 7.12 Build payment method management (add/remove cards, set default)
   - [ ] 7.13 Add digital wallet support (Apple Pay, Google Pay)
   - [ ] 7.14 Create invoice generation and download functionality
   - [ ] 7.15 Implement refund processing API and admin interface
-  - [ ] 7.16 Build payment history view with filtering
+  - [ ] 7.16 Build payment history view with filtering by service type
   - [ ] 7.17 Add discount code system (creation, validation, application)
-  - [ ] 7.18 Implement bundle pricing calculations
+  - [ ] 7.18 Implement bundle pricing calculations (multiple services discount)
   - [ ] 7.19 Create payment plan support for services over $200
   - [ ] 7.20 Build referral credit system
   - [ ] 7.21 Implement gift card functionality
@@ -474,47 +461,32 @@ Date: November 4, 2025
   - [ ] 7.27 Create pricing display rules (hide until service selected)
   - [ ] 7.28 Implement dynamic pricing updates without code deployment
 
-- [ ] 8.0 AI Integration & Content Generation System
+- [ ] 8.0 AI Integration & Content Generation System **[Hidden from Users - No Communication AI]**
   - [ ] 8.1 Set up OpenAI API account and obtain API key
   - [ ] 8.2 Install and configure OpenAI SDK
   - [ ] 8.3 Create OpenAI client utility in lib/ai/openai.ts
-  - [ ] 8.4 Build prompt templates for different services (spells, readings, guidance)
-  - [ ] 8.5 Implement AI response generator utility with context awareness
-  - [ ] 8.6 Create AI-powered spell description generator
-  - [ ] 8.7 Build tarot card interpretation AI service
-  - [ ] 8.8 Implement oracle card reading AI generator
-  - [ ] 8.9 Create astrology chart analysis AI system (natal charts, transits)
-  - [ ] 8.10 Build numerology calculation and interpretation AI
-  - [ ] 8.11 Implement dream interpretation AI analyzer
-  - [ ] 8.12 Create personalized spiritual guidance generator using user history
-  - [ ] 8.13 Build energy reading generation AI (0-100% alignment with breakdown)
-  - [ ] 8.14 Implement spell progress update generator with mystical language
-  - [ ] 8.15 Create custom ritual creation AI for unique requests
-  - [ ] 8.16 Build manifestation journal insight analyzer
-  - [ ] 8.17 Implement consultation prep document generator (admin-only view)
-  - [ ] 8.18 Create testimonial draft generator from ratings
-  - [ ] 8.19 Build FAQ response AI with context-aware answers
-  - [ ] 8.20 Implement email/message enhancement AI (expand brief notes)
-  - [ ] 8.21 Create blog content generator for educational articles
-  - [ ] 8.22 Build intelligent spell recommendation system
-  - [ ] 8.23 Implement real-time sentiment analysis for user messages
-  - [ ] 8.24 Create voice message transcription and analysis
-  - [ ] 8.25 Build image analysis AI for altar/ritual setup feedback (GPT-4V)
-  - [ ] 8.26 Implement predictive spell completion timing AI
-  - [ ] 8.27 Create admin AI dashboard with usage analytics
-  - [ ] 8.28 Build AI quality review queue for admin approval
-  - [ ] 8.29 Implement AI settings interface (toggle features, adjust creativity, customize persona)
-  - [ ] 8.30 Add auto-approval rules for trusted AI outputs
-  - [ ] 8.31 Create AI cost tracking and budget management
-  - [ ] 8.32 Implement AI feedback loop for continuous improvement
-  - [ ] 8.33 Build prompt optimization system for token efficiency
-  - [ ] 8.34 Add AI-powered multi-channel message generation (WhatsApp/Messenger optimized)
-  - [ ] 8.35 Create Smart Reply system (3-5 quick response options)
-  - [ ] 8.36 Implement AI response confidence indicator
-  - [ ] 8.37 Build channel-specific AI formatting (concise for WhatsApp, rich for Messenger)
-  - [ ] 8.38 Add AI conversation summarization feature
-  - [ ] 8.39 Implement multi-language support in AI responses
-  - [ ] 8.40 Create AI safety filters and quality checks
+  - [ ] 8.4 Build prompt templates for all 15 services (service descriptions, benefits, ritual details)
+  - [ ] 8.5 Implement AI service description generator for all 15 services
+  - [ ] 8.6 Create AI-powered service page content generator (what to expect, preparation, outcomes)
+  - [ ] 8.7 Build mystical insights/daily guidance generator for dashboard
+  - [ ] 8.8 Implement service timing recommendations based on moon phases (AI-enhanced)
+  - [ ] 8.9 Create personalized service recommendations based on user service history
+  - [ ] 8.10 Build FAQ content generator for each service type
+  - [ ] 8.11 Implement blog/article content generator for service education
+  - [ ] 8.12 Create service bundle recommendation AI (suggest complementary services)
+  - [ ] 8.13 Build testimonial categorization AI (auto-tag by service type)
+  - [ ] 8.14 Implement service pricing suggestion AI for admin (market analysis)
+  - [ ] 8.15 Create spiritual guidance content for email notifications
+  - [ ] 8.16 Build admin content assistant for service descriptions and updates
+  - [ ] 8.17 Implement AI-powered service request analysis (identify user needs from request forms)
+  - [ ] 8.18 Create admin AI dashboard with content generation usage analytics
+  - [ ] 8.19 Build AI quality review queue for admin approval of generated content
+  - [ ] 8.20 Implement AI settings interface (toggle features, adjust creativity for content)
+  - [ ] 8.21 Add auto-approval rules for trusted AI-generated content
+  - [ ] 8.22 Create AI cost tracking and budget management
+  - [ ] 8.23 Build prompt optimization system for token efficiency
+  - [ ] 8.24 Implement AI safety filters for content generation
+  - [ ] 8.25 Create A/B testing AI for service page variations
 
 - [ ] 9.0 3D Effects, Animations & Visual Effects
   - [ ] 9.1 Install Three.js and React Three Fiber
@@ -552,31 +524,26 @@ Date: November 4, 2025
   - [ ] 9.33 Implement GPU acceleration for all animations
 
 - [ ] 10.0 Services & Booking Management
-  - [ ] 10.1 Create service catalog data structure with all offerings
-  - [ ] 10.2 Build service model schema in MongoDB
+  - [ ] 10.1 Create service catalog data structure with all 15 services
+  - [ ] 10.2 Build service model schema in MongoDB (service type, pricing, duration, requirements)
   - [ ] 10.3 Implement service API endpoints (CRUD operations)
-  - [ ] 10.4 Create service detail pages with pricing reveal on click
-  - [ ] 10.5 Build spell request form (multi-step with validation)
-  - [ ] 10.6 Implement consultation booking system with calendar integration
-  - [ ] 10.7 Add Google Calendar / iCal sync functionality
-  - [ ] 10.8 Create availability management for admin
-  - [ ] 10.9 Build consultation type configuration (duration, pricing, buffer time)
-  - [ ] 10.10 Implement booking confirmation emails
-  - [ ] 10.11 Add consultation reminders (24 hours before, 1 hour before)
-  - [ ] 10.12 Create rescheduling functionality with 24-hour notice requirement
-  - [ ] 10.13 Build cancellation system with refund logic
-  - [ ] 10.14 Implement no-show tracking
-  - [ ] 10.15 Create spell status workflow (Pending → In Progress → Completed)
-  - [ ] 10.16 Build automated status update notifications
-  - [ ] 10.17 Implement spell completion request for testimonials
-  - [ ] 10.18 Add lunar phase calculation and display
-  - [ ] 10.19 Create optimal timing recommendations based on moon phases
-  - [ ] 10.20 Build service recommendation engine
-  - [ ] 10.21 Implement package deals and bundle pricing logic
-  - [ ] 10.22 Create subscription service management
-  - [ ] 10.23 Add service usage tracking for analytics
-  - [ ] 10.24 Build seasonal pricing adjustments interface
-  - [ ] 10.25 Implement service catalog CMS for admin updates
+  - [ ] 10.4 Create service detail pages for all 15 services with pricing reveal on request
+  - [ ] 10.5 Build service request form (multi-step with validation) for each service type
+  - [ ] 10.6 Implement service request workflow (Pending → In Progress → Completed)
+  - [ ] 10.7 Build automated status update notifications (WhatsApp/Messenger/Email)
+  - [ ] 10.8 Create service completion request for video testimonials
+  - [ ] 10.9 Add lunar phase calculation and display
+  - [ ] 10.10 Create optimal timing recommendations based on moon phases for rituals
+  - [ ] 10.11 Build service recommendation engine based on user needs
+  - [ ] 10.12 Implement package deals and bundle pricing logic (multiple services discount)
+  - [ ] 10.13 Create subscription service management (monthly cleansing, protection renewals)
+  - [ ] 10.14 Add service usage tracking for analytics by service type
+  - [ ] 10.15 Build seasonal pricing adjustments interface
+  - [ ] 10.16 Implement service catalog CMS for admin updates
+  - [ ] 10.17 Create service-specific email templates for confirmations and updates
+  - [ ] 10.18 Build service request queue prioritization system
+  - [ ] 10.19 Add service request deadline tracking and reminders
+  - [ ] 10.20 Implement service add-ons and customization options
 
 - [ ] 11.0 Testing, Optimization & Deployment
   - [ ] 11.1 Write unit tests for all API endpoints
