@@ -90,12 +90,13 @@ export function AboutSection() {
               <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-8 py-14 px-10 rounded-ritual border-2 border-mystical-bronze/30 overflow-hidden min-h-[520px]">
                 {/* Parchment background */}
                 <div
-                  className="absolute inset-0 opacity-50"
+                  className="absolute inset-0 opacity-50 "
                   style={{
                     backgroundImage: 'url(/textures/parchment.webp)',
                     backgroundSize: '100% 100%',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
+                    
                   }}
                 />
                 
