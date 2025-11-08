@@ -49,7 +49,7 @@ export function Footer() {
 
   return (
     <footer
-      className="relative mt-20 border-t-2 border-mystical-amber/30"
+      className="relative border-t-2 border-mystical-amber/30"
       style={{
         backgroundImage: 'url(/textures/parchment-dark.webp)',
         backgroundSize: 'cover',
@@ -61,6 +61,7 @@ export function Footer() {
         right: '50%',
         marginLeft: '-50vw',
         marginRight: '-50vw',
+        marginTop: 0,
       }}
     >
       {/* Mystical top border decoration */}
