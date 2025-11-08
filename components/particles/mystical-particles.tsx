@@ -25,7 +25,10 @@ export function MysticalParticles({
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.debug('Particles loaded:', container);
+    // Particles loaded successfully - no logging needed to avoid cross-origin errors
+    if (container) {
+      // Container is ready but we don't need to access its properties
+    }
   };
 
   // Mystical smoke configuration

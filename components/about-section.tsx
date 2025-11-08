@@ -1,15 +1,32 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
+
+// Dynamically import 3D background (client-side only)
+const SketchfabBackground = dynamic(
+  () => import('@/components/3d/sketchfab-background').then((mod) => mod.SketchfabBackground),
+  {
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-charcoal/10" />,
+  }
+);
 
 export function AboutSection() {
   return (
-    <section className="relative py-20 px-4 bg-parchment-100">
-      {/* Background texture overlay */}
-      <div className="absolute inset-0 bg-parchment-texture opacity-30" />
+    <section className="relative py-20 px-4 bg-parchment-100 overflow-hidden">
+      {/* 3D Sketchfab Background - Fire Animation */}
+      <SketchfabBackground 
+        modelId="8cf82052fb164a25a0ca40d09a19c4dc" 
+        opacity={0.15}
+        className="z-0"
+      />
 
-      <div className="relative z-10 container mx-auto max-w-7xl">
+      {/* Background texture overlay */}
+      <div className="absolute inset-0 bg-parchment-texture opacity-30 z-10" />
+
+      <div className="relative z-20 container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Content */}
           <div className="space-y-6">
