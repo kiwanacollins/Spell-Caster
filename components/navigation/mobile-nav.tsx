@@ -8,16 +8,26 @@ import {
   GiCrystalBall,
   GiSpellBook,
   GiScrollUnfurled,
-  GiChatBubble,
-  GiCalendar,
-  GiProgression,
   GiCoinsPile,
-  GiPerson,
   GiHamburgerMenu,
   GiCancel,
   GiPentacle,
   GiBookmarklet,
+  GiTwoCoins,
+  GiLandMine,
+  GiHearts,
+  GiHeartShield,
+  GiChainedHeart,
+  GiGavel,
+  GiReceiveMoney,
+  GiShieldEchoes,
+  GiDiamondRing,
+  GiOpenTreasureChest,
+  GiMagicSwirl,
+  GiWallet,
+  GiBriefcase,
 } from "react-icons/gi";
+import { IoChevronDown, IoChevronForward } from "react-icons/io5";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { LogoutButton } from "@/components/auth/logout-button";
 
@@ -27,51 +37,111 @@ interface NavItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
+interface ServiceItem {
+  title: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  category: "Spells" | "Rituals" | "Artifacts";
+}
+
 const navItems: NavItem[] = [
   {
     title: "Overview",
     href: "/dashboard",
     icon: GiCrystalBall,
   },
+];
+
+const serviceItems: ServiceItem[] = [
   {
-    title: "Services",
-    href: "/services",
-    icon: GiBookmarklet,
+    title: "Get Back Lost Items",
+    href: "/services/get-back-lost-items",
+    icon: GiOpenTreasureChest,
+    category: "Spells",
   },
   {
-    title: "My Spells",
-    href: "/dashboard/spells",
+    title: "Land Solving Spell",
+    href: "/services/land-solving-spell",
+    icon: GiLandMine,
+    category: "Spells",
+  },
+  {
+    title: "Obsession Spell",
+    href: "/services/obsession-spell",
+    icon: GiHearts,
+    category: "Spells",
+  },
+  {
+    title: "Stop Cheating Spell",
+    href: "/services/stop-cheating-spell",
+    icon: GiHeartShield,
+    category: "Spells",
+  },
+  {
+    title: "Binding Spell",
+    href: "/services/binding-spell",
+    icon: GiChainedHeart,
+    category: "Spells",
+  },
+  {
+    title: "Gay & Lesbian Spell",
+    href: "/services/gay-lesbian-spell",
+    icon: GiHearts,
+    category: "Spells",
+  },
+  {
+    title: "Winning a Court Case",
+    href: "/services/winning-court-case",
+    icon: GiGavel,
+    category: "Spells",
+  },
+  {
+    title: "Business Boost Spells",
+    href: "/services/business-boost-spells",
+    icon: GiBriefcase,
+    category: "Spells",
+  },
+  {
+    title: "Cleansing Rituals",
+    href: "/services/cleansing-rituals",
+    icon: GiMagicSwirl,
+    category: "Rituals",
+  },
+  {
+    title: "Divorce Spell",
+    href: "/services/divorce-spell",
     icon: GiSpellBook,
+    category: "Spells",
   },
   {
-    title: "Messages",
-    href: "/dashboard/messages",
-    icon: GiChatBubble,
+    title: "Marriage & Commitment",
+    href: "/services/marriage-commitment",
+    icon: GiDiamondRing,
+    category: "Spells",
   },
   {
-    title: "Consultations",
-    href: "/dashboard/consultations",
-    icon: GiCalendar,
+    title: "Magic Wallet",
+    href: "/services/magic-wallet",
+    icon: GiWallet,
+    category: "Artifacts",
   },
   {
-    title: "Spiritual Journal",
-    href: "/dashboard/journal",
-    icon: GiScrollUnfurled,
+    title: "Financial Issues",
+    href: "/services/financial-issues",
+    icon: GiReceiveMoney,
+    category: "Spells",
   },
   {
-    title: "Progress",
-    href: "/dashboard/progress",
-    icon: GiProgression,
+    title: "Protection & Shielding",
+    href: "/services/protection-shielding",
+    icon: GiShieldEchoes,
+    category: "Spells",
   },
   {
-    title: "Payments",
-    href: "/dashboard/payments",
-    icon: GiCoinsPile,
-  },
-  {
-    title: "Profile",
-    href: "/dashboard/profile",
-    icon: GiPerson,
+    title: "Magic Rings",
+    href: "/services/magic-rings",
+    icon: GiDiamondRing,
+    category: "Artifacts",
   },
 ];
 
@@ -82,6 +152,7 @@ interface MobileNavProps {
 
 export function MobileNav({ userName = "Seeker", energyAlignment = 0 }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [servicesExpanded, setServicesExpanded] = useState(false);
   const pathname = usePathname();
 
   return (
@@ -188,9 +259,90 @@ export function MobileNav({ userName = "Seeker", energyAlignment = 0 }: MobileNa
                 </Link>
               );
             })}
-          </nav>
 
-          {/* Footer - Logout */}
+            {/* Sacred Services Section */}
+            <div className="pt-2">
+              <button
+                onClick={() => setServicesExpanded(!servicesExpanded)}
+                className={cn(
+                  "group w-full flex items-center gap-3 rounded-sm border-2 px-3 py-3 font-['Crimson_Text'] text-sm font-medium transition-all duration-200",
+                  "border-transparent text-[#1A1A1A] hover:border-[#8B6F47] hover:bg-[#1A1A1A]/5 hover:text-[#8B6F47]"
+                )}
+              >
+                <GiBookmarklet
+                  className="h-5 w-5 text-[#4A4A4A] transition-all duration-200 group-hover:text-[#B8860B]"
+                />
+                <span className="flex-1 text-left">Sacred Services</span>
+                {servicesExpanded ? (
+                  <IoChevronDown className="h-4 w-4 transition-transform" />
+                ) : (
+                  <IoChevronForward className="h-4 w-4 transition-transform" />
+                )}
+              </button>
+
+              {/* Services Submenu */}
+              {servicesExpanded && (
+                <div className="mt-1 space-y-1 pl-4">
+                  {serviceItems.map((service) => {
+                    const isActive = pathname === service.href;
+                    const Icon = service.icon;
+
+                    return (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "group flex items-center gap-2 rounded-sm border-l-2 px-3 py-2 font-['Crimson_Text'] text-xs transition-all duration-200",
+                          isActive
+                            ? "border-[#B8860B] bg-[#1A1A1A]/10 text-[#8B6F47]"
+                            : "border-transparent text-[#4A4A4A] hover:border-[#8B6F47] hover:bg-[#1A1A1A]/5 hover:text-[#8B6F47]"
+                        )}
+                      >
+                        <Icon
+                          className={cn(
+                            "h-4 w-4 transition-all duration-200",
+                            isActive
+                              ? "text-[#B8860B]"
+                              : "text-[#4A4A4A] group-hover:text-[#B8860B]"
+                          )}
+                        />
+                        <span className="flex-1">{service.title}</span>
+                        <span className={cn(
+                          "text-[10px] opacity-60",
+                          isActive ? "text-[#8B6F47]" : "text-[#4A4A4A]"
+              )}>
+                ❋
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    )}
+  </div>
+
+            {/* Payments - Last Item */}
+            <Link
+              href="/dashboard/payments"
+              onClick={() => setIsOpen(false)}
+              className={cn(
+                "group flex items-center gap-3 rounded-sm border-2 px-3 py-3 font-['Crimson_Text'] text-sm font-medium transition-all duration-200",
+                pathname === "/dashboard/payments"
+                  ? "border-[#8B6F47] bg-[#1A1A1A] text-[#F4E8D0] shadow-[inset_0_0_12px_rgba(184,134,11,0.3)]"
+                  : "border-transparent text-[#1A1A1A] hover:border-[#8B6F47] hover:bg-[#1A1A1A]/5 hover:text-[#8B6F47]"
+              )}
+            >
+              <GiCoinsPile
+                className={cn(
+                  "h-5 w-5 transition-all duration-200",
+                  pathname === "/dashboard/payments"
+                    ? "text-[#B8860B] drop-shadow-[0_0_8px_rgba(184,134,11,0.6)]"
+                    : "text-[#4A4A4A] group-hover:text-[#B8860B]"
+                )}
+              />
+              <span className="flex-1">Payments</span>
+            </Link>
+          </nav>          {/* Footer - Logout */}
           <div className="border-t-4 border-[#8B6F47] bg-linear-to-t from-[#1A1A1A]/10 to-transparent p-4">
             <LogoutButton
               variant="outline"
