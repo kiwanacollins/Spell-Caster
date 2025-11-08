@@ -23,6 +23,9 @@ export function AboutSection() {
         className="z-0"
       />
 
+      {/* Translucent Protective Overlay - Sits in front of 3D but behind content */}
+      <div className="absolute inset-0 z-5 bg-linear-to-b from-parchment-100/60 via-parchment-100/40 to-parchment-100/60 backdrop-blur-sm" />
+
       {/* Background texture overlay */}
       <div className="absolute inset-0 bg-parchment-texture opacity-30 z-10" />
 
