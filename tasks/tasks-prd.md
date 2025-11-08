@@ -96,8 +96,7 @@ Date: November 4, 2025
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
 - `components/dashboard/welcome-section.tsx` - Dashboard welcome header with personalized greeting, Kiwana's message, mystical quotes using shadcn Card and Alert
 - `components/dashboard/sacred-offerings.tsx` - Service summary section with category tabs, service cards, energy level indicators, using shadcn Tabs and Card
-- `components/dashboard/testimonials-section.tsx` - Dashboard testimonials display with success rate badge, auto-rotating cards, 5-star ratings using shadcn Card and Badge
-- `components/dashboard/spell-progress-tracker.tsx` - Active spell status cards with progress bars, ritual schedules, energy reports using shadcn Card, Progress, and Badge
+- `components/dashboard/video-testimonials-section.tsx` - Dashboard video testimonials player with HTML5 video, auto-rotating carousel, success rate badge, ancient frame styling
 - `components/dashboard/mystical-insights.tsx` - Daily/weekly spiritual guidance with moon phases, astrology insights, ritual suggestions using shadcn Card
 - `components/dashboard/contact-support.tsx` - Kiwana contact card with office hours, booking button, quick contact options using shadcn Card and Button
 - `components/dashboard/trust-authenticity.tsx` - Credibility badges, experience statement, disclaimers using shadcn Badge and Alert
@@ -314,35 +313,31 @@ Date: November 4, 2025
       - [ ] 4.2.2.4 Implement "Request Spell / Learn More" buttons with ancient styling
       - [ ] 4.2.2.5 Add energy level badges: 🌕 Full Moon Energy / Medium / Strong using shadcn Badge
     - [ ] 4.2.3 Build Testimonials / Results Section
-      - [ ] 4.2.3.1 Create testimonial cards using shadcn Card with client quotes and avatars
-      - [ ] 4.2.3.2 Add 5-star rating display with ⭐️ icons
-      - [ ] 4.2.3.3 Include "97% Success Rate" badge using shadcn Badge with mystical styling
-      - [ ] 4.2.3.4 Implement auto-rotating carousel with fade transitions
-      - [ ] 4.2.3.5 Add client names and service types to testimonials
-    - [ ] 4.2.4 Build Spell Progress Tracker Section
-      - [ ] 4.2.4.1 Create active spell status cards using shadcn Card
-      - [ ] 4.2.4.2 Implement progress bar using shadcn Progress (e.g., "60% complete")
-      - [ ] 4.2.4.3 Add spell status badges: Pending / In Progress / Completed using shadcn Badge
-      - [ ] 4.2.4.4 Display ritual schedule with lunar phase timing
-      - [ ] 4.2.4.5 Include brief energy reports for each active spell
-    - [ ] 4.2.5 Build Mystical Insights / Guidance Section
-      - [ ] 4.2.5.1 Create daily/weekly guidance card using shadcn Card with mystical background
-      - [ ] 4.2.5.2 Display moon phase indicator with current phase icon (🌒 🌓 🌔 🌕)
-      - [ ] 4.2.5.3 Add personalized spiritual message (e.g., "The winds of change favor those who let go of fear")
-      - [ ] 4.2.5.4 Include ritual suggestion (e.g., "Light a white candle and set your intention")
-      - [ ] 4.2.5.5 Integrate astrology insights tied to spell timing
-    - [ ] 4.2.6 Build Contact & Support Section
-      - [ ] 4.2.6.1 Create "Message Kiwana" card using shadcn Card with contact button
-      - [ ] 4.2.6.2 Display office hours with mystical styling
-      - [ ] 4.2.6.3 Add "Book Consultation" button using shadcn Button with ancient theme
-      - [ ] 4.2.6.4 Include quick contact options (email, chat, call)
-      - [ ] 4.2.6.5 Show Kiwana's avatar and availability status
-    - [ ] 4.2.7 Build Trust & Authenticity Section
-      - [ ] 4.2.7.1 Create credibility badges using shadcn Badge (15+ years experience, safe practices, privacy guaranteed)
-      - [ ] 4.2.7.2 Add "Ancestral spell work and energy healing" statement
-      - [ ] 4.2.7.3 Include "Pure white light energy" promise with mystical icon
-      - [ ] 4.2.7.4 Display disclaimers using shadcn Alert: "For spiritual and empowerment purposes only"
-      - [ ] 4.2.7.5 Add security badges and trust seals with ancient styling
+      - [ ] 4.2.3.1 Create video testimonial player using HTML5 video with ancient frame styling
+      - [ ] 4.2.3.2 Integrate video testimonials from public/testimony-videos directory
+      - [ ] 4.2.3.3 Add 5-star rating display with ⭐️ icons below each video
+      - [ ] 4.2.3.4 Include "97% Success Rate" badge using shadcn Badge with mystical styling
+      - [ ] 4.2.3.5 Implement auto-rotating video carousel with fade transitions and controls
+      - [ ] 4.2.3.6 Add client names and service types overlay on video testimonials
+      - [ ] 4.2.3.7 Include play/pause controls with ancient styling
+    - [ ] 4.2.4 Build Mystical Insights / Guidance Section
+      - [ ] 4.2.4.1 Create daily/weekly guidance card using shadcn Card with mystical background
+      - [ ] 4.2.4.2 Display moon phase indicator with current phase icon (🌒 🌓 🌔 🌕)
+      - [ ] 4.2.4.3 Add personalized spiritual message (e.g., "The winds of change favor those who let go of fear")
+      - [ ] 4.2.4.4 Include ritual suggestion (e.g., "Light a white candle and set your intention")
+      - [ ] 4.2.4.5 Integrate astrology insights tied to spell timing
+    - [ ] 4.2.5 Build Contact & Support Section
+      - [ ] 4.2.5.1 Create "Message Kiwana" card using shadcn Card with contact button
+      - [ ] 4.2.5.2 Display office hours with mystical styling
+      - [ ] 4.2.5.3 Add "Book Consultation" button using shadcn Button with ancient theme
+      - [ ] 4.2.5.4 Include quick contact options (email, chat, call)
+      - [ ] 4.2.5.5 Show Kiwana's avatar and availability status
+    - [ ] 4.2.6 Build Trust & Authenticity Section
+      - [ ] 4.2.6.1 Create credibility badges using shadcn Badge (15+ years experience, safe practices, privacy guaranteed)
+      - [ ] 4.2.6.2 Add "Ancestral spell work and energy healing" statement
+      - [ ] 4.2.6.3 Include "Pure white light energy" promise with mystical icon
+      - [ ] 4.2.6.4 Display disclaimers using shadcn Alert: "For spiritual and empowerment purposes only"
+      - [ ] 4.2.6.5 Add security badges and trust seals with ancient styling
   - [✓] 4.8 Build My Spells page with shadcn Select, DropdownMenu for filter/sort options (status, type, date)
   - [✓] 4.9 Create Spell Card component using shadcn Card with shadcn Badge for status indicators
   - [✓] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes
