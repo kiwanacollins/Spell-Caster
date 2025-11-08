@@ -293,10 +293,10 @@ export function MobileNav({ userName = "Seeker", energyAlignment = 0 }: MobileNa
                         href={service.href}
                         onClick={() => setIsOpen(false)}
                         className={cn(
-                          "group flex items-center gap-2 rounded-sm border-l-2 px-3 py-2 font-['Crimson_Text'] text-xs transition-all duration-200",
+                          "group flex items-center gap-2 rounded-sm px-3 py-2 font-['Crimson_Text'] text-xs transition-all duration-200",
                           isActive
-                            ? "border-[#B8860B] bg-[#1A1A1A]/10 text-[#8B6F47]"
-                            : "border-transparent text-[#4A4A4A] hover:border-[#8B6F47] hover:bg-[#1A1A1A]/5 hover:text-[#8B6F47]"
+                            ? "bg-[#1A1A1A]/10 text-[#8B6F47]"
+                            : "text-[#4A4A4A] hover:bg-[#1A1A1A]/5 hover:text-[#8B6F47]"
                         )}
                       >
                         <Icon

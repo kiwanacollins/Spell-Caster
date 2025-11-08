@@ -94,6 +94,13 @@ Date: November 4, 2025
 - `components/cta-section.tsx` - "Join the Circle" call-to-action section with mystical background, animated circles, floating orbs, benefit highlights, dual CTA buttons
 - `components/rune-observer.tsx` - IntersectionObserver that reveals `.js-rune` elements with glow as they enter viewport
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
+- `components/dashboard/welcome-section.tsx` - Dashboard welcome header with personalized greeting, Kiwana's message, mystical quotes using shadcn Card and Alert
+- `components/dashboard/sacred-offerings.tsx` - Service summary section with category tabs, service cards, energy level indicators, using shadcn Tabs and Card
+- `components/dashboard/testimonials-section.tsx` - Dashboard testimonials display with success rate badge, auto-rotating cards, 5-star ratings using shadcn Card and Badge
+- `components/dashboard/spell-progress-tracker.tsx` - Active spell status cards with progress bars, ritual schedules, energy reports using shadcn Card, Progress, and Badge
+- `components/dashboard/mystical-insights.tsx` - Daily/weekly spiritual guidance with moon phases, astrology insights, ritual suggestions using shadcn Card
+- `components/dashboard/contact-support.tsx` - Kiwana contact card with office hours, booking button, quick contact options using shadcn Card and Button
+- `components/dashboard/trust-authenticity.tsx` - Credibility badges, experience statement, disclaimers using shadcn Badge and Alert
 - `components/energy-reading-widget.tsx` - Reusable Energy Reading Widget with shadcn Progress, 0-100% animated meter, mystical styling, moon phase and chakra balance display, size variants (sm/md/lg)
 - `components/quick-stats-cards.tsx` - Reusable QuickStatsCards component displaying stat metrics (Active Spells, Consultations, Messages, Spirit Points), configurable grid layout, animated on mount, optional links to dashboard pages
 - `components/recent-activity-feed.tsx` - Reusable RecentActivityFeed component using shadcn ScrollArea and Badge, displays activity timeline with icons, timestamps, and mystical styling, stagger animation on mount
@@ -108,6 +115,8 @@ Date: November 4, 2025
 - `lib/utils/quick-stats.ts` - Server-side utility for building quick stats data with icon mappings
 - `lib/utils/spiritual-calendar.ts` - Server-side utility for lunar phase calculations, calendar event generation, and event filtering
 - `lib/utils/spells.ts` - Server-side utility for spell data management, filtering by status/type, sorting, spell type/status labels and colors
+- `lib/utils/moon-phases.ts` - Lunar phase calculation utilities, moon phase icons, spiritual timing recommendations
+- `lib/utils/testimonials.ts` - Testimonial data management, success rate calculations, rating aggregation
 - `components/particles/mystical-particles.tsx` - tsParticles configuration for smoke and mist effects
 - `components/auth/protected-route.tsx` - Client-side protected route wrapper with authentication check and mystical loading state
 - `components/auth/admin-route.tsx` - Client-side admin-only route wrapper with role verification and forbidden state
@@ -292,16 +301,52 @@ Date: November 4, 2025
 
 - [ ] 4.0 User Dashboard (Client Portal) Implementation **[Use shadcn/ui components extensively]**
   - [✓] 4.1 Create dashboard layout with shadcn Sidebar component and ancient tome styling
-  - [✓] 4.2 Build Overview/Home page with personalized welcome message using shadcn Card and Alert components
-  - [✓] 4.3 Implement Energy Reading Widget (shadcn Progress component with 0-100% animated meter and mystical styling)
-  - [✓] 4.4 Create Quick Stats Cards using shadcn Card component (Active Spells, Upcoming Consultations, Unread Messages, Spiritual Points)
-  - [✓] 4.5 Build Recent Activity Feed with real-time notifications using shadcn ScrollArea and Badge components
-  - [✓] 4.6 Add Quick Action Buttons using shadcn Button component ("Request New Spell", "Book Consultation", "Message Healer")
-  - [✓] 4.7 Implement Spiritual Calendar with shadcn Calendar component (lunar phases and consultation dates)
+  - [ ] 4.2 **Dashboard Overview Redesign** - Implement new spiritual dashboard layout
+    - [ ] 4.2.1 Build Welcome & Personal Touch Section
+      - [ ] 4.2.1.1 Create welcome header component with personalized greeting "Welcome to the Mystical Portal, [Client Name] ✨"
+      - [ ] 4.2.1.2 Add mystical subheader: "Step into your sacred space — where your desires manifest and your energy aligns"
+      - [ ] 4.2.1.3 Include spiritual quote using shadcn Alert: "Magic is simply the art of focusing intention. Let us guide your transformation"
+      - [ ] 4.2.1.4 Add Kiwana's personal message using shadcn Card with avatar and mystical styling
+    - [ ] 4.2.2 Build Service Summary (Sacred Offerings) Section
+      - [ ] 4.2.2.1 Create service category tabs using shadcn Tabs (Love & Relationships, Wealth & Business, Protection & Cleansing, Justice & Legal)
+      - [ ] 4.2.2.2 Design service cards with shadcn Card showing: Title, short description, Energy Level indicator (moon phases)
+      - [ ] 4.2.2.3 Add mystical visuals (crystals, candles, light energy icons) to each service card
+      - [ ] 4.2.2.4 Implement "Request Spell / Learn More" buttons with ancient styling
+      - [ ] 4.2.2.5 Add energy level badges: 🌕 Full Moon Energy / Medium / Strong using shadcn Badge
+    - [ ] 4.2.3 Build Testimonials / Results Section
+      - [ ] 4.2.3.1 Create testimonial cards using shadcn Card with client quotes and avatars
+      - [ ] 4.2.3.2 Add 5-star rating display with ⭐️ icons
+      - [ ] 4.2.3.3 Include "97% Success Rate" badge using shadcn Badge with mystical styling
+      - [ ] 4.2.3.4 Implement auto-rotating carousel with fade transitions
+      - [ ] 4.2.3.5 Add client names and service types to testimonials
+    - [ ] 4.2.4 Build Spell Progress Tracker Section
+      - [ ] 4.2.4.1 Create active spell status cards using shadcn Card
+      - [ ] 4.2.4.2 Implement progress bar using shadcn Progress (e.g., "60% complete")
+      - [ ] 4.2.4.3 Add spell status badges: Pending / In Progress / Completed using shadcn Badge
+      - [ ] 4.2.4.4 Display ritual schedule with lunar phase timing
+      - [ ] 4.2.4.5 Include brief energy reports for each active spell
+    - [ ] 4.2.5 Build Mystical Insights / Guidance Section
+      - [ ] 4.2.5.1 Create daily/weekly guidance card using shadcn Card with mystical background
+      - [ ] 4.2.5.2 Display moon phase indicator with current phase icon (🌒 🌓 🌔 🌕)
+      - [ ] 4.2.5.3 Add personalized spiritual message (e.g., "The winds of change favor those who let go of fear")
+      - [ ] 4.2.5.4 Include ritual suggestion (e.g., "Light a white candle and set your intention")
+      - [ ] 4.2.5.5 Integrate astrology insights tied to spell timing
+    - [ ] 4.2.6 Build Contact & Support Section
+      - [ ] 4.2.6.1 Create "Message Kiwana" card using shadcn Card with contact button
+      - [ ] 4.2.6.2 Display office hours with mystical styling
+      - [ ] 4.2.6.3 Add "Book Consultation" button using shadcn Button with ancient theme
+      - [ ] 4.2.6.4 Include quick contact options (email, chat, call)
+      - [ ] 4.2.6.5 Show Kiwana's avatar and availability status
+    - [ ] 4.2.7 Build Trust & Authenticity Section
+      - [ ] 4.2.7.1 Create credibility badges using shadcn Badge (15+ years experience, safe practices, privacy guaranteed)
+      - [ ] 4.2.7.2 Add "Ancestral spell work and energy healing" statement
+      - [ ] 4.2.7.3 Include "Pure white light energy" promise with mystical icon
+      - [ ] 4.2.7.4 Display disclaimers using shadcn Alert: "For spiritual and empowerment purposes only"
+      - [ ] 4.2.7.5 Add security badges and trust seals with ancient styling
   - [✓] 4.8 Build My Spells page with shadcn Select, DropdownMenu for filter/sort options (status, type, date)
   - [✓] 4.9 Create Spell Card component using shadcn Card with shadcn Badge for status indicators
   - [✓] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes
-  - [✓] 4.11 Add Spell History Archive using shadcn Table component with success tracking ← **NEXT**
+  - [✓] 4.11 Add Spell History Archive using shadcn Table component with success tracking
   - [ ] 4.12 Build multi-channel Messages page using shadcn Tabs (In-App, WhatsApp, Messenger unified inbox)
   - [ ] 4.13 Implement real-time chat interface with shadcn ScrollArea, Avatar, and Badge for read receipts and typing indicators
   - [ ] 4.14 Add file attachment support using shadcn Input (file type) and voice message recording
