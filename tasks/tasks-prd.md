@@ -301,7 +301,7 @@ Date: November 4, 2025
   - [✓] 4.8 Build My Spells page with shadcn Select, DropdownMenu for filter/sort options (status, type, date)
   - [✓] 4.9 Create Spell Card component using shadcn Card with shadcn Badge for status indicators
   - [✓] 4.10 Implement Detailed Spell View using shadcn Dialog/Sheet with ritual timeline (shadcn Accordion) and healer notes
-  - [ ] 4.11 Add Spell History Archive using shadcn Table component with success tracking ← **NEXT**
+  - [✓] 4.11 Add Spell History Archive using shadcn Table component with success tracking ← **NEXT**
   - [ ] 4.12 Build multi-channel Messages page using shadcn Tabs (In-App, WhatsApp, Messenger unified inbox)
   - [ ] 4.13 Implement real-time chat interface with shadcn ScrollArea, Avatar, and Badge for read receipts and typing indicators
   - [ ] 4.14 Add file attachment support using shadcn Input (file type) and voice message recording
