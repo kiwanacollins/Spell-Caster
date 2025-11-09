@@ -44,10 +44,10 @@ export function ContactSupportSection({
     <div className="space-y-6">
       {/* Contact Header */}
       <div className="space-y-2">
-        <h2 className="font-['MedievalSharp'] text-2xl text-[#1A1A1A]">
+        <h2 className="font-['MedievalSharp'] text-2xl text-white">
           Connect with the Healer
         </h2>
-        <p className="font-['Crimson_Text'] text-sm text-[#4A4A4A]">
+        <p className="font-['Crimson_Text'] text-sm text-white">
           Reach out through your preferred channel • Always here to guide you
         </p>
       </div>
@@ -84,7 +84,7 @@ export function ContactSupportSection({
 
             {/* Quick Note */}
             <div className="rounded-sm border border-[#8B6F47]/30 bg-[#1A1A1A]/5 p-3">
-              <p className="font-['Crimson_Text'] text-xs text-[#4A4A4A]">
+              <p className="font-['Crimson_Text'] text-xs text-[#2C2416]">
                 ✨ <span className="font-semibold">Tip:</span> WhatsApp offers the fastest response times for urgent matters
               </p>
             </div>
@@ -116,7 +116,7 @@ export function ContactSupportSection({
             {/* Hours Display */}
             <div className="space-y-3">
               <div className="rounded-sm border border-[#8B6F47]/30 bg-[#1A1A1A]/5 p-3">
-                <p className="font-['Crimson_Text'] text-xs font-semibold uppercase text-[#4A4A4A]">
+                <p className="font-['Crimson_Text'] text-xs font-semibold uppercase text-[#2C2416]">
                   Weekdays
                 </p>
                 <p className="font-['Crimson_Text'] text-sm text-[#1A1A1A]">
@@ -124,7 +124,7 @@ export function ContactSupportSection({
                 </p>
               </div>
               <div className="rounded-sm border border-[#8B6F47]/30 bg-[#1A1A1A]/5 p-3">
-                <p className="font-['Crimson_Text'] text-xs font-semibold uppercase text-[#4A4A4A]">
+                <p className="font-['Crimson_Text'] text-xs font-semibold uppercase text-[#2C2416]">
                   Weekends
                 </p>
                 <p className="font-['Crimson_Text'] text-sm text-[#1A1A1A]">
@@ -145,7 +145,7 @@ export function ContactSupportSection({
                 <p className="truncate font-['Crimson_Text'] text-sm font-semibold text-[#1A1A1A]">
                   {/* {userName} */}
                 </p>
-                <p className="truncate font-['Crimson_Text'] text-xs text-[#4A4A4A]">
+                <p className="truncate font-['Crimson_Text'] text-xs text-[#2C2416]">
                   Spiritual Healer
                 </p>
               </div>
@@ -155,8 +155,8 @@ export function ContactSupportSection({
       </div>
 
       {/* Additional Support Info */}
-      <Card className="border-2 border-[#8B6F47] bg-[#1A1A1A]/5 p-4">
-        <p className="font-['Crimson_Text'] text-sm text-[#4A4A4A]">
+      <Card className="border-2 border-[#8B6F47] bg-[#F4E8D0] p-4">
+        <p className="font-['Crimson_Text'] text-sm text-[#2C2416]">
           <span className="font-semibold text-[#1A1A1A]">Questions?</span> Our spiritual advisors typically respond within 1-2 hours during office hours. For urgent matters, WhatsApp is your fastest path to guidance.
         </p>
       </Card>

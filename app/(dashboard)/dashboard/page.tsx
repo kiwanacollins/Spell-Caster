@@ -7,6 +7,7 @@ import { WelcomeSection } from "@/components/dashboard/welcome-section";
 import { SacredOfferingsSection } from "@/components/dashboard/sacred-offerings";
 import { VideoTestimonialsSection } from "@/components/dashboard/video-testimonials-section";
 import { ContactSupportSection } from "@/components/dashboard/contact-support";
+import { TrustAuthenticitySection } from "@/components/dashboard/trust-authenticity";
 import { 
   GiPentacle,
   GiMoon
@@ -47,6 +48,9 @@ export default async function DashboardPage() {
           isAvailable={true}
         />
 
+        {/* NEW: Trust & Authenticity Section - Credibility & Safety */}
+        <TrustAuthenticitySection />
+
         {/* Quick Actions Section */}
         <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[0_6px_16px_rgba(0,0,0,0.3)]">
           <CardHeader>
@@ -62,11 +66,7 @@ export default async function DashboardPage() {
             <QuickActionButtons layout="row" variant="default" />
           </CardContent>
         </Card>
-
-        {/* Recent Activity Feed and Spiritual Level Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Recent Activity Feed - Using New Component */}
-        </div>
+        
         {/* Today's Mystical Insight Alert */}
         <Alert className="border-4 border-[#CC8800] bg-linear-to-br from-[#1A1A1A] to-[#2C2416] shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
           <GiMoon className="h-6 w-6 text-[#C0C0C0]" />
