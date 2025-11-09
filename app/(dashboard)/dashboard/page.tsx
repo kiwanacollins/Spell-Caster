@@ -2,16 +2,13 @@ import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import { QuickActionButtons } from "@/components/quick-action-buttons";
 import { WelcomeSection } from "@/components/dashboard/welcome-section";
 import { SacredOfferingsSection } from "@/components/dashboard/sacred-offerings";
 import { VideoTestimonialsSection } from "@/components/dashboard/video-testimonials-section";
-import { MysticalInsightsSection } from "@/components/dashboard/mystical-insights";
+import { ContactSupportSection } from "@/components/dashboard/contact-support";
 import { 
   GiPentacle,
-  GiProgression,
   GiMoon
 } from "react-icons/gi";
 
@@ -25,13 +22,6 @@ export default async function DashboardPage() {
   // Get current time for greeting
   const currentHour = new Date().getHours();
   const greeting = currentHour < 12 ? "Good Morning" : currentHour < 18 ? "Good Afternoon" : "Good Evening";
-  
-  // Sample data - Replace with real data from database
-  const spiritualPoints = 250;
-  const currentLevel = "Seeker";
-  const nextLevel = "Adept";
-  const pointsToNextLevel = 750;
-
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-linear-to-b from-[#2C2416] to-[#1A1A1A]">
@@ -40,7 +30,7 @@ export default async function DashboardPage() {
         {/* NEW: Welcome & Personal Touch Section - Replaces old personalized welcome */}
         <WelcomeSection 
           userName={user.name || "Seeker"}
-          userAvatar={user.image}
+          userAvatar={user.image || undefined}
           userInitials={user.name?.substring(0, 2).toUpperCase() || "SK"}
           greeting={greeting}
         />
@@ -51,7 +41,11 @@ export default async function DashboardPage() {
         {/* NEW: Video Testimonials Section - Client Success Stories */}
         <VideoTestimonialsSection />
 
-  
+        {/* NEW: Contact & Support Section - Healer Connection */}
+        <ContactSupportSection 
+          userName={user.name || "Seeker"}
+          isAvailable={true}
+        />
 
         {/* Quick Actions Section */}
         <Card className="border-4 border-[#8B6F47] bg-[#F4E8D0] shadow-[0_6px_16px_rgba(0,0,0,0.3)]">
@@ -73,8 +67,6 @@ export default async function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Recent Activity Feed - Using New Component */}
         </div>
-
-        {/* Spiritual Calendar with Lunar Phases */}
         {/* Today's Mystical Insight Alert */}
         <Alert className="border-4 border-[#CC8800] bg-linear-to-br from-[#1A1A1A] to-[#2C2416] shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
           <GiMoon className="h-6 w-6 text-[#C0C0C0]" />
