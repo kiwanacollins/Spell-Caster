@@ -5,7 +5,6 @@ import { getSampleCalendarEvents } from "@/lib/utils/spiritual-calendar";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { EnergyReadingWidget } from "@/components/energy-reading-widget";
@@ -13,12 +12,10 @@ import { QuickStatsCards } from "@/components/quick-stats-cards";
 import { RecentActivityFeed } from "@/components/recent-activity-feed";
 import { QuickActionButtons } from "@/components/quick-action-buttons";
 import { SpiritualCalendar } from "@/components/spiritual-calendar";
-import Link from "next/link";
+import { WelcomeSection } from "@/components/dashboard/welcome-section";
 import { 
-  GiCrystalBall,
   GiPentacle,
   GiProgression,
-  GiScrollUnfurled,
   GiMoon
 } from "react-icons/gi";
 
@@ -50,16 +47,13 @@ export default async function DashboardPage() {
     <div className="min-h-screen p-4 md:p-8 bg-linear-to-b from-[#2C2416] to-[#1A1A1A]">
       <div className="max-w-7xl mx-auto space-y-6">
         
-        {/* Personalized Welcome Alert with Ancient Styling */}
-        <Alert className="border-4 border-[#8B6F47] bg-linear-to-br from-[#F4E8D0] to-[#E8DCC0] shadow-[0_8px_20px_rgba(0,0,0,0.4)]">
-          <GiCrystalBall className="h-6 w-6 text-[#B8860B] drop-shadow-[0_0_8px_rgba(184,134,11,0.6)]" />
-          <AlertTitle className="font-['MedievalSharp'] text-2xl text-[#1A1A1A] mb-2">
-            {greeting}, {user.name || "Seeker"}
-          </AlertTitle>
-          <AlertDescription className="font-['Crimson_Text'] text-base text-[#4A4A4A]">
-            The cosmic energies align in your favor today. Your spiritual journey continues to unfold with divine guidance.
-          </AlertDescription>
-        </Alert>
+        {/* NEW: Welcome & Personal Touch Section - Replaces old personalized welcome */}
+        <WelcomeSection 
+          userName={user.name || "Seeker"}
+          userAvatar={user.image}
+          userInitials={user.name?.substring(0, 2).toUpperCase() || "SK"}
+          greeting={greeting}
+        />
 
         {/* Energy Reading Widget - Reusable Component */}
         <EnergyReadingWidget
@@ -157,10 +151,10 @@ export default async function DashboardPage() {
         <Alert className="border-4 border-[#CC8800] bg-linear-to-br from-[#1A1A1A] to-[#2C2416] shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
           <GiMoon className="h-6 w-6 text-[#C0C0C0]" />
           <AlertTitle className="font-['MedievalSharp'] text-xl text-[#F4E8D0]">
-            Today's Mystical Insight
+            Today&apos;s Mystical Insight
           </AlertTitle>
           <AlertDescription className="font-['Crimson_Text'] text-base text-[#C0C0C0] mt-2">
-            The universe whispers: "Your intentions are powerful. Channel your energy toward what truly matters, and watch the cosmos align in your favor."
+            The universe whispers: &ldquo;Your intentions are powerful. Channel your energy toward what truly matters, and watch the cosmos align in your favor.&rdquo;
           </AlertDescription>
         </Alert>
 
