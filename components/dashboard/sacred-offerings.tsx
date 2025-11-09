@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +10,7 @@ import { GiCrystalize, GiCandles, GiLightBulb } from "react-icons/gi";
 import { IoHeart, IoWallet, IoShieldCheckmark, IoScale } from "react-icons/io5";
 
 interface ServiceCardData {
-  id: string;
+  slug: string;
   title: string;
   description: string;
   category: 'love' | 'wealth' | 'protection' | 'justice';
@@ -36,7 +37,7 @@ export function SacredOfferingsSection() {
   const services: ServiceCardData[] = [
     // Love & Relationships
     {
-      id: 'obsession',
+      slug: 'obsession-spell',
       title: 'Obsession Spell',
       description: 'Draw romantic attraction and create an irresistible magnetic connection',
       category: 'love',
@@ -45,7 +46,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌕',
     },
     {
-      id: 'stop-cheating',
+      slug: 'stop-cheating-spell',
       title: 'Stop Cheating Spell',
       description: 'Bind loyalty and prevent infidelity in relationships',
       category: 'love',
@@ -54,7 +55,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌔',
     },
     {
-      id: 'binding',
+      slug: 'binding-spell',
       title: 'Binding Spell',
       description: 'Create powerful spiritual bonds and commitment',
       category: 'love',
@@ -63,8 +64,8 @@ export function SacredOfferingsSection() {
       moonPhase: '🌕',
     },
     {
-      id: 'gay-lesbian',
-      title: 'Gay & Lesbian Spell',
+      slug: 'gay-lesbian-spell',
+      title: 'Gay & Lesbian Love Spell',
       description: 'Authentic love magic for LGBTQ+ connections',
       category: 'love',
       energyLevel: 'high',
@@ -72,7 +73,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌕',
     },
     {
-      id: 'marriage',
+      slug: 'marriage-commitment',
       title: 'Marriage & Commitment',
       description: 'Manifest lasting union and sacred vows',
       category: 'love',
@@ -80,9 +81,18 @@ export function SacredOfferingsSection() {
       icon: GiCandles,
       moonPhase: '🌕',
     },
+    {
+      slug: 'divorce-spell',
+      title: 'Divorce Spell',
+      description: 'Navigate separation with grace and favorable terms',
+      category: 'love',
+      energyLevel: 'medium',
+      icon: GiLightBulb,
+      moonPhase: '🌔',
+    },
     // Wealth & Business
     {
-      id: 'magic-wallet',
+      slug: 'magic-wallet',
       title: 'Magic Wallet',
       description: 'Attract wealth and abundance into your life',
       category: 'wealth',
@@ -91,7 +101,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌕',
     },
     {
-      id: 'business-boost',
+      slug: 'business-boost-spells',
       title: 'Business Boost Spells',
       description: 'Accelerate success and prosperity in your enterprise',
       category: 'wealth',
@@ -100,8 +110,8 @@ export function SacredOfferingsSection() {
       moonPhase: '🌕',
     },
     {
-      id: 'financial-issues',
-      title: 'Financial Issues',
+      slug: 'financial-issues',
+      title: 'Financial Issues Resolution',
       description: 'Resolve debt and financial hardship with mystical intervention',
       category: 'wealth',
       energyLevel: 'medium',
@@ -109,7 +119,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌔',
     },
     {
-      id: 'land-solving',
+      slug: 'land-solving-spell',
       title: 'Land Solving Spell',
       description: 'Resolve property disputes and real estate matters',
       category: 'wealth',
@@ -119,7 +129,7 @@ export function SacredOfferingsSection() {
     },
     // Protection & Cleansing
     {
-      id: 'protection',
+      slug: 'protection-shielding',
       title: 'Protection & Shielding',
       description: 'Guard yourself from negativity and harmful energy',
       category: 'protection',
@@ -128,7 +138,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌕',
     },
     {
-      id: 'cleansing',
+      slug: 'cleansing-rituals',
       title: 'Cleansing Rituals',
       description: 'Purify your space and spirit from dark influences',
       category: 'protection',
@@ -137,7 +147,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌔',
     },
     {
-      id: 'get-lost-items',
+      slug: 'get-back-lost-items',
       title: 'Get Back Lost Items',
       description: 'Locate and retrieve precious items mysteriously lost',
       category: 'protection',
@@ -146,7 +156,7 @@ export function SacredOfferingsSection() {
       moonPhase: '🌒',
     },
     {
-      id: 'magic-rings',
+      slug: 'magic-rings',
       title: 'Magic Rings',
       description: 'Channel protective and transformative energy',
       category: 'protection',
@@ -156,22 +166,13 @@ export function SacredOfferingsSection() {
     },
     // Justice & Legal
     {
-      id: 'court-case',
+      slug: 'winning-court-case',
       title: 'Winning a Court Case',
       description: 'Manifest justice and favorable legal outcomes',
       category: 'justice',
       energyLevel: 'high',
       icon: GiCrystalize,
       moonPhase: '🌕',
-    },
-    {
-      id: 'divorce',
-      title: 'Divorce Spell',
-      description: 'Navigate separation with grace and favorable terms',
-      category: 'justice',
-      energyLevel: 'medium',
-      icon: GiLightBulb,
-      moonPhase: '🌔',
     },
   ];
 
@@ -228,23 +229,21 @@ export function SacredOfferingsSection() {
 
           {/* Action Buttons */}
           <div className="flex gap-2 pt-2">
-            <Button
-              className="flex-1 bg-[#8B6F47] hover:bg-[#6B4F27] text-[#F4E8D0] font-['Cinzel'] text-sm border-2 border-[#5B3F17] shadow-md hover:shadow-lg transition-all duration-300"
-              onClick={() => {
-                // TODO: Navigate to service detail page or open request modal
-              }}
-            >
-              Request Spell
-            </Button>
-            <Button
-              variant="outline"
-              className="flex-1 border-2 border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47]/10 font-['Cinzel'] text-sm"
-              onClick={() => {
-                // TODO: Navigate to service detail page
-              }}
-            >
-              Learn More
-            </Button>
+            <Link href={`/dashboard/services/${service.slug}`} className="flex-1">
+              <Button
+                className="w-full bg-[#8B6F47] hover:bg-[#6B4F27] text-[#F4E8D0] font-['Cinzel'] text-sm border-2 border-[#5B3F17] shadow-md hover:shadow-lg transition-all duration-300"
+              >
+                Request Spell
+              </Button>
+            </Link>
+            <Link href={`/dashboard/services/${service.slug}`} className="flex-1">
+              <Button
+                variant="outline"
+                className="w-full border-2 border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47]/10 font-['Cinzel'] text-sm"
+              >
+                Learn More
+              </Button>
+            </Link>
           </div>
         </CardContent>
       </Card>
@@ -300,7 +299,7 @@ export function SacredOfferingsSection() {
         <TabsContent value="love" className="space-y-4 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {getServicesByCategory('love').map((service) => (
-              <ServiceCard key={service.id} service={service} />
+              <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
         </TabsContent>
@@ -309,7 +308,7 @@ export function SacredOfferingsSection() {
         <TabsContent value="wealth" className="space-y-4 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {getServicesByCategory('wealth').map((service) => (
-              <ServiceCard key={service.id} service={service} />
+              <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
         </TabsContent>
@@ -318,7 +317,7 @@ export function SacredOfferingsSection() {
         <TabsContent value="protection" className="space-y-4 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {getServicesByCategory('protection').map((service) => (
-              <ServiceCard key={service.id} service={service} />
+              <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
         </TabsContent>
@@ -327,7 +326,7 @@ export function SacredOfferingsSection() {
         <TabsContent value="justice" className="space-y-4 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {getServicesByCategory('justice').map((service) => (
-              <ServiceCard key={service.id} service={service} />
+              <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
         </TabsContent>
