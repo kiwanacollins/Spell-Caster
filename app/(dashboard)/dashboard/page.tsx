@@ -13,6 +13,7 @@ import { RecentActivityFeed } from "@/components/recent-activity-feed";
 import { QuickActionButtons } from "@/components/quick-action-buttons";
 import { SpiritualCalendar } from "@/components/spiritual-calendar";
 import { WelcomeSection } from "@/components/dashboard/welcome-section";
+import { SacredOfferingsSection } from "@/components/dashboard/sacred-offerings";
 import { 
   GiPentacle,
   GiProgression,
@@ -54,6 +55,9 @@ export default async function DashboardPage() {
           userInitials={user.name?.substring(0, 2).toUpperCase() || "SK"}
           greeting={greeting}
         />
+
+        {/* NEW: Sacred Offerings Section - Service Summary with Categories */}
+        <SacredOfferingsSection />
 
         {/* Energy Reading Widget - Reusable Component */}
         <EnergyReadingWidget
