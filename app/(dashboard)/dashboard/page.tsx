@@ -14,6 +14,7 @@ import { QuickActionButtons } from "@/components/quick-action-buttons";
 import { SpiritualCalendar } from "@/components/spiritual-calendar";
 import { WelcomeSection } from "@/components/dashboard/welcome-section";
 import { SacredOfferingsSection } from "@/components/dashboard/sacred-offerings";
+import { VideoTestimonialsSection } from "@/components/dashboard/video-testimonials-section";
 import { 
   GiPentacle,
   GiProgression,
@@ -58,6 +59,9 @@ export default async function DashboardPage() {
 
         {/* NEW: Sacred Offerings Section - Service Summary with Categories */}
         <SacredOfferingsSection />
+
+        {/* NEW: Video Testimonials Section - Client Success Stories */}
+        <VideoTestimonialsSection />
 
         {/* Energy Reading Widget - Reusable Component */}
         <EnergyReadingWidget
