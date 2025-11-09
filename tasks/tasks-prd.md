@@ -300,20 +300,23 @@ Date: November 4, 2025
       - [✓] 4.2.2.3 Add mystical visuals (crystals, candles, light energy icons) to each service card
       - [✓] 4.2.2.4 Implement "Request Spell / Learn More" buttons with ancient styling
       - [✓] 4.2.2.5 Add energy level badges: 🌕 Full Moon Energy / Medium / Strong using shadcn Badge
-    - [ ] 4.2.3 Build Testimonials / Results Section
-      - [ ] 4.2.3.1 Create video testimonial player using HTML5 video with ancient frame styling
-      - [ ] 4.2.3.2 Integrate video testimonials from public/testimony-videos directory
-      - [ ] 4.2.3.3 Add 5-star rating display with ⭐️ icons below each video
-      - [ ] 4.2.3.4 Include "97% Success Rate" badge using shadcn Badge with mystical styling
-      - [ ] 4.2.3.5 Implement auto-rotating video carousel with fade transitions and controls
-      - [ ] 4.2.3.6 Add client names and service types overlay on video testimonials
-      - [ ] 4.2.3.7 Include play/pause controls with ancient styling
-    - [ ] 4.2.4 Build Mystical Insights / Guidance Section
-      - [ ] 4.2.4.1 Create daily/weekly guidance card using shadcn Card with mystical background
-      - [ ] 4.2.4.2 Display moon phase indicator with current phase icon (🌒 🌓 🌔 🌕)
-      - [ ] 4.2.4.3 Add personalized spiritual message (e.g., "The winds of change favor those who let go of fear")
-      - [ ] 4.2.4.4 Include ritual suggestion (e.g., "Light a white candle and set your intention")
-      - [ ] 4.2.4.5 Integrate astrology insights tied to spell timing
+    - [✓] 4.2.3 Build Testimonials / Results Section
+      - [✓] 4.2.3.1 Create video testimonial player using HTML5 video with ancient frame styling
+      - [✓] 4.2.3.2 Integrate video testimonials from public/testimony-videos directory
+      - [✓] 4.2.3.3 Add 5-star rating display with ⭐️ icons below each video
+      - [✓] 4.2.3.4 Include "97% Success Rate" badge using shadcn Badge with mystical styling
+      - [✓] 4.2.3.5 Implement auto-rotating video carousel with fade transitions and controls
+      - [✓] 4.2.3.6 Add client names and service types overlay on video testimonials
+      - [✓] 4.2.3.7 Include play/pause controls with ancient styling
+    - [✓] 4.2.4 Build Mystical Insights / Guidance Section
+      - [✓] 4.2.4.1 Create daily/weekly guidance card using shadcn Card with mystical background
+      - [✓] 4.2.4.2 Display moon phase indicator with current phase icon (🌒 🌓 🌔 🌕)
+      - [✓] 4.2.4.3 Add personalized spiritual message (e.g., "The winds of change favor those who let go of fear")
+      - [✓] 4.2.4.4 Include ritual suggestion (e.g., "Light a white candle and set your intention")
+      - [✓] 4.2.4.5 Integrate astrology insights tied to spell timing
+    - [✓] 4.2.5 Remove Energy Alignment Widget from Navigation
+      - [✓] 4.2.5.1 Remove Energy Alignment from dashboard-sidebar.tsx (props and JSX)
+      - [✓] 4.2.5.2 Remove Energy Alignment from mobile-nav.tsx (props and JSX)
     - [ ] 4.2.5 Build Contact & Support Section
       - [ ] 4.2.5.1 Create "Contact Healer" card using shadcn Card with WhatsApp and Messenger buttons
       - [ ] 4.2.5.2 Add WhatsApp button with pre-filled message link (left side, green styling)

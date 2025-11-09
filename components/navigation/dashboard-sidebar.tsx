@@ -146,13 +146,11 @@ const serviceItems: ServiceItem[] = [
 interface DashboardSidebarProps {
   userName?: string;
   userEmail?: string;
-  energyAlignment?: number;
 }
 
 export function DashboardSidebar({ 
   userName = "Seeker",
-  userEmail,
-  energyAlignment = 0 
+  userEmail
 }: DashboardSidebarProps) {
   const pathname = usePathname();
   const [servicesExpanded, setServicesExpanded] = useState(false);
@@ -192,22 +190,6 @@ export function DashboardSidebar({
                   {userEmail}
                 </p>
               )}
-            </div>
-          </div>
-
-          {/* Energy Alignment Mini Widget */}
-          <div className="space-y-1">
-            <div className="flex justify-between text-xs">
-              <span className="font-['Crimson_Text'] text-[#4A4A4A]">Energy</span>
-              <span className="font-['Crimson_Text'] font-semibold text-[#2C5530]">
-                {energyAlignment}%
-              </span>
-            </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full border border-[#8B6F47] bg-[#1A1A1A]/20">
-              <div
-                className="h-full bg-linear-to-r from-[#2C5530] to-[#B8860B] transition-all duration-500"
-                style={{ width: `${energyAlignment}%` }}
-              />
             </div>
           </div>
         </div>
