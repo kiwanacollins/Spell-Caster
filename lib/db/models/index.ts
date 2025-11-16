@@ -113,3 +113,37 @@ export {
   getRefundStats,
   deleteRefundRequest,
 } from "./refund-operations";
+
+// Payment types and interfaces
+export type {
+  Payment,
+  PaymentStatus,
+  PaymentPlanType,
+  PaymentInstallment,
+} from "./payment";
+
+// Payment constants
+export { PAYMENT_COLLECTION } from "./payment";
+
+// Payment helper functions
+export {
+  createPayment,
+  createInstallmentSchedule,
+  isPaymentOverdue,
+  getDaysOverdue,
+  getPaymentProgress,
+} from "./payment";
+
+// Payment database operations
+export {
+  createPaymentRecord,
+  getUserPendingPayments,
+  getUserTotalPendingAmount,
+  getUserNextPaymentDue,
+  getPaymentById,
+  updatePaymentStatus,
+  updateInstallmentPayment,
+  getAdminPendingPayments,
+  getPaymentStats,
+  markPaymentAsOverdue,
+} from "./payment-operations";

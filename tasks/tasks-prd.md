@@ -58,6 +58,7 @@ Date: November 4, 2025
 - `app/api/payments/refund-request/[id]/route.ts` - Admin refund request endpoints (GET single refund, PUT update status/approve/deny)
 - `app/api/payments/refund-request/[id]/process/route.ts` - Admin endpoint to manually initiate Stripe refunds (POST process refund)
 - `app/api/payments/refund-request/admin/pending/route.ts` - Admin endpoint for pending refund queue (GET pending/approved refunds)
+- `app/api/payments/pending/route.ts` - User endpoint to fetch pending payments and due amounts (GET user's pending payments)
 - `app/api/ai/generate-content/route.ts` - AI content generation (service descriptions, guidance, blog articles)
 - `app/api/ai/service-recommendations/route.ts` - AI service recommendation engine
 - `app/api/testimonials/route.ts` - Testimonial operations (video upload, management)
@@ -135,6 +136,7 @@ Date: November 4, 2025
 - `components/payment-checkout.tsx` - Stripe checkout integration for service payments
 - `components/refund-request-dialog.tsx` - User-facing refund request submission dialog with reason selection, message input, transaction summary using shadcn Dialog, Select, Textarea
 - `components/user-refund-status-tracker.tsx` - User's refund requests display with status badges, admin notes, Stripe refund IDs using shadcn Card, Badge
+- `components/pending-payments-section.tsx` - Displays pending payments, due amounts, and payment plan details with status tracking using shadcn Card, Badge, Progress, Table
 - `components/admin-refund-management.tsx` - Admin refund management interface with metrics dashboard, filterable table, review/process dialogs, partial refund support using shadcn Table, Dialog, Input, Select, Badge
 - `components/admin-service-queue.tsx` - Service request management queue
 - `components/admin-ai-dashboard.tsx` - AI content generation usage analytics
@@ -153,7 +155,8 @@ Date: November 4, 2025
 - `lib/db/models/session-operations.ts` - Session database operations (login tracking, active sessions, revocation, statistics)
 - `lib/db/models/service.ts` - Service model schema for all 15 services (type, pricing, duration, requirements)
 - `lib/db/models/service-request.ts` - Service request model schema (user, service type, status, payment, notes)
-- `lib/db/models/payment.ts` - Payment model schema
+- `lib/db/models/payment.ts` - Payment model schema (pending payments, installments, subscriptions with status tracking and overdue calculations)
+- `lib/db/models/payment-operations.ts` - Payment database operations (create payment records, fetch pending payments, update installments, track overdue amounts)
 - `lib/db/models/refund-request.ts` - Refund request model schema (userId, paymentIntentId, amount, serviceName, reason, status, adminNotes, statusHistory, timestamps)
 - `lib/db/models/refund-operations.ts` - Refund request database operations (create, getUserRefunds, getPendingRefunds, updateRefund, updateWithStripeInfo, updateFromWebhook, getRefundStats)
 - `lib/db/models/testimonial.ts` - Video testimonial model schema
@@ -368,7 +371,7 @@ Date: November 4, 2025
     - [✓] 4.4.5 Build subscription management for recurring services using shadcn Card, Switch, Badge
     - [✓] 4.4.6 Create payment processing for service requests with Stripe integration
     - [✓] 4.4.7 Add refund request functionality using shadcn Dialog
-    - [ ] 4.4.8 Display pending payments and due amounts
+    - [✓] 4.4.8 Display pending payments and due amounts
     - [ ] 4.4.9 Implement payment plan tracking for services over $200
 
 - [ ] 5.0 Admin Dashboard (Healer Portal) Implementation **[Use shadcn/ui components extensively]**

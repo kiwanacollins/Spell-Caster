@@ -19,6 +19,7 @@ import {
 import { IoCheckmarkCircle, IoWarning, IoDownload, IoCashOutline, IoFilter, IoCard } from "react-icons/io5";
 import { generateInvoiceFromTransaction, downloadReceiptAsText } from "@/lib/utils/invoice-generator";
 import { RefundRequestDialog, RefundRequestInput } from "@/components/refund-request-dialog";
+import { PendingPaymentsSection } from "@/components/pending-payments-section";
 import { useState } from "react";
 
 /**
@@ -318,6 +319,9 @@ export default function PaymentsPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Pending Payments & Payment Plans Section */}
+        <PendingPaymentsSection />
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="transactions" className="w-full">
