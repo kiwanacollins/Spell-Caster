@@ -1,45 +1,51 @@
-import { getCurrentUser, isAdmin } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import AdminUsersManagement from "@/components/admin/admin-users-management";
+import { redirect } from 'next/navigation';
+import { getSession } from '@/lib/auth';
+import { getAllUsers } from '@/lib/db/models/user-operations';
+import { getAdminServiceRequests } from '@/lib/db/models/service-request-operations';
+import { AdminUsersManagementClient } from '@/components/admin/admin-users-management-client';
 
 export const metadata = {
-  title: "User Management | Admin Portal",
-  description: "Manage users and assign admin roles",
+  title: 'User Management | Admin',
+  description: 'Manage platform users, roles, and accounts',
 };
 
-export default async function AdminUsersPage() {
-  const user = await getCurrentUser();
+export default async function UsersManagementPage() {
+  // Server-side auth check
+  const session = await getSession();
 
-  if (!user) {
-    redirect("/login");
+  if (!session || session.user.role !== 'admin') {
+    redirect('/login');
   }
 
-  const userIsAdmin = await isAdmin();
+  // Fetch all users
+  const users = await getAllUsers();
 
-  if (!userIsAdmin) {
-    redirect("/dashboard");
+  // Fetch service requests for each user for context
+  const userServiceRequests: { [userId: string]: any[] } = {};
+  for (const user of users) {
+    const requests = await getAdminServiceRequests({}, 10, 0);
+    userServiceRequests[user.id] = requests.filter(
+      (r: any) => r.userId === user.id
+    );
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Page Header */}
-      <div className="bg-parchment-light border-4 border-aged-bronze/40 rounded p-8 relative">
-        {/* Decorative corner flourishes */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-sacred-gold/60" />
-        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-sacred-gold/60" />
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-sacred-gold/60" />
-        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-sacred-gold/60" />
-
-        <h1 className="text-4xl font-medieval text-ink-900 mb-2">
+      <div className="border-b-2 border-[#8B6F47] pb-6">
+        <h1 className="font-['UnifrakturMaguntia'] text-4xl text-[#1A1A1A] mb-2">
           User Management
         </h1>
-        <p className="text-ink-700 font-serif text-lg">
-          Manage users and assign admin roles
+        <p className="text-[#4A4A4A]">
+          Manage platform users, roles, accounts, and access
         </p>
       </div>
 
-      {/* User Management Component */}
-      <AdminUsersManagement />
+      {/* Client Component */}
+      <AdminUsersManagementClient
+        initialUsers={users}
+        userServiceRequests={userServiceRequests}
+      />
     </div>
   );
 }

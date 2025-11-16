@@ -471,23 +471,22 @@ Date: November 4, 2025
     - [✓] 5.4.6 Create request templates for common services using shadcn Command, Dialog
     - [✓] 5.4.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
     - [✓] 5.4.8 Build request analytics (completion rate, average time, revenue by service) using shadcn Card, Chart
-  - [ ] 5.5 Build User Management System
-    - [ ] 5.5.1 Create user directory using shadcn Table, Input (search), Select for filtering
-    - [ ] 5.5.2 Build user profile view using shadcn Tabs with service history and internal notes
-    - [ ] 5.5.3 Implement user actions using shadcn DropdownMenu, Dialog (suspend, refund, grant credits, delete)
-    - [ ] 5.5.4 Add user segmentation using shadcn Badge (VIP, high-value, frequent requester)
-    - [ ] 5.5.5 Build bulk user operations using shadcn Checkbox, Command
-    - [ ] 5.5.6 Add admin role management interface using shadcn Dialog, Select
-    - [ ] 5.5.7 Create "Promote to Admin" action in user dropdown menu
-    - [ ] 5.5.8 Build admin users list view with role badges
-    - [ ] 5.5.9 Implement admin activity log (track admin actions, role changes)
+  - [✓] 5.5 Build User Management System
+    - [✓] 5.5.1 Create user directory using shadcn Table, Input (search), Select for filtering
+    - [✓] 5.5.2 Build user profile view using shadcn Tabs with service history and internal notes
+    - [✓] 5.5.3 Implement user actions using shadcn DropdownMenu, Dialog (suspend, refund, grant credits, delete)
+    - [✓] 5.5.4 Add user segmentation using shadcn Badge (VIP, high-value, frequent requester)
+    - [✓] 5.5.5 Build bulk user operations using shadcn Checkbox, Command
+    - [✓] 5.5.6 Add admin role management interface using shadcn Dialog, Select
+    - [✓] 5.5.7 Create "Promote to Admin" action in user dropdown menu
+    - [✓] 5.5.8 Build admin users list view with role badges
+    - [✓] 5.5.9 Implement admin activity log (track admin actions, role changes)
   - [ ] 5.6 Build Payment Management System
     - [ ] 5.6.1 Create payments dashboard using shadcn Card with revenue metrics
     - [ ] 5.6.2 Build transaction list using shadcn Table with filtering and export
     - [ ] 5.6.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
     - [ ] 5.6.4 Add financial reports generation using shadcn Form, Calendar for date ranges
     - [ ] 5.6.5 Build pricing management for all 15 services using shadcn Form, Input
-    - [ ] 5.6.6 Create discount code management using shadcn Table, Dialog, Form
     - [ ] 5.6.7 Implement subscription tracking using shadcn Table, Badge
     - [ ] 5.6.8 Integrate Admin Refund Management UI (AdminRefundManagement component)
       - [ ] 5.6.8.1 Add refund management page at /admin/payments/refunds route
