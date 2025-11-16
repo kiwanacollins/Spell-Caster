@@ -65,6 +65,12 @@ Date: November 4, 2025
 - `app/api/service-requests/route.ts` - Service request CRUD endpoints (GET all/user requests, POST create request with filtering and pagination)
 - `app/api/service-requests/[id]/route.ts` - Individual service request endpoints (GET request, PUT update status/priority/notes/assignment)
 - `app/api/service-requests/analytics/metrics/route.ts` - Admin analytics endpoint (GET aggregated metrics, completion rates, pending queue by priority)
+- `app/api/service-requests/[id]/upload/route.ts` - File upload endpoint for ritual progress photos/videos (POST multipart, saves to public/uploads/ritual-progress)
+- `app/api/service-requests/bulk/route.ts` - Bulk operations endpoint (POST) with actions: update-status, update-priority, assign-admin for multiple requests
+- `app/api/templates/route.ts` - Template CRUD endpoints (GET list/search, POST create with admin check)
+- `app/api/templates/[id]/route.ts` - Individual template endpoints (GET retrieve, PUT update, DELETE soft-delete)
+- `app/api/templates/[id]/use/route.ts` - Template usage tracking endpoint (POST increment usage count)
+- `app/(admin)/admin/templates/page.tsx` - Admin templates management page with CRUD UI
 - `app/api/ai/generate-content/route.ts` - AI content generation (service descriptions, guidance, blog articles)
 - `app/api/ai/service-recommendations/route.ts` - AI service recommendation engine
 - `app/api/testimonials/route.ts` - Testimonial operations (video upload, management)
@@ -158,7 +164,12 @@ Date: November 4, 2025
 - `components/admin/admin-request-detail.tsx` - Request detail component showing client info, service details, admin notes, status history, update controls
 - `components/admin/request-detail-client.tsx` - Client wrapper for AdminRequestDetail with real-time status/priority/notes update handlers
 - `components/admin/request-action-controls.tsx` - Action controls for requests: Accept, Decline (with reason), Assign admin; status-specific guidance for in-progress requests
-- `components/admin/admin-service-queue.tsx` - Admin service request management table with sortable columns, status/priority dropdowns, filtering, action menu using shadcn Table, Select, DropdownMenu
+- `components/admin/ritual-progress-update.tsx` - Ritual progress tracking with step management, photo/video uploads, progress bar, completion tracking
+- `components/admin/template-management-client.tsx` - Admin UI for template CRUD (create, list, search, delete) with usage statistics
+- `components/admin/template-selector-dialog.tsx` - Dialog component for selecting and applying templates to requests
+- `components/admin/bulk-actions-toolbar.tsx` - Toolbar component for bulk request operations (status/priority updates with optional notes, export placeholder)
+- `components/admin/admin-bulk-actions-client.tsx` - Client wrapper for bulk operations with selection state management and API integration
+- `components/admin/admin-service-queue.tsx` - Admin service request management table with sortable columns, status/priority dropdowns, filtering, action menu, checkbox column for bulk selection using shadcn Table, Select, DropdownMenu
 - `components/admin/service-requests-queue-client.tsx` - Client component for service requests page with filtering (status/priority/search), real-time updates via API
 - `app/(admin)/admin/requests/page.tsx` - Admin service request management page with header, filters, and queue component
 - `app/(admin)/admin/requests/[id]/page.tsx` - Request detail page with server-side auth check, data fetching, client component wrapper
@@ -188,7 +199,9 @@ Date: November 4, 2025
 - `lib/db/models/refund-request.ts` - Refund request model schema (userId, paymentIntentId, amount, serviceName, reason, status, adminNotes, statusHistory, timestamps)
 - `lib/db/models/refund-operations.ts` - Refund request database operations (create, getUserRefunds, getPendingRefunds, updateRefund, updateWithStripeInfo, updateFromWebhook, getRefundStats)
 - `lib/db/models/service-request.ts` - ServiceRequest schema with status workflow, priority levels, ritual progress tracking, admin notes, payment references
-- `lib/db/models/service-request-operations.ts` - Service request database operations (CRUD, filtering, status updates, assignment, priority management, analytics aggregation)
+- `lib/db/models/service-request-operations.ts` - Service request database operations (CRUD, filtering, status updates, assignment, priority management, ritual step updates, analytics aggregation)
+- `lib/db/models/request-template.ts` - RequestTemplate interface with usage tracking, category support, prefilled content
+- `lib/db/models/request-template-operations.ts` - Template database operations (CRUD, filtering by service type/category, search, usage increment, soft delete)
 - `lib/db/models/testimonial.ts` - Video testimonial model schema
 - `lib/db/models/index.ts` - Barrel export for all database models
 - `lib/store/user-store.ts` - Zustand store for user profile, service history, contact preferences
@@ -451,9 +464,9 @@ Date: November 4, 2025
     - [✓] 5.4.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
     - [✓] 5.4.3 Build request detail view using shadcn Sheet/Dialog with client information
     - [✓] 5.4.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
-    - [ ] 5.4.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)
-    - [ ] 5.4.6 Create request templates for common services using shadcn Command, Dialog
-    - [ ] 5.4.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
+    - [✓] 5.4.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)
+    - [✓] 5.4.6 Create request templates for common services using shadcn Command, Dialog
+    - [✓] 5.4.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
     - [ ] 5.4.8 Build request analytics (completion rate, average time, revenue by service) using shadcn Card, Chart
   - [ ] 5.5 Build User Management System
     - [ ] 5.5.1 Create user directory using shadcn Table, Input (search), Select for filtering

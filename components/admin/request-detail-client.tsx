@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { AdminRequestDetail } from "./admin-request-detail";
 import { RequestActionControls } from "./request-action-controls";
-import { ServiceRequest, ServiceRequestStatus } from "@/lib/db/models";
+import { RitualProgressUpdate } from "./ritual-progress-update";
+import { ServiceRequest, ServiceRequestStatus, RitualProgress } from "@/lib/db/models";
 import { useRouter } from "next/navigation";
 
 interface RequestDetailClientProps {
@@ -179,26 +180,63 @@ export function RequestDetailClient({
     }
   };
 
+  const handleProgressUpdate = async (steps: RitualProgress[]) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `/api/service-requests/${request._id?.toString()}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ritualSteps: steps }),
+        }
+      );
+
+      if (response.ok) {
+        const updated = await response.json();
+        setRequest(updated);
+        router.refresh();
+      } else {
+        console.error("Failed to update ritual steps");
+      }
+    } catch (error) {
+      console.error("Error updating ritual steps:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2">
-        <AdminRequestDetail
-          request={request}
-          onStatusChange={handleStatusChange}
-          onPriorityChange={handlePriorityChange}
-          onNotesChange={handleNotesChange}
-          loading={loading}
-        />
+    <div className="space-y-6">
+      {/* Main Detail and Actions Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <AdminRequestDetail
+            request={request}
+            onStatusChange={handleStatusChange}
+            onPriorityChange={handlePriorityChange}
+            onNotesChange={handleNotesChange}
+            loading={loading}
+          />
+        </div>
+        <div>
+          <RequestActionControls
+            request={request}
+            onAccept={handleAccept}
+            onDecline={handleDecline}
+            onAssign={handleAssign}
+            loading={loading}
+          />
+        </div>
       </div>
-      <div>
-        <RequestActionControls
-          request={request}
-          onAccept={handleAccept}
-          onDecline={handleDecline}
-          onAssign={handleAssign}
-          loading={loading}
-        />
-      </div>
+
+      {/* Ritual Progress Section */}
+      <RitualProgressUpdate
+        request={request}
+        requestId={request._id?.toString() || ""}
+        onProgressUpdate={handleProgressUpdate}
+        loading={loading}
+      />
     </div>
   );
 }

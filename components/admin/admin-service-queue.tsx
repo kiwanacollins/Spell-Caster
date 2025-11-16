@@ -33,6 +33,8 @@ interface AdminServiceQueueProps {
   requests: ServiceRequest[];
   onStatusChange?: (requestId: string, newStatus: ServiceRequestStatus) => void;
   onPriorityChange?: (requestId: string, priority: string) => void;
+  onSelectionChange?: (selectedIds: string[]) => void;
+  selectedIds?: string[];
   loading?: boolean;
 }
 
@@ -40,9 +42,26 @@ export function AdminServiceQueue({
   requests,
   onStatusChange,
   onPriorityChange,
+  onSelectionChange,
+  selectedIds = [],
   loading = false,
 }: AdminServiceQueueProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleSelection = (requestId: string) => {
+    const newSelected = selectedIds.includes(requestId)
+      ? selectedIds.filter(id => id !== requestId)
+      : [...selectedIds, requestId];
+    onSelectionChange?.(newSelected);
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedIds.length === requests.length) {
+      onSelectionChange?.([]);
+    } else {
+      onSelectionChange?.(requests.map(r => r._id?.toString() || ''));
+    }
+  };
 
   const getPriorityColor = (priority: string) => {
     const colors: { [key: string]: string } = {
@@ -63,6 +82,21 @@ export function AdminServiceQueue({
       on_hold: "bg-[#4A4A4A]/20 text-[#4A4A4A] border-[#4A4A4A]",
     };
     return colors[status] || "";
+  };
+
+  const handleToggleSelection = (requestId: string) => {
+    const newSelected = selectedIds.includes(requestId)
+      ? selectedIds.filter(id => id !== requestId)
+      : [...selectedIds, requestId];
+    onSelectionChange?.(newSelected);
+  };
+
+  const handleToggleSelectAll = () => {
+    if (selectedIds.length === requests.length && requests.length > 0) {
+      onSelectionChange?.([]);
+    } else {
+      onSelectionChange?.(requests.map(r => r._id?.toString() || ''));
+    }
   };
 
   return (
@@ -88,6 +122,14 @@ export function AdminServiceQueue({
           <Table>
             <TableHeader className="bg-[#8B6F47]/10">
               <TableRow className="hover:bg-transparent border-b-2 border-[#8B6F47]">
+                <TableHead className="w-12 text-center">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.length === requests.length && requests.length > 0}
+                    onChange={handleToggleSelectAll}
+                    className="w-4 h-4 cursor-pointer"
+                  />
+                </TableHead>
                 <TableHead className="text-[#1A1A1A] font-['MedievalSharp']">
                   Service
                 </TableHead>
@@ -114,6 +156,15 @@ export function AdminServiceQueue({
                   key={request._id?.toString()}
                   className="border-b border-[#8B6F47]/30 hover:bg-[#FFF9E6] transition-colors"
                 >
+                  <TableCell className="w-12 text-center">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.includes(request._id?.toString() || '')}
+                      onChange={() => handleToggleSelection(request._id?.toString() || '')}
+                      className="w-4 h-4 cursor-pointer"
+                    />
+                  </TableCell>
+
                   {/* Service Name */}
                   <TableCell className="font-['MedievalSharp'] text-[#1A1A1A]">
                     <Link

@@ -178,6 +178,28 @@ export {
   assignServiceRequest,
   updateRequestPriority,
   addAdminNotes,
+  updateRitualSteps,
   getServiceRequestAnalytics,
   getPendingRequestsByPriority,
 } from "./service-request-operations";
+
+// Request Template types and interfaces
+export type { RequestTemplate } from "./request-template";
+
+// Request Template helper functions
+export { createRequestTemplate } from "./request-template";
+
+// Request Template database operations
+export {
+  createRequestTemplateOp,
+  getRequestTemplate,
+  getActiveTemplates,
+  getTemplatesByServiceType,
+  getTemplatesByCategory,
+  updateRequestTemplate,
+  incrementTemplateUsage,
+  deleteRequestTemplate,
+  getTemplateCount,
+  searchTemplates,
+} from "./request-template-operations";
+

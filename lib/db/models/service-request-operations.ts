@@ -5,6 +5,7 @@ import {
   ServiceRequestStatus,
   PriorityLevel,
   RequestStatusUpdate,
+  RitualProgress,
   createServiceRequest,
 } from "./service-request";
 
@@ -382,3 +383,27 @@ export async function getPendingRequestsByPriority(): Promise<
 
   return priorityCounts;
 }
+
+/**
+ * Update ritual progress steps
+ */
+export async function updateRitualSteps(
+  requestId: string,
+  steps: RitualProgress[]
+): Promise<ServiceRequest | null> {
+  const db = await getDatabase();
+
+  const result = await db.collection("serviceRequest").findOneAndUpdate(
+    { _id: new ObjectId(requestId) },
+    {
+      $set: {
+        ritualSteps: steps,
+        updatedAt: new Date(),
+      },
+    },
+    { returnDocument: "after" }
+  );
+
+  return result.value as ServiceRequest | null;
+}
+

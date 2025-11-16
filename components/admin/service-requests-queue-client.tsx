@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AdminServiceQueue } from "@/components/admin/admin-service-queue";
+import { AdminBulkActionsClient } from "@/components/admin/admin-bulk-actions-client";
 import { ServiceRequest, ServiceRequestStatus } from "@/lib/db/models";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,8 +11,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 export function ServiceRequestsQueueClient() {
+  const router = useRouter();
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -46,52 +48,8 @@ export function ServiceRequestsQueueClient() {
     fetchRequests();
   }, [statusFilter, priorityFilter, searchTerm]);
 
-  const handleStatusChange = async (
-    requestId: string,
-    newStatus: ServiceRequestStatus
-  ) => {
-    try {
-      const response = await fetch(`/api/service-requests/${requestId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      });
-
-      if (response.ok) {
-        const updated = await response.json();
-        setRequests((prev) =>
-          prev.map((r) =>
-            r._id?.toString() === requestId ? updated : r
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Failed to update status:", error);
-    }
-  };
-
-  const handlePriorityChange = async (
-    requestId: string,
-    priority: string
-  ) => {
-    try {
-      const response = await fetch(`/api/service-requests/${requestId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ priority }),
-      });
-
-      if (response.ok) {
-        const updated = await response.json();
-        setRequests((prev) =>
-          prev.map((r) =>
-            r._id?.toString() === requestId ? updated : r
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Failed to update priority:", error);
-    }
+  const handleRefresh = () => {
+    router.refresh();
   };
 
   return (
@@ -148,13 +106,8 @@ export function ServiceRequestsQueueClient() {
         </div>
       </div>
 
-      {/* Queue Table */}
-      <AdminServiceQueue
-        requests={requests}
-        onStatusChange={handleStatusChange}
-        onPriorityChange={handlePriorityChange}
-        loading={loading}
-      />
+      {/* Bulk Actions with Queue Table */}
+      <AdminBulkActionsClient requests={requests} onRefresh={handleRefresh} />
     </div>
   );
 }
