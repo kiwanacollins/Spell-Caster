@@ -203,3 +203,20 @@ export {
   searchTemplates,
 } from "./request-template-operations";
 
+// Insight types and interfaces
+export type { Insight, InsightFrequency } from "./insight";
+
+// Insight helper functions
+export { createInsight } from "./insight";
+
+// Insight database operations
+export {
+  createInsightOp,
+  getInsightById,
+  updateInsightOp,
+  deleteInsightOp,
+  listInsights,
+  getActiveInsight,
+  setActiveInsight,
+} from "./insight-operations";
+

@@ -1,4 +1,5 @@
 import { getCurrentUser, isAdmin } from "@/lib/auth";
+import { getActiveInsight } from '@/lib/db/models/insight-operations';
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -26,6 +27,8 @@ export default async function DashboardPage() {
   // Get current time for greeting
   const currentHour = new Date().getHours();
   const greeting = currentHour < 12 ? "Good Morning" : currentHour < 18 ? "Good Afternoon" : "Good Evening";
+
+  const activeInsight = await getActiveInsight('daily');
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-linear-to-b from-[#2C2416] to-[#1A1A1A]">
@@ -78,7 +81,14 @@ export default async function DashboardPage() {
             Today&apos;s Mystical Insight
           </AlertTitle>
           <AlertDescription className="font-['Crimson_Text'] text-base text-[#C0C0C0] mt-2">
-            The universe whispers: &ldquo;Your intentions are powerful. Channel your energy toward what truly matters, and watch the cosmos align in your favor.&rdquo;
+            {activeInsight ? (
+              <div>
+                <strong>{activeInsight.title}</strong>
+                <div className="mt-1 text-sm" dangerouslySetInnerHTML={{ __html: activeInsight.content }} />
+              </div>
+            ) : (
+              'The universe whispers: "Your intentions are powerful. Channel your energy toward what truly matters, and watch the cosmos align in your favor."'
+            )}
           </AlertDescription>
         </Alert>
 
