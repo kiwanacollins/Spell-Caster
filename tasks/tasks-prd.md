@@ -34,9 +34,10 @@ Date: November 4, 2025
 - `app/(dashboard)/dashboard/progress/page.tsx` - Spiritual progress tracker
 - `app/(dashboard)/dashboard/payments/page.tsx` - Payments & billing
 - `app/(dashboard)/dashboard/profile/page.tsx` - Profile & settings
-- `app/(admin)/layout.tsx` - Admin portal layout with AdminRoute wrapper
+- `app/(admin)/layout.tsx` - Admin portal layout with AdminRoute wrapper (checks user.role === 'admin')
 - `app/(admin)/admin/page.tsx` - Admin dashboard with stats and quick actions
-- `app/(admin)/admin/users/page.tsx` - User management
+- `app/(admin)/admin/users/page.tsx` - User management with role assignment interface
+- `app/(admin)/admin/users/admins/page.tsx` - Admin users directory with promotion/demotion controls
 - `app/(admin)/admin/services/page.tsx` - Service request management
 - `app/(admin)/admin/testimonials/page.tsx` - Video testimonial management
 - `app/(admin)/admin/payments/page.tsx` - Financial management
@@ -64,6 +65,7 @@ Date: November 4, 2025
 - `app/api/testimonials/route.ts` - Testimonial operations (video upload, management)
 - `app/api/users/route.ts` - User management endpoints (list, search, profile management)
 - `app/api/users/[id]/route.ts` - Individual user CRUD operations (get, update, delete, admin actions)
+- `app/api/users/[id]/role/route.ts` - Admin role management endpoint (PUT promote/demote user to admin role, admin-only)
 - `app/api/users/me/route.ts` - Current user profile endpoint (get own profile, update own profile)
 - `app/api/sessions/route.ts` - Session management (get active sessions, login history, statistics, revoke sessions)
 - `app/api/contact/whatsapp/route.ts` - Generate WhatsApp contact links with pre-filled messages
@@ -138,6 +140,8 @@ Date: November 4, 2025
 - `components/user-refund-status-tracker.tsx` - User's refund requests display with status badges, admin notes, Stripe refund IDs using shadcn Card, Badge
 - `components/pending-payments-section.tsx` - Displays pending payments, due amounts, and payment plan details with status tracking using shadcn Card, Badge, Progress, Table
 - `components/admin-refund-management.tsx` - Admin refund management interface with metrics dashboard, filterable table, review/process dialogs, partial refund support using shadcn Table, Dialog, Input, Select, Badge
+- `components/admin/role-management-dialog.tsx` - Admin role assignment dialog with user search, role selection (user/admin), confirmation using shadcn Dialog, Select, Command
+- `components/admin/admin-users-list.tsx` - Admin users directory with role badges, promotion/demotion actions using shadcn Table, Badge, DropdownMenu
 - `components/admin-service-queue.tsx` - Service request management queue
 - `components/admin-ai-dashboard.tsx` - AI content generation usage analytics
 - `components/3d/floating-crystals.tsx` - Three.js crystal component
@@ -149,8 +153,8 @@ Date: November 4, 2025
 ### Library Files
 
 - `lib/db/mongodb.ts` - MongoDB connection and client
-- `lib/db/models/user.ts` - User model schema with spiritual profile, preferences, contact preferences (WhatsApp/Messenger)
-- `lib/db/models/user-operations.ts` - User database operations (CRUD, contact preference tracking)
+- `lib/db/models/user.ts` - User model schema with spiritual profile, preferences, contact preferences (WhatsApp/Messenger), role field (user/admin)
+- `lib/db/models/user-operations.ts` - User database operations (CRUD, contact preference tracking, admin role management, getUsersByRole)
 - `lib/db/models/session.ts` - Session and login history model schema with device tracking, location tracking, suspicious activity detection
 - `lib/db/models/session-operations.ts` - Session database operations (login tracking, active sessions, revocation, statistics)
 - `lib/db/models/service.ts` - Service model schema for all 15 services (type, pricing, duration, requirements)
@@ -167,8 +171,8 @@ Date: November 4, 2025
 - `lib/store/index.ts` - Barrel export for all Zustand stores
 - `lib/store/README.md` - Comprehensive state management documentation with usage examples and best practices
 - `lib/auth/auth.config.ts` - BetterAuth configuration with MongoDB adapter, email/password, OAuth providers (Google, Apple)
-- `lib/auth/session.ts` - Server-side session management utilities (getSession, getCurrentUser, requireAuth, requireAdmin, isAdmin, signOut)
-- `lib/auth/client.ts` - Client-side authentication helpers for React components (signIn, signUp, signOut, useSession)
+- `lib/auth/session.ts` - Server-side session management utilities (getSession, getCurrentUser, requireAuth, requireAdmin with role check, isAdmin, signOut)
+- `lib/auth/client.ts` - Client-side authentication helpers for React components (signIn with admin redirect logic, signUp, signOut, useSession)
 - `lib/auth/hooks.ts` - Client-side authentication hooks (useUser, useRequireAuth, useIsAdmin)
 - `lib/auth/index.ts` - Barrel export for all auth utilities
 - `lib/auth/README.md` - Authentication system documentation and usage examples
@@ -197,6 +201,11 @@ Date: November 4, 2025
 - `styles/textures.css` - Parchment and leather texture classes
 - `styles/animations.css` - Custom keyframe animations
 - `styles/particles.css` - Particle effect styles
+
+### Scripts
+
+- `scripts/test-mongodb.ts` - MongoDB connection test script
+- `scripts/seed-admin.ts` - Script to promote first user or specific user email to admin role
 
 ### Testing
 
@@ -375,69 +384,84 @@ Date: November 4, 2025
     - [ ] 4.4.9 Implement payment plan tracking for services over $200
 
 - [ ] 5.0 Admin Dashboard (Healer Portal) Implementation **[Use shadcn/ui components extensively]**
-  - [ ] 5.1 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
-  - [ ] 5.2 Build Admin Overview Dashboard
-    - [ ] 5.2.1 Create overview page with key metrics using shadcn Card components
-    - [ ] 5.2.2 Implement real-time activity feed for new service requests using shadcn ScrollArea, Badge, Avatar
-    - [ ] 5.2.3 Create Quick Stats Cards (completion rate, satisfaction, revenue, active requests) using shadcn Card
-    - [ ] 5.2.4 Add Revenue Snapshot with earnings breakdown by service type
-    - [ ] 5.2.5 Display pending service requests queue with priority indicators
-  - [ ] 5.3 Build Service Request Management System
-    - [ ] 5.3.1 Create service requests queue using shadcn Table with filtering by service type
-    - [ ] 5.3.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
-    - [ ] 5.3.3 Build request detail view using shadcn Sheet/Dialog with client information
-    - [ ] 5.3.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
-    - [ ] 5.3.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)
-    - [ ] 5.3.6 Create request templates for common services using shadcn Command, Dialog
-    - [ ] 5.3.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
-    - [ ] 5.3.8 Build request analytics (completion rate, average time, revenue by service) using shadcn Card, Chart
-  - [ ] 5.4 Build User Management System
-    - [ ] 5.4.1 Create user directory using shadcn Table, Input (search), Select for filtering
-    - [ ] 5.4.2 Build user profile view using shadcn Tabs with service history and internal notes
-    - [ ] 5.4.3 Implement user actions using shadcn DropdownMenu, Dialog (suspend, refund, grant credits, delete)
-    - [ ] 5.4.4 Add user segmentation using shadcn Badge (VIP, high-value, frequent requester)
-    - [ ] 5.4.5 Build bulk user operations using shadcn Checkbox, Command
-  - [ ] 5.5 Build Payment Management System
-    - [ ] 5.5.1 Create payments dashboard using shadcn Card with revenue metrics
-    - [ ] 5.5.2 Build transaction list using shadcn Table with filtering and export
-    - [ ] 5.5.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
-    - [ ] 5.5.4 Add financial reports generation using shadcn Form, Calendar for date ranges
-    - [ ] 5.5.5 Build pricing management for all 15 services using shadcn Form, Input
-    - [ ] 5.5.6 Create discount code management using shadcn Table, Dialog, Form
-    - [ ] 5.5.7 Implement subscription tracking using shadcn Table, Badge
-    - [ ] 5.5.8 Integrate Admin Refund Management UI (AdminRefundManagement component)
-      - [ ] 5.5.8.1 Add refund management page at /admin/payments/refunds route
-      - [ ] 5.5.8.2 Display refund metrics dashboard (pending, approved, processed, denied counts)
-      - [ ] 5.5.8.3 Build refund requests table with filtering by status using shadcn Table, Select
-      - [ ] 5.5.8.4 Implement review dialog for approving/denying refund requests using shadcn Dialog
-      - [ ] 5.5.8.5 Add process dialog for manually initiating Stripe refunds using shadcn Dialog, Input
-      - [ ] 5.5.8.6 Support partial refund amounts with validation
-      - [ ] 5.5.8.7 Display admin notes and status history for each refund request
-      - [ ] 5.5.8.8 Add navigation link to refund management in admin sidebar
-  - [ ] 5.6 Build Video Testimonials Management
-    - [ ] 5.6.1 Create testimonials management page using shadcn Table with approval queue
-    - [ ] 5.6.2 Implement video upload and management using shadcn Input (file), Card
-    - [ ] 5.6.3 Add testimonial actions using shadcn DropdownMenu (approve, reject, feature, archive)
-    - [ ] 5.6.4 Build testimonial analytics using shadcn Card (average rating, service-specific feedback)
-    - [ ] 5.6.5 Create testimonial association with specific services
-  - [ ] 5.7 Build Analytics & Insights System
-    - [ ] 5.7.1 Create analytics dashboard using shadcn Card, Tabs with service metrics
-    - [ ] 5.7.2 Add service performance tracking using shadcn Chart (requests, completions, revenue by service)
-    - [ ] 5.7.3 Implement user behavior analytics and journey mapping
-    - [ ] 5.7.4 Build conversion funnel tracking (landing → service view → request → payment)
-    - [ ] 5.7.5 Create custom reports builder using shadcn Form, Select with scheduled reports
-  - [ ] 5.8 Build Content Management System (CMS)
-    - [ ] 5.8.1 Create CMS interface using shadcn Textarea, Form for service page content
-    - [ ] 5.8.2 Build media library using shadcn Card, Dialog with upload and organization
-    - [ ] 5.8.3 Implement landing page management using shadcn Tabs
-    - [ ] 5.8.4 Create FAQ and email template management using shadcn Accordion, Textarea
-    - [ ] 5.8.5 Add mystical insights/guidance content editor
-  - [ ] 5.9 Build Settings & Configuration
-    - [ ] 5.9.1 Create settings page using shadcn Tabs, Form with business configuration
-    - [ ] 5.9.2 Implement notification preferences using shadcn Switch
-    - [ ] 5.9.3 Add integration settings using shadcn Form, Input (Stripe, WhatsApp, Messenger)
-    - [ ] 5.9.4 Build backup & security management using shadcn Card, Button, Alert
-    - [ ] 5.9.5 Create system health monitoring dashboard using shadcn Card, Badge, Progress
+  - [ ] 5.1 Admin Role-Based Authentication System
+    - [ ] 5.1.1 Add 'role' field to User model schema (values: 'user', 'admin')
+    - [ ] 5.1.2 Set default role to 'user' for new registrations
+    - [ ] 5.1.3 Create seed script to promote first user to admin role
+    - [ ] 5.1.4 Update session utilities to include user role in session data
+    - [ ] 5.1.5 Enhance requireAdmin() middleware to check role field
+    - [ ] 5.1.6 Update login form to redirect admins to /admin after authentication
+    - [ ] 5.1.7 Build admin user management page for role assignment
+    - [ ] 5.1.8 Create API endpoint to promote/demote users to admin role (admin-only)
+    - [ ] 5.1.9 Add admin role badge display in user profile
+    - [ ] 5.1.10 Implement admin invite system (optional: send invite email with one-time setup link)
+  - [ ] 5.2 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
+  - [ ] 5.3 Build Admin Overview Dashboard
+    - [ ] 5.3.1 Create overview page with key metrics using shadcn Card components
+    - [ ] 5.3.2 Implement real-time activity feed for new service requests using shadcn ScrollArea, Badge, Avatar
+    - [ ] 5.3.3 Create Quick Stats Cards (completion rate, satisfaction, revenue, active requests) using shadcn Card
+    - [ ] 5.3.4 Add Revenue Snapshot with earnings breakdown by service type
+    - [ ] 5.3.5 Display pending service requests queue with priority indicators
+  - [ ] 5.4 Build Service Request Management System
+    - [ ] 5.4.1 Create service requests queue using shadcn Table with filtering by service type
+    - [ ] 5.4.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
+    - [ ] 5.4.3 Build request detail view using shadcn Sheet/Dialog with client information
+    - [ ] 5.4.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
+    - [ ] 5.4.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)
+    - [ ] 5.4.6 Create request templates for common services using shadcn Command, Dialog
+    - [ ] 5.4.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
+    - [ ] 5.4.8 Build request analytics (completion rate, average time, revenue by service) using shadcn Card, Chart
+  - [ ] 5.5 Build User Management System
+    - [ ] 5.5.1 Create user directory using shadcn Table, Input (search), Select for filtering
+    - [ ] 5.5.2 Build user profile view using shadcn Tabs with service history and internal notes
+    - [ ] 5.5.3 Implement user actions using shadcn DropdownMenu, Dialog (suspend, refund, grant credits, delete)
+    - [ ] 5.5.4 Add user segmentation using shadcn Badge (VIP, high-value, frequent requester)
+    - [ ] 5.5.5 Build bulk user operations using shadcn Checkbox, Command
+    - [ ] 5.5.6 Add admin role management interface using shadcn Dialog, Select
+    - [ ] 5.5.7 Create "Promote to Admin" action in user dropdown menu
+    - [ ] 5.5.8 Build admin users list view with role badges
+    - [ ] 5.5.9 Implement admin activity log (track admin actions, role changes)
+  - [ ] 5.6 Build Payment Management System
+    - [ ] 5.6.1 Create payments dashboard using shadcn Card with revenue metrics
+    - [ ] 5.6.2 Build transaction list using shadcn Table with filtering and export
+    - [ ] 5.6.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
+    - [ ] 5.6.4 Add financial reports generation using shadcn Form, Calendar for date ranges
+    - [ ] 5.6.5 Build pricing management for all 15 services using shadcn Form, Input
+    - [ ] 5.6.6 Create discount code management using shadcn Table, Dialog, Form
+    - [ ] 5.6.7 Implement subscription tracking using shadcn Table, Badge
+    - [ ] 5.6.8 Integrate Admin Refund Management UI (AdminRefundManagement component)
+      - [ ] 5.6.8.1 Add refund management page at /admin/payments/refunds route
+      - [ ] 5.6.8.2 Display refund metrics dashboard (pending, approved, processed, denied counts)
+      - [ ] 5.6.8.3 Build refund requests table with filtering by status using shadcn Table, Select
+      - [ ] 5.6.8.4 Implement review dialog for approving/denying refund requests using shadcn Dialog
+      - [ ] 5.6.8.5 Add process dialog for manually initiating Stripe refunds using shadcn Dialog, Input
+      - [ ] 5.6.8.6 Support partial refund amounts with validation
+      - [ ] 5.6.8.7 Display admin notes and status history for each refund request
+      - [ ] 5.6.8.8 Add navigation link to refund management in admin sidebar
+  - [ ] 5.7 Build Video Testimonials Management
+    - [ ] 5.7.1 Create testimonials management page using shadcn Table with approval queue
+    - [ ] 5.7.2 Implement video upload and management using shadcn Input (file), Card
+    - [ ] 5.7.3 Add testimonial actions using shadcn DropdownMenu (approve, reject, feature, archive)
+    - [ ] 5.7.4 Build testimonial analytics using shadcn Card (average rating, service-specific feedback)
+    - [ ] 5.7.5 Create testimonial association with specific services
+  - [ ] 5.8 Build Analytics & Insights System
+    - [ ] 5.8.1 Create analytics dashboard using shadcn Card, Tabs with service metrics
+    - [ ] 5.8.2 Add service performance tracking using shadcn Chart (requests, completions, revenue by service)
+    - [ ] 5.8.3 Implement user behavior analytics and journey mapping
+    - [ ] 5.8.4 Build conversion funnel tracking (landing → service view → request → payment)
+    - [ ] 5.8.5 Create custom reports builder using shadcn Form, Select with scheduled reports
+  - [ ] 5.9 Build Content Management System (CMS)
+    - [ ] 5.9.1 Create CMS interface using shadcn Textarea, Form for service page content
+    - [ ] 5.9.2 Build media library using shadcn Card, Dialog with upload and organization
+    - [ ] 5.9.3 Implement landing page management using shadcn Tabs
+    - [ ] 5.9.4 Create FAQ and email template management using shadcn Accordion, Textarea
+    - [ ] 5.9.5 Add mystical insights/guidance content editor
+  - [ ] 5.10 Build Settings & Configuration
+    - [ ] 5.10.1 Create settings page using shadcn Tabs, Form with business configuration
+    - [ ] 5.10.2 Implement notification preferences using shadcn Switch
+    - [ ] 5.10.3 Add integration settings using shadcn Form, Input (Stripe, WhatsApp, Messenger)
+    - [ ] 5.10.4 Build backup & security management using shadcn Card, Button, Alert
+    - [ ] 5.10.5 Create system health monitoring dashboard using shadcn Card, Badge, Progress
 
 - [ ] 6.0 External Communication Integration (WhatsApp & Messenger) **[No Built-in Messaging]**
   - [ ] 6.1 Create WhatsApp contact links with pre-filled service-specific messages
