@@ -154,3 +154,30 @@ export {
   getPaymentStats,
   markPaymentAsOverdue,
 } from "./payment-operations";
+
+// Service Request types and interfaces
+export type {
+  ServiceRequest,
+  ServiceRequestStatus,
+  PriorityLevel,
+  RequestStatusUpdate,
+  RitualProgress,
+} from "./service-request";
+
+// Service Request helper functions
+export { createServiceRequest } from "./service-request";
+
+// Service Request database operations
+export {
+  createServiceRequestOp,
+  getServiceRequest,
+  getUserServiceRequests,
+  getAdminServiceRequests,
+  getServiceRequestCount,
+  updateServiceRequestStatus,
+  assignServiceRequest,
+  updateRequestPriority,
+  addAdminNotes,
+  getServiceRequestAnalytics,
+  getPendingRequestsByPriority,
+} from "./service-request-operations";

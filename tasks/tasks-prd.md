@@ -62,6 +62,9 @@ Date: November 4, 2025
 - `app/api/payments/refund-request/[id]/process/route.ts` - Admin endpoint to manually initiate Stripe refunds (POST process refund)
 - `app/api/payments/refund-request/admin/pending/route.ts` - Admin endpoint for pending refund queue (GET pending/approved refunds)
 - `app/api/payments/pending/route.ts` - User endpoint to fetch pending payments and due amounts (GET user's pending payments)
+- `app/api/service-requests/route.ts` - Service request CRUD endpoints (GET all/user requests, POST create request with filtering and pagination)
+- `app/api/service-requests/[id]/route.ts` - Individual service request endpoints (GET request, PUT update status/priority/notes/assignment)
+- `app/api/service-requests/analytics/metrics/route.ts` - Admin analytics endpoint (GET aggregated metrics, completion rates, pending queue by priority)
 - `app/api/ai/generate-content/route.ts` - AI content generation (service descriptions, guidance, blog articles)
 - `app/api/ai/service-recommendations/route.ts` - AI service recommendation engine
 - `app/api/testimonials/route.ts` - Testimonial operations (video upload, management)
@@ -146,6 +149,15 @@ Date: November 4, 2025
 - `components/pending-payments-section.tsx` - Displays pending payments, due amounts, and payment plan details with status tracking using shadcn Card, Badge, Progress, Table
 - `components/admin-refund-management.tsx` - Admin refund management interface with metrics dashboard, filterable table, review/process dialogs, partial refund support using shadcn Table, Dialog, Input, Select, Badge
 - `components/admin/role-management-dialog.tsx` - Admin role assignment dialog with user search, role selection (user/admin), confirmation using shadcn Dialog, Select, Command
+- `components/admin/admin-sidebar.tsx` - Admin sidebar navigation with collapsible items (8 main sections: Dashboard, Users, Service Requests, Testimonials, Payments, Analytics, Content, Settings), active page highlighting, user info header, logout button, ancient mystical styling
+- `components/admin/admin-layout-client.tsx` - Client wrapper component combining AdminSidebar with main content area layout (sidebar 256px, main content flex-1)
+- `components/admin/admin-quick-stats.tsx` - Dashboard quick stats card grid (4 columns) displaying metrics with trend indicators and sub-text
+- `components/admin/admin-activity-feed.tsx` - Real-time activity feed with user signups, payments, service requests using ScrollArea and Badge
+- `components/admin/admin-revenue-breakdown.tsx` - Revenue snapshot dashboard showing monthly revenue, breakdown by service type with percentages and progress bars, average order value
+- `components/admin/admin-pending-requests.tsx` - Pending service requests queue display with priority indicators, requestor info, timestamps, linked to detail pages
+- `components/admin/admin-service-queue.tsx` - Admin service request management table with sortable columns, status/priority dropdowns, filtering, action menu using shadcn Table, Select, DropdownMenu
+- `components/admin/service-requests-queue-client.tsx` - Client component for service requests page with filtering (status/priority/search), real-time updates via API
+- `app/(admin)/admin/requests/page.tsx` - Admin service request management page with header, filters, and queue component
 - `components/admin/admin-users-list.tsx` - Admin users directory with role badges, promotion/demotion actions using shadcn Table, Badge, DropdownMenu
 - `components/admin/admin-users-management.tsx` - Comprehensive user management component with search, role filter, user table, role change dialog, stats dashboard using shadcn components
 - `components/admin-service-queue.tsx` - Service request management queue
@@ -171,6 +183,8 @@ Date: November 4, 2025
 - `lib/db/models/payment-operations.ts` - Payment database operations (create payment records, fetch pending payments, update installments, track overdue amounts)
 - `lib/db/models/refund-request.ts` - Refund request model schema (userId, paymentIntentId, amount, serviceName, reason, status, adminNotes, statusHistory, timestamps)
 - `lib/db/models/refund-operations.ts` - Refund request database operations (create, getUserRefunds, getPendingRefunds, updateRefund, updateWithStripeInfo, updateFromWebhook, getRefundStats)
+- `lib/db/models/service-request.ts` - ServiceRequest schema with status workflow, priority levels, ritual progress tracking, admin notes, payment references
+- `lib/db/models/service-request-operations.ts` - Service request database operations (CRUD, filtering, status updates, assignment, priority management, analytics aggregation)
 - `lib/db/models/testimonial.ts` - Video testimonial model schema
 - `lib/db/models/index.ts` - Barrel export for all database models
 - `lib/store/user-store.ts` - Zustand store for user profile, service history, contact preferences
@@ -183,6 +197,7 @@ Date: November 4, 2025
 - `lib/auth/client.ts` - Client-side authentication helpers for React components (signIn with admin redirect logic, signUp, signOut, useSession)
 - `lib/auth/hooks.ts` - Client-side authentication hooks (useUser, useRequireAuth, useIsAdmin)
 - `lib/auth/index.ts` - Barrel export for all auth utilities
+- `lib/admin/dashboard-data.ts` - Server-side utilities for fetching admin metrics, activity feed, revenue breakdown, quick stats, and pending requests with aggregation pipelines
 - `lib/auth/README.md` - Authentication system documentation and usage examples
 - `lib/payments/stripe.ts` - Stripe client and utilities (enhanced refundPayment with partial refund support, metadata tracking)
 - `lib/payments/pricing.ts` - Pricing calculations and management for all 15 services
@@ -415,16 +430,21 @@ Date: November 4, 2025
       - [✓] 5.1.10.9 Build /app/admin/invite/[token] page for public invite acceptance
       - [ ] 5.1.10.10 Implement email notification system for invite links
       - [ ] 5.1.10.11 Create invite acceptance UI with form (email, password, display name)
-  - [ ] 5.2 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
-  - [ ] 5.3 Build Admin Overview Dashboard
-    - [ ] 5.3.1 Create overview page with key metrics using shadcn Card components
-    - [ ] 5.3.2 Implement real-time activity feed for new service requests using shadcn ScrollArea, Badge, Avatar
-    - [ ] 5.3.3 Create Quick Stats Cards (completion rate, satisfaction, revenue, active requests) using shadcn Card
-    - [ ] 5.3.4 Add Revenue Snapshot with earnings breakdown by service type
-    - [ ] 5.3.5 Display pending service requests queue with priority indicators
+  - [✓] 5.2 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
+    - [✓] 5.2.1 Create AdminSidebar component with collapsible navigation (8 sections, 4 parent items with children)
+    - [✓] 5.2.2 Create AdminLayoutClient wrapper component combining sidebar + main content area
+    - [✓] 5.2.3 Update /app/(admin)/layout.tsx to use AdminLayoutClient with getCurrentUser()
+    - [✓] 5.2.4 Fix react-icons imports (replace non-existent Gi icons with Fi alternatives)
+    - [✓] 5.2.5 Verify build compiles successfully
+  - [✓] 5.3 Build Admin Overview Dashboard
+    - [✓] 5.3.1 Create overview page with key metrics using shadcn Card components
+    - [✓] 5.3.2 Implement real-time activity feed for new service requests using shadcn ScrollArea, Badge, Avatar
+    - [✓] 5.3.3 Create Quick Stats Cards (completion rate, satisfaction, revenue, active requests) using shadcn Card
+    - [✓] 5.3.4 Add Revenue Snapshot with earnings breakdown by service type
+    - [✓] 5.3.5 Display pending service requests queue with priority indicators
   - [ ] 5.4 Build Service Request Management System
-    - [ ] 5.4.1 Create service requests queue using shadcn Table with filtering by service type
-    - [ ] 5.4.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
+    - [✓] 5.4.1 Create service requests queue using shadcn Table with filtering by service type
+    - [✓] 5.4.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
     - [ ] 5.4.3 Build request detail view using shadcn Sheet/Dialog with client information
     - [ ] 5.4.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
     - [ ] 5.4.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)

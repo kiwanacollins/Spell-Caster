@@ -1,13 +1,16 @@
 import { AdminRoute } from "@/components/auth/admin-route";
+import { getCurrentUser } from "@/lib/auth";
+import { AdminLayoutClient } from "@/components/admin/admin-layout-client";
 import { ReactNode } from "react";
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({ children }: { children: ReactNode }) {
+  const user = await getCurrentUser();
+
   return (
     <AdminRoute>
-      <div className="min-h-screen bg-[#1A1A1A]">
-        {/* Admin dashboard wrapper - actual layout will be added in admin implementation tasks */}
+      <AdminLayoutClient userName={user?.name} userEmail={user?.email}>
         {children}
-      </div>
+      </AdminLayoutClient>
     </AdminRoute>
   );
 }
