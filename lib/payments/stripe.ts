@@ -193,23 +193,50 @@ export function getPaymentMethodDisplay(paymentMethod: Stripe.PaymentMethod): st
 }
 
 /**
- * Refund a payment
+ * Refund a payment (manual admin-initiated)
+ * 
+ * Called by admin after reviewing and approving a refund request
+ * Performs actual Stripe refund with optional partial refund support
  */
 export async function refundPayment(
   paymentIntentId: string,
-  amount?: number
-): Promise<{ success: boolean; refundId?: string; error?: string }> {
+  amount?: number,
+  reason?: string
+): Promise<{
+  success: boolean;
+  refundId?: string;
+  amount?: number;
+  currency?: string;
+  status?: string;
+  error?: string;
+}> {
   try {
     const stripe = getStripeClient();
 
-    const refund = await stripe.refunds.create({
+    const refundParams: any = {
       payment_intent: paymentIntentId,
-      ...(amount && { amount }),
-    });
+    };
+
+    // Add optional amount (in cents) and reason
+    if (amount) {
+      refundParams.amount = amount;
+    }
+
+    if (reason) {
+      refundParams.metadata = {
+        reason,
+        requestedAt: new Date().toISOString(),
+      };
+    }
+
+    const refund = await stripe.refunds.create(refundParams);
 
     return {
       success: true,
       refundId: refund.id,
+      amount: refund.amount,
+      currency: refund.currency,
+      status: refund.status, // 'succeeded' | 'failed' | 'pending'
     };
   } catch (error) {
     const stripeError = error as Stripe.errors.StripeError;

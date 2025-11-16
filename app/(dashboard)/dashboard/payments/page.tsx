@@ -18,6 +18,7 @@ import {
 } from "react-icons/gi";
 import { IoCheckmarkCircle, IoWarning, IoDownload, IoCashOutline, IoFilter, IoCard } from "react-icons/io5";
 import { generateInvoiceFromTransaction, downloadReceiptAsText } from "@/lib/utils/invoice-generator";
+import { RefundRequestDialog, RefundRequestInput } from "@/components/refund-request-dialog";
 import { useState } from "react";
 
 /**
@@ -27,6 +28,8 @@ import { useState } from "react";
 export default function PaymentsPage() {
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
   const [selectedSubscription, setSelectedSubscription] = useState<typeof subscriptions[0] | null>(null);
+  const [refundDialogOpen, setRefundDialogOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState<typeof allTransactions[0] | null>(null);
 
   // Handle invoice download
   const handleDownloadInvoice = (txn: typeof allTransactions[0]) => {
@@ -39,6 +42,35 @@ export default function PaymentsPage() {
       txn.status as "completed" | "pending" | "failed"
     );
     downloadReceiptAsText(invoice);
+  };
+
+  // Handle refund request
+  const handleRequestRefund = (txn: typeof allTransactions[0]) => {
+    setSelectedTransaction(txn);
+    setRefundDialogOpen(true);
+  };
+
+  // Submit refund request
+  const handleSubmitRefundRequest = async (refundRequest: RefundRequestInput) => {
+    try {
+      const response = await fetch('/api/payments/refund-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(refundRequest),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to submit refund request');
+      }
+
+      // Show success toast (implement with notification store if available)
+      console.log('Refund request submitted successfully');
+      setRefundDialogOpen(false);
+      setSelectedTransaction(null);
+    } catch (error) {
+      throw error;
+    }
   };
 
   // Handle subscription cancellation
@@ -381,7 +413,7 @@ export default function PaymentsPage() {
                         <TableHead className="font-['MedievalSharp'] text-[#F4E8D0]">Payment Method</TableHead>
                         <TableHead className="font-['MedievalSharp'] text-[#F4E8D0]">Amount</TableHead>
                         <TableHead className="font-['MedievalSharp'] text-[#F4E8D0]">Status</TableHead>
-                        <TableHead className="font-['MedievalSharp'] text-[#F4E8D0]">Invoice</TableHead>
+                        <TableHead className="font-['MedievalSharp'] text-[#F4E8D0]">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -413,15 +445,28 @@ export default function PaymentsPage() {
                             </Badge>
                           </TableCell>
                           <TableCell>
-                            <Button
-                              onClick={() => handleDownloadInvoice(txn)}
-                              variant="outline"
-                              size="sm"
-                              className="border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-[#1A1A1A] font-['Crimson_Text']"
-                              title="Download receipt"
-                            >
-                              <IoDownload className="w-4 h-4" />
-                            </Button>
+                            <div className="flex gap-2">
+                              <Button
+                                onClick={() => handleDownloadInvoice(txn)}
+                                variant="outline"
+                                size="sm"
+                                className="border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-[#1A1A1A] font-['Crimson_Text']"
+                                title="Download receipt"
+                              >
+                                <IoDownload className="w-4 h-4" />
+                              </Button>
+                              {txn.status === 'completed' && (
+                                <Button
+                                  onClick={() => handleRequestRefund(txn)}
+                                  variant="outline"
+                                  size="sm"
+                                  className="border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-[#1A1A1A] font-['Crimson_Text']"
+                                  title="Request refund"
+                                >
+                                  <GiReceiveMoney className="w-4 h-4" />
+                                </Button>
+                              )}
+                            </div>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -690,6 +735,17 @@ export default function PaymentsPage() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Refund Request Dialog */}
+        <RefundRequestDialog
+          isOpen={refundDialogOpen}
+          onClose={() => {
+            setRefundDialogOpen(false);
+            setSelectedTransaction(null);
+          }}
+          transaction={selectedTransaction}
+          onSubmit={handleSubmitRefundRequest}
+        />
 
         {/* Help Alert */}
         <Alert className="border-2 border-[#B8860B] bg-[#2C2416] text-[#F4E8D0]">

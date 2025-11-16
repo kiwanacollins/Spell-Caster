@@ -40,6 +40,7 @@ Date: November 4, 2025
 - `app/(admin)/admin/services/page.tsx` - Service request management
 - `app/(admin)/admin/testimonials/page.tsx` - Video testimonial management
 - `app/(admin)/admin/payments/page.tsx` - Financial management
+- `app/(admin)/admin/payments/refunds/page.tsx` - Refund management interface with AdminRefundManagement component
 - `app/(admin)/admin/analytics/page.tsx` - Analytics dashboard
 - `app/(admin)/admin/cms/page.tsx` - Content management
 - `app/(admin)/admin/settings/page.tsx` - Admin settings
@@ -53,6 +54,10 @@ Date: November 4, 2025
 - `app/api/service-requests/[id]/route.ts` - Individual service request operations
 - `app/api/payments/route.ts` - Payment processing
 - `app/api/payments/webhook/route.ts` - Stripe webhook handler
+- `app/api/payments/refund-request/route.ts` - User refund request endpoints (POST create request, GET user's refunds)
+- `app/api/payments/refund-request/[id]/route.ts` - Admin refund request endpoints (GET single refund, PUT update status/approve/deny)
+- `app/api/payments/refund-request/[id]/process/route.ts` - Admin endpoint to manually initiate Stripe refunds (POST process refund)
+- `app/api/payments/refund-request/admin/pending/route.ts` - Admin endpoint for pending refund queue (GET pending/approved refunds)
 - `app/api/ai/generate-content/route.ts` - AI content generation (service descriptions, guidance, blog articles)
 - `app/api/ai/service-recommendations/route.ts` - AI service recommendation engine
 - `app/api/testimonials/route.ts` - Testimonial operations (video upload, management)
@@ -128,6 +133,9 @@ Date: November 4, 2025
 - `components/navigation/mobile-nav.tsx` - Mobile navigation with ancient scroll Sheet component, responsive menu using react-icons
 - `components/service-request-form.tsx` - Multi-step service request form for all 15 services
 - `components/payment-checkout.tsx` - Stripe checkout integration for service payments
+- `components/refund-request-dialog.tsx` - User-facing refund request submission dialog with reason selection, message input, transaction summary using shadcn Dialog, Select, Textarea
+- `components/user-refund-status-tracker.tsx` - User's refund requests display with status badges, admin notes, Stripe refund IDs using shadcn Card, Badge
+- `components/admin-refund-management.tsx` - Admin refund management interface with metrics dashboard, filterable table, review/process dialogs, partial refund support using shadcn Table, Dialog, Input, Select, Badge
 - `components/admin-service-queue.tsx` - Service request management queue
 - `components/admin-ai-dashboard.tsx` - AI content generation usage analytics
 - `components/3d/floating-crystals.tsx` - Three.js crystal component
@@ -146,6 +154,8 @@ Date: November 4, 2025
 - `lib/db/models/service.ts` - Service model schema for all 15 services (type, pricing, duration, requirements)
 - `lib/db/models/service-request.ts` - Service request model schema (user, service type, status, payment, notes)
 - `lib/db/models/payment.ts` - Payment model schema
+- `lib/db/models/refund-request.ts` - Refund request model schema (userId, paymentIntentId, amount, serviceName, reason, status, adminNotes, statusHistory, timestamps)
+- `lib/db/models/refund-operations.ts` - Refund request database operations (create, getUserRefunds, getPendingRefunds, updateRefund, updateWithStripeInfo, updateFromWebhook, getRefundStats)
 - `lib/db/models/testimonial.ts` - Video testimonial model schema
 - `lib/db/models/index.ts` - Barrel export for all database models
 - `lib/store/user-store.ts` - Zustand store for user profile, service history, contact preferences
@@ -159,8 +169,9 @@ Date: November 4, 2025
 - `lib/auth/hooks.ts` - Client-side authentication hooks (useUser, useRequireAuth, useIsAdmin)
 - `lib/auth/index.ts` - Barrel export for all auth utilities
 - `lib/auth/README.md` - Authentication system documentation and usage examples
-- `lib/payments/stripe.ts` - Stripe client and utilities
+- `lib/payments/stripe.ts` - Stripe client and utilities (enhanced refundPayment with partial refund support, metadata tracking)
 - `lib/payments/pricing.ts` - Pricing calculations and management for all 15 services
+- `lib/utils/refund-notifications.ts` - Refund notification templates for all status changes (pending, approved, denied, processed, failed) with email/WhatsApp/in-app formatting
 - `lib/ai/openai.ts` - OpenAI client configuration
 - `lib/ai/prompts.ts` - AI prompt templates for service descriptions, guidance, blog content
 - `lib/ai/content-generator.ts` - AI content generation logic (service pages, mystical insights, FAQs)
@@ -356,7 +367,7 @@ Date: November 4, 2025
     - [✓] 4.4.4 Add invoice downloads using shadcn Button and receipt generation
     - [✓] 4.4.5 Build subscription management for recurring services using shadcn Card, Switch, Badge
     - [✓] 4.4.6 Create payment processing for service requests with Stripe integration
-    - [ ] 4.4.7 Add refund request functionality using shadcn Dialog
+    - [✓] 4.4.7 Add refund request functionality using shadcn Dialog
     - [ ] 4.4.8 Display pending payments and due amounts
     - [ ] 4.4.9 Implement payment plan tracking for services over $200
 
@@ -391,6 +402,15 @@ Date: November 4, 2025
     - [ ] 5.5.5 Build pricing management for all 15 services using shadcn Form, Input
     - [ ] 5.5.6 Create discount code management using shadcn Table, Dialog, Form
     - [ ] 5.5.7 Implement subscription tracking using shadcn Table, Badge
+    - [ ] 5.5.8 Integrate Admin Refund Management UI (AdminRefundManagement component)
+      - [ ] 5.5.8.1 Add refund management page at /admin/payments/refunds route
+      - [ ] 5.5.8.2 Display refund metrics dashboard (pending, approved, processed, denied counts)
+      - [ ] 5.5.8.3 Build refund requests table with filtering by status using shadcn Table, Select
+      - [ ] 5.5.8.4 Implement review dialog for approving/denying refund requests using shadcn Dialog
+      - [ ] 5.5.8.5 Add process dialog for manually initiating Stripe refunds using shadcn Dialog, Input
+      - [ ] 5.5.8.6 Support partial refund amounts with validation
+      - [ ] 5.5.8.7 Display admin notes and status history for each refund request
+      - [ ] 5.5.8.8 Add navigation link to refund management in admin sidebar
   - [ ] 5.6 Build Video Testimonials Management
     - [ ] 5.6.1 Create testimonials management page using shadcn Table with approval queue
     - [ ] 5.6.2 Implement video upload and management using shadcn Input (file), Card
