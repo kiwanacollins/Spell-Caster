@@ -155,9 +155,13 @@ Date: November 4, 2025
 - `components/admin/admin-activity-feed.tsx` - Real-time activity feed with user signups, payments, service requests using ScrollArea and Badge
 - `components/admin/admin-revenue-breakdown.tsx` - Revenue snapshot dashboard showing monthly revenue, breakdown by service type with percentages and progress bars, average order value
 - `components/admin/admin-pending-requests.tsx` - Pending service requests queue display with priority indicators, requestor info, timestamps, linked to detail pages
+- `components/admin/admin-request-detail.tsx` - Request detail component showing client info, service details, admin notes, status history, update controls
+- `components/admin/request-detail-client.tsx` - Client wrapper for AdminRequestDetail with real-time status/priority/notes update handlers
+- `components/admin/request-action-controls.tsx` - Action controls for requests: Accept, Decline (with reason), Assign admin; status-specific guidance for in-progress requests
 - `components/admin/admin-service-queue.tsx` - Admin service request management table with sortable columns, status/priority dropdowns, filtering, action menu using shadcn Table, Select, DropdownMenu
 - `components/admin/service-requests-queue-client.tsx` - Client component for service requests page with filtering (status/priority/search), real-time updates via API
 - `app/(admin)/admin/requests/page.tsx` - Admin service request management page with header, filters, and queue component
+- `app/(admin)/admin/requests/[id]/page.tsx` - Request detail page with server-side auth check, data fetching, client component wrapper
 - `components/admin/admin-users-list.tsx` - Admin users directory with role badges, promotion/demotion actions using shadcn Table, Badge, DropdownMenu
 - `components/admin/admin-users-management.tsx` - Comprehensive user management component with search, role filter, user table, role change dialog, stats dashboard using shadcn components
 - `components/admin-service-queue.tsx` - Service request management queue
@@ -445,8 +449,8 @@ Date: November 4, 2025
   - [ ] 5.4 Build Service Request Management System
     - [✓] 5.4.1 Create service requests queue using shadcn Table with filtering by service type
     - [✓] 5.4.2 Implement request status workflow (Pending → In Progress → Completed) using shadcn Select, Badge
-    - [ ] 5.4.3 Build request detail view using shadcn Sheet/Dialog with client information
-    - [ ] 5.4.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
+    - [✓] 5.4.3 Build request detail view using shadcn Sheet/Dialog with client information
+    - [✓] 5.4.4 Add request action controls using shadcn Button (accept/decline, update status, add notes)
     - [ ] 5.4.5 Implement photo/video upload for ritual progress updates using shadcn Input (file)
     - [ ] 5.4.6 Create request templates for common services using shadcn Command, Dialog
     - [ ] 5.4.7 Add bulk request operations using shadcn Checkbox, DropdownMenu
