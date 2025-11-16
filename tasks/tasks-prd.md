@@ -350,16 +350,15 @@ Date: November 4, 2025
     - [✓] 4.3.19 Add testimonials specific to each service type (Service-specific testimonials data structure created)
     - [✓] 4.3.20 Include ritual timeline and what to expect sections (All services include timeline, process, and outcomes)
   - [ ] 4.4 Build Payments & Billing Page
-    - [ ] 4.4.1 Create payments overview dashboard using shadcn Card components
-    - [ ] 4.4.2 Display transaction history using shadcn Table with filtering
-    - [ ] 4.4.3 Implement Stripe payment method management using shadcn Card, Button
-    - [ ] 4.4.4 Add invoice downloads using shadcn Button and receipt generation
-    - [ ] 4.4.5 Build subscription management for recurring services using shadcn Card, Switch, Badge
-    - [ ] 4.4.6 Create payment processing for service requests with Stripe integration
+    - [✓] 4.4.1 Create payments overview dashboard using shadcn Card components
+    - [✓] 4.4.2 Display transaction history using shadcn Table with filtering
+    - [✓] 4.4.3 Implement Stripe payment method management using shadcn Card, Button
+    - [✓] 4.4.4 Add invoice downloads using shadcn Button and receipt generation
+    - [✓] 4.4.5 Build subscription management for recurring services using shadcn Card, Switch, Badge
+    - [✓] 4.4.6 Create payment processing for service requests with Stripe integration
     - [ ] 4.4.7 Add refund request functionality using shadcn Dialog
     - [ ] 4.4.8 Display pending payments and due amounts
     - [ ] 4.4.9 Implement payment plan tracking for services over $200
-    - [ ] 4.4.10 Add discount code application interface
 
 - [ ] 5.0 Admin Dashboard (Healer Portal) Implementation **[Use shadcn/ui components extensively]**
   - [ ] 5.1 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
