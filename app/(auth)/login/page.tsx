@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { signIn } from "@/lib/auth/client";
+import { signIn, useSession } from "@/lib/auth/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -19,11 +19,26 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
  */
 export default function LoginPage() {
   const router = useRouter();
+  const { data: session, isPending: isCheckingSession } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Check if already authenticated and redirect based on role
+  useEffect(() => {
+    if (session?.user && !isCheckingSession) {
+      const userRole = (session.user as any)?.role as string | undefined;
+      
+      // Redirect to appropriate dashboard based on role
+      if (userRole === "admin") {
+        router.push("/admin");
+      } else {
+        router.push("/dashboard");
+      }
+    }
+  }, [session, isCheckingSession, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +57,8 @@ export default function LoginPage() {
         return;
       }
 
-      // Redirect to dashboard on success
-      router.push("/dashboard");
+      // Note: Redirection will be handled by the useEffect hook above
+      // once the session is updated with the new user role
     } catch (err) {
       setError("Something went wrong. Please try again.");
       setIsLoading(false);

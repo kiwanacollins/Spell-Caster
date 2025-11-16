@@ -5,8 +5,19 @@ export {
   requireAuth,
   requireAdmin,
   isAdmin,
+  getUserRole,
   signOut,
 } from "./session";
+
+// API route middleware (for NextJS API routes)
+export {
+  requireAuthMiddleware,
+  requireAdminMiddleware,
+  hasAdminRole,
+  hasUserRole,
+  getUserRoleFromObject,
+  validateUserRole,
+} from "./middleware";
 
 // Client-side auth helpers
 export {
@@ -21,4 +32,5 @@ export {
   useUser,
   useRequireAuth,
   useIsAdmin,
+  useUserRole,
 } from "./hooks";

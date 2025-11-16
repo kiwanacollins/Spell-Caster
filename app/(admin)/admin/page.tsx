@@ -1,5 +1,6 @@
 import { getCurrentUser, isAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function AdminDashboardPage() {
   const user = await getCurrentUser();
@@ -71,7 +72,30 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Quick actions */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Quick actions */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <Link href="/admin/users" className="group">
+            <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-6 hover:border-[#CC8800] transition-colors cursor-pointer h-full">
+              <h3 className="text-xl font-['MedievalSharp'] text-[#1A1A1A] mb-2 group-hover:text-[#CC8800]">
+                Manage Users
+              </h3>
+              <p className="text-[#4A4A4A] font-['Crimson_Text']">
+                Manage users and assign admin roles
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/admin/invites" className="group">
+            <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-6 hover:border-[#CC8800] transition-colors cursor-pointer h-full">
+              <h3 className="text-xl font-['MedievalSharp'] text-[#1A1A1A] mb-2 group-hover:text-[#CC8800]">
+                Admin Invites
+              </h3>
+              <p className="text-[#4A4A4A] font-['Crimson_Text']">
+                Send invitations to new admins
+              </p>
+            </div>
+          </Link>
+
           <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-6 hover:border-[#CC8800] transition-colors cursor-pointer">
             <h3 className="text-xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
               Manage Spell Queue
@@ -87,15 +111,6 @@ export default async function AdminDashboardPage() {
             </h3>
             <p className="text-[#4A4A4A] font-['Crimson_Text']">
               WhatsApp, Messenger & In-app messages
-            </p>
-          </div>
-
-          <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-6 hover:border-[#CC8800] transition-colors cursor-pointer">
-            <h3 className="text-xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
-              AI Response Generator
-            </h3>
-            <p className="text-[#4A4A4A] font-['Crimson_Text']">
-              Generate mystical responses with AI
             </p>
           </div>
         </div>

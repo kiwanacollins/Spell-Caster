@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, isAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -20,6 +20,9 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
+  // Get admin status to display role badge
+  const userIsAdmin = await isAdmin();
+
   // Get current time for greeting
   const currentHour = new Date().getHours();
   const greeting = currentHour < 12 ? "Good Morning" : currentHour < 18 ? "Good Afternoon" : "Good Evening";
@@ -34,6 +37,7 @@ export default async function DashboardPage() {
           userAvatar={user.image || undefined}
           userInitials={user.name?.substring(0, 2).toUpperCase() || "SK"}
           greeting={greeting}
+          userRole={userIsAdmin ? "admin" : "user"}
         />
 
         {/* NEW: Sacred Offerings Section - Service Summary with Categories */}

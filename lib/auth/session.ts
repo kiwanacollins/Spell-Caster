@@ -46,19 +46,48 @@ export async function requireAuth() {
 
 /**
  * Check if user has admin role
+ * 
+ * Checks the user's role field from the database.
+ * Role values: 'user' | 'admin'
  */
 export async function isAdmin() {
   const user = await getCurrentUser();
   
-  // In BetterAuth, you can add custom fields to the user model
-  // For now, we'll check if the user email matches admin email from env
-  const adminEmails = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim());
+  if (!user) {
+    return false;
+  }
+
+  // Check role field from user model
+  // The role field is set in BetterAuth config and stored in MongoDB
+  const userRole = (user as any).role as string | undefined;
+  return userRole === "admin";
+}
+
+/**
+ * Get user's role
+ * 
+ * Returns the user's role from the database.
+ * Possible values: 'user' | 'admin'
+ */
+export async function getUserRole(): Promise<"user" | "admin" | null> {
+  const user = await getCurrentUser();
   
-  return user ? adminEmails.includes(user.email) : false;
+  if (!user) {
+    return null;
+  }
+
+  const userRole = (user as any).role as string | undefined;
+  return (userRole === "admin" || userRole === "user" ? userRole : "user") as "user" | "admin";
 }
 
 /**
  * Require admin role - throws error if not admin
+ * 
+ * Use this in protected API routes and Server Actions that require admin access.
+ * 
+ * Example:
+ *   const { user } = await requireAdmin();
+ *   // user is guaranteed to be authenticated with admin role
  */
 export async function requireAdmin() {
   const { user } = await requireAuth();

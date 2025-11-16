@@ -24,6 +24,7 @@ import {
   GiWallet,
   GiBriefcase,
   GiLightningBow,
+  GiAstrolabe,
 } from "react-icons/gi";
 import { IoChevronDown, IoChevronForward } from "react-icons/io5";
 import { LogoutButton } from "@/components/auth/logout-button";
@@ -48,6 +49,11 @@ const navItems: NavItem[] = [
     title: "Overview",
     href: "/dashboard",
     icon: GiCrystalBall,
+  },
+  {
+    title: "Profile",
+    href: "/dashboard/profile",
+    icon: GiAstrolabe,
   },
 ];
 

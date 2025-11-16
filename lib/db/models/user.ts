@@ -127,7 +127,7 @@ export interface UserDocument {
   stats?: UserStats;
 
   // Role and permissions
-  role?: "user" | "admin" | "healer";
+  role: "user" | "admin"; // Role-based access control (default: "user")
   isActive?: boolean;
   isSuspended?: boolean;
   suspensionReason?: string;
@@ -234,5 +234,32 @@ export function initializeUserPreferences(): UserPreferences {
     reducedMotion: false,
     fontSize: "medium",
     darkMode: false,
+  };
+}
+
+/**
+ * Helper function to create a new user document with default values
+ * All new registrations default to 'user' role
+ */
+export function createDefaultUserDocument(
+  id: string,
+  email: string,
+  name: string,
+  image?: string
+): Partial<UserDocument> {
+  return {
+    id,
+    email,
+    emailVerified: false,
+    name,
+    image,
+    role: "user", // Default: all new users are regular users
+    isActive: true,
+    isSuspended: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    spiritualProfile: initializeSpiritualProfile(),
+    preferences: initializeUserPreferences(),
+    stats: initializeUserStats(),
   };
 }

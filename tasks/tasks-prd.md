@@ -33,10 +33,12 @@ Date: November 4, 2025
 - `app/(dashboard)/dashboard/journal/page.tsx` - Spiritual journal
 - `app/(dashboard)/dashboard/progress/page.tsx` - Spiritual progress tracker
 - `app/(dashboard)/dashboard/payments/page.tsx` - Payments & billing
-- `app/(dashboard)/dashboard/profile/page.tsx` - Profile & settings
+- `app/(dashboard)/dashboard/profile/page.tsx` - Profile & settings page with user info, role badge display, account details, admin privileges section
 - `app/(admin)/layout.tsx` - Admin portal layout with AdminRoute wrapper (checks user.role === 'admin')
-- `app/(admin)/admin/page.tsx` - Admin dashboard with stats and quick actions
-- `app/(admin)/admin/users/page.tsx` - User management with role assignment interface
+- `app/(admin)/admin/page.tsx` - Admin dashboard with stats and quick actions, link to user management and invite management
+- `app/(admin)/admin/users/page.tsx` - Admin user management page with role assignment interface
+- `app/(admin)/admin/invites/page.tsx` - Admin invite management page with creation dialog, invite list, and revocation
+- `app/admin/invite/[token]/page.tsx` - Public invite acceptance page for users to complete their admin setup
 - `app/(admin)/admin/users/admins/page.tsx` - Admin users directory with promotion/demotion controls
 - `app/(admin)/admin/services/page.tsx` - Service request management
 - `app/(admin)/admin/testimonials/page.tsx` - Video testimonial management
@@ -67,6 +69,9 @@ Date: November 4, 2025
 - `app/api/users/[id]/route.ts` - Individual user CRUD operations (get, update, delete, admin actions)
 - `app/api/users/[id]/role/route.ts` - Admin role management endpoint (PUT promote/demote user to admin role, admin-only)
 - `app/api/users/me/route.ts` - Current user profile endpoint (get own profile, update own profile)
+- `app/api/admin/invites/route.ts` - Admin invite endpoints (POST create invite, GET list invites with pagination)
+- `app/api/admin/invites/[token]/accept/route.ts` - Invite acceptance endpoint (POST accept invite and create account)
+- `app/api/admin/invites/[token]/route.ts` - Invite revocation endpoint (DELETE revoke pending invite)
 - `app/api/sessions/route.ts` - Session management (get active sessions, login history, statistics, revoke sessions)
 - `app/api/contact/whatsapp/route.ts` - Generate WhatsApp contact links with pre-filled messages
 - `app/api/contact/messenger/route.ts` - Generate Messenger contact links with pre-filled messages
@@ -98,7 +103,7 @@ Date: November 4, 2025
 - `components/cta-section.tsx` - "Join the Circle" call-to-action section with mystical background, animated circles, floating orbs, benefit highlights, dual CTA buttons
 - `components/rune-observer.tsx` - IntersectionObserver that reveals `.js-rune` elements with glow as they enter viewport
 - `components/footer.tsx` - Footer with four-column layout (brand/contact, services, resources, legal), social media icons with glow effects, security badges, parchment-dark.webp background
-- `components/dashboard/welcome-section.tsx` - Dashboard welcome header with personalized greeting, User's message, mystical quotes using shadcn Card and Alert
+- `components/dashboard/welcome-section.tsx` - Dashboard welcome header with personalized greeting, admin role badge, User's message, mystical quotes using shadcn Card, Alert, and Badge
 - `components/dashboard/sacred-offerings.tsx` - Service summary section with category tabs, service cards, energy level indicators, using shadcn Tabs and Card
 - `components/dashboard/video-testimonials-section.tsx` - Dashboard video testimonials player with HTML5 video, auto-rotating carousel, success rate badge, ancient frame styling
 - `components/dashboard/mystical-insights.tsx` - Daily/weekly spiritual guidance with moon phases, astrology insights, ritual suggestions using shadcn Card
@@ -142,6 +147,7 @@ Date: November 4, 2025
 - `components/admin-refund-management.tsx` - Admin refund management interface with metrics dashboard, filterable table, review/process dialogs, partial refund support using shadcn Table, Dialog, Input, Select, Badge
 - `components/admin/role-management-dialog.tsx` - Admin role assignment dialog with user search, role selection (user/admin), confirmation using shadcn Dialog, Select, Command
 - `components/admin/admin-users-list.tsx` - Admin users directory with role badges, promotion/demotion actions using shadcn Table, Badge, DropdownMenu
+- `components/admin/admin-users-management.tsx` - Comprehensive user management component with search, role filter, user table, role change dialog, stats dashboard using shadcn components
 - `components/admin-service-queue.tsx` - Service request management queue
 - `components/admin-ai-dashboard.tsx` - AI content generation usage analytics
 - `components/3d/floating-crystals.tsx` - Three.js crystal component
@@ -157,6 +163,8 @@ Date: November 4, 2025
 - `lib/db/models/user-operations.ts` - User database operations (CRUD, contact preference tracking, admin role management, getUsersByRole)
 - `lib/db/models/session.ts` - Session and login history model schema with device tracking, location tracking, suspicious activity detection
 - `lib/db/models/session-operations.ts` - Session database operations (login tracking, active sessions, revocation, statistics)
+- `lib/db/models/admin-invite.ts` - AdminInvite schema with email, token, role, expiration, status tracking
+- `lib/db/models/admin-invite-operations.ts` - Admin invite database operations (create, get by token, accept, list, revoke, cleanup expired)
 - `lib/db/models/service.ts` - Service model schema for all 15 services (type, pricing, duration, requirements)
 - `lib/db/models/service-request.ts` - Service request model schema (user, service type, status, payment, notes)
 - `lib/db/models/payment.ts` - Payment model schema (pending payments, installments, subscriptions with status tracking and overdue calculations)
@@ -205,6 +213,7 @@ Date: November 4, 2025
 ### Scripts
 
 - `scripts/test-mongodb.ts` - MongoDB connection test script
+- `scripts/migrate-user-roles.ts` - Migration script to initialize role field for existing users (ensures all users have role: "user" by default)
 - `scripts/seed-admin.ts` - Script to promote first user or specific user email to admin role
 
 ### Testing
@@ -385,16 +394,27 @@ Date: November 4, 2025
 
 - [ ] 5.0 Admin Dashboard (Healer Portal) Implementation **[Use shadcn/ui components extensively]**
   - [ ] 5.1 Admin Role-Based Authentication System
-    - [ ] 5.1.1 Add 'role' field to User model schema (values: 'user', 'admin')
-    - [ ] 5.1.2 Set default role to 'user' for new registrations
-    - [ ] 5.1.3 Create seed script to promote first user to admin role
-    - [ ] 5.1.4 Update session utilities to include user role in session data
-    - [ ] 5.1.5 Enhance requireAdmin() middleware to check role field
-    - [ ] 5.1.6 Update login form to redirect admins to /admin after authentication
-    - [ ] 5.1.7 Build admin user management page for role assignment
-    - [ ] 5.1.8 Create API endpoint to promote/demote users to admin role (admin-only)
-    - [ ] 5.1.9 Add admin role badge display in user profile
-    - [ ] 5.1.10 Implement admin invite system (optional: send invite email with one-time setup link)
+    - [✓] 5.1.1 Add 'role' field to User model schema (values: 'user', 'admin')
+    - [✓] 5.1.2 Set default role to 'user' for new registrations
+    - [✓] 5.1.3 Create seed script to promote first user to admin role
+    - [✓] 5.1.4 Update session utilities to include user role in session data
+    - [✓] 5.1.5 Enhance requireAdmin() middleware to check role field
+    - [✓] 5.1.6 Update login form to redirect admins to /admin after authentication
+    - [✓] 5.1.7 Build admin user management page for role assignment
+    - [✓] 5.1.8 Create API endpoint to promote/demote users to admin role (admin-only)
+    - [✓] 5.1.9 Add admin role badge display in user profile
+    - [✓] 5.1.10 Implement admin invite system (optional: send invite email with one-time setup link)
+      - [✓] 5.1.10.1 Create AdminInvite database model with schema and indexes
+      - [✓] 5.1.10.2 Implement admin invite operations (create, get, accept, list, revoke, cleanup)
+      - [✓] 5.1.10.3 Fix TypeScript type errors in admin invite operations
+      - [✓] 5.1.10.4 Create POST /api/admin/invites endpoint (admin-only, create invite)
+      - [✓] 5.1.10.5 Create POST /api/admin/invites/[token]/accept endpoint (public, accept invite)
+      - [✓] 5.1.10.6 Create GET /api/admin/invites endpoint (admin-only, list invites)
+      - [✓] 5.1.10.7 Create DELETE /api/admin/invites/[token] endpoint (admin-only, revoke invite)
+      - [✓] 5.1.10.8 Build /admin/invites page for managing invites (admin-only)
+      - [✓] 5.1.10.9 Build /app/admin/invite/[token] page for public invite acceptance
+      - [ ] 5.1.10.10 Implement email notification system for invite links
+      - [ ] 5.1.10.11 Create invite acceptance UI with form (email, password, display name)
   - [ ] 5.2 Create admin layout with enhanced navigation using shadcn Sidebar and permissions check
   - [ ] 5.3 Build Admin Overview Dashboard
     - [ ] 5.3.1 Create overview page with key metrics using shadcn Card components

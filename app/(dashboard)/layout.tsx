@@ -15,7 +15,6 @@ export default async function DashboardLayout({ children }: { children: ReactNod
           <DashboardSidebar 
             userName={user?.name}
             userEmail={user?.email}
-            energyAlignment={0} // Will be connected to Zustand store
           />
         </div>
 
@@ -23,7 +22,6 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         <div className="lg:hidden">
           <MobileNav 
             userName={user?.name}
-            energyAlignment={0} // Will be connected to Zustand store
           />
         </div>
 

@@ -125,10 +125,21 @@ export const auth = betterAuth({
         type: "string",
         required: false,
       },
-      // User role (client or admin)
+      // User role for role-based access control (values: 'user' or 'admin')
+      // All new registrations default to 'user' role
       role: {
         type: "string",
-        defaultValue: "client",
+        defaultValue: "user", // Default: all new users are regular users, not admins
+      },
+      // Account active status
+      isActive: {
+        type: "boolean",
+        defaultValue: true,
+      },
+      // Account suspended status
+      isSuspended: {
+        type: "boolean",
+        defaultValue: false,
       },
       // Account creation timestamp
       createdAt: {

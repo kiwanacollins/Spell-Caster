@@ -23,6 +23,7 @@ export {
   initializeSpiritualProfile,
   initializeUserStats,
   initializeUserPreferences,
+  createDefaultUserDocument,
 } from "./user";
 
 // User database operations
@@ -41,6 +42,12 @@ export {
   searchUsers,
   suspendUser,
   reactivateUser,
+  promoteToAdmin,
+  demoteFromAdmin,
+  getAdminUsers,
+  getUsersByRole,
+  isUserAdmin,
+  countAdminUsers,
 } from "./user-operations";
 
 // Session types and interfaces

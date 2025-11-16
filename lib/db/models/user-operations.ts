@@ -327,3 +327,108 @@ export async function reactivateUser(userId: string): Promise<boolean> {
 
   return result.modifiedCount > 0;
 }
+
+/**
+ * Promote user to admin role (admin only)
+ * 
+ * Updates user role from 'user' to 'admin'
+ */
+export async function promoteToAdmin(userId: string): Promise<boolean> {
+  const db = await getDatabase();
+  
+  const result = await db.collection<UserDocument>(USER_COLLECTION).updateOne(
+    { id: userId },
+    {
+      $set: {
+        role: "admin",
+        updatedAt: new Date(),
+      },
+    }
+  );
+
+  return result.modifiedCount > 0;
+}
+
+/**
+ * Demote admin to user role (admin only)
+ * 
+ * Updates user role from 'admin' to 'user'
+ */
+export async function demoteFromAdmin(userId: string): Promise<boolean> {
+  const db = await getDatabase();
+  
+  const result = await db.collection<UserDocument>(USER_COLLECTION).updateOne(
+    { id: userId },
+    {
+      $set: {
+        role: "user",
+        updatedAt: new Date(),
+      },
+    }
+  );
+
+  return result.modifiedCount > 0;
+}
+
+/**
+ * Get all admin users (admin only)
+ */
+export async function getAdminUsers(): Promise<UserDocument[]> {
+  const db = await getDatabase();
+  
+  const admins = await db
+    .collection<UserDocument>(USER_COLLECTION)
+    .find({ role: "admin" })
+    .sort({ createdAt: -1 })
+    .toArray();
+
+  return admins;
+}
+
+/**
+ * Get users by role
+ */
+export async function getUsersByRole(
+  role: "user" | "admin",
+  limit: number = 50,
+  skip: number = 0
+): Promise<UserDocument[]> {
+  const db = await getDatabase();
+  
+  const users = await db
+    .collection<UserDocument>(USER_COLLECTION)
+    .find({ role })
+    .limit(limit)
+    .skip(skip)
+    .sort({ createdAt: -1 })
+    .toArray();
+
+  return users;
+}
+
+/**
+ * Check if user is admin
+ */
+export async function isUserAdmin(userId: string): Promise<boolean> {
+  const db = await getDatabase();
+  
+  const user = await db.collection<UserDocument>(USER_COLLECTION).findOne({
+    id: userId,
+    role: "admin",
+  });
+
+  return user !== null;
+}
+
+/**
+ * Count admin users
+ */
+export async function countAdminUsers(): Promise<number> {
+  const db = await getDatabase();
+  
+  const count = await db
+    .collection<UserDocument>(USER_COLLECTION)
+    .countDocuments({ role: "admin" });
+
+  return count;
+}

@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { GiCrystalBall } from "react-icons/gi";
 
 // Mystical quotes to rotate
@@ -25,6 +26,7 @@ interface WelcomeSectionProps {
   userAvatar?: string;
   userInitials?: string;
   greeting?: string;
+  userRole?: "user" | "admin";
 }
 
 /**
@@ -42,6 +44,7 @@ export function WelcomeSection({
   userAvatar,
   userInitials = "SK",
   greeting,
+  userRole = "user",
 }: WelcomeSectionProps) {
   // Calculate greeting if not provided
   const currentHour = new Date().getHours();
@@ -86,9 +89,16 @@ export function WelcomeSection({
           <GiCrystalBall className="h-6 w-6 text-[#B8860B] drop-shadow-[0_0_8px_rgba(184,134,11,0.6)] relative z-10" />
           
           <div className="relative z-10">
-            <AlertTitle className="font-['MedievalSharp'] text-3xl text-[#1A1A1A] mb-1">
-              {calculatedGreeting}, {userName} ✨
-            </AlertTitle>
+            <div className="flex items-center gap-3 mb-1">
+              <AlertTitle className="font-['MedievalSharp'] text-3xl text-[#1A1A1A]">
+                {calculatedGreeting}, {userName} ✨
+              </AlertTitle>
+              {userRole === "admin" && (
+                <Badge className="bg-blood-moon-red text-parchment-light font-serif text-sm">
+                  Admin
+                </Badge>
+              )}
+            </div>
 
             {/* 4.2.1.2 - Mystical Subheader */}
             <AlertDescription className="font-['Crimson_Text'] text-base text-[#4A4A4A] leading-relaxed">

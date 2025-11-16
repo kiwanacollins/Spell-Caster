@@ -172,7 +172,7 @@ export function SacredOfferingsSection() {
       category: 'justice',
       energyLevel: 'high',
       icon: GiCrystalize,
-      moonPhase: '🌑',
+      moonPhase: '🌕',
     },
     {
       slug: 'winning-court-case',

@@ -36,18 +36,36 @@ export function useRequireAuth(redirectTo: string = "/login") {
 
 /**
  * Client-side hook to check if user is admin
+ * 
+ * Checks the user's role field from the session.
+ * Returns true if role is 'admin', false otherwise.
  */
 export function useIsAdmin() {
   const { user, isLoading } = useUser();
   
-  // Check if user email is in admin list
-  // Note: This should ideally check a role field in the user object
-  // For now, we check the email against the admin emails list
-  const adminEmails = process.env.NEXT_PUBLIC_ADMIN_EMAILS?.split(",").map(e => e.trim()) || [];
-  const isAdmin = user ? adminEmails.includes(user.email) : false;
+  // Check the role field from user object (set from database via BetterAuth)
+  const userRole = (user as any)?.role as string | undefined;
+  const isAdmin = userRole === "admin";
 
   return {
     isAdmin,
+    isLoading,
+  };
+}
+
+/**
+ * Client-side hook to get user's role
+ * 
+ * Returns the user's role: 'user' | 'admin' | null
+ */
+export function useUserRole() {
+  const { user, isLoading } = useUser();
+  
+  const userRole = (user as any)?.role as string | undefined;
+  const role = (userRole === "admin" || userRole === "user" ? userRole : "user") as "user" | "admin" | null;
+
+  return {
+    role: user ? role : null,
     isLoading,
   };
 }
