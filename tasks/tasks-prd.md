@@ -42,7 +42,7 @@ Date: November 4, 2025
 - `app/(admin)/admin/users/admins/page.tsx` - Admin users directory with promotion/demotion controls
 - `app/(admin)/admin/services/page.tsx` - Service request management
 - `app/(admin)/admin/testimonials/page.tsx` - Video testimonial management
-- `app/(admin)/admin/payments/page.tsx` - Financial management
+- `app/(admin)/admin/payments/page.tsx` - Financial management page (server-side auth, dashboard with quick stats, tabbed interface for dashboard/transactions/reports/pricing)
 - `app/(admin)/admin/payments/refunds/page.tsx` - Refund management interface with AdminRefundManagement component
 - `app/(admin)/admin/analytics/page.tsx` - Analytics dashboard
 - `app/(admin)/admin/cms/page.tsx` - Content management
@@ -167,6 +167,8 @@ Date: November 4, 2025
 - `components/admin/payment-actions.tsx` - Dropdown menu with refund and mark-as-paid dialogs, customizable refund amount, audit trail
 - `components/admin/admin-financial-reports.tsx` - Financial reports with monthly revenue charts, service revenue distribution pie chart, transaction volume trends, report filters, date ranges
 - `components/admin/admin-pricing-management.tsx` - Pricing management UI with service table (base price, discounted price), inline editing, add service dialog, category badges
+- `components/admin/admin-payments-page-client.tsx` - Client component combining all payment management features with 4 tabs (Dashboard, Transactions, Reports, Pricing), error handling
+- `components/ui/label.tsx` - Label component for form fields using Radix UI
 - `components/admin/request-detail-client.tsx` - Client wrapper for AdminRequestDetail with real-time status/priority/notes update handlers
 - `components/admin/request-action-controls.tsx` - Action controls for requests: Accept, Decline (with reason), Assign admin; status-specific guidance for in-progress requests
 - `components/admin/ritual-progress-update.tsx` - Ritual progress tracking with step management, photo/video uploads, progress bar, completion tracking
@@ -492,6 +494,7 @@ Date: November 4, 2025
     - [✓] 5.6.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
     - [✓] 5.6.4 Add financial reports generation using shadcn Form, Calendar for date ranges
     - [✓] 5.6.5 Build pricing management for all 15 services using shadcn Form, Input
+    - [✓] 5.6.6 Create admin payments page with tabbed interface and integration
     - [ ] 5.6.7 Implement subscription tracking using shadcn Table, Badge
     - [ ] 5.6.8 Integrate Admin Refund Management UI (AdminRefundManagement component)
       - [ ] 5.6.8.1 Add refund management page at /admin/payments/refunds route
