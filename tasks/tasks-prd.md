@@ -175,7 +175,9 @@ Date: November 4, 2025
 - `components/admin/testimonial-service-association.tsx` - Service association UI with testimonial-service mapping, primary/secondary designation, grouped testimonial view, association table, bulk link dialog, statistics dashboard using shadcn Card, Badge, Dialog, Select, Table
 - `components/admin/admin-analytics-dashboard.tsx` - Analytics dashboard with 4 KPI cards, 4-tab interface (Performance, Services, Conversion, Insights), line charts for trends, pie chart for revenue by service, bar charts for revenue/completion trends, conversion funnel with drop-off analysis, user retention, referral sources, device distribution, recommendations using Recharts and shadcn components
 - `components/admin/service-performance-tracking.tsx` - Service performance tracking with 4 overview cards, 3-tab interface (Performance Table, Monthly Trends, Revenue Breakdown), detailed service metrics table (requests, completions, success rate, rating), stacked bar charts for requests by service, line charts for revenue trends, revenue breakdown visualization using Recharts and shadcn components
-- `app/(admin)/admin/analytics/page.tsx` - Server-side analytics page with requireAdmin check, combines AdminAnalyticsDashboard and ServicePerformanceTracking components
+- `components/admin/user-behavior-analytics.tsx` - User behavior analytics with 4 KPI cards, 3-tab interface (User Journey, Segments, Behavior Trends), customer journey map with conversion/bounce rates, drop-off analysis, user segment analysis (First-Time, Repeat, VIP, Window Shoppers), segment performance scatter chart, weekly behavior trends with area and line charts, engagement metrics using Recharts and shadcn components
+- `components/admin/conversion-funnel-tracking.tsx` - Conversion funnel tracking with 3 overview cards, 4-tab interface (Funnel Visualization, Drop-off Analysis, Weekly Trends, Optimization), funnel pipeline visualization with stage progression, drop-off analysis by stage, weekly trend lines, optimization recommendations with expected impact analysis using Recharts and shadcn components
+- `app/(admin)/admin/analytics/page.tsx` - Server-side analytics page combining AdminAnalyticsDashboard, ServicePerformanceTracking, UserBehaviorAnalytics, and ConversionFunnelTracking components
 - `components/ui/label.tsx` - Label component for form fields using Radix UI
 - `components/admin/request-detail-client.tsx` - Client wrapper for AdminRequestDetail with real-time status/priority/notes update handlers
 - `components/admin/request-action-controls.tsx` - Action controls for requests: Accept, Decline (with reason), Assign admin; status-specific guidance for in-progress requests
@@ -522,8 +524,8 @@ Date: November 4, 2025
   - [ ] 5.8 Build Analytics & Insights System
     - [✓] 5.8.1 Create analytics dashboard using shadcn Card, Tabs with service metrics
     - [✓] 5.8.2 Add service performance tracking using shadcn Chart (requests, completions, revenue by service)
-    - [ ] 5.8.3 Implement user behavior analytics and journey mapping
-    - [ ] 5.8.4 Build conversion funnel tracking (landing → service view → request → payment)
+    - [✓] 5.8.3 Implement user behavior analytics and journey mapping
+    - [✓] 5.8.4 Build conversion funnel tracking (landing → service view → request → payment)
     - [ ] 5.8.5 Create custom reports builder using shadcn Form, Select with scheduled reports
   - [ ] 5.9 Build Content Management System (CMS)
     - [ ] 5.9.1 Create CMS interface using shadcn Textarea, Form for service page content
