@@ -162,6 +162,11 @@ Date: November 4, 2025
 - `components/admin/admin-revenue-breakdown.tsx` - Revenue snapshot dashboard showing monthly revenue, breakdown by service type with percentages and progress bars, average order value
 - `components/admin/admin-pending-requests.tsx` - Pending service requests queue display with priority indicators, requestor info, timestamps, linked to detail pages
 - `components/admin/admin-request-detail.tsx` - Request detail component showing client info, service details, admin notes, status history, update controls
+- `components/admin/admin-payments-dashboard.tsx` - Payment metrics dashboard with KPI cards (Total Revenue, Pending, Refunded, Average Order), transaction statistics, revenue by service breakdown, financial overview
+- `components/admin/admin-transaction-list.tsx` - Transaction history table with search/filter, status badges, export functionality, summary statistics
+- `components/admin/payment-actions.tsx` - Dropdown menu with refund and mark-as-paid dialogs, customizable refund amount, audit trail
+- `components/admin/admin-financial-reports.tsx` - Financial reports with monthly revenue charts, service revenue distribution pie chart, transaction volume trends, report filters, date ranges
+- `components/admin/admin-pricing-management.tsx` - Pricing management UI with service table (base price, discounted price), inline editing, add service dialog, category badges
 - `components/admin/request-detail-client.tsx` - Client wrapper for AdminRequestDetail with real-time status/priority/notes update handlers
 - `components/admin/request-action-controls.tsx` - Action controls for requests: Accept, Decline (with reason), Assign admin; status-specific guidance for in-progress requests
 - `components/admin/ritual-progress-update.tsx` - Ritual progress tracking with step management, photo/video uploads, progress bar, completion tracking
@@ -482,11 +487,11 @@ Date: November 4, 2025
     - [✓] 5.5.8 Build admin users list view with role badges
     - [✓] 5.5.9 Implement admin activity log (track admin actions, role changes)
   - [ ] 5.6 Build Payment Management System
-    - [ ] 5.6.1 Create payments dashboard using shadcn Card with revenue metrics
-    - [ ] 5.6.2 Build transaction list using shadcn Table with filtering and export
-    - [ ] 5.6.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
-    - [ ] 5.6.4 Add financial reports generation using shadcn Form, Calendar for date ranges
-    - [ ] 5.6.5 Build pricing management for all 15 services using shadcn Form, Input
+    - [✓] 5.6.1 Create payments dashboard using shadcn Card with revenue metrics
+    - [✓] 5.6.2 Build transaction list using shadcn Table with filtering and export
+    - [✓] 5.6.3 Implement payment actions using shadcn DropdownMenu, Dialog (refunds, receipts, mark as paid)
+    - [✓] 5.6.4 Add financial reports generation using shadcn Form, Calendar for date ranges
+    - [✓] 5.6.5 Build pricing management for all 15 services using shadcn Form, Input
     - [ ] 5.6.7 Implement subscription tracking using shadcn Table, Badge
     - [ ] 5.6.8 Integrate Admin Refund Management UI (AdminRefundManagement component)
       - [ ] 5.6.8.1 Add refund management page at /admin/payments/refunds route
