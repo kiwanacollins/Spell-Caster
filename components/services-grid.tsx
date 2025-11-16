@@ -12,6 +12,14 @@ interface Service {
 
 const services: Service[] = [
   {
+    id: 'revenge-spell',
+    name: 'Revenge Spell',
+    description:
+      'Karmic justice magic to return negative energy to those who wronged you, ensuring wrongdoers face consequences through universal law.',
+    icon: '/icons/services/revenge-spell.svg',
+    category: 'Spells',
+  },
+  {
     id: 'get-back-lost-items',
     name: 'Get Back Lost Items',
     description:

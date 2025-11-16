@@ -44,6 +44,52 @@ export interface Service {
 export const services: Service[] = [
   {
     id: "1",
+    slug: "revenge-spell",
+    title: "Revenge Spell",
+    category: "Justice & Legal",
+    shortDescription: "Karmic justice and spiritual retribution for those who have wronged you",
+    fullDescription: "Powerful karmic justice magic designed to return negative energy to those who have caused you harm. This ancient spell works with the universal law of karma to ensure that wrongdoers face consequences for their actions while protecting you from further harm.",
+    energyLevel: "Very High",
+    moonPhase: "🌑",
+    benefits: [
+      "Karmic justice delivered to wrongdoers",
+      "Protection from future harm",
+      "Emotional closure and peace",
+      "Restoration of spiritual balance"
+    ],
+    ritualDetails: {
+      duration: "7-21 days",
+      materials: ["Black candles", "Mirror", "Binding cord", "Salt circle", "Personal item of target (if available)"],
+      lunarPhase: "Dark Moon / New Moon (for banishing and justice)",
+      timing: "Saturday nights (Saturn's day of justice and karma)"
+    },
+    whatToExpect: {
+      timeline: "Karmic effects manifest within 3-6 weeks",
+      process: [
+        "Karmic assessment and energy reading",
+        "Mirror ritual to reflect harm back to source",
+        "Justice invocation during dark moon",
+        "Protection shield installation for you"
+      ],
+      outcomes: [
+        "Wrongdoer faces natural consequences",
+        "Karmic balance restored",
+        "Your energy field protected and cleansed",
+        "Emotional healing and closure achieved"
+      ]
+    },
+    preparation: [
+      "Provide details of the situation (kept confidential)",
+      "Photo or name of the person (if safe to share)",
+      "Clear understanding that this works with karma, not malice",
+      "Commitment to releasing anger after the ritual"
+    ],
+    pricing: {
+      basePrice: 350
+    }
+  },
+  {
+    id: "2",
     slug: "get-back-lost-items",
     title: "Get Back Lost Items",
     category: "Protection & Cleansing",
@@ -89,7 +135,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "2",
+    id: "3",
     slug: "land-solving-spell",
     title: "Land Solving Spell",
     category: "Wealth & Business",
@@ -135,7 +181,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "3",
+    id: "4",
     slug: "obsession-spell",
     title: "Obsession Spell",
     category: "Love & Relationships",
@@ -181,7 +227,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "4",
+    id: "5",
     slug: "stop-cheating-spell",
     title: "Stop Cheating Spell",
     category: "Love & Relationships",
@@ -227,7 +273,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "5",
+    id: "6",
     slug: "binding-spell",
     title: "Binding Spell",
     category: "Love & Relationships",
@@ -273,7 +319,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "6",
+    id: "7",
     slug: "gay-lesbian-spell",
     title: "Gay & Lesbian Love Spell",
     category: "Love & Relationships",
@@ -319,7 +365,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "7",
+    id: "8",
     slug: "winning-court-case",
     title: "Winning a Court Case",
     category: "Justice & Legal",
@@ -365,7 +411,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "8",
+    id: "9",
     slug: "business-boost-spells",
     title: "Business Boost Spells",
     category: "Wealth & Business",
@@ -411,7 +457,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "9",
+    id: "10",
     slug: "cleansing-rituals",
     title: "Cleansing Rituals",
     category: "Protection & Cleansing",
@@ -457,7 +503,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "10",
+    id: "11",
     slug: "divorce-spell",
     title: "Divorce Spell",
     category: "Love & Relationships",
@@ -503,7 +549,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "11",
+    id: "12",
     slug: "marriage-commitment",
     title: "Marriage & Commitment",
     category: "Love & Relationships",
@@ -549,7 +595,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "12",
+    id: "13",
     slug: "magic-wallet",
     title: "Magic Wallet",
     category: "Wealth & Business",
@@ -595,7 +641,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "13",
+    id: "14",
     slug: "financial-issues",
     title: "Financial Issues Resolution",
     category: "Wealth & Business",
@@ -641,7 +687,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "14",
+    id: "15",
     slug: "protection-shielding",
     title: "Protection & Shielding",
     category: "Protection & Cleansing",
@@ -687,7 +733,7 @@ export const services: Service[] = [
     }
   },
   {
-    id: "15",
+    id: "16",
     slug: "magic-rings",
     title: "Magic Rings",
     category: "Wealth & Business",

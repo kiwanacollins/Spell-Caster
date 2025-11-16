@@ -120,7 +120,7 @@ export function TrustAuthenticitySection() {
       {/* Trust Message */}
       <Card className="border-2 border-[#B8860B] bg-[#1A1A1A] p-4">
         <p className="font-['Crimson_Text'] text-sm text-[#E8DCC0]">
-          <span className="font-semibold text-[#F4E8D0]">Your trust matters to us.</span> We're committed to maintaining the highest standards of integrity, confidentiality, and spiritual excellence. Your journey is protected within our sacred circle.
+          <span className="font-semibold text-[#F4E8D0]">Your trust matters to us.</span> We&apos;re committed to maintaining the highest standards of integrity, confidentiality, and spiritual excellence. Your journey is protected within our sacred circle.
         </p>
       </Card>
     </div>

@@ -56,7 +56,7 @@ export default async function AdminDashboardPage() {
           {/* Consultations */}
           <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-6">
             <h3 className="text-lg font-['MedievalSharp'] text-[#1A1A1A] mb-2">
-              Today's Consultations
+              Today&apos;s Consultations
             </h3>
             <p className="text-3xl font-bold text-[#8B0000]">0</p>
           </div>

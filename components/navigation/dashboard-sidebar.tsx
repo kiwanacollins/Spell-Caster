@@ -23,6 +23,7 @@ import {
   GiMagicSwirl,
   GiWallet,
   GiBriefcase,
+  GiLightningBow,
 } from "react-icons/gi";
 import { IoChevronDown, IoChevronForward } from "react-icons/io5";
 import { LogoutButton } from "@/components/auth/logout-button";
@@ -51,6 +52,12 @@ const navItems: NavItem[] = [
 ];
 
 const serviceItems: ServiceItem[] = [
+  {
+    title: "Revenge Spell",
+    href: "/dashboard/services/revenge-spell",
+    icon: GiLightningBow,
+    category: "Spells",
+  },
   {
     title: "Get Back Lost Items",
     href: "/dashboard/services/get-back-lost-items",

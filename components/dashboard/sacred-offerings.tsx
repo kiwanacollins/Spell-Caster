@@ -166,6 +166,15 @@ export function SacredOfferingsSection() {
     },
     // Justice & Legal
     {
+      slug: 'revenge-spell',
+      title: 'Revenge Spell',
+      description: 'Karmic justice and spiritual retribution for wrongdoers',
+      category: 'justice',
+      energyLevel: 'high',
+      icon: GiCrystalize,
+      moonPhase: '🌑',
+    },
+    {
       slug: 'winning-court-case',
       title: 'Winning a Court Case',
       description: 'Manifest justice and favorable legal outcomes',
