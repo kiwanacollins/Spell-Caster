@@ -13,7 +13,6 @@ import {
   GiCancel,
   GiPentacle,
   GiBookmarklet,
-  GiTwoCoins,
   GiLandMine,
   GiHearts,
   GiHeartShield,
