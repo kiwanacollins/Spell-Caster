@@ -37,6 +37,8 @@ npx tsx scripts/seed-admin.ts --check email      # Check if user is admin
 npx tsx scripts/seed-admin.ts --demote email     # Demote from admin
 npx tsx scripts/seed-admin.ts --help             # Show help
 
+MONGODB_URI="mongodb://localhost:27017/spell-caster" npx tsx scripts/seed-admin.ts kiwanacollins@gmail.com
+
 
 https://sketchfab.com/3d-models/healing-aura-effect-f09bfb93047648848ceb6ea942020028
 

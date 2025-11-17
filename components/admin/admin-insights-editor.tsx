@@ -16,6 +16,7 @@ export function AdminInsightsEditor() {
   const [insights, setInsights] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ title: "", content: "", frequency: "daily", previewText: "" });
+  const [generatingAI, setGeneratingAI] = useState(false);
 
   async function fetchInsights() {
     setLoading(true);
@@ -50,6 +51,23 @@ export function AdminInsightsEditor() {
       error('Failed to create insight');
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleGenerateAI() {
+    try {
+      setGeneratingAI(true);
+      const res = await fetch('/api/ai/generate-insight', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ frequency: form.frequency }) });
+      if (!res.ok) throw new Error('AI failed');
+      const json = await res.json();
+      const data = json.data;
+      setForm({ ...form, title: data.title || form.title, content: data.content || form.content, previewText: data.content ? (data.content.slice(0, 160)) : form.previewText });
+      success('Generated content successfully. Review and save.');
+    } catch (err) {
+      console.error(err);
+      error('AI generation failed');
+    } finally {
+      setGeneratingAI(false);
     }
   }
 
@@ -107,7 +125,8 @@ export function AdminInsightsEditor() {
             <Textarea value={form.content} onChange={(e) => setForm({ ...form, content: (e.target as HTMLTextAreaElement).value })} placeholder="Full guidance content (Markdown allowed)" rows={6} />
           </div>
 
-          <div className="flex gap-2 mt-4">
+            <div className="flex gap-2 mt-4">
+            <Button onClick={handleGenerateAI} disabled={generatingAI} variant="outline">{generatingAI ? 'Generating...' : 'Generate with AI'}</Button>
             <Button onClick={handleCreate} className="bg-[#2C5530] hover:bg-[#1a3621] text-[#F4E8D0]">{loading ? 'Saving...' : 'Create Insight'}</Button>
             <Button variant="outline" onClick={() => setForm({ title: '', content: '', frequency: 'daily', previewText: '' })}>Reset</Button>
           </div>
