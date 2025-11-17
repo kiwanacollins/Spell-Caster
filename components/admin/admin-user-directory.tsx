@@ -21,6 +21,17 @@ import {
 import { formatDistanceToNow } from 'date-fns';
 import { FiMoreVertical, FiShield, FiAlertCircle, FiStar } from 'react-icons/fi';
 
+// Helper to safely parse dates that may be strings or Date objects
+function getDate(dateValue: unknown): Date {
+  if (!dateValue) return new Date();
+  if (dateValue instanceof Date) return dateValue;
+  if (typeof dateValue === 'string') {
+    const parsed = new Date(dateValue);
+    if (!isNaN(parsed.getTime())) return parsed;
+  }
+  return new Date();
+}
+
 interface AdminUserDirectoryProps {
   users: UserDocument[];
   onUserSelect?: (userId: string) => void;
@@ -70,9 +81,11 @@ export function AdminUserDirectory({
   onPromoteAdmin,
   onDemoteAdmin,
 }: AdminUserDirectoryProps) {
-  const sortedUsers = [...users].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  const sortedUsers = [...users].sort((a, b) => {
+    const dateA = getDate(a.createdAt);
+    const dateB = getDate(b.createdAt);
+    return dateB.getTime() - dateA.getTime();
+  });
 
   return (
     <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] overflow-hidden">
@@ -108,13 +121,15 @@ export function AdminUserDirectory({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sortedUsers.map((user) => {
+              {sortedUsers.map((user, index) => {
                 const segmentation = getUserSegmentation(user);
                 const lifetimeValue = user.stats?.lifetimeValue || 0;
+                // Use user.id as primary key, fallback to email, fallback to index
+                const key = user.id || user.email || `user-${index}`;
 
                 return (
                   <TableRow
-                    key={user.id}
+                    key={key}
                     className="border-b border-[#8B6F47]/30 hover:bg-[#FFF9E6] transition-colors cursor-pointer"
                     onClick={() => onUserSelect?.(user.id)}
                   >
@@ -154,7 +169,7 @@ export function AdminUserDirectory({
 
                     {/* Joined */}
                     <TableCell className="text-sm text-[#4A4A4A]">
-                      {formatDistanceToNow(new Date(user.createdAt), { addSuffix: true })}
+                      {formatDistanceToNow(getDate(user.createdAt), { addSuffix: true })}
                     </TableCell>
 
                     {/* Actions */}

@@ -71,7 +71,7 @@ export interface PendingRequest {
  */
 export async function getAdminMetrics(): Promise<AdminMetrics> {
   try {
-    const db = getDb();
+    const db = await getDb();
     if (!db) throw new Error("Database connection failed");
 
     const now = new Date();
@@ -146,7 +146,7 @@ export async function getActivityFeed(
   limit: number = 10
 ): Promise<ActivityFeedItem[]> {
   try {
-    const db = getDb();
+    const db = await getDb();
     if (!db) throw new Error("Database connection failed");
 
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
@@ -216,7 +216,7 @@ export async function getActivityFeed(
  */
 export async function getRevenueBreakdown(): Promise<RevenueBreakdown[]> {
   try {
-    const db = getDb();
+    const db = await getDb();
     if (!db) throw new Error("Database connection failed");
 
     const now = new Date();
@@ -313,7 +313,7 @@ export async function getPendingRequests(
   limit: number = 10
 ): Promise<PendingRequest[]> {
   try {
-    const db = getDb();
+    const db = await getDb();
     if (!db) throw new Error("Database connection failed");
 
     // This is a placeholder - service requests model will be created in 5.4

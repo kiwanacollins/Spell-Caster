@@ -17,6 +17,17 @@ import {
   FiShield,
 } from 'react-icons/fi';
 
+// Helper to safely parse dates that may be strings or Date objects
+function getDate(dateValue: unknown): Date {
+  if (!dateValue) return new Date();
+  if (dateValue instanceof Date) return dateValue;
+  if (typeof dateValue === 'string') {
+    const parsed = new Date(dateValue);
+    if (!isNaN(parsed.getTime())) return parsed;
+  }
+  return new Date();
+}
+
 interface AdminUserProfileProps {
   user: UserDocument;
   serviceRequests?: ServiceRequest[];
@@ -32,9 +43,11 @@ export function AdminUserProfile({
   const spiritualProfile = user.spiritualProfile || {};
   const preferences = user.preferences || {};
 
-  const sortedRequests = [...serviceRequests].sort(
-    (a, b) => new Date(b.requestedAt).getTime() - new Date(a.requestedAt).getTime()
-  );
+  const sortedRequests = [...serviceRequests].sort((a, b) => {
+    const dateA = getDate(a.requestedAt);
+    const dateB = getDate(b.requestedAt);
+    return dateB.getTime() - dateA.getTime();
+  });
 
   const getStatusColor = (status: string) => {
     const colors: { [key: string]: string } = {
@@ -117,8 +130,7 @@ export function AdminUserProfile({
         <div className="mt-4 pt-4 border-t border-[#8B6F47]/20">
           <p className="text-sm text-[#4A4A4A]">
             <FiCalendar className="w-4 h-4 inline mr-2" />
-            Joined{' '}
-            {formatDistanceToNow(new Date(user.createdAt), {
+            Joined {formatDistanceToNow(getDate(user.createdAt), {
               addSuffix: true,
             })}
           </p>
@@ -170,7 +182,7 @@ export function AdminUserProfile({
                         {request.status.replace('_', ' ')}
                       </Badge>
                       <p className="text-xs text-[#8B6F47]">
-                        {formatDistanceToNow(new Date(request.requestedAt), {
+                        {formatDistanceToNow(getDate(request.requestedAt), {
                           addSuffix: true,
                         })}
                       </p>

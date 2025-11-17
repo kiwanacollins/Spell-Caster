@@ -3,6 +3,10 @@ import { getSession } from '@/lib/auth';
 import { getAllUsers } from '@/lib/db/models/user-operations';
 import { getAdminServiceRequests } from '@/lib/db/models/service-request-operations';
 import { AdminUsersManagementClient } from '@/components/admin/admin-users-management-client';
+import {
+  serializeArray,
+  serializeMapping,
+} from '@/lib/utils/serialize-db-objects';
 
 export const metadata = {
   title: 'User Management | Admin',
@@ -29,6 +33,10 @@ export default async function UsersManagementPage() {
     );
   }
 
+  // Serialize MongoDB documents to plain objects for client component
+  const serializedUsers = serializeArray(users);
+  const serializedRequests = serializeMapping(userServiceRequests);
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
@@ -43,8 +51,8 @@ export default async function UsersManagementPage() {
 
       {/* Client Component */}
       <AdminUsersManagementClient
-        initialUsers={users}
-        userServiceRequests={userServiceRequests}
+        initialUsers={serializedUsers}
+        userServiceRequests={serializedRequests}
       />
     </div>
   );
