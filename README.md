@@ -43,3 +43,6 @@ MONGODB_URI="mongodb://localhost:27017/spell-caster" npx tsx scripts/seed-admin.
 https://sketchfab.com/3d-models/healing-aura-effect-f09bfb93047648848ceb6ea942020028
 
 what would be the value of this for this project: 
+
+
+
