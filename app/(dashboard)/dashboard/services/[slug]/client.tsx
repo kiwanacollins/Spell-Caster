@@ -74,9 +74,6 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     <GiCrystalBall className="w-5 h-5 mr-2" />
                     Request This Service
                   </Button>
-                  <p className="text-center font-['Crimson_Text'] text-[#E8DCC0]">
-                    From ${service.pricing.basePrice}
-                  </p>
                 </div>
               </div>
             </div>
@@ -255,55 +252,23 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           </div>
         </Card>
 
-        {/* Pricing Card */}
+        {/* Consultation Card */}
         <Card className="bg-[#1A1A1A] border-[#B8860B] border-2 shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
-          <div className="p-8">
-            <h2 className="text-2xl md:text-3xl font-['MedievalSharp'] text-[#F4E8D0] mb-6 text-center">
-              Sacred Investment
+          <div className="p-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-['MedievalSharp'] text-[#F4E8D0] mb-6">
+              Ready to Begin Your Journey?
             </h2>
-            
-            {service.pricing.tiers ? (
-              <div className="grid md:grid-cols-3 gap-6">
-                {service.pricing.tiers.map((tier: any, index: number) => (
-                  <div 
-                    key={index}
-                    className="bg-[#2C2416] border-2 border-[#B8860B] rounded-lg p-6 hover:shadow-[0_0_30px_rgba(184,134,11,0.3)] transition-all duration-300"
-                  >
-                    <h3 className="text-xl font-['MedievalSharp'] text-[#F4E8D0] mb-2">
-                      {tier.name}
-                    </h3>
-                    <p className="text-3xl font-['MedievalSharp'] text-[#B8860B] mb-4">
-                      ${tier.price}
-                    </p>
-                    <p className="font-['Crimson_Text'] text-[#E8DCC0] mb-6">
-                      {tier.description}
-                    </p>
-                    <Button 
-                      className="w-full bg-[#B8860B] hover:bg-[#CC8800] text-[#1A1A1A] font-['MedievalSharp']"
-                    >
-                      Select Tier
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center max-w-md mx-auto">
-                <p className="text-5xl font-['MedievalSharp'] text-[#B8860B] mb-4">
-                  ${service.pricing.basePrice}
-                </p>
-                <p className="font-['Crimson_Text'] text-[#E8DCC0] mb-8">
-                  One-time sacred investment for this powerful spiritual service
-                </p>
-                <Button 
-                  onClick={() => setPaymentOpen(true)}
-                  size="lg"
-                  className="bg-[#B8860B] hover:bg-[#CC8800] text-[#1A1A1A] font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(184,134,11,0.3)]"
-                >
-                  <GiCrystalBall className="w-5 h-5 mr-2" />
-                  Request This Service
-                </Button>
-              </div>
-            )}
+            <p className="font-['Crimson_Text'] text-lg text-[#E8DCC0] mb-8 max-w-2xl mx-auto">
+              Contact us to discuss this sacred service and receive a personalized consultation. We'll guide you through the process and answer any questions you may have.
+            </p>
+            <Button 
+              onClick={() => setPaymentOpen(true)}
+              size="lg"
+              className="bg-[#B8860B] hover:bg-[#CC8800] text-[#1A1A1A] font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(184,134,11,0.3)]"
+            >
+              <GiCrystalBall className="w-5 h-5 mr-2" />
+              Schedule Consultation
+            </Button>
           </div>
         </Card>
 
