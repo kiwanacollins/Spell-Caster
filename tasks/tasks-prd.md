@@ -531,48 +531,59 @@ Date: November 4, 2025
   - [ ] 5.9 Build Content Management System (CMS)
     - [✓] 5.9.5 Add mystical insights/guidance content editor
 
-- [ ] 6.0 External Communication Integration (WhatsApp & Messenger) **[No Built-in Messaging]**
-  - [ ] 6.1 Create WhatsApp contact links with pre-filled service-specific messages
-  - [ ] 6.2 Create Messenger contact links with pre-filled service-specific messages
+- [ ] 6.0 External Communication Integration (WhatsApp & Messenger) **[Entry Point for Pricing Workflow - Users contact admin here to discuss pricing]**
+  - [ ] 6.1 Create WhatsApp contact links with pre-filled service-specific messages (e.g., "I'm interested in obsession spell")
+  - [ ] 6.2 Create Messenger contact links with pre-filled service-specific messages (e.g., "I'm interested in obsession spell")
   - [ ] 6.3 Build WhatsApp button component with ancient styling (green theme, left placement)
   - [ ] 6.4 Build Messenger button component with ancient styling (blue theme, right placement)
   - [ ] 6.5 Implement dynamic message templates for each service type (pre-filled in contact links)
+  - [ ] 6.5.1 Add template: "I'm interested in [service name]. Can we discuss pricing?" - Opens WhatsApp/Messenger to admin
   - [ ] 6.6 Add WhatsApp/Messenger buttons to dashboard contact section
-  - [ ] 6.7 Add WhatsApp/Messenger buttons to each service detail page
-  - [ ] 6.8 Add WhatsApp/Messenger buttons to payment confirmation pages
+  - [ ] 6.7 Add WhatsApp/Messenger buttons to each service detail page (PRIMARY: Users click to contact admin about pricing)
+  - [ ] 6.8 Add WhatsApp/Messenger buttons to payment confirmation pages (secondary: follow-up contact)
   - [ ] 6.9 Create "Contact via WhatsApp/Messenger" floating action buttons 
   - [ ] 6.10 Set up WhatsApp Business API for automated service update notifications (optional - admin sends updates)
   - [ ] 6.11 Set up Messenger API for automated service update notifications (optional - admin sends updates)
   - [ ] 6.12 Store user's preferred contact method (WhatsApp or Messenger) in profile
   - [ ] 6.13 Add analytics tracking for WhatsApp vs Messenger usage
   - [ ] 6.14 Create admin documentation for managing WhatsApp/Messenger conversations externally
+  - [ ] 6.15 **WORKFLOW DOCUMENTATION**: After discussion via WhatsApp/Messenger, admin creates quote in admin dashboard → User views quote in app → User accepts/rejects → Proceeds to payment if accepted
 
-- [ ] 7.0 Payment System & Pricing Management
+- [ ] 7.0 Payment System & Pricing Management **[DYNAMIC PRICING WORKFLOW: User discusses with admin via WhatsApp/Messenger → Admin sends quote → User accepts/rejects quote → Checkout & Stripe payment]**
   - [ ] 7.1 Set up Stripe account and obtain API keys
-  - [ ] 7.2 Install and configure Stripe SDK
-  - [ ] 7.3 Create Stripe client utility in lib/payments/stripe.ts
-  - [ ] 7.4 Build payment model schema in MongoDB
-  - [ ] 7.5 Implement pricing structure for all 15 services (Get Back Lost Items, Land Solving, Obsession, Stop Cheating, Binding, Gay & Lesbian, Court Case, Business Boost, Cleansing, Divorce, Marriage, Magic Wallet, Financial Issues, Protection, Magic Rings)
-  - [ ] 7.6 Create pricing management system in admin dashboard for all services
-  - [ ] 7.7 Build checkout API endpoint with Stripe integration
-  - [ ] 7.8 Implement payment intent creation for service purchases
+  - [✓] 7.2 Install and configure Stripe SDK (stripe@14.8.0, @stripe/stripe-js@3.4.0, @stripe/react-stripe-js@3.0.0)
+  - [✓] 7.3 Create Stripe client utility in lib/payments/stripe.ts (payment intents, refunds, webhook verification)
+  - [✓] 7.4 Build payment model schema in MongoDB (Payment with installments, subscriptions, status tracking)
+  - [✓] 7.5 Implement dynamic pricing structure in lib/payments/pricing.ts (ServiceInfo catalog with NO prices, PriceQuote interface)
+  - [✓] 7.6 Create pricing management API in app/api/payments/quotes/ (GET/POST /api/payments/quotes, PUT /api/payments/quotes/[quoteId])
+  - [ ] 7.6.1 Create pricing management UI in admin dashboard to view pending quotes and quote statistics
+  - [ ] 7.6.2 Build admin quote creation form accessible from service detail or user profile
+  - [ ] 7.6.3 Implement quote expiration notification system for pending quotes
+  - [ ] 7.7 Build checkout API endpoint with Stripe integration (POST /api/payments/checkout with accepted quoteId)
+  - [ ] 7.7.1 Implement payment intent creation with quoted amount and installment metadata
+  - [ ] 7.7.2 Add client secret return for frontend Payment Element integration
+  - [ ] 7.8 Implement payment intent creation for service purchases (linked to service requests)
+  - [ ] 7.8.1 Add payment metadata to track which service request and user made the purchase
   - [ ] 7.9 Add subscription payment setup for recurring services (monthly cleansing, protection renewals)
-  - [ ] 7.10 Create Stripe webhook handler for payment events
-  - [ ] 7.11 Implement payment confirmation and receipt generation
+  - [ ] 7.9.1 Implement Stripe subscription creation for recurring service quotes
+  - [ ] 7.10 Create Stripe webhook handler for payment events (payment_intent.succeeded, payment_intent.payment_failed, charge.refunded)
+  - [ ] 7.10.1 Implement payment status update callbacks from webhook
+  - [ ] 7.10.2 Add service request status automation on payment confirmation
+  - [ ] 7.11 Implement payment confirmation and receipt generation (email receipts with service details)
   - [ ] 7.12 Build payment method management (add/remove cards, set default)
   - [ ] 7.13 Add digital wallet support (Apple Pay, Google Pay)
   - [ ] 7.14 Create invoice generation and download functionality
-  - [ ] 7.15 Implement refund processing API and admin interface
+  - [ ] 7.15 Implement refund processing API and admin interface (manual admin refunds with reason tracking)
   - [ ] 7.16 Build payment history view with filtering by service type
-  - [ ] 7.18 Implement bundle pricing calculations (multiple services discount)
-  - [ ] 7.19 Create payment plan support for services over $200
+  - [ ] 7.18 Implement bundle pricing calculations (multiple services discount via combined quote)
+  - [ ] 7.19 Create payment plan support for services over $200 (installment options when quote created)
   - [ ] 7.20 Build referral credit system
-  - [ ] 7.23 Create sliding scale pricing interface (private, case-by-case)
-  - [ ] 7.24 Build financial reporting and analytics
+  - [ ] 7.23 Create sliding scale pricing interface (admin sets custom prices case-by-case) - **THIS IS THE CORE WORKFLOW**
+  - [ ] 7.24 Build financial reporting and analytics (revenue by service, payment status breakdown)
   - [ ] 7.25 Implement tax documentation generation
   - [ ] 7.26 Add Stripe Connect for payout tracking (if needed)
-  - [ ] 7.27 Create pricing display rules (hide until service selected)
-  - [ ] 7.28 Implement dynamic pricing updates without code deployment
+  - [ ] 7.27 Create pricing display rules (NO prices shown on service pages; users contact via WhatsApp/Messenger)
+  - [ ] 7.28 Implement dynamic pricing updates without code deployment (admin adjusts quotes in app)
 
 - [ ] 8.0 AI Integration & Content Generation System **[Hidden from Users - No Communication AI]**
   - [ ] 8.1 Set up OpenAI API account and obtain API key
@@ -602,38 +613,84 @@ Date: November 4, 2025
   - [ ] 8.25 Create A/B testing AI for service page variations
 
 
-- [ ] 10.0 Services & Booking Management
-  - [ ] 10.1 Create service catalog data structure with all 15 services
-  - [ ] 10.2 Build service model schema in MongoDB (service type, pricing, duration, requirements)
-  - [ ] 10.3 Implement service API endpoints (CRUD operations)
-  - [ ] 10.4 Create service detail pages for all 15 services with pricing reveal on request
-  - [ ] 10.5 Build service request form (multi-step with validation) for each service type
+- [ ] 10.0 Services & Booking Management **[Service Details → WhatsApp/Messenger Contact → Quote → Payment]**
+  - [ ] 10.1 Create service catalog data structure with all 15 services (NO prices shown)
+  - [ ] 10.2 Build service model schema in MongoDB (service type, duration, requirements, category)
+  - [ ] 10.3 Implement service API endpoints (CRUD operations for admin)
+  - [ ] 10.4 Create service detail pages for all 15 services with NO pricing (user must contact via WhatsApp/Messenger to discuss pricing)
+  - [ ] 10.4.1 Add WhatsApp/Messenger buttons on each service detail page (primary CTA for pricing inquiry)
+  - [ ] 10.4.2 Display service descriptions, "what to expect", preparation requirements from ServiceInfo
+  - [ ] 10.5 Build service request form (multi-step with validation) for each service type (after quote accepted and payment made)
   - [ ] 10.6 Implement service request workflow (Pending → In Progress → Completed)
   - [ ] 10.7 Build automated status update notifications (WhatsApp/Messenger/Email)
   - [ ] 10.8 Create service completion request for video testimonials
   - [ ] 10.9 Add lunar phase calculation and display
   - [ ] 10.10 Create optimal timing recommendations based on moon phases for rituals
   - [ ] 10.11 Build service recommendation engine based on user needs
-  - [ ] 10.12 Implement package deals and bundle pricing logic (multiple services discount)
-  - [ ] 10.13 Create subscription service management (monthly cleansing, protection renewals)
+  - [ ] 10.12 Implement package deals and bundle pricing logic (multiple services discount via combined quote from admin)
+  - [ ] 10.13 Create subscription service management (monthly cleansing, protection renewals with recurring quotes)
   - [ ] 10.14 Add service usage tracking for analytics by service type
-  - [ ] 10.15 Build seasonal pricing adjustments interface
-  - [ ] 10.16 Implement service catalog CMS for admin updates
+  - [ ] 10.15 Build seasonal pricing adjustments interface (admin adjusts quote amounts seasonally)
+  - [ ] 10.16 Implement service catalog CMS for admin updates (update descriptions, preparation, etc.)
   - [ ] 10.17 Create service-specific email templates for confirmations and updates
   - [ ] 10.18 Build service request queue prioritization system
   - [ ] 10.19 Add service request deadline tracking and reminders
-  - [ ] 10.20 Implement service add-ons and customization options
+  - [ ] 10.20 Implement service add-ons and customization options (add-on quotes from admin)
 
 ---
 
+## Complete Pricing Workflow (Dynamic Pricing Implementation)
 
+### User Journey (Step-by-Step)
+1. **User views service detail page** (Task 10.4) - NO prices displayed
+2. **User clicks WhatsApp/Messenger button** (Task 6.7) - Pre-filled message: "I'm interested in [service name]. Can we discuss pricing?"
+3. **User chats with admin outside app** (WhatsApp/Messenger external) - Discusses needs, complexity, pricing
+4. **Admin creates price quote in app** (Task 7.6.1) - Admin dashboard sends quote via API POST /api/payments/quotes
+5. **User views quote in dashboard** - User sees accepted price with quote expiration date (7 days default)
+6. **User accepts/rejects quote** (Task 7.6) - PUT /api/payments/quotes/[quoteId] with action: 'accept'|'reject'
+7. **User proceeds to checkout** (Task 7.7) - POST /api/payments/checkout with accepted quoteId
+8. **Stripe payment processing** (Task 7.10) - Payment intent created, webhook confirms payment
+9. **Service request created** (Task 10.5) - User fills out service request form with ritual details
+10. **Status updates via WhatsApp/Messenger** (Task 10.7) - Admin sends progress updates externally
 
+### Key Implementation Points
+- **ServiceInfo catalog** (Task 7.5): 15 services with metadata but NO prices - prices come from quotes only
+- **PriceQuote model**: Tracks admin-set quotes with expiration, acceptance/rejection
+- **Quote lifecycle**: pending → accepted|rejected → expired (7 days if not accepted)
+- **API endpoints**:
+  - `GET /api/payments/quotes` - User views their quotes
+  - `POST /api/payments/quotes` - Admin creates quote (requires admin auth)
+  - `PUT /api/payments/quotes/[quoteId]` - User accepts/rejects, admin updates price
+  - `POST /api/payments/checkout` - Create Stripe payment intent from accepted quote
+- **Admin workflow**: Dashboard shows pending quotes (Task 7.6.1) → Click user/service → Create quote → Send to user
+- **Frontend displays**: Service detail pages show WhatsApp/Messenger buttons (Task 6.7) - primary CTA for pricing inquiry
+- **No menu pricing**: Services catalog accessible without prices (Task 7.27 implemented as architecture choice)
+
+### Files Already Implemented
+- `lib/payments/pricing.ts` - ServiceInfo catalog (15 services NO prices), PriceQuote interface, pricing utilities
+- `lib/payments/pricing-operations.ts` - 11 database operations for quote lifecycle (create, accept, reject, update, list, stats)
+- `app/api/payments/quotes/route.ts` - GET/POST endpoints for quote management
+- `app/api/payments/quotes/[quoteId]/route.ts` - PUT endpoint for quote actions (accept/reject/update)
+
+### Dependencies & Prerequisites
 - MongoDB must be configured before building any database models
 - BetterAuth must be set up before implementing any protected routes
-- Stripe setup is required before payment features can be tested
+- Stripe setup is required before payment features can be tested (API keys in env.local)
 - OpenAI API access is needed before AI features can be developed
 - WhatsApp/Messenger API credentials required before messaging integration
 - **shadcn/ui components must be installed and configured** (already done in Task 1.5) before building dashboards
+- **Dynamic Pricing Workflow** requires: Task 6.7 (WhatsApp buttons) → 7.5 (ServiceInfo) → 7.6 (Quote API) → 7.7 (Checkout API) → Stripe webhook
+
+### Design Philosophy Reference
+- **NO left curved borders on cards** - This is "AI slop" design
+- All pricing must feel personal and consultative (no algorithmic menu pricing)
+- Messaging (WhatsApp/Messenger) is the PRIMARY contact point for pricing discussion
+- App backend only stores and displays quotes created after discussion
+- Admin has full control over pricing per user and per situation
+- Use ancient fonts (UnifrakturMaguntia, Crimson Text, EB Garamond)
+- Maintain parchment/leather texture backgrounds throughout
+- Ensure all animations feel mystical and organic (smoke, candlelight, not modern glows)
+- Keep AI integration completely hidden from users
 
 
 - **NO left curved borders on cards** - This is "AI slop" design
