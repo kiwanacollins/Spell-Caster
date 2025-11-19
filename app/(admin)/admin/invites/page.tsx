@@ -159,13 +159,13 @@ export default function AdminInvitesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#F4E8D0] flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#F4E8D0] flex items-center gap-2">
             <GiPentacle className="text-[#B8860B]" />
             Admin Invites
           </h1>
-          <p className="text-[#C0C0C0] mt-1">Manage email invitations for admin users</p>
+          <p className="text-xs md:text-sm text-[#C0C0C0] mt-1">Manage email invitations for admin users</p>
         </div>
         <Dialog open={newInviteOpen} onOpenChange={setNewInviteOpen}>
           <DialogTrigger asChild>
@@ -266,7 +266,7 @@ export default function AdminInvitesPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         <Card className="border-[#8B6F47] bg-[#2A2A2A]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-[#C0C0C0]">Pending</CardTitle>

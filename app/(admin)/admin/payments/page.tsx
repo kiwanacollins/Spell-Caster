@@ -29,17 +29,17 @@ export default async function AdminPaymentsPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-3xl md:text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
           Payments & Monetization
         </h1>
-        <p className="text-[#4A4A4A]">
+        <p className="text-sm md:text-base text-[#4A4A4A]">
           Manage transactions, financial metrics, pricing, and revenue tracking
         </p>
       </div>
 
       {/* Quick Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <Card className="bg-white border-2 border-[#8B6F47]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-[#4A4A4A]">

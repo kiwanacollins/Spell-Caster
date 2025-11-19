@@ -38,13 +38,13 @@ export default async function UsersManagementPage() {
   const serializedRequests = serializeMapping(userServiceRequests);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Page Header */}
-      <div className="border-b-2 border-[#8B6F47] pb-6">
-        <h1 className="font-['UnifrakturMaguntia'] text-4xl text-[#1A1A1A] mb-2">
+      <div className="border-b-2 border-[#8B6F47] pb-4 md:pb-6">
+        <h1 className="font-['UnifrakturMaguntia'] text-3xl md:text-4xl text-[#1A1A1A] mb-2">
           User Management
         </h1>
-        <p className="text-[#4A4A4A]">
+        <p className="text-sm md:text-base text-[#4A4A4A]">
           Manage platform users, roles, accounts, and access
         </p>
       </div>

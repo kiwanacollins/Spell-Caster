@@ -16,18 +16,18 @@ export default async function TemplatesPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#1A1A1A" }}>
+    <div className="bg-[#1A1A1A]">
       {/* Header */}
       <div
-        className="border-b px-8 py-6"
+        className="border-b px-4 md:px-8 py-4 md:py-6"
         style={{
           borderColor: "#8B6F47",
           backgroundColor: "#0F0F0F",
         }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="space-y-2">
           <h1
-            className="text-3xl font-bold"
+            className="text-2xl md:text-3xl font-bold"
             style={{
               color: "#F4E8D0",
               fontFamily: "UnifrakturMaguntia, serif",
@@ -35,7 +35,7 @@ export default async function TemplatesPage() {
           >
             Request Templates Management
           </h1>
-          <p style={{ color: "#C0C0C0" }} className="mt-2 text-sm">
+          <p style={{ color: "#C0C0C0" }} className="text-xs md:text-sm">
             Create and manage templates for common service requests
           </p>
         </div>
@@ -43,12 +43,12 @@ export default async function TemplatesPage() {
 
       {/* Content */}
       <div
-        className="px-8 py-8"
+        className="px-4 md:px-8 py-6 md:py-8"
         style={{
           backgroundColor: "#1A1A1A",
         }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="space-y-6">
           <TemplateManagementClient />
         </div>
       </div>

@@ -37,12 +37,12 @@ export default async function AdminDashboardPage() {
     ]);
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="space-y-6 md:space-y-8">
+      <div className="space-y-8">
         {/* Ancient parchment header */}
-        <div className="bg-[#F4E8D0] border-4 border-[#8B6F47] rounded-sm p-8 relative">
+        <div className="bg-[#F4E8D0] border-4 border-[#8B6F47] rounded-sm p-6 md:p-8 relative">
           {/* Sacred admin symbol */}
-          <div className="absolute top-4 right-4 w-12 h-12">
+          <div className="absolute top-3 right-3 md:top-4 md:right-4 w-10 h-10 md:w-12 md:h-12">
             <svg viewBox="0 0 100 100" className="text-[#B8860B]">
               <circle
                 cx="50"
@@ -56,7 +56,7 @@ export default async function AdminDashboardPage() {
             </svg>
           </div>
 
-          <h1 className="text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
+          <h1 className="text-3xl md:text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
             Admin Portal
           </h1>
           <p className="text-[#4A4A4A] font-['Crimson_Text'] text-lg">
@@ -84,13 +84,13 @@ export default async function AdminDashboardPage() {
         <AdminRevenueBreakdown breakdown={revenueBreakdown} />
 
         {/* Quick action links */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           <Link href="/admin/users" className="group">
-            <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-6 hover:border-[#CC8800] transition-colors cursor-pointer h-full">
-              <h3 className="text-xl font-['MedievalSharp'] text-[#1A1A1A] mb-2 group-hover:text-[#CC8800]">
+            <div className="bg-[#F4E8D0] border-2 border-[#8B6F47] rounded-sm p-4 md:p-6 hover:border-[#CC8800] transition-colors cursor-pointer h-full">
+              <h3 className="text-lg md:text-xl font-['MedievalSharp'] text-[#1A1A1A] mb-2 group-hover:text-[#CC8800]">
                 Manage Users
               </h3>
-              <p className="text-[#4A4A4A] font-['Crimson_Text']">
+              <p className="text-sm md:text-base text-[#4A4A4A] font-['Crimson_Text']">
                 Manage users and assign admin roles
               </p>
             </div>

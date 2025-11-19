@@ -100,12 +100,12 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
   };
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-64 bg-[#1A1A1A] border-r-2 border-[#8B6F47] overflow-y-auto flex flex-col">
+    <div className="w-full h-full bg-[#1A1A1A] border-r-2 border-[#8B6F47] overflow-y-auto flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b-2 border-[#8B6F47]">
-        <div className="flex items-center gap-3 mb-4">
-          <GiPentacle className="text-[#B8860B] text-2xl" />
-          <h2 className="text-[#F4E8D0] font-['MedievalSharp'] text-xl">
+      <div className="p-4 md:p-6 border-b-2 border-[#8B6F47]">
+        <div className="flex items-center gap-2 md:gap-3 mb-4">
+          <GiPentacle className="text-[#B8860B] text-xl md:text-2xl" />
+          <h2 className="text-[#F4E8D0] font-['MedievalSharp'] text-base md:text-xl">
             Admin Portal
           </h2>
         </div>
@@ -116,7 +116,7 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-3 md:p-4 space-y-1 md:space-y-2">
         {adminNavItems.map((item) => (
           <div key={item.title}>
             {/* Parent item */}
@@ -124,13 +124,13 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
               <Link
                 href={item.href}
                 className={cn(
-                  "flex-1 flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors",
+                  "flex-1 flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-sm text-xs md:text-sm font-medium transition-colors",
                   isActive(item.href)
                     ? "bg-[#8B6F47] text-[#1A1A1A]"
                     : "text-[#C0C0C0] hover:bg-[#2A2A2A] hover:text-[#F4E8D0]"
                 )}
               >
-                <item.icon className="h-5 w-5 shrink-0" />
+                <item.icon className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
                 <span className="flex-1">{item.title}</span>
                 {item.badge && (
                   <span className="ml-2 px-2 py-0.5 bg-[#8B0000] text-[#F4E8D0] text-xs rounded-full">
@@ -143,11 +143,11 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
               {item.children && (
                 <button
                   onClick={() => toggleExpand(item.title)}
-                  className="px-2 py-3 text-[#C0C0C0] hover:text-[#F4E8D0]"
+                  className="px-2 py-2 md:py-3 text-[#C0C0C0] hover:text-[#F4E8D0]"
                 >
                   <FiChevronDown
                     className={cn(
-                      "h-4 w-4 transition-transform",
+                      "h-3 w-3 md:h-4 md:w-4 transition-transform",
                       expandedItems.includes(item.title) && "rotate-180"
                     )}
                   />
@@ -163,13 +163,13 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
                     key={child.href}
                     href={child.href}
                     className={cn(
-                      "flex items-center gap-3 px-4 py-2 rounded-sm text-sm transition-colors",
+                      "flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-sm text-xs md:text-sm transition-colors",
                       isActive(child.href)
                         ? "bg-[#8B6F47] text-[#1A1A1A]"
                         : "text-[#8B6F47] hover:bg-[#2A2A2A] hover:text-[#F4E8D0]"
                     )}
                   >
-                    <child.icon className="h-4 w-4 shrink-0" />
+                    <child.icon className="h-3 w-3 md:h-4 md:w-4 shrink-0" />
                     <span>{child.title}</span>
                   </Link>
                 ))}
@@ -180,8 +180,8 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t-2 border-[#8B6F47]">
-        <LogoutButton className="w-full" />
+      <div className="p-3 md:p-4 border-t-2 border-[#8B6F47]">
+        <LogoutButton className="w-full text-xs md:text-sm" />
       </div>
     </div>
   );

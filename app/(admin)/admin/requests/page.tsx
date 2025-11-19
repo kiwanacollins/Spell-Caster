@@ -21,14 +21,14 @@ export default async function ServiceRequestsPage() {
   }
 
   return (
-    <div className="p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="space-y-6">
+      <div className="space-y-6">
         {/* Page Header */}
-        <div className="bg-[#F4E8D0] border-4 border-[#8B6F47] rounded-sm p-8">
-          <h1 className="text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
+        <div className="bg-[#F4E8D0] border-4 border-[#8B6F47] rounded-sm p-4 md:p-8">
+          <h1 className="text-3xl md:text-4xl font-['MedievalSharp'] text-[#1A1A1A] mb-2">
             Service Request Queue
           </h1>
-          <p className="text-[#4A4A4A] font-['Crimson_Text'] text-lg">
+          <p className="text-sm md:text-base text-[#4A4A4A] font-['Crimson_Text']">
             Manage and track all service requests across the platform
           </p>
         </div>
