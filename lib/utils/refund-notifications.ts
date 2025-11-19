@@ -4,7 +4,7 @@
  * Handles sending notifications to users when their refund status changes
  */
 
-import { RefundStatus } from './models';
+import { RefundStatus } from '../db/models';
 
 /**
  * Notification templates for different refund statuses

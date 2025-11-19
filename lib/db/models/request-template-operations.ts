@@ -122,7 +122,7 @@ export async function updateRequestTemplate(
     { returnDocument: "after" }
   );
 
-  return result.value as RequestTemplate | null;
+  return result?.value as RequestTemplate | null;
 }
 
 /**
@@ -145,7 +145,7 @@ export async function incrementTemplateUsage(
     { returnDocument: "after" }
   );
 
-  return result.value as RequestTemplate | null;
+  return result?.value as RequestTemplate | null;
 }
 
 /**
@@ -167,7 +167,7 @@ export async function deleteRequestTemplate(
     { returnDocument: "after" }
   );
 
-  return result.value as RequestTemplate | null;
+  return result?.value as RequestTemplate | null;
 }
 
 /**

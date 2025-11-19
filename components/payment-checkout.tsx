@@ -62,7 +62,7 @@ function CheckoutContent({
   onPaymentError: (error: string) => void;
 }) {
   return (
-    <EmbeddedCheckout
+    <EmbeddedCheckoutProvider
       stripe={getStripe()}
       options={{
         clientSecret,
@@ -72,7 +72,9 @@ function CheckoutContent({
           onPaymentSuccess(intentId);
         },
       }}
-    />
+    >
+      <EmbeddedCheckout />
+    </EmbeddedCheckoutProvider>
   );
 }
 

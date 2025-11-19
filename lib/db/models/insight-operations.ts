@@ -26,7 +26,7 @@ export async function updateInsightOp(id: string, updates: Partial<Insight>): Pr
   const result = await db
     .collection('insights')
     .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: updatesToSet }, { returnDocument: 'after' });
-  return result.value as Insight | null;
+  return result?.value as Insight | null;
 }
 
 export async function deleteInsightOp(id: string): Promise<boolean> {
@@ -58,5 +58,5 @@ export async function setActiveInsight(id: string): Promise<Insight | null> {
   const result = await db
     .collection('insights')
     .findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { active: true, updatedAt: new Date() } }, { returnDocument: 'after' });
-  return result.value as Insight | null;
+  return result?.value as Insight | null;
 }

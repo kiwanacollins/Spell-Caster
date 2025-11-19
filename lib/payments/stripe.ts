@@ -11,12 +11,12 @@ import { env } from '@/lib/env';
  * Only used in API routes (server-side)
  */
 export function getStripeClient(): Stripe {
-  const secretKey = env.STRIPE_SECRET_KEY;
+  const secretKey = env.optional.STRIPE_SECRET_KEY;
   if (!secretKey) {
     throw new Error('STRIPE_SECRET_KEY environment variable is not defined');
   }
   return new Stripe(secretKey, {
-    apiVersion: '2024-10-28.acacia',
+    apiVersion: '2023-10-16',
   });
 }
 
@@ -24,7 +24,7 @@ export function getStripeClient(): Stripe {
  * Get Stripe public key for client-side use
  */
 export function getStripePublicKey(): string {
-  const publicKey = env.STRIPE_PUBLIC_KEY;
+  const publicKey = env.optional.STRIPE_PUBLIC_KEY;
   if (!publicKey) {
     throw new Error('STRIPE_PUBLIC_KEY environment variable is not defined');
   }
@@ -149,7 +149,7 @@ export function verifyWebhookSignature(
 ): WebhookEvent | null {
   try {
     const stripe = getStripeClient();
-    const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
+    const webhookSecret = env.optional.STRIPE_WEBHOOK_SECRET;
     
     if (!webhookSecret) {
       throw new Error('STRIPE_WEBHOOK_SECRET environment variable is not defined');
@@ -236,7 +236,7 @@ export async function refundPayment(
       refundId: refund.id,
       amount: refund.amount,
       currency: refund.currency,
-      status: refund.status, // 'succeeded' | 'failed' | 'pending'
+      status: refund.status || 'pending', // 'succeeded' | 'failed' | 'pending'
     };
   } catch (error) {
     const stripeError = error as Stripe.errors.StripeError;

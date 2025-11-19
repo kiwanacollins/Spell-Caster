@@ -6,11 +6,12 @@ import { AdminPaymentsDashboard } from './admin-payments-dashboard';
 import { AdminTransactionList } from './admin-transaction-list';
 import { AdminFinancialReports } from './admin-financial-reports';
 import { AdminPricingManagement } from './admin-pricing-management';
+import { AdminQuotesManagement } from './admin-quotes-management';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { FiAlertCircle } from 'react-icons/fi';
 
 interface AdminPaymentsPageClientProps {
-  initialTab?: 'dashboard' | 'transactions' | 'reports' | 'pricing';
+  initialTab?: 'dashboard' | 'transactions' | 'reports' | 'pricing' | 'quotes';
 }
 
 export function AdminPaymentsPageClient({
@@ -215,10 +216,10 @@ export function AdminPaymentsPageClient({
       {/* Tabs Navigation */}
       <Tabs 
         value={activeTab} 
-        onValueChange={(value) => setActiveTab(value as 'dashboard' | 'transactions' | 'reports' | 'pricing')} 
+        onValueChange={(value) => setActiveTab(value as 'dashboard' | 'transactions' | 'reports' | 'pricing' | 'quotes')} 
         className="w-full"
       >
-        <TabsList className="grid w-full grid-cols-4 bg-[#F4E8D0] border-2 border-[#8B6F47]">
+        <TabsList className="grid w-full grid-cols-5 bg-[#F4E8D0] border-2 border-[#8B6F47]">
           <TabsTrigger
             value="dashboard"
             className="data-[state=active]:bg-[#E8D8C0] data-[state=active]:text-[#1A1A1A]"
@@ -236,6 +237,12 @@ export function AdminPaymentsPageClient({
             className="data-[state=active]:bg-[#E8D8C0] data-[state=active]:text-[#1A1A1A]"
           >
             Reports
+          </TabsTrigger>
+          <TabsTrigger
+            value="quotes"
+            className="data-[state=active]:bg-[#E8D8C0] data-[state=active]:text-[#1A1A1A]"
+          >
+            Quotes
           </TabsTrigger>
           <TabsTrigger
             value="pricing"
@@ -263,6 +270,11 @@ export function AdminPaymentsPageClient({
             onGenerateReport={handleGenerateReport}
             onExportReport={handleExportReport}
           />
+        </TabsContent>
+
+        {/* Quotes Tab */}
+        <TabsContent value="quotes" className="space-y-6">
+          <AdminQuotesManagement />
         </TabsContent>
 
         {/* Pricing Tab */}

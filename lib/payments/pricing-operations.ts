@@ -4,7 +4,7 @@
  * Users discuss their needs and admin sends custom quotes
  */
 
-import { getMongoClient } from '../mongodb';
+import { getMongoClient } from '../db/mongodb';
 import { PriceQuote, ServiceType } from './pricing';
 import { ObjectId } from 'mongodb';
 

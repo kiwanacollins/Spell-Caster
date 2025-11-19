@@ -14,7 +14,7 @@ import { ObjectId } from 'mongodb';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { quoteId: string } }
+  { params }: { params: Promise<{ quoteId: string }> }
 ) {
   try {
     const session = await getSession();
@@ -22,7 +22,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const quoteId = params.quoteId;
+    const { quoteId } = await params;
 
     // Validate ObjectId format
     if (!ObjectId.isValid(quoteId)) {
@@ -46,7 +46,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { quoteId: string } }
+  { params }: { params: Promise<{ quoteId: string }> }
 ) {
   try {
     const session = await getSession();
@@ -54,7 +54,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const quoteId = params.quoteId;
+    const { quoteId } = await params;
 
     // Validate ObjectId format
     if (!ObjectId.isValid(quoteId)) {

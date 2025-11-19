@@ -1,6 +1,11 @@
 import { ObjectId } from 'mongodb';
 
 /**
+ * Database collection name for payments
+ */
+export const PAYMENT_COLLECTION = 'payments';
+
+/**
  * Payment Status
  */
 export type PaymentStatus = 'pending' | 'scheduled' | 'partially_paid' | 'completed' | 'overdue' | 'cancelled';
