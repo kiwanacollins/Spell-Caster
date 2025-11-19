@@ -60,6 +60,7 @@ const adminNavItems: NavItem[] = [
       { title: "Transactions", href: "/admin/payments", icon: GiReceiveMoney },
       { title: "Refunds", href: "/admin/payments/refunds", icon: GiGavel },
       { title: "Pricing", href: "/admin/payments/pricing", icon: FiBarChart },
+      { title: "Services", href: "/admin/services", icon: GiSpellBook },
     ],
   },
   {

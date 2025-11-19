@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from "react";
+import { useUser } from "@/lib/auth/hooks";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ServicePaymentCheckout } from "@/components/payment-checkout";
+import { QuoteCreationDialog } from "@/components/admin/quote-creation-dialog";
 import { 
   GiSpellBook, 
   GiMoon, 
@@ -14,6 +16,7 @@ import {
   GiStarShuriken 
 } from "react-icons/gi";
 import { IoCheckmarkCircle, IoTimeOutline, IoShieldCheckmark } from "react-icons/io5";
+import { FiPlus } from "react-icons/fi";
 
 interface ServiceDetailClientProps {
   service: any;
@@ -21,6 +24,8 @@ interface ServiceDetailClientProps {
 
 export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
   const [paymentOpen, setPaymentOpen] = useState(false);
+  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
+  const { user } = useUser();
 
   const energyColors: Record<string, string> = {
     "Low": "text-[#8B6F47]",
@@ -74,6 +79,19 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     <GiCrystalBall className="w-5 h-5 mr-2" />
                     Request This Service
                   </Button>
+                  
+                  {/* Admin Quote Creation Button */}
+                  {user && (user as any)?.role === 'admin' && (
+                    <Button 
+                      onClick={() => setQuoteDialogOpen(true)}
+                      size="lg"
+                      variant="outline"
+                      className="border-2 border-[#B8860B] text-[#B8860B] hover:bg-[#2A2A2A] font-['MedievalSharp'] text-lg"
+                    >
+                      <FiPlus className="w-5 h-5 mr-2" />
+                      Create Quote
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -94,6 +112,18 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           }}
           onPaymentError={(error) => {
             console.error('Payment error:', error);
+          }}
+        />
+
+        {/* Admin Quote Creation Dialog */}
+        <QuoteCreationDialog
+          isOpen={quoteDialogOpen}
+          onClose={() => setQuoteDialogOpen(false)}
+          serviceId={service.id}
+          serviceName={service.title}
+          onQuoteCreated={(quoteId) => {
+            console.debug('Quote created:', quoteId);
+            // Optionally show success toast or redirect
           }}
         />
 

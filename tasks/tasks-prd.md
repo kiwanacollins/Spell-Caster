@@ -557,7 +557,7 @@ Date: November 4, 2025
   - [✓] 7.5 Implement dynamic pricing structure in lib/payments/pricing.ts (ServiceInfo catalog with NO prices, PriceQuote interface)
   - [✓] 7.6 Create pricing management API in app/api/payments/quotes/ (GET/POST /api/payments/quotes, PUT /api/payments/quotes/[quoteId])
   - [✓] 7.6.1 Create pricing management UI in admin dashboard to view pending quotes and quote statistics
-  - [ ] 7.6.2 Build admin quote creation form accessible from service detail or user profile
+  - [✓] 7.6.2 Build admin quote creation form accessible from service detail pages (admin selects service, enters custom price, duration, notes)
   - [ ] 7.6.3 Implement quote expiration notification system for pending quotes
   - [ ] 7.7 Build checkout API endpoint with Stripe integration (POST /api/payments/checkout with accepted quoteId)
   - [ ] 7.7.1 Implement payment intent creation with quoted amount and installment metadata

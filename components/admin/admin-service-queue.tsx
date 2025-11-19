@@ -25,9 +25,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { formatDistanceToNow } from "date-fns";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FiMoreVertical } from "react-icons/fi";
+
+interface UserInfo {
+  name: string;
+  email: string;
+}
 
 interface AdminServiceQueueProps {
   requests: ServiceRequest[];
@@ -47,16 +52,59 @@ export function AdminServiceQueue({
   loading = false,
 }: AdminServiceQueueProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [userCache, setUserCache] = useState<Record<string, UserInfo>>({});
+  const [loadingUsers, setLoadingUsers] = useState(false);
 
-  const toggleSelection = (requestId: string) => {
+  // Fetch user information for all requests
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const userIds = requests
+        .map(r => r.userId)
+        .filter(id => id && !userCache[id])
+        .filter((value, index, self) => self.indexOf(value) === index); // Remove duplicates
+
+      if (userIds.length === 0) return;
+
+      setLoadingUsers(true);
+      try {
+        const userDataMap: Record<string, UserInfo> = {};
+        
+        for (const userId of userIds) {
+          try {
+            const response = await fetch(`/api/users/${userId}`);
+            if (response.ok) {
+              const userData = await response.json();
+              userDataMap[userId] = {
+                name: userData.name || userData.email?.split('@')[0] || 'Unknown',
+                email: userData.email || 'No email',
+              };
+            } else {
+              userDataMap[userId] = { name: 'Unknown User', email: 'N/A' };
+            }
+          } catch (err) {
+            console.error(`Failed to fetch user ${userId}:`, err);
+            userDataMap[userId] = { name: 'Unknown User', email: 'N/A' };
+          }
+        }
+
+        setUserCache(prev => ({ ...prev, ...userDataMap }));
+      } finally {
+        setLoadingUsers(false);
+      }
+    };
+
+    fetchUserInfo();
+  }, [requests, userCache]);
+
+  const handleToggleSelection = (requestId: string) => {
     const newSelected = selectedIds.includes(requestId)
       ? selectedIds.filter(id => id !== requestId)
       : [...selectedIds, requestId];
     onSelectionChange?.(newSelected);
   };
 
-  const toggleSelectAll = () => {
-    if (selectedIds.length === requests.length) {
+  const handleToggleSelectAll = () => {
+    if (selectedIds.length === requests.length && requests.length > 0) {
       onSelectionChange?.([]);
     } else {
       onSelectionChange?.(requests.map(r => r._id?.toString() || ''));
@@ -82,21 +130,6 @@ export function AdminServiceQueue({
       on_hold: "bg-[#4A4A4A]/20 text-[#4A4A4A] border-[#4A4A4A]",
     };
     return colors[status] || "";
-  };
-
-  const handleToggleSelection = (requestId: string) => {
-    const newSelected = selectedIds.includes(requestId)
-      ? selectedIds.filter(id => id !== requestId)
-      : [...selectedIds, requestId];
-    onSelectionChange?.(newSelected);
-  };
-
-  const handleToggleSelectAll = () => {
-    if (selectedIds.length === requests.length && requests.length > 0) {
-      onSelectionChange?.([]);
-    } else {
-      onSelectionChange?.(requests.map(r => r._id?.toString() || ''));
-    }
   };
 
   return (
@@ -177,9 +210,20 @@ export function AdminServiceQueue({
 
                   {/* Client Name */}
                   <TableCell className="text-[#4A4A4A]">
-                    <div className="text-sm">{request.userId}</div>
+                    {userCache[request.userId] ? (
+                      <div className="space-y-1">
+                        <div className="font-semibold text-sm text-[#1A1A1A]">
+                          {userCache[request.userId].name}
+                        </div>
+                        <div className="text-xs text-[#8B6F47]">
+                          {userCache[request.userId].email}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-sm text-[#6B5C3D]">Loading...</div>
+                    )}
                     {request.clientNotes && (
-                      <p className="text-xs text-[#8B6F47] truncate">
+                      <p className="text-xs text-[#8B6F47] truncate mt-1">
                         &quot;{request.clientNotes}&quot;
                       </p>
                     )}
