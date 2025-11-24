@@ -60,8 +60,7 @@ export async function POST(request: NextRequest) {
 
     // TODO: Send email with reset link
     // For now, just log it (in production, use an email service)
-    console.log(`Password reset link for ${email}: ${resetUrl}`);
-    console.log(`Token expires at: ${resetTokenExpiry.toISOString()}`);
+
 
     // In production, you would send an email here:
     /*
