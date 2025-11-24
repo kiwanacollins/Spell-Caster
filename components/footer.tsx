@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { services } from '@/lib/services/services-data';
 import {
   FaInstagram,
   FaFacebookF,
@@ -24,13 +25,11 @@ export function Footer() {
     { icon: FaPinterestP, href: 'https://pinterest.com', label: 'Pinterest' },
   ];
 
-  const serviceLinks = [
-    { name: 'Love Spells', href: '/services/love-spells' },
-    { name: 'Protection Magic', href: '/services/protection' },
-    { name: 'Wealth Attraction', href: '/services/wealth' },
-    { name: 'Spiritual Readings', href: '/services/readings' },
-    { name: 'Energy Healing', href: '/services/energy-healing' },
-  ];
+  // Convert services to footer links format
+  const serviceLinks = services.map(service => ({
+    name: service.name,
+    href: `/services/${service.id}`,
+  }));
 
   const resourceLinks = [
     { name: 'Blog', href: '/blog' },
@@ -70,9 +69,9 @@ export function Footer() {
       <div className="relative w-full max-w-none px-6 py-16">
         <div className="container mx-auto max-w-7xl">
           {/* Main footer content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand & Contact Column */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             <div>
               <h3
                 className="text-5xl font-bold mb-4 text-white"
@@ -144,12 +143,12 @@ export function Footer() {
             >
               Our Services
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white hover:text-mystical-gold transition-colors text-xl flex items-center gap-2 group"
+                    className="text-white hover:text-mystical-gold transition-colors text-base flex items-center gap-2 group"
                     style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
                   >
                     <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
