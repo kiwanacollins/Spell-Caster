@@ -241,7 +241,7 @@ This is a spiritual healing and spell casting platform with an **ancient, magica
 - Use standard form validation messages
 - Create perfect, symmetrical layouts (embrace organic imperfection)
 - Default to Sans-serif fonts
-- Use bright, saturated colors
+- Use bright, saturated colors 
 - Use the typical "card with left accent border" pattern seen everywhere
 
 ### Creative Direction
