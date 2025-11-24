@@ -46,3 +46,16 @@ what would be the value of this for this project:
 
 
 
+cd /root/www/var/magic
+
+# Stop current containers
+docker compose down
+
+# Start with MongoDB
+docker compose up -d
+
+# Check status
+docker compose ps
+
+# View logs
+docker compose logs -f app
