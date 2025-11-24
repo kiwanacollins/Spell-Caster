@@ -4,14 +4,14 @@ import { fontClasses } from '@/styles/fonts';
 import '@/lib/env'; // Validate environment variables on app start
 
 export const metadata: Metadata = {
-  title: 'Spell Caster - Spiritual Healing & Mystical Services',
+  title: 'Your Spell Caster - Spiritual Healing & Mystical Services',
   description:
     'Ancient wisdom meets modern healing. Experience authentic spiritual services, energy work, and sacred rituals from a professional healer.',
   keywords:
     'spell casting, spiritual healing, energy work, tarot readings, consultations, mystical services',
-  authors: [{ name: 'Spell Caster' }],
+  authors: [{ name: 'Your Spell Caster' }],
   openGraph: {
-    title: 'Spell Caster - Spiritual Healing & Mystical Services',
+    title: 'Your Spell Caster - Spiritual Healing & Mystical Services',
     description: 'Experience authentic spiritual services and sacred rituals.',
     type: 'website',
   },

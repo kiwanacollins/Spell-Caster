@@ -3,7 +3,7 @@ import { AdminServicesBrowserClient } from '@/components/admin/admin-services-br
 import { redirect } from 'next/navigation';
 
 export const metadata = {
-  title: 'Services Browser | Admin Dashboard',
+  title: 'Services Browser | Admin Dashboard - Your Spell Caster',
   description: 'Browse all spiritual services and create quotes for clients',
 };
 

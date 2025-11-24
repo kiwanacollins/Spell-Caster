@@ -5,7 +5,7 @@ import { UserBehaviorAnalytics } from '@/components/admin/user-behavior-analytic
 import { ConversionFunnelTracking } from '@/components/admin/conversion-funnel-tracking';
 
 export const metadata = {
-  title: 'Analytics & Insights | Admin Dashboard',
+  title: 'Analytics & Insights | Admin Dashboard - Your Spell Caster',
   description: 'Platform analytics, service performance, and user behavior tracking',
 };
 

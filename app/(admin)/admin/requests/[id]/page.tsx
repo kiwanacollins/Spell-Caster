@@ -9,7 +9,7 @@ interface RequestDetailPageProps {
 }
 
 export const metadata: Metadata = {
-  title: "Request Details | Admin",
+  title: "Request Details | Admin - Your Spell Caster",
 };
 
 export default async function RequestDetailPage({

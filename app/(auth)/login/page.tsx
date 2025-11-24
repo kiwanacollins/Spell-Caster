@@ -101,7 +101,7 @@ export default function LoginPage() {
             Welcome Back
           </h1>
           <p className="font-serif text-ink-700 text-sm">
-            Sign in to continue your healing journey
+            Sign in to Your Spell Caster to continue your healing journey
           </p>
         </div>
 

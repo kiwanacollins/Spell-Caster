@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Authentication - Spell Caster",
+  title: "Authentication - Your Spell Caster",
   description: "Sign in or create an account to access spiritual healing services",
 };
 

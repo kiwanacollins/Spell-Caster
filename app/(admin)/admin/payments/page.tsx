@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
  */
 
 export const metadata = {
-  title: 'Payments Management - Spell Caster Admin',
+  title: 'Payments Management - Your Spell Caster Admin',
   description: 'Manage payments, transactions, pricing, and financial reports',
 };
 

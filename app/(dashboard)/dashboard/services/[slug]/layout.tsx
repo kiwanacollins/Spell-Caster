@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
   if (!service) {
     return {
-      title: "Service Not Found",
+      title: "Service Not Found - Your Spell Caster",
     };
   }
 
   return {
-    title: `${service.title} - Spiritual Healing Services`,
+    title: `${service.title} - Your Spell Caster`,
     description: service.shortDescription,
   };
 }

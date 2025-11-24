@@ -80,7 +80,7 @@ export function Footer() {
                   textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                 }}
               >
-                Mystic Healing
+                Your Spell Caster
               </h3>
               <p
                 className="text-white text-xl leading-relaxed"
@@ -234,7 +234,7 @@ export function Footer() {
             className="text-white text-xl text-center md:text-left"
             style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
           >
-            © {currentYear} Mystic Healing. All rights reserved. Blessed be.
+            © {currentYear} Your Spell Caster. All rights reserved. Blessed be.
           </p>
 
           {/* Security Badges */}

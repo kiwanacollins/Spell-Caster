@@ -9,7 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
 export const metadata = {
-  title: "Profile & Settings | Dashboard",
+  title: "Profile & Settings | Dashboard - Your Spell Caster",
   description: "View and manage your profile",
 };
 

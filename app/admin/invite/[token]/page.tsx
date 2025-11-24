@@ -149,7 +149,7 @@ export default function InviteAcceptancePage() {
           </div>
           <CardTitle className="text-[#F4E8D0] text-2xl">Join the Sacred Circle</CardTitle>
           <CardDescription className="text-[#C0C0C0] mt-2">
-            Complete your account setup to enter the admin portal
+            Complete your account setup to enter the Your Spell Caster admin portal
           </CardDescription>
         </CardHeader>
 

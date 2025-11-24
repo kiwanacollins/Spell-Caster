@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { AdminTestimonialPageClient } from '@/components/admin/admin-testimonial-page-client';
 
 export const metadata = {
-  title: 'Testimonials Management | Admin Dashboard',
+  title: 'Testimonials Management | Admin Dashboard - Your Spell Caster',
   description: 'Manage and analyze client video testimonials',
 };
 

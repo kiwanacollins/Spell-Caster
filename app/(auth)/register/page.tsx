@@ -172,7 +172,7 @@ export default function RegisterPage() {
             Begin Your Healing Journey
           </h1>
           <p className="font-serif text-ink-700 text-sm">
-            Create an account to access personalized spiritual healing and guidance
+            Create an account with Your Spell Caster to access personalized spiritual healing and guidance
           </p>
         </div>
 

@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth";
 import { TemplateManagementClient } from "@/components/admin/template-management-client";
 
 export const metadata: Metadata = {
-  title: "Request Templates | Admin",
+  title: "Request Templates | Admin - Your Spell Caster",
 };
 
 export default async function TemplatesPage() {

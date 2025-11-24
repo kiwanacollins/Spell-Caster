@@ -1,8 +1,8 @@
-# Copilot Instructions for Spell Caster Platform
+# Copilot Instructions for Your Spell Caster Platform
 
 ## Project Overview
 
-This is a spiritual healing and spell casting platform with an **ancient, magical, and mysterious aesthetic**. The design should evoke grimoires, medieval manuscripts, and mystical artifacts—NOT modern web design trends.
+This is a spiritual healing and spell casting platform called "Your Spell Caster" with an **ancient, magical, and mysterious aesthetic**. The design should evoke grimoires, medieval manuscripts, and mystical artifacts—NOT modern web design trends.
 
 ## Core Design Philosophy
 

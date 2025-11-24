@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { ServiceRequestsQueueClient } from "@/components/admin/service-requests-queue-client";
 
 export const metadata = {
-  title: "Service Requests Queue | Admin Portal",
+  title: "Service Requests Queue | Admin Portal - Your Spell Caster",
   description: "Manage and track service requests",
 };
 

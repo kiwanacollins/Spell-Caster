@@ -3,7 +3,7 @@ import { AdminLayoutClient } from '@/components/admin/admin-layout-client';
 import { AdminInsightsEditor } from '@/components/admin/admin-insights-editor';
 
 export const metadata = {
-  title: 'Admin CMS | Mystical Insights',
+  title: 'Admin CMS | Your Spell Caster',
 };
 
 export default async function AdminCMSPage() {

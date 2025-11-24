@@ -9,7 +9,7 @@ import {
 } from '@/lib/utils/serialize-db-objects';
 
 export const metadata = {
-  title: 'User Management | Admin',
+  title: 'User Management | Admin - Your Spell Caster',
   description: 'Manage platform users, roles, and accounts',
 };
 

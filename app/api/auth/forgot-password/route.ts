@@ -67,13 +67,14 @@ export async function POST(request: NextRequest) {
     /*
     await sendEmail({
       to: email,
-      subject: "Reset Your Password",
+      subject: "Reset Your Password - Your Spell Caster",
       html: `
         <h1>Reset Your Password</h1>
-        <p>You requested a password reset. Click the link below to create a new password:</p>
+        <p>You requested a password reset for your Your Spell Caster account. Click the link below to create a new password:</p>
         <a href="${resetUrl}">Reset Password</a>
         <p>This link will expire in 1 hour.</p>
         <p>If you didn't request this, please ignore this email.</p>
+        <p>Blessed be,<br/>Your Spell Caster Team</p>
       `,
     });
     */

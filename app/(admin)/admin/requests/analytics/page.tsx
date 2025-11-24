@@ -5,7 +5,7 @@ import { AdminRequestAnalytics } from '@/components/admin/admin-request-analytic
 import { getRequestAnalytics } from '@/lib/analytics/request-analytics';
 
 export const metadata = {
-  title: 'Request Analytics | Admin Portal',
+  title: 'Request Analytics | Admin Portal - Your Spell Caster',
   description: 'View service request analytics and insights',
 };
 

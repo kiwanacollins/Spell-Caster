@@ -167,7 +167,7 @@ export function MobileNav({ userName = "Seeker" }: MobileNavProps) {
         <Link href="/dashboard" className="flex items-center gap-2">
           <GiPentacle className="h-7 w-7 text-[#B8860B]" />
           <span className="font-['MedievalSharp'] text-lg text-[#1A1A1A]">
-            Mystical Portal
+            Your Spell Caster
           </span>
         </Link>
 

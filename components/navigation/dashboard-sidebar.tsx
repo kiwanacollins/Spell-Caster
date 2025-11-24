@@ -177,7 +177,7 @@ export function DashboardSidebar({
             <GiPentacle className="h-8 w-8 text-[#B8860B] transition-transform group-hover:rotate-180 duration-700" />
             <div>
               <h1 className="font-['MedievalSharp'] text-xl text-[#F4E8D0] leading-tight">
-                Mystical Portal
+                Your Spell Caster
               </h1>
               <p className="font-['Crimson_Text'] text-xs text-[#C0C0C0]">
                 Your Sacred Space
