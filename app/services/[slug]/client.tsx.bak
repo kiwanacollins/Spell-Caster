@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useUser } from '@/lib/auth/hooks';
+import { Service } from '@/lib/services/service-data';
 import { 
   GiSpellBook, 
   GiMoon, 
@@ -13,14 +14,6 @@ import {
 } from 'react-icons/gi';
 import { IoCheckmarkCircle, IoTimeOutline, IoShieldCheckmark } from 'react-icons/io5';
 
-interface Service {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-  category: string;
-}
-
 interface ServiceDetailClientProps {
   service: Service;
 }
@@ -29,18 +22,22 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
   const { user } = useUser();
   const [isCtaHovered, setIsCtaHovered] = useState(false);
 
-  // Extended service details based on category
+  // Map comprehensive service data to component's expected details structure
   const getServiceDetails = () => {
-    const baseDetails = {
-      energyLevel: service.category === 'Artifacts' ? 'Very High' : service.category === 'Rituals' ? 'Medium' : 'High',
-      moonPhase: service.category === 'Artifacts' ? '🌕' : service.category === 'Rituals' ? '🌑' : '🌔',
-      duration: service.category === 'Artifacts' ? 'Permanent enchantment' : service.category === 'Rituals' ? '3-7 days' : '7-21 days',
-      lunarPhase: service.category === 'Artifacts' ? 'Full Moon charging' : service.category === 'Rituals' ? 'New Moon (fresh start)' : 'Waxing Moon for growth',
+    return {
+      energyLevel: service.energyLevel,
+      moonPhase: service.moonPhase,
+      duration: service.ritualDetails.duration,
+      lunarPhase: service.ritualDetails.lunarPhase,
+      fullDescription: service.fullDescription,
+      benefits: service.benefits,
+      materials: service.ritualDetails.materials,
+      timeline: service.whatToExpect.timeline,
+      preparation: service.preparation,
     };
+  };
 
-    // Specific details by service ID
-    const serviceSpecifics: Record<string, any> = {
-      'revenge-spell': {
+  const details = getServiceDetails();
         fullDescription: 'Powerful karmic justice magic designed to return negative energy to those who have caused you harm. This ancient spell works with the universal law of karma to ensure that wrongdoers face consequences for their actions while protecting you from further harm.',
         benefits: [
           'Karmic justice delivered to wrongdoers',

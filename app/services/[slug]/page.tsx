@@ -1,39 +1,40 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { services } from "@/lib/services/services-data";
+import { services, getAllServiceSlugs, getServiceBySlug } from "@/lib/services/service-data";
 import ServiceDetailClient from "./client";
 
 interface ServicePageProps {
   params: Promise<{
-    id: string;
+    slug: string;
   }>;
 }
 
 // Generate static params for all services
 export async function generateStaticParams() {
-  return services.map((service) => ({
-    id: service.id,
+  const slugs = getAllServiceSlugs();
+  return slugs.map((slug) => ({
+    slug: slug,
   }));
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const { id } = await params;
-  const service = services.find(s => s.id === id);
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
 
   if (!service) {
     return {
-      title: 'Service Not Found',
+      title: 'Service Not Found - Your Spell Caster',
     };
   }
 
   return {
-    title: `${service.name} | Spiritual Healing Services`,
-    description: service.description,
+    title: `${service.title} - Your Spell Caster`,
+    description: service.shortDescription,
     openGraph: {
-      title: service.name,
-      description: service.description,
-      images: [service.icon],
+      title: service.title,
+      description: service.shortDescription,
+      type: 'website',
     },
   };
 }
@@ -43,8 +44,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
  * Displays service information to non-authenticated users
  */
 export default async function ServicePage({ params }: ServicePageProps) {
-  const { id } = await params;
-  const service = services.find(s => s.id === id);
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
 
   if (!service) {
     notFound();
