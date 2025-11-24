@@ -1,15 +1,30 @@
 version: '3.8'
 
 services:
+  mongodb:
+    image: mongo:7-alpine
+    container_name: magic-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: spell-caster
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+    networks:
+      - magic-network
+
   app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3003:3003"
+      - "3000:3000"
+    depends_on:
+      - mongodb
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=${MONGODB_URI}
+      - MONGODB_URI=mongodb://mongodb:27017/spell-caster
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
@@ -29,3 +44,6 @@ services:
 networks:
   magic-network:
     driver: bridge
+
+volumes:
+  mongodb_data:
