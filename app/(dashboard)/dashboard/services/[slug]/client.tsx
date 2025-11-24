@@ -85,7 +85,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 <div className="flex flex-col gap-3">
                   <div className="text-center mb-2">
                     <p className="font-['Crimson_Text'] text-[#E8DCC0] text-sm mb-3">
-                      Contact us to discuss this service
+                      Contact to discuss this service
                     </p>
                   </div>
                   
