@@ -5,7 +5,6 @@ import { useUser } from "@/lib/auth/hooks";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ServicePaymentCheckout } from "@/components/payment-checkout";
 import { QuoteCreationDialog } from "@/components/admin/quote-creation-dialog";
 import { 
   GiSpellBook, 
@@ -17,15 +16,28 @@ import {
 } from "react-icons/gi";
 import { IoCheckmarkCircle, IoTimeOutline, IoShieldCheckmark } from "react-icons/io5";
 import { FiPlus } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import { RiMessengerLine } from "react-icons/ri";
 
 interface ServiceDetailClientProps {
   service: any;
 }
 
 export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
-  const [paymentOpen, setPaymentOpen] = useState(false);
   const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
   const { user } = useUser();
+
+  // Contact handlers
+  const handleWhatsAppContact = () => {
+    const message = encodeURIComponent(`Hi, I'm interested in the ${service.title} service. Could you provide more information?`);
+    const phoneNumber = '1234567890'; // Replace with actual WhatsApp number
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  };
+
+  const handleMessengerContact = () => {
+    // Replace with actual Facebook page username
+    window.open('https://m.me/yourusername', '_blank');
+  };
 
   const energyColors: Record<string, string> = {
     "Low": "text-[#8B6F47]",
@@ -71,13 +83,28 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 </div>
 
                 <div className="flex flex-col gap-3">
+                  <div className="text-center mb-2">
+                    <p className="font-['Crimson_Text'] text-[#E8DCC0] text-sm mb-3">
+                      Contact us to discuss this service
+                    </p>
+                  </div>
+                  
                   <Button 
-                    onClick={() => setPaymentOpen(true)}
+                    onClick={handleWhatsAppContact}
                     size="lg"
-                    className="bg-[#B8860B] hover:bg-[#CC8800] text-[#1A1A1A] font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(184,134,11,0.3)]"
+                    className="bg-[#25D366] hover:bg-[#20BA5A] text-white font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(37,211,102,0.3)]"
                   >
-                    <GiCrystalBall className="w-5 h-5 mr-2" />
-                    Request This Service
+                    <FaWhatsapp className="w-5 h-5 mr-2" />
+                    WhatsApp
+                  </Button>
+
+                  <Button 
+                    onClick={handleMessengerContact}
+                    size="lg"
+                    className="bg-[#0084FF] hover:bg-[#0073E6] text-white font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(0,132,255,0.3)]"
+                  >
+                    <RiMessengerLine className="w-5 h-5 mr-2" />
+                    Messenger
                   </Button>
                   
                   {/* Admin Quote Creation Button */}
@@ -97,23 +124,6 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             </div>
           </Card>
         </div>
-
-        {/* Payment Checkout Modal */}
-        <ServicePaymentCheckout
-          isOpen={paymentOpen}
-          onClose={() => setPaymentOpen(false)}
-          serviceName={service.title}
-          serviceId={service.id}
-          amount={service.pricing.basePrice}
-          description={service.shortDescription}
-          onPaymentSuccess={(paymentIntentId) => {
-            console.log('Payment successful:', paymentIntentId);
-            setPaymentOpen(false);
-          }}
-          onPaymentError={(error) => {
-            console.error('Payment error:', error);
-          }}
-        />
 
         {/* Admin Quote Creation Dialog */}
         <QuoteCreationDialog
@@ -291,14 +301,24 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             <p className="font-['Crimson_Text'] text-lg text-[#E8DCC0] mb-8 max-w-2xl mx-auto">
               Contact us to discuss this sacred service and receive a personalized consultation. We'll guide you through the process and answer any questions you may have.
             </p>
-            <Button 
-              onClick={() => setPaymentOpen(true)}
-              size="lg"
-              className="bg-[#B8860B] hover:bg-[#CC8800] text-[#1A1A1A] font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(184,134,11,0.3)]"
-            >
-              <GiCrystalBall className="w-5 h-5 mr-2" />
-              Schedule Consultation
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                onClick={handleWhatsAppContact}
+                size="lg"
+                className="bg-[#25D366] hover:bg-[#20BA5A] text-white font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(37,211,102,0.3)] min-w-[200px]"
+              >
+                <FaWhatsapp className="w-5 h-5 mr-2" />
+                Contact via WhatsApp
+              </Button>
+              <Button 
+                onClick={handleMessengerContact}
+                size="lg"
+                className="bg-[#0084FF] hover:bg-[#0073E6] text-white font-['MedievalSharp'] text-lg border-2 border-[#F4E8D0] shadow-[0_0_20px_rgba(0,132,255,0.3)] min-w-[200px]"
+              >
+                <RiMessengerLine className="w-5 h-5 mr-2" />
+                Contact via Messenger
+              </Button>
+            </div>
           </div>
         </Card>
 
