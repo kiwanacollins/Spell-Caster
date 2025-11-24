@@ -36,8 +36,8 @@ sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Create project directory
-sudo mkdir -p /opt/magic
-sudo chown $USER:$USER /opt/magic
+mkdir -p /root/www/var/magic
+cd /root/www/var/magic
 ```
 
 ### 2. GitHub Secrets Configuration
@@ -78,7 +78,7 @@ cat ~/.ssh/github-actions  # Copy this to VPS_SSH_KEY secret
 
 ### 4. Update Docker Compose
 
-Edit `/opt/magic/docker-compose.yml` on your VPS:
+Edit `/root/www/var/magic/docker-compose.yml` on your VPS:
 
 ```yaml
 services:
@@ -110,7 +110,7 @@ If you prefer to deploy manually:
 
 ```bash
 # On your VPS
-cd /opt/magic
+cd /root/www/var/magic
 
 # Pull latest code
 git pull origin main
@@ -207,7 +207,7 @@ docker compose restart
 The application auto-deploys on push to main. For manual update:
 
 ```bash
-cd /opt/magic
+cd /root/www/var/magic
 docker compose pull
 docker compose up -d
 ```
