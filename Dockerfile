@@ -20,9 +20,11 @@ COPY . .
 # Install dev dependencies for build
 RUN npm ci --legacy-peer-deps
 
-# Set environment variable for build
+# Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+ENV MONGODB_URI=mongodb://localhost:27017/spell-caster
+ENV NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 # Build the application
 RUN npm run build
