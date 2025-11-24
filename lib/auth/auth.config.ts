@@ -80,21 +80,18 @@ export const auth = betterAuth({
    * Google and Apple sign-in support.
    * To enable:
    * 1. Add credentials to .env.local
-   * 2. Set enabled: true for the provider
-   * 3. Configure OAuth apps in respective consoles
+   * 2. Configure OAuth apps in respective consoles
    */
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-      // Uncomment when credentials are configured:
-      // enabled: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+      // Google OAuth is enabled when credentials are provided
     },
     apple: {
       clientId: process.env.APPLE_CLIENT_ID || "",
       clientSecret: process.env.APPLE_CLIENT_SECRET || "",
-      // Uncomment when credentials are configured:
-      // enabled: Boolean(process.env.APPLE_CLIENT_ID && process.env.APPLE_CLIENT_SECRET),
+      // Apple OAuth can be enabled by adding credentials to .env.local
     },
   },
 
