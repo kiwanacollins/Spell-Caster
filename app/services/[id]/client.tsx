@@ -1,0 +1,726 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { useUser } from '@/lib/auth/hooks';
+import { 
+  GiSpellBook, 
+  GiMoon, 
+  GiCandles, 
+  GiCrystalBall,
+  GiCheckeredDiamond,
+  GiStarShuriken 
+} from 'react-icons/gi';
+import { IoCheckmarkCircle, IoTimeOutline, IoShieldCheckmark } from 'react-icons/io5';
+
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+}
+
+interface ServiceDetailClientProps {
+  service: Service;
+}
+
+export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
+  const { user } = useUser();
+  const [isCtaHovered, setIsCtaHovered] = useState(false);
+
+  // Extended service details based on category
+  const getServiceDetails = () => {
+    const baseDetails = {
+      energyLevel: service.category === 'Artifacts' ? 'Very High' : service.category === 'Rituals' ? 'Medium' : 'High',
+      moonPhase: service.category === 'Artifacts' ? '🌕' : service.category === 'Rituals' ? '🌑' : '🌔',
+      duration: service.category === 'Artifacts' ? 'Permanent enchantment' : service.category === 'Rituals' ? '3-7 days' : '7-21 days',
+      lunarPhase: service.category === 'Artifacts' ? 'Full Moon charging' : service.category === 'Rituals' ? 'New Moon (fresh start)' : 'Waxing Moon for growth',
+    };
+
+    // Specific details by service ID
+    const serviceSpecifics: Record<string, any> = {
+      'revenge-spell': {
+        fullDescription: 'Powerful karmic justice magic designed to return negative energy to those who have caused you harm. This ancient spell works with the universal law of karma to ensure that wrongdoers face consequences for their actions while protecting you from further harm.',
+        benefits: [
+          'Karmic justice delivered to wrongdoers',
+          'Protection from future harm',
+          'Emotional closure and peace',
+          'Restoration of spiritual balance'
+        ],
+        materials: ['Black candles', 'Mirror', 'Binding cord', 'Salt circle'],
+        timeline: 'Karmic effects manifest within 3-6 weeks',
+        preparation: [
+          'Provide details of the situation (kept confidential)',
+          'Photo or name of the person (if safe to share)',
+          'Clear understanding that this works with karma, not malice',
+          'Commitment to releasing anger after the ritual'
+        ]
+      },
+      'get-back-lost-items': {
+        fullDescription: 'Harness ancient retrieval magic to locate and return lost items through spiritual tracking, energy alignment, and manifestation rituals. This powerful spell works on personal belongings, documents, and valuables.',
+        benefits: [
+          'Spiritual tracking of lost items',
+          'Energy alignment to draw items back',
+          'Protection against future loss',
+          'Peace of mind and closure'
+        ],
+        materials: ['White candles', 'Rose quartz crystal', 'Personal item photo', 'Sage'],
+        timeline: 'Results typically manifest within 1-2 weeks',
+        preparation: [
+          'Provide photo or description of lost item',
+          'Recall last known location',
+          'Prepare clear intention for retrieval',
+          'Be open to signs and synchronicities'
+        ]
+      },
+      'land-solving-spell': {
+        fullDescription: 'Ancient land blessing and dispute resolution magic to clear property obstacles, resolve ownership conflicts, and ensure smooth real estate transactions through ancestral land spirits.',
+        benefits: [
+          'Clear property disputes and legal blocks',
+          'Bless land for prosperity',
+          'Remove negative energy from property',
+          'Ensure successful real estate transactions'
+        ],
+        materials: ['Earth from the property', 'Green candles', 'Salt', 'Blessed water'],
+        timeline: 'Legal progress within 2-4 weeks',
+        preparation: [
+          'Bring soil or photo of the property',
+          'Provide property details and disputes',
+          'Clear intention for resolution',
+          'Be patient with legal processes'
+        ]
+      },
+      'obsession-spell': {
+        fullDescription: 'Powerful attraction magic designed to create deep romantic interest and lasting connection. This spell works on the heart chakra to magnetize your desired partner\'s attention and affection.',
+        benefits: [
+          'Intense romantic attraction',
+          'Constant thoughts from target',
+          'Deep emotional connection',
+          'Long-lasting bond creation'
+        ],
+        materials: ['Red candles', 'Rose petals', 'Personal photos', 'Honey', 'Cinnamon'],
+        timeline: 'Initial signs within 3-7 days, full effects in 3-6 weeks',
+        preparation: [
+          'Provide clear photo of target person',
+          'Write down your intentions clearly',
+          'Be certain of your desires',
+          'Understand ethical implications'
+        ]
+      },
+      'stop-cheating-spell': {
+        fullDescription: 'Powerful fidelity magic to stop cheating behavior, break third-party interference, and restore loyalty and trust in your relationship through binding and cleansing rituals.',
+        benefits: [
+          'End current infidelity',
+          'Break third-party connections',
+          'Restore partner\'s loyalty',
+          'Rebuild trust and commitment'
+        ],
+        materials: ['Black candles', 'White sage', 'Separation herbs', 'Binding cord'],
+        timeline: 'Noticeable changes within 1-3 weeks',
+        preparation: [
+          'Provide partner\'s photo',
+          'Details about the situation (confidential)',
+          'Be ready for relationship healing work',
+          'Commitment to rebuilding trust'
+        ]
+      },
+      'binding-spell': {
+        fullDescription: 'Sacred binding magic to create permanent spiritual connection between partners, ensuring lasting commitment, unwavering loyalty, and soul-deep union through ancient handfasting rituals.',
+        benefits: [
+          'Permanent spiritual connection',
+          'Unbreakable commitment bond',
+          'Deep soul-level union',
+          'Lifelong partnership protection'
+        ],
+        materials: ['Red and white candles', 'Binding cords', 'Commitment tokens', 'Rose quartz'],
+        timeline: 'Immediate energetic bond, full integration in 6-8 weeks',
+        preparation: [
+          'Both partners\' consent ideal (but not required)',
+          'Photos of both individuals',
+          'Clear commitment intentions',
+          'Understanding of binding permanence'
+        ]
+      },
+      'gay-lesbian-spell': {
+        fullDescription: 'Inclusive love magic specifically designed for LGBTQ+ individuals seeking same-sex romantic connections. This spell honors all forms of love and creates authentic, passionate same-sex relationships.',
+        benefits: [
+          'Attract same-sex partner',
+          'Deepen existing LGBTQ+ relationship',
+          'Create authentic connection',
+          'Celebrate queer love magic'
+        ],
+        materials: ['Rainbow candles', 'Lavender', 'Rose quartz', 'Amethyst'],
+        timeline: 'New connections within 2-4 weeks',
+        preparation: [
+          'Embrace your authentic self',
+          'Clear intentions for love',
+          'Photo if targeting specific person',
+          'Openness to queer magic traditions'
+        ]
+      },
+      'winning-court-case': {
+        fullDescription: 'Powerful justice magic to influence legal outcomes, ensure fair hearings, and manifest favorable court decisions through spiritual advocacy and truth-revealing rituals.',
+        benefits: [
+          'Favorable court rulings',
+          'Judge and jury influence',
+          'Truth revelation',
+          'Legal protection and success'
+        ],
+        materials: ['Purple candles', 'Courthouse dirt', 'Court documents', 'Scales charm'],
+        timeline: 'Ongoing until legal resolution',
+        preparation: [
+          'Provide court documents and case details',
+          'Clear truthful position',
+          'Faith in justice',
+          'Ongoing legal counsel (spell is supplementary)'
+        ]
+      },
+      'business-boost-spells': {
+        fullDescription: 'Comprehensive business prosperity magic including customer attraction, revenue increase, competition protection, and success manifestation for entrepreneurs and business owners.',
+        benefits: [
+          'Increased customer traffic',
+          'Revenue and profit growth',
+          'Protection from competition',
+          'Business success and expansion'
+        ],
+        materials: ['Green candles', 'Coins', 'Business cards', 'Basil', 'Cinnamon'],
+        timeline: 'Initial results in 2-3 weeks, peak in 2-3 months',
+        preparation: [
+          'Business details and goals',
+          'Logo or business card',
+          'Clear financial intentions',
+          'Ongoing business efforts (magic enhances action)'
+        ]
+      },
+      'cleansing-rituals': {
+        fullDescription: 'Comprehensive spiritual cleansing to remove hexes, curses, evil eye, negative attachments, and energy blockages. Restore spiritual purity and energetic balance.',
+        benefits: [
+          'Remove curses and hexes',
+          'Clear negative energy',
+          'Break evil eye',
+          'Restore spiritual balance'
+        ],
+        materials: ['White sage', 'Florida water', 'Sea salt', 'White candles'],
+        timeline: 'Immediate relief, complete clearing in 1-2 weeks',
+        preparation: [
+          'Describe symptoms and experiences',
+          'Recent photo of yourself',
+          'Openness to cleansing process',
+          'Follow post-ritual instructions'
+        ]
+      },
+      'divorce-spell': {
+        fullDescription: 'Gentle separation magic to facilitate peaceful divorce, break unhealthy bonds, and create space for new beginnings. Helps both parties move forward with clarity and closure.',
+        benefits: [
+          'Peaceful separation process',
+          'Break emotional bonds',
+          'Fair settlement outcomes',
+          'Closure and new beginnings'
+        ],
+        materials: ['Black candles', 'Separation herbs', 'Cutting ritual tools', 'White sage'],
+        timeline: 'Emotional shift in 1-2 weeks, legal process varies',
+        preparation: [
+          'Clear intention for separation',
+          'Both partners\' photos',
+          'Legal divorce proceedings underway',
+          'Emotional readiness for change'
+        ]
+      },
+      'marriage-commitment': {
+        fullDescription: 'Powerful commitment magic to inspire marriage proposals, deepen partnership bonds, and manifest wedding ceremonies. Ideal for those seeking to take relationships to the next level.',
+        benefits: [
+          'Inspire marriage proposal',
+          'Deepen commitment desires',
+          'Clear path to marriage',
+          'Lasting union manifestation'
+        ],
+        materials: ['White and gold candles', 'Diamond/ring charm', 'Rose quartz', 'Commitment vows'],
+        timeline: 'Proposal within 3-6 months typically',
+        preparation: [
+          'Relationship readiness for marriage',
+          'Both partners\' photos',
+          'Clear marriage intentions',
+          'Patience with divine timing'
+        ]
+      },
+      'magic-wallet': {
+        fullDescription: 'Sacred money artifact that continuously attracts wealth, prevents financial loss, and multiplies abundance. This enchanted wallet becomes a permanent money magnet.',
+        benefits: [
+          'Continuous money attraction',
+          'Multiplied wealth',
+          'Protected finances',
+          'Never empty wallet magic'
+        ],
+        materials: ['Your personal wallet', 'Gold/silver coins', 'Cinnamon', 'Basil', 'Lodestone'],
+        timeline: 'Immediate activation, growing power over time',
+        preparation: [
+          'Bring your actual wallet',
+          'Clear financial goals',
+          'Gratitude for current wealth',
+          'Commitment to wallet care'
+        ]
+      },
+      'financial-issues': {
+        fullDescription: 'Comprehensive financial healing magic addressing debt, money blocks, poverty consciousness, and financial crises. Opens pathways to abundance and resolves money problems.',
+        benefits: [
+          'Debt reduction and relief',
+          'Money block removal',
+          'Financial breakthrough',
+          'Abundance consciousness shift'
+        ],
+        materials: ['Green candles', 'Prosperity herbs', 'Bills/debt papers', 'Gold coins'],
+        timeline: 'Relief within 2-4 weeks, full resolution varies',
+        preparation: [
+          'List all debts and financial issues',
+          'Honest assessment of situation',
+          'Willingness to change money mindset',
+          'Active job/income seeking (magic enhances effort)'
+        ]
+      },
+      'protection-spells': {
+        fullDescription: 'Powerful protection magic creating spiritual shields against negative energy, psychic attacks, evil intentions, and harmful magic. Includes home, personal, and family protection.',
+        benefits: [
+          'Psychic attack protection',
+          'Negative energy shielding',
+          'Home and family protection',
+          'Evil eye deflection'
+        ],
+        materials: ['Black tourmaline', 'Protective herbs', 'Salt', 'Mirrors', 'Your photo'],
+        timeline: 'Immediate protection, strengthens over 2 weeks',
+        preparation: [
+          'Recent photo of yourself',
+          'Home layout or photos',
+          'List of protection concerns',
+          'Openness to protective guidance'
+        ]
+      },
+      'magic-rings': {
+        fullDescription: 'Sacred power rings enchanted for specific purposes: wealth attraction, love magnetism, protection, or spiritual power. Permanent wearable magic that continuously works for you.',
+        benefits: [
+          'Continuous magical power',
+          'Purpose-specific enchantment',
+          'Wearable protection',
+          'Lifetime magical artifact'
+        ],
+        materials: ['Silver or gold ring', 'Gemstones (purpose-specific)', 'Ritual oils', 'Incantations'],
+        timeline: 'Immediate activation, power grows with wearing',
+        preparation: [
+          'Choose ring purpose (wealth/love/protection/power)',
+          'Provide ring (or we source one)',
+          'Clear intention for ring\'s work',
+          'Commitment to wearing it regularly'
+        ]
+      }
+    };
+
+    return {
+      ...baseDetails,
+      ...(serviceSpecifics[service.id] || {
+        fullDescription: service.description,
+        benefits: [
+          'Spiritual transformation',
+          'Energy alignment',
+          'Manifestation power',
+          'Divine guidance'
+        ],
+        materials: ['Candles', 'Crystals', 'Sacred herbs', 'Ritual tools'],
+        timeline: 'Results manifest according to divine timing',
+        preparation: [
+          'Clear intentions',
+          'Open heart and mind',
+          'Trust in the process',
+          'Follow all guidance'
+        ]
+      })
+    };
+  };
+
+  const details = getServiceDetails();
+
+  return (
+    <main className="min-h-screen overflow-x-hidden bg-ink-900">
+      {/* Parchment Paper Container */}
+      <div className="relative w-full flex justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div
+          className="relative w-full max-w-[1400px] shadow-2xl"
+          style={{
+            backgroundImage: `url(/textures/parchment-light.webp)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+          }}
+        >
+          {/* Paper edge shadow for depth */}
+          <div className="absolute inset-0 shadow-[0_0_60px_rgba(0,0,0,0.5)]" style={{ pointerEvents: 'none' }} />
+          
+          {/* Content Container */}
+          <div className="relative z-10 px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+            {/* Breadcrumb Navigation */}
+            <nav className="mb-8 font-serif text-sm text-ink-700">
+              <Link href="/" className="hover:text-mystical-bronze transition-colors">
+                Home
+              </Link>
+              <span className="mx-2">→</span>
+              <Link href="/#services" className="hover:text-mystical-bronze transition-colors">
+                Sacred Services
+              </Link>
+              <span className="mx-2">→</span>
+              <span className="text-ink-900">{service.name}</span>
+            </nav>
+
+            {/* Service Header */}
+            <div className="mb-12 text-center">
+              {/* Icon */}
+              <div className="relative w-32 h-32 mx-auto mb-6 animate-float">
+                <div className="absolute inset-0 bg-mystical-amber/20 rounded-full blur-xl" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={service.icon}
+                  alt={service.name}
+                  width={128}
+                  height={128}
+                  className="relative z-10 drop-shadow-lg w-32 h-auto mx-auto"
+                />
+              </div>
+
+              {/* Category Badge */}
+              <div className="mb-4">
+                <span className="inline-block px-4 py-1 bg-mystical-amber/10 border border-mystical-amber/30 rounded-ritual font-serif text-sm text-mystical-bronze uppercase tracking-wider">
+                  {service.category}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h1 className="font-gothic text-5xl sm:text-6xl md:text-7xl text-ink-900 mb-6">
+                {service.name}
+              </h1>
+
+              {/* Decorative divider */}
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-px w-24 bg-linear-to-r from-transparent to-mystical-bronze" />
+                <span className="text-mystical-bronze text-2xl">✦</span>
+                <div className="h-px w-24 bg-linear-to-l from-transparent to-mystical-bronze" />
+              </div>
+
+              {/* Short Description */}
+              <p className="font-serif text-xl sm:text-2xl text-ink-800 max-w-3xl mx-auto leading-relaxed">
+                {service.description}
+              </p>
+
+              {/* Energy & Moon Phase */}
+              <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
+                <div className="flex items-center gap-2">
+                  <GiMoon className="w-6 h-6 text-mystical-amber" />
+                  <span className="font-serif text-ink-700">
+                    {details.energyLevel} Energy
+                  </span>
+                </div>
+                <span className="text-mystical-bronze">•</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-3xl">{details.moonPhase}</span>
+                  <span className="font-serif text-ink-700">
+                    {details.lunarPhase}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Sacred Overview Section */}
+            <section className="mb-16">
+              <div className="relative rounded-ritual overflow-hidden border-2 border-amber-600/40 bg-linear-to-b from-amber-50/80 to-amber-100/60 shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                {/* Corner decorations */}
+                <div className="absolute top-0 left-0 w-16 h-16">
+                  <div className="absolute top-3 left-3 w-10 h-10 border-t-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16">
+                  <div className="absolute top-3 right-3 w-10 h-10 border-t-2 border-r-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 left-0 w-16 h-16">
+                  <div className="absolute bottom-3 left-3 w-10 h-10 border-b-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-16 h-16">
+                  <div className="absolute bottom-3 right-3 w-10 h-10 border-b-2 border-r-2 border-amber-700/60" />
+                </div>
+
+                <div className="relative p-8 sm:p-12">
+                  <h2 className="font-cinzel text-3xl sm:text-4xl text-ink-900 mb-6 flex items-center justify-center gap-3">
+                    <GiSpellBook className="w-8 h-8 text-mystical-bronze" />
+                    Sacred Overview
+                  </h2>
+                  
+                  <p className="font-serif text-lg text-ink-800 mb-8 leading-relaxed max-w-4xl mx-auto">
+                    {details.fullDescription}
+                  </p>
+
+                  <h3 className="font-cinzel text-2xl text-ink-900 mb-6 text-center">
+                    Spiritual Benefits
+                  </h3>
+                  
+                  <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    {details.benefits.map((benefit: string, index: number) => (
+                      <div key={index} className="flex items-start gap-3 bg-parchment-100/40 p-4 rounded-ritual">
+                        <IoCheckmarkCircle className="w-6 h-6 text-mystical-bronze shrink-0 mt-1" />
+                        <span className="font-serif text-ink-800">
+                          {benefit}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Ritual Details Section */}
+            <section className="mb-16">
+              <div className="relative rounded-ritual overflow-hidden border-2 border-amber-600/40 bg-linear-to-b from-amber-50/80 to-amber-100/60 shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                {/* Corner decorations */}
+                <div className="absolute top-0 left-0 w-16 h-16">
+                  <div className="absolute top-3 left-3 w-10 h-10 border-t-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16">
+                  <div className="absolute top-3 right-3 w-10 h-10 border-t-2 border-r-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 left-0 w-16 h-16">
+                  <div className="absolute bottom-3 left-3 w-10 h-10 border-b-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-16 h-16">
+                  <div className="absolute bottom-3 right-3 w-10 h-10 border-b-2 border-r-2 border-amber-700/60" />
+                </div>
+
+                <div className="relative p-8 sm:p-12">
+                  <h2 className="font-cinzel text-3xl sm:text-4xl text-ink-900 mb-8 flex items-center justify-center gap-3">
+                    <GiCandles className="w-8 h-8 text-mystical-bronze" />
+                    Ritual Details
+                  </h2>
+
+                  <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    {/* Duration & Timeline */}
+                    <div className="bg-parchment-100/40 p-6 rounded-ritual">
+                      <h3 className="font-cinzel text-xl text-ink-900 mb-4 flex items-center gap-2">
+                        <IoTimeOutline className="w-6 h-6 text-mystical-bronze" />
+                        Duration & Timeline
+                      </h3>
+                      <p className="font-serif text-ink-700 mb-4">
+                        <strong>Duration:</strong> {details.duration}
+                      </p>
+                      <p className="font-serif text-ink-700">
+                        <strong>Timeline:</strong> {details.timeline}
+                      </p>
+                    </div>
+
+                    {/* Sacred Materials */}
+                    <div className="bg-parchment-100/40 p-6 rounded-ritual">
+                      <h3 className="font-cinzel text-xl text-ink-900 mb-4">
+                        Sacred Materials
+                      </h3>
+                      <ul className="space-y-2">
+                        {details.materials.map((material: string, index: number) => (
+                          <li key={index} className="flex items-center gap-2">
+                            <GiStarShuriken className="w-4 h-4 text-mystical-bronze" />
+                            <span className="font-serif text-ink-700">
+                              {material}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Preparation Section */}
+            <section className="mb-16">
+              <div className="relative rounded-ritual overflow-hidden border-2 border-amber-600/40 bg-linear-to-b from-amber-50/80 to-amber-100/60 shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                {/* Corner decorations */}
+                <div className="absolute top-0 left-0 w-16 h-16">
+                  <div className="absolute top-3 left-3 w-10 h-10 border-t-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16">
+                  <div className="absolute top-3 right-3 w-10 h-10 border-t-2 border-r-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 left-0 w-16 h-16">
+                  <div className="absolute bottom-3 left-3 w-10 h-10 border-b-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-16 h-16">
+                  <div className="absolute bottom-3 right-3 w-10 h-10 border-b-2 border-r-2 border-amber-700/60" />
+                </div>
+
+                <div className="relative p-8 sm:p-12">
+                  <h2 className="font-cinzel text-3xl sm:text-4xl text-ink-900 mb-8 flex items-center justify-center gap-3">
+                    <IoShieldCheckmark className="w-8 h-8 text-mystical-bronze" />
+                    How to Prepare
+                  </h2>
+                  
+                  <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    {details.preparation.map((item: string, index: number) => (
+                      <div key={index} className="flex items-start gap-3 bg-parchment-100/40 p-4 rounded-ritual">
+                        <GiCheckeredDiamond className="w-5 h-5 text-mystical-bronze shrink-0 mt-1" />
+                        <span className="font-serif text-ink-800">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Call to Action Section */}
+            <section className="mb-16">
+              <div className="relative rounded-ritual overflow-hidden border-2 border-amber-600/40 bg-linear-to-b from-amber-50/80 to-amber-100/60 shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                {/* Corner decorations */}
+                <div className="absolute top-0 left-0 w-16 h-16">
+                  <div className="absolute top-3 left-3 w-10 h-10 border-t-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16">
+                  <div className="absolute top-3 right-3 w-10 h-10 border-t-2 border-r-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 left-0 w-16 h-16">
+                  <div className="absolute bottom-3 left-3 w-10 h-10 border-b-2 border-l-2 border-amber-700/60" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-16 h-16">
+                  <div className="absolute bottom-3 right-3 w-10 h-10 border-b-2 border-r-2 border-amber-700/60" />
+                </div>
+
+                <div className="relative p-8 sm:p-12 text-center">
+                  <h2 className="font-cinzel text-3xl sm:text-4xl text-ink-900 mb-6">
+                    Ready to Begin Your Journey?
+                  </h2>
+                  
+                  <p className="font-serif text-lg text-ink-800 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    {user 
+                      ? 'Request this sacred service through your dashboard for a personalized consultation and spiritual guidance.'
+                      : 'Create an account or sign in to request this sacred service and receive personalized spiritual guidance.'}
+                  </p>
+
+                  {user ? (
+                    <Link
+                      href={`/dashboard/services/${service.id}`}
+                      className="relative inline-block"
+                      onMouseEnter={() => setIsCtaHovered(true)}
+                      onMouseLeave={() => setIsCtaHovered(false)}
+                    >
+                      <div className="relative px-8 py-4 text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-amber-700 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group">
+                        {/* Gold gradient background */}
+                        <div 
+                          className="absolute inset-0"
+                          style={{
+                            background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+                          }}
+                        />
+                        
+                        {/* Metallic sheen overlay */}
+                        <div 
+                          className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+                          style={{
+                            background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
+                          }}
+                        />
+                        
+                        <div className="relative z-10 flex items-center gap-2">
+                          <GiCrystalBall className="w-6 h-6" />
+                          Request This Service
+                        </div>
+
+                        {/* Wax seal decoration */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src="/textures/wax-seal-for-CTAs-&-buttons.png"
+                          alt=""
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Link
+                        href="/login"
+                        className="relative inline-block"
+                      >
+                        <div className="relative px-8 py-4 text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-amber-700 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group">
+                          {/* Gold gradient background */}
+                          <div 
+                            className="absolute inset-0"
+                            style={{
+                              background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
+                            }}
+                          />
+                          
+                          {/* Metallic sheen overlay */}
+                          <div 
+                            className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
+                            }}
+                          />
+                          
+                          <span className="relative z-10">Sign In</span>
+
+                          {/* Wax seal decoration */}
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="/textures/wax-seal-for-CTAs-&-buttons.png"
+                            alt=""
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/register"
+                        className="relative inline-block"
+                      >
+                        <div className="relative px-8 py-4 text-parchment-100 font-cinzel text-lg rounded-ritual border-2 border-amber-600 bg-ink-900 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group">
+                          <span className="relative z-10">Create Account</span>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Trust Footer */}
+            <div className="text-center py-8 border-t-2 border-amber-600/30">
+              <div className="flex flex-wrap items-center justify-center gap-6 mb-4">
+                <div className="flex items-center gap-2">
+                  <IoShieldCheckmark className="w-6 h-6 text-mystical-bronze" />
+                  <span className="font-serif text-ink-800">
+                    Safe & Confidential
+                  </span>
+                </div>
+                <span className="text-mystical-bronze">•</span>
+                <span className="font-serif text-ink-800">
+                  15+ Years Experience
+                </span>
+                <span className="text-mystical-bronze">•</span>
+                <span className="font-serif text-ink-800">
+                  Pure White Light Magic
+                </span>
+              </div>
+              <p className="font-serif text-sm text-ink-700 max-w-2xl mx-auto italic">
+                This service is performed with pure intention and white light energy. Results may vary based on individual circumstances and spiritual readiness.
+              </p>
+            </div>
+
+            {/* Back to Services Link */}
+            <div className="text-center mt-8">
+              <Link
+                href="/#services"
+                className="font-serif text-mystical-bronze hover:text-mystical-amber transition-colors inline-flex items-center gap-2"
+              >
+                <span>←</span>
+                Back to All Services
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
