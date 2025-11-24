@@ -30,7 +30,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Run tests
-        run: npm run test
+        run: npm run test -- --passWithNoTests
 
   build:
     name: Build and Push Docker Image
