@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+RUN npm ci --only=production --legacy-peer-deps
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
@@ -16,6 +16,9 @@ WORKDIR /app
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Install dev dependencies for build
+RUN npm ci --legacy-peer-deps
 
 # Set environment variable for build
 ENV NEXT_TELEMETRY_DISABLED=1
