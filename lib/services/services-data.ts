@@ -125,7 +125,7 @@ export const services: Service[] = [
     category: 'Spells',
   },
   {
-    id: 'protection-spells',
+    id: 'protection-shielding',
     name: 'Protection & Shielding',
     description:
       'Ward off negative energies, break curses, and create sacred barriers against harm and malicious forces.',

@@ -287,7 +287,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
 
                   {user ? (
                     <Link
-                      href={`/dashboard/services/${service.id}`}
+                      href={`/dashboard/services/${service.slug}`}
                       className="relative inline-block"
                       onMouseEnter={() => setIsCtaHovered(true)}
                       onMouseLeave={() => setIsCtaHovered(false)}
