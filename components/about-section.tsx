@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 
@@ -123,14 +122,14 @@ export function AboutSection() {
             </div>
 
             {/* CTA */}
-            <div className="pt-6">
+            <div className="pt-6 flex flex-col sm:flex-row gap-4">
               <Button
                 asChild
                 size="lg"
-                className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-mystical-amber transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
+                className="relative bg-green-600 hover:bg-green-700 text-white font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-green-700 transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
               >
-                <Link href="/consultations">
-                  <span className="relative z-10">Begin Your Journey</span>
+                <a href="https://wa.me/15185607836?text=Hello!%20I%20would%20like%20to%20begin%20my%20spiritual%20journey%20with%20you." target="_blank" rel="noopener noreferrer">
+                  <span className="relative z-10">WhatsApp the Healer</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/textures/wax-seal-for-CTAs-&-buttons.png"
@@ -138,7 +137,16 @@ export function AboutSection() {
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
                     aria-hidden="true"
                   />
-                </Link>
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                className="relative bg-blue-600 hover:bg-blue-700 text-white font-cinzel text-base px-8 py-6 rounded-ritual border-2 border-blue-700 transition-all duration-300 hover:shadow-candle hover:scale-105 overflow-hidden group"
+              >
+                <a href="https://m.me/852523554609766" target="_blank" rel="noopener noreferrer">
+                  <span className="relative z-10">Message on Facebook</span>
+                </a>
               </Button>
             </div>
           </div>

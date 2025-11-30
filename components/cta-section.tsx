@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export function CTASection() {
@@ -95,25 +94,27 @@ export function CTASection() {
             <Button
               asChild
               size="lg"
-              className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-mystical-amber shadow-candle transition-all duration-300 hover:scale-105 hover:shadow-glow overflow-hidden group"
+              className="relative bg-green-600 hover:bg-green-700 text-white font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-green-700 shadow-candle transition-all duration-300 hover:scale-105 hover:shadow-glow overflow-hidden group"
             >
-          
+              <a href="https://wa.me/15185607836?text=Hello!%20I%20would%20like%20to%20join%20the%20circle%20and%20learn%20more%20about%20your%20spiritual%20services." target="_blank" rel="noopener noreferrer">
+                <span className="relative z-10">WhatsApp the Healer</span>
+              </a>
             </Button>
 
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="bg-transparent hover:bg-parchment-100/10 text-parchment-100 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-parchment-200 hover:border-mystical-amber transition-all duration-300"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-blue-700 transition-all duration-300"
             >
-              <Link href="/consultations">Book a Reading</Link>
+              <a href="https://m.me/852523554609766" target="_blank" rel="noopener noreferrer">Message on Facebook</a>
             </Button>
           </div>
 
           {/* Trust indicator */}
           <div className="pt-8">
             <p className="font-serif text-sm text-parchment-400 italic">
-              Join our sacred community • No commitment required • Begin your
+              Contact the healer directly • Personal guidance • Begin your
               transformation today
             </p>
           </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { fontClasses } from '@/styles/fonts';
 import '@/lib/env'; // Validate environment variables on app start
+import DomSanitizer from '@/components/dom-sanitizer';
 
 export const metadata: Metadata = {
   title: 'Your Spell Caster - Spiritual Healing & Mystical Services',
@@ -23,13 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning={true}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#1A1A1A" />
       </head>
-      <body className={`${fontClasses} antialiased overflow-x-hidden`} style={{ margin: 0, padding: 0 }}>
+      <body suppressHydrationWarning={true} className={`${fontClasses} antialiased overflow-x-hidden`} style={{ margin: 0, padding: 0 }}>
+        <DomSanitizer />
         {children}
       </body>
     </html>

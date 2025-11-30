@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 
@@ -14,21 +13,9 @@ const AncientBookScene = dynamic(
   }
 );
 
-// Dynamically import particle effects (client-side only)
-const MysticalParticles = dynamic(
-  () =>
-    import('@/components/particles/mystical-particles').then(
-      (mod) => mod.MysticalParticles
-    ),
-  { ssr: false }
-);
-
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal">
-      {/* Mystical Particle Effects */}
-      <MysticalParticles type="both" className="opacity-60" />
-
       {/* 3D Ancient Book Background */}
       <div className="absolute inset-0 opacity-30 z-10">
         <AncientBookScene />
@@ -84,22 +71,7 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button
-              asChild
-              size="lg"
-              className="relative bg-mystical-amber hover:bg-sacred-gold text-charcoal font-philosopher text-lg px-8 py-6 rounded-none border-2 border-mystical-amber shadow-lg hover:shadow-mystical-amber/50 transition-all duration-300 hover:scale-105 overflow-hidden group"
-            >
-              <Link href="/services">
-                <span className="relative z-10">Begin Your Journey</span>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/textures/wax-seal-for-CTAs-&-buttons.png"
-                  alt=""
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                  aria-hidden="true"
-                />
-              </Link>
-            </Button>
+        
 
             <Button
               asChild
@@ -107,7 +79,7 @@ export function HeroSection() {
               variant="outline"
               className="bg-transparent hover:bg-parchment/10 text-parchment font-philosopher text-lg px-8 py-6 rounded-none border-2 border-parchment hover:border-mystical-amber transition-all duration-300"
             >
-              <Link href="/consultations">Book a Consultation</Link>
+              <a href="https://wa.me/15185607836?text=Hello!%20I%20would%20like%20to%20learn%20more%20about%20your%20spiritual%20services." target="_blank" rel="noopener noreferrer">Contact the Healer</a>
             </Button>
           </div>
 

@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import { useUser } from '@/lib/auth/hooks';
 import { Service } from '@/lib/services/service-data';
 import { 
   GiSpellBook, 
@@ -19,7 +18,6 @@ interface ServiceDetailClientProps {
 }
 
 export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
-  const { user } = useUser();
 
   // Map comprehensive service data to component's expected details structure
   const getServiceDetails = () => {
@@ -37,10 +35,6 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
   };
 
   const details = getServiceDetails();
-
-  function setIsCtaHovered(_arg0: boolean): void {
-    throw new Error('Function not implemented.');
-  }
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-ink-900">
@@ -282,96 +276,35 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   </h2>
                   
                   <p className="font-serif text-lg text-ink-800 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    {user 
-                      ? 'Request this sacred service through your dashboard for a personalized consultation and spiritual guidance.'
-                      : 'Create an account or sign in to request this sacred service and receive personalized spiritual guidance.'}
+                    Contact the healer directly to request this sacred service and receive personalized spiritual guidance.
                   </p>
 
-                  {user ? (
-                    <Link
-                      href={`/dashboard/services/${service.slug}`}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                      href={`https://wa.me/15185607836?text=${encodeURIComponent(`Hello! I'm interested in the ${service.title} service. Can you tell me more?`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="relative inline-block"
-                      onMouseEnter={() => setIsCtaHovered(true)}
-                      onMouseLeave={() => setIsCtaHovered(false)}
                     >
-                      <div className="relative px-8 py-4 text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-amber-700 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group">
-                        {/* Gold gradient background */}
-                        <div 
-                          className="absolute inset-0"
-                          style={{
-                            background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                          }}
-                        />
-                        
-                        {/* Metallic sheen overlay */}
-                        <div 
-                          className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                          style={{
-                            background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
-                          }}
-                        />
-                        
-                        <div className="relative z-10 flex items-center gap-2">
+                      <div className="relative px-8 py-4 text-white font-cinzel text-lg rounded-ritual border-2 border-green-700 bg-green-600 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:bg-green-700 overflow-hidden group">
+                        <div className="relative z-10 flex items-center justify-center gap-2">
                           <GiCrystalBall className="w-6 h-6" />
-                          Request This Service
+                          WhatsApp the Healer
                         </div>
-
-                        {/* Wax seal decoration */}
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src="/textures/wax-seal-for-CTAs-&-buttons.png"
-                          alt=""
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                          aria-hidden="true"
-                        />
                       </div>
-                    </Link>
-                  ) : (
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Link
-                        href="/login"
-                        className="relative inline-block"
-                      >
-                        <div className="relative px-8 py-4 text-ink-900 font-cinzel text-lg rounded-ritual border-2 border-amber-700 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group">
-                          {/* Gold gradient background */}
-                          <div 
-                            className="absolute inset-0"
-                            style={{
-                              background: 'linear-gradient(135deg, #fef3c7 0%, #fefce8 50%, #fde68a 100%)',
-                            }}
-                          />
-                          
-                          {/* Metallic sheen overlay */}
-                          <div 
-                            className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                            style={{
-                              background: 'linear-gradient(135deg, rgba(254, 240, 138, 0.5) 0%, transparent 50%, rgba(252, 211, 77, 0.5) 100%)',
-                            }}
-                          />
-                          
-                          <span className="relative z-10">Sign In</span>
+                    </a>
 
-                          {/* Wax seal decoration */}
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src="/textures/wax-seal-for-CTAs-&-buttons.png"
-                            alt=""
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                            aria-hidden="true"
-                          />
-                        </div>
-                      </Link>
-
-                      <Link
-                        href="/register"
-                        className="relative inline-block"
-                      >
-                        <div className="relative px-8 py-4 text-parchment-100 font-cinzel text-lg rounded-ritual border-2 border-amber-600 bg-ink-900 transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden group">
-                          <span className="relative z-10">Create Account</span>
-                        </div>
-                      </Link>
-                    </div>
-                  )}
+                    <a
+                      href={`https://m.me/852523554609766?text=${encodeURIComponent(`Hello! I'm interested in the ${service.title} service. Can you tell me more?`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative inline-block"
+                    >
+                      <div className="relative px-8 py-4 text-white font-cinzel text-lg rounded-ritual border-2 border-blue-700 bg-blue-600 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:bg-blue-700 overflow-hidden group">
+                        <span className="relative z-10">Message on Facebook</span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
