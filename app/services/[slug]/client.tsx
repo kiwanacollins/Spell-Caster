@@ -12,6 +12,7 @@ import {
 } from 'react-icons/gi';
 import { IoCheckmarkCircle, IoTimeOutline, IoShieldCheckmark } from 'react-icons/io5';
 import { WhatsAppButton } from '@/components/whatsapp-button';
+import { MessengerButton } from '@/components/messenger-button';
 
 interface ServiceDetailClientProps {
   service: Service;
@@ -414,6 +415,9 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
 
       {/* WhatsApp Contact Button */}
       <WhatsAppButton message={`Hello! I'm interested in the ${service.title} service. Can you tell me more?`} />
+      
+      {/* Facebook Messenger Contact Button */}
+      <MessengerButton message={`Hello! I'm interested in the ${service.title} service. Can you tell me more?`} />
     </main>
   );
 }

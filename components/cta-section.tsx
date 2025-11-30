@@ -97,16 +97,7 @@ export function CTASection() {
               size="lg"
               className="relative bg-mystical-amber hover:bg-mystical-gold text-ink-900 font-cinzel text-lg px-10 py-7 rounded-ritual border-2 border-mystical-amber shadow-candle transition-all duration-300 hover:scale-105 hover:shadow-glow overflow-hidden group"
             >
-              <Link href="/services">
-                <span className="relative z-10">Explore Services</span>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/textures/wax-seal-for-CTAs-&-buttons.png"
-                  alt=""
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                  aria-hidden="true"
-                />
-              </Link>
+          
             </Button>
 
             <Button
