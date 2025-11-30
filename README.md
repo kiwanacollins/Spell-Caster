@@ -47,18 +47,17 @@ what would be the value of this for this project:
 
 
 cd /root/www/var/magic
-
-# Stop current containers
+# Stop containers
 docker compose down
 
-# Start with MongoDB
+# Remove old images to force complete rebuild
+docker compose build --no-cache
+
+# Start containers
 docker compose up -d
 
-# Check status
+# Verify the app is running
 docker compose ps
 
-# View logs
+# Check logs
 docker compose logs -f app
-
-
-PAT

@@ -6,6 +6,7 @@ import { TestimonialsCarousel } from '@/components/testimonials-carousel';
 import { CTASection } from '@/components/cta-section';
 import { RuneObserver } from '@/components/rune-observer';
 import { Footer } from '@/components/footer';
+import { WhatsAppButton } from '@/components/whatsapp-button';
 
 export default function Home() {
   return (
@@ -41,6 +42,9 @@ export default function Home() {
       </div>
       
       <Footer />
+      
+      {/* WhatsApp Contact Button */}
+      <WhatsAppButton />
     </main>
   );
 }
